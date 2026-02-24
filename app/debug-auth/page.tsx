@@ -11,11 +11,6 @@ export default function DebugAuthPage() {
   useEffect(() => {
     async function testAuth() {
       try {
-        // Test cookie endpoint
-        const cookieResponse = await fetch('/api/test-cookie')
-        const cookieResult = await cookieResponse.json()
-        setCookieData(cookieResult)
-
         // Test auth endpoint
         const authResponse = await fetch('/api/auth/me')
         if (authResponse.ok) {
@@ -25,6 +20,11 @@ export default function DebugAuthPage() {
           const errorResult = await authResponse.json()
           setAuthData({ error: errorResult.error, status: authResponse.status })
         }
+
+        // Test cookie endpoint
+        const cookieResponse = await fetch('/api/test-cookie')
+        const cookieResult = await cookieResponse.json()
+        setCookieData(cookieResult)
       } catch (error) {
         setAuthData({ error: 'Network error', details: error })
       } finally {
@@ -95,6 +95,7 @@ export default function DebugAuthPage() {
               Admin Login
             </a>
             <button 
+              type="button"
               onClick={() => window.location.reload()}
               className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700"
             >

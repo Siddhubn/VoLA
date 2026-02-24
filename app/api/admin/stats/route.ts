@@ -18,13 +18,19 @@ export async function GET(request: NextRequest) {
     // Get admin statistics
     const totalUsers = await User.getTotalCount()
     const activeUsers = await User.getActiveCount()
-    const recentUsers = await User.getRecentUsers(5)
+    const recentUsers = await User.getRecentUsers(10)
+    
+    // Get course counts
+    const fitterCount = await User.getCourseCount('fitter')
+    const electricianCount = await User.getCourseCount('electrician')
 
     return NextResponse.json({
       totalUsers,
       activeUsers,
       inactiveUsers: totalUsers - activeUsers,
-      recentUsers
+      recentUsers,
+      fitterCount,
+      electricianCount
     })
 
   } catch (error) {

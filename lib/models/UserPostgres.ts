@@ -93,7 +93,7 @@ export class User {
   // Find user by ID without password
   static async findByIdSafe(id: number): Promise<Omit<IUser, 'password'> | null> {
     const result = await query(
-      `SELECT id, name, email, role, avatar, is_active, created_at, updated_at, 
+      `SELECT id, name, email, role, course, avatar, is_active, created_at, updated_at, 
               last_login, bio, skills, learning_goals, completed_courses, total_study_time
        FROM users WHERE id = $1`,
       [id]
@@ -267,7 +267,7 @@ export class User {
   // Get recent users
   static async getRecentUsers(limit = 5): Promise<Omit<IUser, 'password'>[]> {
     const result = await query(
-      `SELECT id, name, email, role, avatar, is_active, created_at, updated_at, 
+      `SELECT id, name, email, role, course, avatar, is_active, created_at, updated_at, 
               last_login, bio, skills, learning_goals, completed_courses, total_study_time
        FROM users 
        ORDER BY created_at DESC 
@@ -276,5 +276,14 @@ export class User {
     )
 
     return result.rows
+  }
+
+  // Get count of users by course
+  static async getCourseCount(course: string): Promise<number> {
+    const result = await query(
+      'SELECT COUNT(*) as count FROM users WHERE course = $1',
+      [course]
+    )
+    return parseInt(result.rows[0].count)
   }
 }

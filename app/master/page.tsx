@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
@@ -14,7 +13,6 @@ interface AdminLoginForm {
 }
 
 export default function AdminLoginPage() {
-  const router = useRouter()
   const [showPassword, setShowPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
@@ -45,8 +43,8 @@ export default function AdminLoginPage() {
 
       if (response.ok && result.user) {
         console.log('✅ Admin login successful, redirecting...')
-        // Redirect to simple admin dashboard that works
-        window.location.href = '/admin-simple'
+        // Redirect to admin dashboard
+        window.location.href = '/admin/dashboard'
       } else {
         console.error('❌ Admin login failed:', result.error)
         setError(result.error || 'Login failed')

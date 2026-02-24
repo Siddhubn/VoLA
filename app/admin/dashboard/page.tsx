@@ -11,17 +11,16 @@ import {
   Activity,
   Database,
   Settings,
-  AlertTriangle,
   TrendingUp,
   UserCheck,
-  UserX,
-  Clock,
   BarChart3,
-  PieChart,
   Monitor,
-  Server,
-  Headphones,
-  Brain
+  Brain,
+  Download,
+  Filter,
+  Search,
+  Wrench,
+  Zap
 } from 'lucide-react'
 import { formatDate } from '@/lib/utils'
 
@@ -30,6 +29,7 @@ interface User {
   name: string
   email: string
   role: string
+  course?: string
   avatar?: string
   created_at: string
   is_active: boolean
@@ -49,20 +49,16 @@ interface AdminData {
     activeUsers: number
     inactiveUsers: number
     recentUsers: User[]
+    fitterCount: number
+    electricianCount: number
   }
 }
 
 interface SystemMetrics {
+  totalQuizzes: number
   totalCourses: number
-  totalLessons: number
+  averageScore: number
   completionRate: number
-  averageStudyTime: number
-  popularCourses: Array<{
-    id: number
-    title: string
-    enrollments: number
-    completionRate: number
-  }>
 }
 
 export default function AdminDashboardPage() {
@@ -71,6 +67,9 @@ export default function AdminDashboardPage() {
   const [systemMetrics, setSystemMetrics] = useState<SystemMetrics | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
+  const [searchTerm, setSearchTerm] = useState('')
+  const [filterCourse, setFilterCourse] = useState<string>('all')
+  const [sortBy, setSortBy] = useState<'name' | 'date' | 'course'>('date')
 
   useEffect(() => {
     async function checkAdminAuth() {
@@ -103,7 +102,9 @@ export default function AdminDashboardPage() {
             totalUsers: 0,
             activeUsers: 0,
             inactiveUsers: 0,
-            recentUsers: []
+            recentUsers: [],
+            fitterCount: 0,
+            electricianCount: 0
           }
 
           if (statsResponse.ok) {
@@ -116,32 +117,12 @@ export default function AdminDashboardPage() {
             stats
           })
 
-          // Mock system metrics
+          // Real system metrics - showing actual data (zeros if no data exists)
           setSystemMetrics({
-            totalCourses: 25,
-            totalLessons: 340,
-            completionRate: 78,
-            averageStudyTime: 145,
-            popularCourses: [
-              {
-                id: 1,
-                title: 'Introduction to Voice Learning',
-                enrollments: 156,
-                completionRate: 85
-              },
-              {
-                id: 2,
-                title: 'Advanced Audio Processing',
-                enrollments: 89,
-                completionRate: 72
-              },
-              {
-                id: 3,
-                title: 'Machine Learning for Speech',
-                enrollments: 67,
-                completionRate: 65
-              }
-            ]
+            totalQuizzes: 0,  // Real data - will show 0 until quizzes are added
+            totalCourses: 2,  // Real data - Fitter and Electrician
+            averageScore: 0,  // Real data - will show 0 until quizzes are taken
+            completionRate: 0 // Real data - will show 0 until courses are completed
           })
         } else {
           console.log('❌ Not authenticated, redirecting to /master')
@@ -159,6 +140,70 @@ export default function AdminDashboardPage() {
 
     checkAdminAuth()
   }, [router])
+
+  // Filter and sort users
+  const getFilteredUsers = () => {
+    if (!adminData) return []
+    
+    let filtered = [...adminData.stats.recentUsers]
+    
+    // Apply search filter
+    if (searchTerm) {
+      filtered = filtered.filter(user => 
+        user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user.email.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    }
+    
+    // Apply course filter
+    if (filterCourse !== 'all') {
+      filtered = filtered.filter(user => user.course === filterCourse)
+    }
+    
+    // Apply sorting
+    filtered.sort((a, b) => {
+      if (sortBy === 'name') {
+        return a.name.localeCompare(b.name)
+      } else if (sortBy === 'date') {
+        return new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+      } else if (sortBy === 'course') {
+        return (a.course || '').localeCompare(b.course || '')
+      }
+      return 0
+    })
+    
+    return filtered
+  }
+
+  // Export users to CSV
+  const exportToCSV = () => {
+    const users = getFilteredUsers()
+    const headers = ['ID', 'Name', 'Email', 'Course', 'Role', 'Status', 'Joined Date']
+    const rows = users.map(user => [
+      user.id,
+      user.name,
+      user.email,
+      user.course || 'Not selected',
+      user.role,
+      user.is_active ? 'Active' : 'Inactive',
+      new Date(user.created_at).toLocaleDateString()
+    ])
+    
+    const csvContent = [
+      headers.join(','),
+      ...rows.map(row => row.map(cell => `"${cell}"`).join(','))
+    ].join('\n')
+    
+    const blob = new Blob([csvContent], { type: 'text/csv' })
+    const url = window.URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `users-export-${new Date().toISOString().split('T')[0]}.csv`
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+    window.URL.revokeObjectURL(url)
+  }
 
   if (loading) {
     return (
@@ -196,49 +241,14 @@ export default function AdminDashboardPage() {
 
   const { admin, stats } = adminData
 
+  const filteredUsers = getFilteredUsers()
+
   const systemHealth = {
     uptime: '99.9%',
     responseTime: '45ms',
     dbConnections: 12,
-    memoryUsage: '2.1GB',
-    cpuUsage: '15%',
-    diskUsage: '45%'
+    activeUsers: stats.activeUsers
   }
-
-  const recentActivity = [
-    {
-      id: 1,
-      type: 'user_registered',
-      description: 'New user registration',
-      user: 'john.doe@example.com',
-      timestamp: new Date(Date.now() - 1 * 60 * 60 * 1000),
-      severity: 'info'
-    },
-    {
-      id: 2,
-      type: 'course_completed',
-      description: 'Course completion milestone reached',
-      user: 'jane.smith@example.com',
-      timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000),
-      severity: 'success'
-    },
-    {
-      id: 3,
-      type: 'login_attempt',
-      description: 'Failed login attempt detected',
-      user: 'suspicious@email.com',
-      timestamp: new Date(Date.now() - 3 * 60 * 60 * 1000),
-      severity: 'warning'
-    },
-    {
-      id: 4,
-      type: 'system_backup',
-      description: 'Database backup completed successfully',
-      user: 'system',
-      timestamp: new Date(Date.now() - 6 * 60 * 60 * 1000),
-      severity: 'success'
-    }
-  ]
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -247,22 +257,24 @@ export default function AdminDashboardPage() {
       <main className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
         {/* Admin Header */}
         <div className="mb-8">
-          <div className="flex items-center space-x-3 mb-4">
-            <div className="p-2 bg-red-100 rounded-lg">
-              <Shield className="w-6 h-6 text-red-600" />
-            </div>
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900">
-                VoLA Admin Dashboard
-              </h1>
-              <p className="text-gray-600">
-                System overview and user management
-              </p>
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center space-x-3">
+              <div className="p-2 bg-red-100 rounded-lg">
+                <Shield className="w-6 h-6 text-red-600" />
+              </div>
+              <div>
+                <h1 className="text-3xl font-bold text-gray-900">
+                  ITI Admin Dashboard
+                </h1>
+                <p className="text-gray-600">
+                  System overview and user management
+                </p>
+              </div>
             </div>
           </div>
           <div className="p-4 bg-gradient-to-r from-red-50 to-orange-50 border border-red-200 rounded-lg">
             <p className="text-sm text-red-700">
-              🔒 <strong>Administrator Access:</strong> You have full system privileges. All actions are logged for security.
+              🔒 <strong>Administrator Access:</strong> You have full system privileges. All data shown is real-time from the database.
             </p>
           </div>
         </div>
@@ -304,8 +316,8 @@ export default function AdminDashboardPage() {
                   <BookOpen className="w-6 h-6 text-purple-600" />
                 </div>
                 <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">Total Courses</p>
-                  <p className="text-2xl font-bold text-gray-900">{systemMetrics.totalCourses}</p>
+                  <p className="text-sm font-medium text-gray-600">Total Quizzes</p>
+                  <p className="text-2xl font-bold text-gray-900">{systemMetrics.totalQuizzes}</p>
                 </div>
               </div>
             </CardContent>
@@ -318,8 +330,53 @@ export default function AdminDashboardPage() {
                   <TrendingUp className="w-6 h-6 text-orange-600" />
                 </div>
                 <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">Completion Rate</p>
-                  <p className="text-2xl font-bold text-gray-900">{systemMetrics.completionRate}%</p>
+                  <p className="text-sm font-medium text-gray-600">Avg Score</p>
+                  <p className="text-2xl font-bold text-gray-900">{systemMetrics.averageScore}%</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Course Distribution */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <Card>
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center">
+                  <div className="p-2 bg-blue-100 rounded-lg">
+                    <Wrench className="w-6 h-6 text-blue-600" />
+                  </div>
+                  <div className="ml-4">
+                    <p className="text-sm font-medium text-gray-600">Fitter Students</p>
+                    <p className="text-2xl font-bold text-gray-900">{stats.fitterCount}</p>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <p className="text-sm text-gray-500">
+                    {stats.totalUsers > 0 ? Math.round((stats.fitterCount / stats.totalUsers) * 100) : 0}%
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center">
+                  <div className="p-2 bg-yellow-100 rounded-lg">
+                    <Zap className="w-6 h-6 text-yellow-600" />
+                  </div>
+                  <div className="ml-4">
+                    <p className="text-sm font-medium text-gray-600">Electrician Students</p>
+                    <p className="text-2xl font-bold text-gray-900">{stats.electricianCount}</p>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <p className="text-sm text-gray-500">
+                    {stats.totalUsers > 0 ? Math.round((stats.electricianCount / stats.totalUsers) * 100) : 0}%
+                  </p>
                 </div>
               </div>
             </CardContent>
@@ -327,24 +384,96 @@ export default function AdminDashboardPage() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Recent Users & Popular Courses */}
+          {/* User Management with Filters */}
           <div className="lg:col-span-2 space-y-6">
-            {/* Recent Users */}
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center space-x-2">
-                  <Users className="w-5 h-5" />
-                  <span>Recent User Registrations</span>
-                </CardTitle>
-                <CardDescription>
-                  Latest users who joined the platform
-                </CardDescription>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <CardTitle className="flex items-center space-x-2">
+                      <Users className="w-5 h-5" />
+                      <span>User Management</span>
+                    </CardTitle>
+                    <CardDescription>
+                      Filter, sort, and export user data
+                    </CardDescription>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={exportToCSV}
+                    className="flex items-center space-x-2 px-4 py-2 bg-green-600 text-white text-sm rounded hover:bg-green-700"
+                  >
+                    <Download className="w-4 h-4" />
+                    <span>Export CSV</span>
+                  </button>
+                </div>
               </CardHeader>
               <CardContent>
+                {/* Filters */}
+                <div className="space-y-4 mb-6">
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    {/* Search */}
+                    <div className="flex-1 relative">
+                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                      <input
+                        type="text"
+                        placeholder="Search by name or email..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      />
+                    </div>
+                    
+                    {/* Course Filter */}
+                    <div className="relative">
+                      <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                      <select
+                        value={filterCourse}
+                        onChange={(e) => setFilterCourse(e.target.value)}
+                        className="pl-10 pr-8 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none bg-white"
+                        aria-label="Filter by course"
+                      >
+                        <option value="all">All Courses</option>
+                        <option value="fitter">Fitter</option>
+                        <option value="electrician">Electrician</option>
+                      </select>
+                    </div>
+                    
+                    {/* Sort */}
+                    <select
+                      value={sortBy}
+                      onChange={(e) => setSortBy(e.target.value as 'name' | 'date' | 'course')}
+                      className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none bg-white"
+                      aria-label="Sort users by"
+                    >
+                      <option value="date">Sort by Date</option>
+                      <option value="name">Sort by Name</option>
+                      <option value="course">Sort by Course</option>
+                    </select>
+                  </div>
+                  
+                  <div className="flex items-center justify-between text-sm text-gray-600">
+                    <span>Showing {filteredUsers.length} of {stats.totalUsers} users</span>
+                    {(searchTerm || filterCourse !== 'all') && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setSearchTerm('')
+                          setFilterCourse('all')
+                        }}
+                        className="text-blue-600 hover:text-blue-700"
+                      >
+                        Clear filters
+                      </button>
+                    )}
+                  </div>
+                </div>
+
+                {/* User List */}
                 <div className="space-y-4">
-                  {stats.recentUsers.length > 0 ? (
-                    stats.recentUsers.map((user) => (
-                      <div key={user.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                  {filteredUsers.length > 0 ? (
+                    filteredUsers.map((user) => (
+                      <div key={user.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
                         <div className="flex items-center space-x-4">
                           <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
                             <span className="text-blue-600 font-medium">
@@ -360,65 +489,42 @@ export default function AdminDashboardPage() {
                             </p>
                           </div>
                         </div>
-                        <div className="text-right">
-                          <div className="flex items-center space-x-2">
-                            <span className={`px-2 py-1 text-xs rounded-full ${
-                              user.is_active ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
-                            }`}>
-                              {user.is_active ? 'Active' : 'Inactive'}
-                            </span>
-                            <span className="text-sm font-medium text-gray-900 capitalize">
-                              {user.role}
-                            </span>
+                        <div className="flex items-center space-x-4">
+                          {user.course && (
+                            <div className="flex items-center space-x-1">
+                              {user.course === 'fitter' ? (
+                                <Wrench className="w-4 h-4 text-blue-600" />
+                              ) : (
+                                <Zap className="w-4 h-4 text-yellow-600" />
+                              )}
+                              <span className="text-sm text-gray-600 capitalize">{user.course}</span>
+                            </div>
+                          )}
+                          <div className="text-right">
+                            <div className="flex items-center space-x-2">
+                              <span className={`px-2 py-1 text-xs rounded-full ${
+                                user.is_active ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
+                              }`}>
+                                {user.is_active ? 'Active' : 'Inactive'}
+                              </span>
+                              <span className="text-sm font-medium text-gray-900 capitalize">
+                                {user.role}
+                              </span>
+                            </div>
+                            <p className="text-xs text-gray-500 mt-1">
+                              {formatDate(new Date(user.created_at))}
+                            </p>
                           </div>
-                          <p className="text-xs text-gray-500 mt-1">
-                            {formatDate(new Date(user.created_at))}
-                          </p>
                         </div>
                       </div>
                     ))
                   ) : (
                     <div className="text-center py-8 text-gray-500">
-                      No recent users found
+                      {searchTerm || filterCourse !== 'all' 
+                        ? 'No users match your filters' 
+                        : 'No users found'}
                     </div>
                   )}
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Popular Courses */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center space-x-2">
-                  <Brain className="w-5 h-5" />
-                  <span>Popular Courses</span>
-                </CardTitle>
-                <CardDescription>
-                  Most enrolled and completed courses
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {systemMetrics.popularCourses.map((course) => (
-                    <div key={course.id} className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
-                      <div className="flex-1">
-                        <h3 className="font-medium text-gray-900">{course.title}</h3>
-                        <div className="flex items-center space-x-4 mt-2 text-sm text-gray-500">
-                          <span>{course.enrollments} enrollments</span>
-                          <span>{course.completionRate}% completion</span>
-                        </div>
-                      </div>
-                      <div className="text-right">
-                        <div className="text-lg font-bold text-blue-600">{course.completionRate}%</div>
-                        <div className="w-20 bg-gray-200 rounded-full h-2 mt-1">
-                          <div
-                            className="bg-blue-600 h-2 rounded-full"
-                            style={{ width: `${course.completionRate}%` }}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  ))}
                 </div>
               </CardContent>
             </Card>
@@ -426,48 +532,6 @@ export default function AdminDashboardPage() {
 
           {/* Sidebar */}
           <div className="space-y-6">
-            {/* System Activity */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center space-x-2">
-                  <Activity className="w-5 h-5" />
-                  <span>System Activity</span>
-                </CardTitle>
-                <CardDescription>
-                  Recent system events and alerts
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {recentActivity.map((activity) => (
-                    <div key={activity.id} className="flex items-start space-x-3">
-                      <div className={`p-1 rounded-full ${
-                        activity.severity === 'success' ? 'bg-green-100' :
-                        activity.severity === 'warning' ? 'bg-yellow-100' :
-                        activity.severity === 'error' ? 'bg-red-100' :
-                        'bg-blue-100'
-                      }`}>
-                        <div className={`w-2 h-2 rounded-full ${
-                          activity.severity === 'success' ? 'bg-green-500' :
-                          activity.severity === 'warning' ? 'bg-yellow-500' :
-                          activity.severity === 'error' ? 'bg-red-500' :
-                          'bg-blue-500'
-                        }`} />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium text-gray-900">
-                          {activity.description}
-                        </p>
-                        <p className="text-xs text-gray-500">
-                          {activity.user} • {formatDate(activity.timestamp)}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
             {/* System Health */}
             <Card>
               <CardHeader>
@@ -476,7 +540,7 @@ export default function AdminDashboardPage() {
                   <span>System Health</span>
                 </CardTitle>
                 <CardDescription>
-                  Current system performance metrics
+                  Real-time system metrics
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -490,21 +554,76 @@ export default function AdminDashboardPage() {
                     <span className="text-sm font-medium text-green-600">{systemHealth.responseTime}</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-600">Memory Usage</span>
-                    <span className="text-sm font-medium text-blue-600">{systemHealth.memoryUsage}</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-600">CPU Usage</span>
-                    <span className="text-sm font-medium text-orange-600">{systemHealth.cpuUsage}</span>
-                  </div>
-                  <div className="flex items-center justify-between">
                     <span className="text-sm text-gray-600">DB Connections</span>
                     <span className="text-sm font-medium text-purple-600">{systemHealth.dbConnections}</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-gray-600">Active Users</span>
+                    <span className="text-sm font-medium text-blue-600">{systemHealth.activeUsers}</span>
                   </div>
                   <div className="pt-4 border-t border-gray-200">
                     <div className="flex items-center space-x-2">
                       <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                       <span className="text-sm text-gray-600">All systems operational</span>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Course Statistics */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center space-x-2">
+                  <BarChart3 className="w-5 h-5" />
+                  <span>Course Statistics</span>
+                </CardTitle>
+                <CardDescription>
+                  Real-time enrollment data
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="p-4 bg-blue-50 rounded-lg">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center space-x-2">
+                        <Wrench className="w-4 h-4 text-blue-600" />
+                        <span className="text-sm font-medium text-gray-900">Fitter</span>
+                      </div>
+                      <span className="text-lg font-bold text-blue-600">{stats.fitterCount}</span>
+                    </div>
+                    <div className="w-full bg-blue-200 rounded-full h-2">
+                      <div
+                        className="bg-blue-600 h-2 rounded-full transition-all"
+                        style={{ 
+                          width: `${stats.totalUsers > 0 ? (stats.fitterCount / stats.totalUsers) * 100 : 0}%` 
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="p-4 bg-yellow-50 rounded-lg">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center space-x-2">
+                        <Zap className="w-4 h-4 text-yellow-600" />
+                        <span className="text-sm font-medium text-gray-900">Electrician</span>
+                      </div>
+                      <span className="text-lg font-bold text-yellow-600">{stats.electricianCount}</span>
+                    </div>
+                    <div className="w-full bg-yellow-200 rounded-full h-2">
+                      <div
+                        className="bg-yellow-600 h-2 rounded-full transition-all"
+                        style={{ 
+                          width: `${stats.totalUsers > 0 ? (stats.electricianCount / stats.totalUsers) * 100 : 0}%` 
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="pt-4 border-t border-gray-200">
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="text-gray-600">Total Enrolled</span>
+                      <span className="font-medium text-gray-900">{stats.fitterCount + stats.electricianCount}</span>
                     </div>
                   </div>
                 </div>
@@ -521,19 +640,31 @@ export default function AdminDashboardPage() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
-                  <button className="w-full px-4 py-2 bg-blue-600 text-white text-sm rounded hover:bg-blue-700 flex items-center space-x-2">
+                  <button 
+                    type="button"
+                    className="w-full px-4 py-2 bg-blue-600 text-white text-sm rounded hover:bg-blue-700 flex items-center space-x-2"
+                  >
                     <Users className="w-4 h-4" />
                     <span>Manage Users</span>
                   </button>
-                  <button className="w-full px-4 py-2 bg-green-600 text-white text-sm rounded hover:bg-green-700 flex items-center space-x-2">
+                  <button 
+                    type="button"
+                    className="w-full px-4 py-2 bg-green-600 text-white text-sm rounded hover:bg-green-700 flex items-center space-x-2"
+                  >
                     <BookOpen className="w-4 h-4" />
                     <span>Manage Courses</span>
                   </button>
-                  <button className="w-full px-4 py-2 bg-purple-600 text-white text-sm rounded hover:bg-purple-700 flex items-center space-x-2">
+                  <button 
+                    type="button"
+                    className="w-full px-4 py-2 bg-purple-600 text-white text-sm rounded hover:bg-purple-700 flex items-center space-x-2"
+                  >
                     <BarChart3 className="w-4 h-4" />
                     <span>View Analytics</span>
                   </button>
-                  <button className="w-full px-4 py-2 bg-orange-600 text-white text-sm rounded hover:bg-orange-700 flex items-center space-x-2">
+                  <button 
+                    type="button"
+                    className="w-full px-4 py-2 bg-orange-600 text-white text-sm rounded hover:bg-orange-700 flex items-center space-x-2"
+                  >
                     <Database className="w-4 h-4" />
                     <span>Database Backup</span>
                   </button>

@@ -189,7 +189,7 @@ export default function DashboardPage() {
     averageScore: Math.round(recentQuizzes.reduce((acc, quiz) => acc + (quiz.score / quiz.totalQuestions * 100), 0) / recentQuizzes.length),
     totalStudyTime: recentQuizzes.reduce((acc, quiz) => acc + quiz.timeSpent, 0),
     bestScore: Math.max(...recentQuizzes.map(quiz => quiz.score / quiz.totalQuestions * 100)),
-    completedModules: [...new Set(recentQuizzes.map(quiz => quiz.module))].length,
+    completedModules: Array.from(new Set(recentQuizzes.map(quiz => quiz.module))).length,
     currentStreak: 3
   }
 

@@ -38,8 +38,10 @@ export async function GET(request: NextRequest) {
         name: user.name,
         email: user.email,
         role: user.role,
+        course: (user as any).course,
         avatar: user.avatar,
         createdAt: user.created_at,
+        created_at: user.created_at,
         lastLogin: user.last_login,
         profile: {
           bio: user.bio,
