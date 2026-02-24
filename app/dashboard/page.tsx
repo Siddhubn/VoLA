@@ -1,153 +1,197 @@
-import { redirect } from 'next/navigation'
+'use client'
+
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { Navigation } from '@/components/Navigation'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card'
 import { 
   BookOpen, 
   Clock, 
   Trophy, 
-  TrendingUp, 
-  Users, 
-  Target,
+  TrendingUp,
   Calendar,
-  Award
+  Award,
+  Target,
+  Users,
+  PlayCircle,
+  CheckCircle,
+  Star,
+  BarChart3,
+  Brain,
+  Wrench,
+  Zap,
+  HardHat,
+  Settings,
+  FileText,
+  HelpCircle
 } from 'lucide-react'
 import { formatDate, formatTime } from '@/lib/utils'
 
-// Try MongoDB first, fallback to simple auth
-let useSimpleAuth = false
-
-async function tryMongoAuth() {
-  try {
-    const dbConnect = (await import('@/lib/mongodb')).default
-    const User = (await import('@/lib/models/User')).default
-    const { getCurrentUser } = await import('@/lib/auth')
-    return { dbConnect, User, getCurrentUser }
-  } catch (error) {
-    console.log('MongoDB not available, using simple auth fallback')
-    useSimpleAuth = true
-    const { getCurrentUser, findUserById } = await import('@/lib/simple-auth')
-    return { getCurrentUser, findUserById }
+interface User {
+  id: number
+  name: string
+  email: string
+  role: string
+  avatar?: string
+  createdAt: string
+  lastLogin?: string
+  profile: {
+    bio?: string
+    skills: string[]
+    learningGoals: string[]
+    completedCourses: number
+    totalStudyTime: number
+    selectedTrade?: string
   }
 }
 
-async function getUserData() {
-  const authModule = await tryMongoAuth()
-
-  if (useSimpleAuth) {
-    // Use simple auth fallback
-    const { getCurrentUser, findUserById } = authModule as any
-    
-    const currentUser = getCurrentUser()
-    if (!currentUser) {
-      redirect('/auth/login')
-    }
-
-    const user = await findUserById(currentUser.userId)
-    
-    if (!user) {
-      redirect('/auth/login')
-    }
-
-    return {
-      id: user.id,
-      name: user.name,
-      email: user.email,
-      role: user.role,
-      avatar: '',
-      createdAt: user.createdAt,
-      lastLogin: new Date(),
-      profile: user.profile
-    }
-
-  } else {
-    // Use MongoDB
-    const { dbConnect, User, getCurrentUser } = authModule as any
-
-    const currentUser = getCurrentUser()
-    if (!currentUser) {
-      redirect('/auth/login')
-    }
-
-    await dbConnect()
-    const user = await User.findById(currentUser.userId).select('-password')
-    
-    if (!user || !user.isActive) {
-      redirect('/auth/login')
-    }
-
-    return {
-      id: user._id.toString(),
-      name: user.name,
-      email: user.email,
-      role: user.role,
-      avatar: user.avatar,
-      createdAt: user.createdAt,
-      lastLogin: user.lastLogin,
-      profile: user.profile
-    }
-  }
+interface Trade {
+  id: string
+  name: string
+  icon: any
+  description: string
+  modules: string[]
+  color: string
 }
 
-export default async function DashboardPage() {
-  const user = await getUserData()
+interface QuizAttempt {
+  id: number
+  trade: string
+  module: string
+  score: number
+  totalQuestions: number
+  completedAt: string
+  timeSpent: number
+}
 
-  // Mock data for demonstration
+export default function DashboardPage() {
+  const router = useRouter()
+  const [user, setUser] = useState<User | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState('')
+
+  // ITI Trades and Modules
+  const trades: Trade[] = [
+    {
+      id: 'fitter',
+      name: 'Fitter',
+      icon: Wrench,
+      description: 'Mechanical fitting, assembly, and maintenance',
+      modules: ['Safety Practices', 'Hand Tools', 'Measuring Tools', 'Filing & Drilling', 'Marking Tools'],
+      color: 'blue'
+    },
+    {
+      id: 'electrician',
+      name: 'Electrician',
+      icon: Zap,
+      description: 'Electrical installation, wiring, and maintenance',
+      modules: ['Electrical Safety', 'Basic Electricity', 'Wiring Circuits', 'Transformers', 'Hand Tools'],
+      color: 'yellow'
+    },
+    {
+      id: 'welder',
+      name: 'Welder',
+      icon: HardHat,
+      description: 'Welding techniques and metal fabrication',
+      modules: ['Welding Safety', 'Arc Welding', 'Gas Welding', 'Metal Preparation', 'Joint Types'],
+      color: 'orange'
+    }
+  ]
+
+  // Mock quiz history - In real app, this would come from API
+  const [recentQuizzes] = useState<QuizAttempt[]>([
+    {
+      id: 1,
+      trade: 'Fitter',
+      module: 'Safety Practices',
+      score: 8,
+      totalQuestions: 10,
+      completedAt: '2024-02-23T10:30:00Z',
+      timeSpent: 12
+    },
+    {
+      id: 2,
+      trade: 'Electrician',
+      module: 'Basic Electricity',
+      score: 7,
+      totalQuestions: 10,
+      completedAt: '2024-02-22T15:45:00Z',
+      timeSpent: 15
+    },
+    {
+      id: 3,
+      trade: 'Fitter',
+      module: 'Hand Tools',
+      score: 9,
+      totalQuestions: 10,
+      completedAt: '2024-02-21T09:15:00Z',
+      timeSpent: 10
+    }
+  ])
+
+  useEffect(() => {
+    async function checkAuth() {
+      try {
+        const response = await fetch('/api/auth/me')
+        if (response.ok) {
+          const data = await response.json()
+          setUser(data.user)
+        } else {
+          router.push('/auth/login')
+        }
+      } catch (err) {
+        console.error('Auth check failed:', err)
+        router.push('/auth/login')
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    checkAuth()
+  }, [router])
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading your ITI dashboard...</p>
+        </div>
+      </div>
+    )
+  }
+
+  if (error || !user) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <Card className="w-full max-w-md">
+          <CardHeader>
+            <CardTitle className="text-red-600">Access Denied</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-gray-600">Please log in to access your learning dashboard.</p>
+            <div className="mt-4">
+              <button 
+                onClick={() => router.push('/auth/login')}
+                className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+              >
+                Go to Login
+              </button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    )
+  }
+
   const stats = {
-    totalCourses: 12,
-    completedCourses: user.profile.completedCourses || 8,
-    totalStudyTime: user.profile.totalStudyTime || 145,
-    currentStreak: 7,
-    achievements: 15,
-    rank: 'Advanced Learner'
+    totalQuizzes: recentQuizzes.length,
+    averageScore: Math.round(recentQuizzes.reduce((acc, quiz) => acc + (quiz.score / quiz.totalQuestions * 100), 0) / recentQuizzes.length),
+    totalStudyTime: recentQuizzes.reduce((acc, quiz) => acc + quiz.timeSpent, 0),
+    bestScore: Math.max(...recentQuizzes.map(quiz => quiz.score / quiz.totalQuestions * 100)),
+    completedModules: [...new Set(recentQuizzes.map(quiz => quiz.module))].length,
+    currentStreak: 3
   }
-
-  const recentActivity = [
-    {
-      id: 1,
-      type: 'course_completed',
-      title: 'JavaScript Fundamentals',
-      description: 'Completed with 95% score',
-      date: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
-      icon: Trophy
-    },
-    {
-      id: 2,
-      type: 'skill_unlocked',
-      title: 'React Hooks',
-      description: 'New skill unlocked',
-      date: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000),
-      icon: Award
-    },
-    {
-      id: 3,
-      type: 'study_session',
-      title: 'TypeScript Advanced',
-      description: '2 hours of focused learning',
-      date: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
-      icon: Clock
-    }
-  ]
-
-  const upcomingGoals = [
-    {
-      id: 1,
-      title: 'Complete React Course',
-      progress: 75,
-      dueDate: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000)
-    },
-    {
-      id: 2,
-      title: 'Master Node.js',
-      progress: 30,
-      dueDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)
-    },
-    {
-      id: 3,
-      title: 'Build Portfolio Project',
-      progress: 10,
-      dueDate: new Date(Date.now() + 45 * 24 * 60 * 60 * 1000)
-    }
-  ]
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -156,19 +200,24 @@ export default async function DashboardPage() {
       <main className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
         {/* Welcome Section */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">
-            Welcome back, {user.name}! 👋
-          </h1>
-          <p className="mt-2 text-gray-600">
-            Here's your learning progress and what's coming up next.
-          </p>
-          {useSimpleAuth && (
-            <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-              <p className="text-sm text-blue-700">
-                ℹ️ Running in demo mode with in-memory storage. Data will be lost on server restart.
+          <div className="flex items-center space-x-3 mb-4">
+            <div className="p-2 bg-blue-100 rounded-lg">
+              <BookOpen className="w-6 h-6 text-blue-600" />
+            </div>
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900">
+                Welcome back, {user.name}! 🎓
+              </h1>
+              <p className="text-gray-600">
+                Continue your ITI learning journey with AI-powered quizzes
               </p>
             </div>
-          )}
+          </div>
+          <div className="p-4 bg-gradient-to-r from-blue-50 to-green-50 border border-blue-200 rounded-lg">
+            <p className="text-sm text-blue-700">
+              🏭 <strong>ITI Quiz & Learning Assistant:</strong> Master vocational skills with personalized AI tutoring and interactive assessments
+            </p>
+          </div>
         </div>
 
         {/* Stats Grid */}
@@ -177,11 +226,11 @@ export default async function DashboardPage() {
             <CardContent className="p-6">
               <div className="flex items-center">
                 <div className="p-2 bg-blue-100 rounded-lg">
-                  <BookOpen className="w-6 h-6 text-blue-600" />
+                  <FileText className="w-6 h-6 text-blue-600" />
                 </div>
                 <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">Total Courses</p>
-                  <p className="text-2xl font-bold text-gray-900">{stats.totalCourses}</p>
+                  <p className="text-sm font-medium text-gray-600">Quizzes Taken</p>
+                  <p className="text-2xl font-bold text-gray-900">{stats.totalQuizzes}</p>
                 </div>
               </div>
             </CardContent>
@@ -194,8 +243,8 @@ export default async function DashboardPage() {
                   <Trophy className="w-6 h-6 text-green-600" />
                 </div>
                 <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">Completed</p>
-                  <p className="text-2xl font-bold text-gray-900">{stats.completedCourses}</p>
+                  <p className="text-sm font-medium text-gray-600">Average Score</p>
+                  <p className="text-2xl font-bold text-gray-900">{stats.averageScore}%</p>
                 </div>
               </div>
             </CardContent>
@@ -209,7 +258,7 @@ export default async function DashboardPage() {
                 </div>
                 <div className="ml-4">
                   <p className="text-sm font-medium text-gray-600">Study Time</p>
-                  <p className="text-2xl font-bold text-gray-900">{formatTime(stats.totalStudyTime)}</p>
+                  <p className="text-2xl font-bold text-gray-900">{stats.totalStudyTime} min</p>
                 </div>
               </div>
             </CardContent>
@@ -219,11 +268,11 @@ export default async function DashboardPage() {
             <CardContent className="p-6">
               <div className="flex items-center">
                 <div className="p-2 bg-orange-100 rounded-lg">
-                  <TrendingUp className="w-6 h-6 text-orange-600" />
+                  <Target className="w-6 h-6 text-orange-600" />
                 </div>
                 <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">Current Streak</p>
-                  <p className="text-2xl font-bold text-gray-900">{stats.currentStreak} days</p>
+                  <p className="text-sm font-medium text-gray-600">Modules</p>
+                  <p className="text-2xl font-bold text-gray-900">{stats.completedModules}</p>
                 </div>
               </div>
             </CardContent>
@@ -231,34 +280,58 @@ export default async function DashboardPage() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Recent Activity */}
+          {/* Trade Selection & Modules */}
           <div className="lg:col-span-2">
             <Card>
               <CardHeader>
-                <CardTitle>Recent Activity</CardTitle>
+                <CardTitle className="flex items-center space-x-2">
+                  <Settings className="w-5 h-5" />
+                  <span>Select Your Trade & Module</span>
+                </CardTitle>
                 <CardDescription>
-                  Your latest learning achievements and progress
+                  Choose your vocational trade and start practicing with AI-generated quizzes
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
-                  {recentActivity.map((activity) => {
-                    const Icon = activity.icon
+                <div className="space-y-6">
+                  {trades.map((trade) => {
+                    const Icon = trade.icon
                     return (
-                      <div key={activity.id} className="flex items-start space-x-4 p-4 bg-gray-50 rounded-lg">
-                        <div className="p-2 bg-white rounded-lg shadow-sm">
-                          <Icon className="w-5 h-5 text-primary-600" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <p className="text-sm font-medium text-gray-900">
-                            {activity.title}
-                          </p>
-                          <p className="text-sm text-gray-500">
-                            {activity.description}
-                          </p>
-                          <p className="text-xs text-gray-400 mt-1">
-                            {formatDate(activity.date)}
-                          </p>
+                      <div key={trade.id} className="border border-gray-200 rounded-lg p-4 hover:border-blue-300 transition-colors">
+                        <div className="flex items-start space-x-4">
+                          <div className={`p-3 rounded-lg ${
+                            trade.color === 'blue' ? 'bg-blue-100' :
+                            trade.color === 'yellow' ? 'bg-yellow-100' :
+                            'bg-orange-100'
+                          }`}>
+                            <Icon className={`w-6 h-6 ${
+                              trade.color === 'blue' ? 'text-blue-600' :
+                              trade.color === 'yellow' ? 'text-yellow-600' :
+                              'text-orange-600'
+                            }`} />
+                          </div>
+                          <div className="flex-1">
+                            <h3 className="text-lg font-semibold text-gray-900">{trade.name}</h3>
+                            <p className="text-sm text-gray-600 mb-3">{trade.description}</p>
+                            <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                              {trade.modules.map((module) => (
+                                <button
+                                  key={module}
+                                  className={`px-3 py-2 text-sm rounded border transition-colors hover:bg-blue-50 hover:border-blue-300 ${
+                                    trade.color === 'blue' ? 'border-blue-200 text-blue-700' :
+                                    trade.color === 'yellow' ? 'border-yellow-200 text-yellow-700' :
+                                    'border-orange-200 text-orange-700'
+                                  }`}
+                                  onClick={() => {
+                                    // Navigate to quiz for this trade and module
+                                    router.push(`/quiz/${trade.id}/${module.toLowerCase().replace(/\s+/g, '-')}`)
+                                  }}
+                                >
+                                  {module}
+                                </button>
+                              ))}
+                            </div>
+                          </div>
                         </div>
                       </div>
                     )
@@ -268,36 +341,34 @@ export default async function DashboardPage() {
             </Card>
           </div>
 
-          {/* Learning Goals */}
-          <div>
+          {/* Sidebar */}
+          <div className="space-y-6">
+            {/* Recent Quiz History */}
             <Card>
               <CardHeader>
-                <CardTitle>Learning Goals</CardTitle>
-                <CardDescription>
-                  Track your progress towards your goals
-                </CardDescription>
+                <CardTitle className="flex items-center space-x-2">
+                  <BarChart3 className="w-5 h-5" />
+                  <span>Recent Quizzes</span>
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  {upcomingGoals.map((goal) => (
-                    <div key={goal.id} className="space-y-2">
-                      <div className="flex items-center justify-between">
-                        <p className="text-sm font-medium text-gray-900">
-                          {goal.title}
-                        </p>
-                        <span className="text-xs text-gray-500">
-                          {goal.progress}%
-                        </span>
+                  {recentQuizzes.map((quiz) => (
+                    <div key={quiz.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                      <div className="flex-1">
+                        <p className="text-sm font-medium text-gray-900">{quiz.trade}</p>
+                        <p className="text-xs text-gray-600">{quiz.module}</p>
+                        <p className="text-xs text-gray-500">{formatDate(new Date(quiz.completedAt))}</p>
                       </div>
-                      <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div
-                          className="bg-primary-600 h-2 rounded-full transition-all duration-300"
-                          style={{ width: `${goal.progress}%` }}
-                        />
-                      </div>
-                      <div className="flex items-center text-xs text-gray-500">
-                        <Calendar className="w-3 h-3 mr-1" />
-                        Due {formatDate(goal.dueDate)}
+                      <div className="text-right">
+                        <div className={`text-lg font-bold ${
+                          quiz.score / quiz.totalQuestions >= 0.8 ? 'text-green-600' :
+                          quiz.score / quiz.totalQuestions >= 0.6 ? 'text-yellow-600' :
+                          'text-red-600'
+                        }`}>
+                          {quiz.score}/{quiz.totalQuestions}
+                        </div>
+                        <p className="text-xs text-gray-500">{quiz.timeSpent} min</p>
                       </div>
                     </div>
                   ))}
@@ -305,41 +376,64 @@ export default async function DashboardPage() {
               </CardContent>
             </Card>
 
-            {/* Quick Stats */}
-            <Card className="mt-6">
+            {/* Learning Resources */}
+            <Card>
               <CardHeader>
-                <CardTitle>Your Rank</CardTitle>
-                <CardDescription>
-                  Based on your learning activity
-                </CardDescription>
+                <CardTitle className="flex items-center space-x-2">
+                  <Brain className="w-5 h-5" />
+                  <span>Learning Resources</span>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3">
+                  <a 
+                    href="https://bharatskills.gov.in/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="block p-3 border border-gray-200 rounded-lg hover:border-blue-300 transition-colors"
+                  >
+                    <div className="flex items-center space-x-2">
+                      <BookOpen className="w-4 h-4 text-blue-600" />
+                      <span className="text-sm font-medium">Bharat Skills Portal</span>
+                    </div>
+                    <p className="text-xs text-gray-600 mt-1">Official NSQF curriculum and resources</p>
+                  </a>
+                  
+                  <a 
+                    href="https://nimilearningonline.in/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="block p-3 border border-gray-200 rounded-lg hover:border-blue-300 transition-colors"
+                  >
+                    <div className="flex items-center space-x-2">
+                      <FileText className="w-4 h-4 text-green-600" />
+                      <span className="text-sm font-medium">NIMI Learning</span>
+                    </div>
+                    <p className="text-xs text-gray-600 mt-1">E-learning materials for ITIs</p>
+                  </a>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* AI Learning Assistant */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center space-x-2">
+                  <HelpCircle className="w-5 h-5" />
+                  <span>AI Assistant</span>
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-r from-primary-500 to-primary-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Award className="w-8 h-8 text-white" />
+                  <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Brain className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900">
-                    {stats.rank}
-                  </h3>
-                  <p className="text-sm text-gray-500 mt-1">
-                    {stats.achievements} achievements unlocked
+                  <p className="text-sm text-gray-600 mb-3">
+                    Get instant explanations, hints, and personalized feedback during quizzes
                   </p>
-                  <div className="mt-4 pt-4 border-t border-gray-200">
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-500">Member since</span>
-                      <span className="font-medium text-gray-900">
-                        {formatDate(user.createdAt)}
-                      </span>
-                    </div>
-                    {user.lastLogin && (
-                      <div className="flex items-center justify-between text-sm mt-2">
-                        <span className="text-gray-500">Last active</span>
-                        <span className="font-medium text-gray-900">
-                          {formatDate(user.lastLogin)}
-                        </span>
-                      </div>
-                    )}
-                  </div>
+                  <button className="w-full px-4 py-2 bg-purple-600 text-white text-sm rounded hover:bg-purple-700">
+                    Ask AI Tutor
+                  </button>
                 </div>
               </CardContent>
             </Card>

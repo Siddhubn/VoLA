@@ -10,7 +10,7 @@ if (!JWT_SECRET) {
 }
 
 export interface TokenPayload {
-  userId: string
+  userId: number
   email: string
   role: string
 }

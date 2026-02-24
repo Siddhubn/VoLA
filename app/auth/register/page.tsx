@@ -47,11 +47,13 @@ export default function RegisterPage() {
     setError('')
 
     try {
+      console.log('Attempting registration...')
       const response = await fetch('/api/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify({
           name: data.name,
           email: data.email,
@@ -61,16 +63,19 @@ export default function RegisterPage() {
       })
 
       const result = await response.json()
+      console.log('Registration response:', response.status, result)
 
-      if (response.ok) {
-        router.push('/dashboard')
-        router.refresh()
+      if (response.ok && result.success) {
+        console.log('✅ Registration successful, redirecting...')
+        window.location.href = '/dashboard'
       } else {
+        console.error('❌ Registration failed:', result.error)
         setError(result.error || 'Registration failed')
+        setIsLoading(false)
       }
     } catch (error) {
+      console.error('❌ Registration error:', error)
       setError('Network error. Please try again.')
-    } finally {
       setIsLoading(false)
     }
   }

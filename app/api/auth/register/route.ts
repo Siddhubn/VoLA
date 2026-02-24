@@ -1,22 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { validateEmail, validatePassword } from '@/lib/utils'
-
-// Try MongoDB first, fallback to simple auth
-let useSimpleAuth = false
-
-async function tryMongoAuth() {
-  try {
-    const dbConnect = (await import('@/lib/mongodb')).default
-    const User = (await import('@/lib/models/User')).default
-    const { hashPassword, generateToken, setAuthCookie } = await import('@/lib/auth')
-    return { dbConnect, User, hashPassword, generateToken, setAuthCookie }
-  } catch (error) {
-    console.log('MongoDB not available, using simple auth fallback')
-    useSimpleAuth = true
-    const { createUser, generateToken, setAuthCookie } = await import('@/lib/simple-auth')
-    return { createUser, generateToken, setAuthCookie }
-  }
-}
+import { ensureDatabaseReady } from '@/lib/db-health'
+import { User } from '@/lib/models/UserPostgres'
+import { hashPassword, generateToken } from '@/lib/auth'
 
 export async function POST(request: NextRequest) {
   try {
@@ -45,116 +31,98 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const authModule = await tryMongoAuth()
+    // Ensure database is ready
+    await ensureDatabaseReady()
 
-    let user: any
-    let userId: string
-
-    if (useSimpleAuth) {
-      // Use simple auth fallback
-      const { createUser, generateToken, setAuthCookie } = authModule as any
-      
-      try {
-        user = await createUser({ name, email, password, role })
-        userId = user.id
-      } catch (error: any) {
-        if (error.message.includes('already exists')) {
-          return NextResponse.json(
-            { error: 'User with this email already exists' },
-            { status: 409 }
-          )
-        }
-        throw error
-      }
-
-      // Generate JWT token
-      const token = generateToken({
-        userId: user.id,
-        email: user.email,
-        role: user.role
-      })
-
-      // Set cookie
-      setAuthCookie(token)
-
-      // Return user data (without password)
-      const userData = {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        role: user.role,
-        avatar: '',
-        createdAt: user.createdAt,
-        profile: user.profile
-      }
-
-      return NextResponse.json({
-        message: 'User registered successfully (simple auth)',
-        user: userData
-      }, { status: 201 })
-
-    } else {
-      // Use MongoDB
-      const { dbConnect, User, hashPassword, generateToken, setAuthCookie } = authModule as any
-
-      // Connect to database
-      await dbConnect()
-
-      // Check if user already exists
-      const existingUser = await User.findOne({ email: email.toLowerCase() })
-      if (existingUser) {
-        return NextResponse.json(
-          { error: 'User with this email already exists' },
-          { status: 409 }
-        )
-      }
-
-      // Hash password
-      const hashedPassword = await hashPassword(password)
-
-      // Create user
-      user = await User.create({
-        name: name.trim(),
-        email: email.toLowerCase(),
-        password: hashedPassword,
-        role,
-        profile: {
-          skills: [],
-          learningGoals: [],
-          completedCourses: 0,
-          totalStudyTime: 0
-        }
-      })
-
-      // Generate JWT token
-      const token = generateToken({
-        userId: user._id.toString(),
-        email: user.email,
-        role: user.role
-      })
-
-      // Set cookie
-      setAuthCookie(token)
-
-      // Return user data (without password)
-      const userData = {
-        id: user._id,
-        name: user.name,
-        email: user.email,
-        role: user.role,
-        avatar: user.avatar,
-        createdAt: user.createdAt,
-        profile: user.profile
-      }
-
-      return NextResponse.json({
-        message: 'User registered successfully',
-        user: userData
-      }, { status: 201 })
+    // Check if user already exists
+    const existingUser = await User.findByEmail(email)
+    if (existingUser) {
+      return NextResponse.json(
+        { error: 'User with this email already exists' },
+        { status: 409 }
+      )
     }
 
-  } catch (error) {
+    // Hash password
+    const hashedPassword = await hashPassword(password)
+
+    // Create user
+    const user = await User.create({
+      name: name.trim(),
+      email: email.toLowerCase(),
+      password: hashedPassword,
+      role,
+      skills: [],
+      learning_goals: []
+    })
+
+    console.log(`✅ User registered: ${user.name} (${user.email}) - ID: ${user.id}`)
+
+    // Generate JWT token
+    const token = generateToken({
+      userId: user.id,
+      email: user.email,
+      role: user.role
+    })
+
+    // Return user data (without password)
+    const userData = {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+      avatar: user.avatar,
+      createdAt: user.created_at,
+      profile: {
+        bio: user.bio,
+        skills: user.skills,
+        learningGoals: user.learning_goals,
+        completedCourses: user.completed_courses,
+        totalStudyTime: user.total_study_time
+      }
+    }
+
+    // Create response with cookie
+    const response = NextResponse.json({
+      success: true,
+      message: 'User registered successfully',
+      user: userData
+    }, { status: 201 })
+
+    // Set the auth cookie with explicit settings
+    response.cookies.set({
+      name: 'auth-token',
+      value: token,
+      httpOnly: true,
+      secure: false, // Set to false for localhost
+      sameSite: 'lax',
+      maxAge: 60 * 60 * 24 * 7, // 7 days
+      path: '/'
+    })
+
+    return response
+
+  } catch (error: any) {
     console.error('Registration error:', error)
+    
+    // Provide more specific error messages
+    if (error.code === 'ECONNREFUSED') {
+      return NextResponse.json(
+        { error: 'Database connection failed. Please ensure PostgreSQL is running.' },
+        { status: 503 }
+      )
+    } else if (error.code === '3D000') {
+      return NextResponse.json(
+        { error: 'Database does not exist. Please run: npm run init-db' },
+        { status: 503 }
+      )
+    } else if (error.code === '28P01') {
+      return NextResponse.json(
+        { error: 'Database authentication failed. Please check your DATABASE_URL.' },
+        { status: 503 }
+      )
+    }
+    
     return NextResponse.json(
       { error: 'Internal server error. Please check the console for details.' },
       { status: 500 }

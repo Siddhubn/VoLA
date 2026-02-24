@@ -12,13 +12,14 @@ if (fs.existsSync(envPath)) {
   
   // Read and check environment variables
   const envContent = fs.readFileSync(envPath, 'utf8')
-  const hasMongoUri = envContent.includes('MONGODB_URI')
+  const hasDatabaseUrl = envContent.includes('DATABASE_URL')
   const hasJwtSecret = envContent.includes('JWT_SECRET')
   
-  if (hasMongoUri) {
-    console.log('✅ MONGODB_URI configured')
+  if (hasDatabaseUrl) {
+    console.log('✅ DATABASE_URL configured')
   } else {
-    console.log('⚠️  MONGODB_URI not found in .env.local')
+    console.log('⚠️  DATABASE_URL not found in .env.local')
+    console.log('   Please add: DATABASE_URL=postgresql://username:password@localhost:5432/vola_db')
   }
   
   if (hasJwtSecret) {
@@ -48,7 +49,7 @@ if (fs.existsSync(packagePath)) {
   try {
     const packageJson = JSON.parse(fs.readFileSync(packagePath, 'utf8'))
     const hasNextJs = packageJson.dependencies && packageJson.dependencies.next
-    const hasMongoose = packageJson.dependencies && packageJson.dependencies.mongoose
+    const hasPostgres = packageJson.dependencies && packageJson.dependencies.pg
     const hasBcrypt = packageJson.dependencies && packageJson.dependencies.bcryptjs
     
     if (hasNextJs) {
@@ -57,10 +58,10 @@ if (fs.existsSync(packagePath)) {
       console.log('❌ Next.js dependency missing')
     }
     
-    if (hasMongoose) {
-      console.log('✅ Mongoose dependency found')
+    if (hasPostgres) {
+      console.log('✅ PostgreSQL (pg) dependency found')
     } else {
-      console.log('⚠️  Mongoose dependency missing (will use fallback auth)')
+      console.log('❌ PostgreSQL (pg) dependency missing')
     }
     
     if (hasBcrypt) {
@@ -76,9 +77,15 @@ if (fs.existsSync(packagePath)) {
 }
 
 console.log('\n📋 Setup Summary:')
-console.log('- If MongoDB is not available, the app will use in-memory storage')
-console.log('- This is perfect for testing and development')
-console.log('- Data will be lost when the server restarts')
+console.log('- This application now uses PostgreSQL for data storage')
+console.log('- Make sure PostgreSQL is running on your system')
+console.log('- Update your DATABASE_URL in .env.local with your PostgreSQL credentials')
+console.log('\n🚀 To initialize the database:')
+console.log('   npm run init-db')
 console.log('\n🚀 To start the application:')
 console.log('   npm run dev')
 console.log('\n🌐 Then open: http://localhost:3000')
+console.log('\n💡 PostgreSQL Setup Help:')
+console.log('- Install PostgreSQL: https://www.postgresql.org/download/')
+console.log('- Create database: CREATE DATABASE vola_db;')
+console.log('- Update .env.local with your credentials')

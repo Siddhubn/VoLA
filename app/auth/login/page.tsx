@@ -31,25 +31,30 @@ export default function LoginPage() {
     setError('')
 
     try {
+      console.log('Attempting login...')
       const response = await fetch('/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify(data),
       })
 
       const result = await response.json()
+      console.log('Login response:', response.status, result)
 
-      if (response.ok) {
-        router.push('/dashboard')
-        router.refresh()
+      if (response.ok && result.success) {
+        console.log('✅ Login successful, redirecting...')
+        window.location.href = '/dashboard'
       } else {
+        console.error('❌ Login failed:', result.error)
         setError(result.error || 'Login failed')
+        setIsLoading(false)
       }
     } catch (error) {
+      console.error('❌ Login error:', error)
       setError('Network error. Please try again.')
-    } finally {
       setIsLoading(false)
     }
   }
