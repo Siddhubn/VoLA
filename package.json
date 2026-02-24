@@ -15,7 +15,7 @@
     "setup": "node scripts/setup.js",
     "clean": "rm -rf .next node_modules package-lock.json && npm install",
     "create-admin": "node scripts/create-admin.js",
-    "add-course-field": "node scripts/add-course-field.js"
+    "init-quiz": "node scripts/init-quiz-tables.js"
   },
   "dependencies": {
     "next": "15.0.3",
@@ -40,7 +40,8 @@
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
     "tailwind-merge": "2.5.4",
-    "dotenv": "16.4.5"
+    "dotenv": "16.4.5",
+    "@google/generative-ai": "^0.21.0"
   },
   "devDependencies": {
     "eslint": "9.15.0",

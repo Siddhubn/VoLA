@@ -36,7 +36,7 @@ export function Navigation({ user }: NavigationProps) {
 
   const navItems = [
     { href: '/dashboard', label: 'Dashboard', icon: BarChart3 },
-    { href: '/courses', label: 'Courses', icon: BookOpen },
+    { href: '/leaderboard', label: 'Leaderboard', icon: BookOpen },
     { href: '/profile', label: 'Profile', icon: User },
     { href: '/settings', label: 'Settings', icon: Settings },
   ]
