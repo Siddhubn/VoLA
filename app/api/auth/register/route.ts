@@ -6,12 +6,19 @@ import { hashPassword, generateToken } from '@/lib/auth'
 
 export async function POST(request: NextRequest) {
   try {
-    const { name, email, password, role = 'student' } = await request.json()
+    const { name, email, password, role = 'student', course } = await request.json()
 
     // Validation
     if (!name || !email || !password) {
       return NextResponse.json(
         { error: 'Name, email, and password are required' },
+        { status: 400 }
+      )
+    }
+
+    if (!course) {
+      return NextResponse.json(
+        { error: 'Please select a course (Fitter or Electrician)' },
         { status: 400 }
       )
     }
@@ -52,6 +59,7 @@ export async function POST(request: NextRequest) {
       email: email.toLowerCase(),
       password: hashedPassword,
       role,
+      course,
       skills: [],
       learning_goals: []
     })

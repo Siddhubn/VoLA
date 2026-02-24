@@ -23,6 +23,7 @@ export interface CreateUserData {
   email: string
   password: string
   role?: 'student' | 'instructor' | 'admin'
+  course?: string
   avatar?: string
   bio?: string
   skills?: string[]
@@ -52,6 +53,7 @@ export class User {
       email,
       password,
       role = 'student',
+      course = '',
       avatar = '',
       bio = '',
       skills = [],
@@ -59,10 +61,10 @@ export class User {
     } = userData
 
     const result = await query(
-      `INSERT INTO users (name, email, password, role, avatar, bio, skills, learning_goals)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+      `INSERT INTO users (name, email, password, role, course, avatar, bio, skills, learning_goals)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
        RETURNING *`,
-      [name, email.toLowerCase(), password, role, avatar, bio, skills, learning_goals]
+      [name, email.toLowerCase(), password, role, course, avatar, bio, skills, learning_goals]
     )
 
     return result.rows[0]

@@ -15,6 +15,7 @@ interface RegisterForm {
   password: string
   confirmPassword: string
   role: 'student' | 'instructor'
+  course: 'Fitter' | 'Electrician'
 }
 
 export default function RegisterPage() {
@@ -31,7 +32,8 @@ export default function RegisterPage() {
     formState: { errors }
   } = useForm<RegisterForm>({
     defaultValues: {
-      role: 'student'
+      role: 'student',
+      course: 'Fitter'
     }
   })
 
@@ -58,7 +60,8 @@ export default function RegisterPage() {
           name: data.name,
           email: data.email,
           password: data.password,
-          role: data.role
+          role: data.role,
+          course: data.course
         }),
       })
 
@@ -168,6 +171,35 @@ export default function RegisterPage() {
                 </div>
                 {errors.role && (
                   <p className="text-sm text-red-600">{errors.role.message}</p>
+                )}
+              </div>
+
+              <div className="space-y-1">
+                <label className="text-sm font-medium text-gray-700">
+                  Select Course
+                </label>
+                <div className="flex space-x-4">
+                  <label className="flex items-center">
+                    <input
+                      type="radio"
+                      value="Fitter"
+                      className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300"
+                      {...register('course', { required: 'Please select a course' })}
+                    />
+                    <span className="ml-2 text-sm text-gray-700">Fitter</span>
+                  </label>
+                  <label className="flex items-center">
+                    <input
+                      type="radio"
+                      value="Electrician"
+                      className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300"
+                      {...register('course', { required: 'Please select a course' })}
+                    />
+                    <span className="ml-2 text-sm text-gray-700">Electrician</span>
+                  </label>
+                </div>
+                {errors.course && (
+                  <p className="text-sm text-red-600">{errors.course.message}</p>
                 )}
               </div>
 

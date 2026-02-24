@@ -14,7 +14,8 @@
     "audit-fix": "npm audit fix --force",
     "setup": "node scripts/setup.js",
     "clean": "rm -rf .next node_modules package-lock.json && npm install",
-    "create-admin": "node scripts/create-admin.js"
+    "create-admin": "node scripts/create-admin.js",
+    "add-course-field": "node scripts/add-course-field.js"
   },
   "dependencies": {
     "next": "15.0.3",
