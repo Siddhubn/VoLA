@@ -117,7 +117,7 @@ export class EmbeddingService {
       }
     }
 
-    const embeddings: number[][] = new Array(texts.length)
+    const embeddings: number[][] = []
     let totalTokens = 0
 
     // Process in batches
@@ -129,16 +129,21 @@ export class EmbeddingService {
       try {
         const batchResults = await this.processBatch(batch.map(item => item.text))
         
-        // Map results back to original indices
-        batch.forEach((item, batchIndex) => {
-          if (batchResults.embeddings[batchIndex]) {
-            embeddings[item.originalIndex] = batchResults.embeddings[batchIndex]
+        // Add successful embeddings to results
+        batchResults.embeddings.forEach((embedding, batchIndex) => {
+          if (embedding && embedding.length > 0) {
+            embeddings.push(embedding)
           } else {
-            failedIndices.push(item.originalIndex)
+            failedIndices.push(batch[batchIndex].originalIndex)
           }
         })
 
         totalTokens += batchResults.totalTokens
+
+        // Add any failed indices from this batch
+        batchResults.failedIndices.forEach(batchIndex => {
+          failedIndices.push(batch[batchIndex].originalIndex)
+        })
 
       } catch (error) {
         console.error(`❌ Batch processing failed for batch starting at index ${i}:`, error)
@@ -155,13 +160,10 @@ export class EmbeddingService {
       }
     }
 
-    // Filter out undefined embeddings
-    const validEmbeddings = embeddings.filter(emb => emb !== undefined)
-
     return {
-      embeddings: validEmbeddings,
+      embeddings,
       totalTokens,
-      failedIndices: [...new Set(failedIndices)].sort()
+      failedIndices: Array.from(new Set(failedIndices)).sort()
     }
   }
 
@@ -189,7 +191,7 @@ export class EmbeddingService {
       } catch (error) {
         console.error(`❌ Failed to generate embedding for text ${i}:`, error)
         failedIndices.push(i)
-        embeddings.push([]) // Placeholder for failed embedding
+        // Don't push empty array, just skip this embedding
       }
     }
 
@@ -204,7 +206,7 @@ export class EmbeddingService {
    * Retry wrapper with exponential backoff
    */
   private async withRetry<T>(operation: () => Promise<T>): Promise<T> {
-    let lastError: Error
+    let lastError: Error | undefined
     let delay = this.config.initialDelay
 
     for (let attempt = 1; attempt <= this.config.retryAttempts; attempt++) {
@@ -231,7 +233,7 @@ export class EmbeddingService {
       }
     }
 
-    throw new Error(`Failed after ${this.config.retryAttempts} attempts: ${lastError.message}`)
+    throw new Error(`Failed after ${this.config.retryAttempts} attempts: ${lastError?.message || 'Unknown error'}`)
   }
 
   /**
@@ -338,5 +340,4 @@ export class EmbeddingService {
   }
 }
 
-// Export default instance
-export const embeddingService = new EmbeddingService()
+// Note: Default instance removed to avoid initialization issues in tests
