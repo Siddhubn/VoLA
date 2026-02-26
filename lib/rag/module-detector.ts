@@ -18,122 +18,333 @@ export interface ModuleDetectionResult {
 }
 
 // Predefined module mappings for ITI courses
-export const FITTER_MODULES: ModuleMapping[] = [
+// Fitter Trade Practical (TP) Modules
+export const FITTER_TP_MODULES: ModuleMapping[] = [
   {
     course: 'fitter',
-    module_id: 'safety-practices',
-    module_name: 'Safety Practices',
-    keywords: ['safety', 'hazard', 'ppe', 'personal protective equipment', 'accident', 'first aid', 'emergency'],
-    description: 'Workplace safety, hazard identification, and emergency procedures',
+    module_id: 'fitter-tp-safety-practices',
+    module_name: 'Safety Practices (TP)',
+    keywords: ['safety', 'hazard', 'ppe', 'personal protective equipment', 'accident', 'first aid', 'emergency', 'workshop safety', 'practical safety'],
+    description: 'Practical workplace safety, hazard identification, and emergency procedures',
     display_order: 1
   },
   {
     course: 'fitter',
-    module_id: 'hand-tools',
-    module_name: 'Hand Tools and Measuring Instruments',
-    keywords: ['hand tools', 'measuring', 'caliper', 'micrometer', 'gauge', 'ruler', 'hammer', 'chisel'],
-    description: 'Basic hand tools and precision measuring instruments',
+    module_id: 'fitter-tp-hand-tools',
+    module_name: 'Hand Tools and Measuring Instruments (TP)',
+    keywords: ['hand tools', 'measuring', 'caliper', 'micrometer', 'gauge', 'ruler', 'hammer', 'chisel', 'practical use', 'tool handling'],
+    description: 'Practical use of hand tools and precision measuring instruments',
     display_order: 2
   },
   {
     course: 'fitter',
-    module_id: 'marking-cutting',
-    module_name: 'Marking and Cutting',
-    keywords: ['marking', 'cutting', 'scriber', 'punch', 'hacksaw', 'file', 'drilling', 'reaming'],
-    description: 'Marking out and cutting operations on metal',
+    module_id: 'fitter-tp-marking-cutting',
+    module_name: 'Marking and Cutting (TP)',
+    keywords: ['marking', 'cutting', 'scriber', 'punch', 'hacksaw', 'file', 'drilling', 'reaming', 'practical marking', 'cutting practice'],
+    description: 'Practical marking out and cutting operations on metal',
     display_order: 3
   },
   {
     course: 'fitter',
-    module_id: 'fitting-assembly',
-    module_name: 'Fitting and Assembly',
-    keywords: ['fitting', 'assembly', 'joint', 'rivet', 'bolt', 'nut', 'thread', 'tap', 'die'],
-    description: 'Fitting operations and mechanical assembly techniques',
+    module_id: 'fitter-tp-fitting-assembly',
+    module_name: 'Fitting and Assembly (TP)',
+    keywords: ['fitting', 'assembly', 'joint', 'rivet', 'bolt', 'nut', 'thread', 'tap', 'die', 'practical assembly', 'workshop practice'],
+    description: 'Practical fitting operations and mechanical assembly techniques',
     display_order: 4
   },
   {
     course: 'fitter',
-    module_id: 'machine-tools',
-    module_name: 'Machine Tools Operation',
-    keywords: ['lathe', 'milling', 'drilling machine', 'grinder', 'shaper', 'planer', 'machining'],
-    description: 'Operation of various machine tools',
+    module_id: 'fitter-tp-machine-tools',
+    module_name: 'Machine Tools Operation (TP)',
+    keywords: ['lathe', 'milling', 'drilling machine', 'grinder', 'shaper', 'planer', 'machining', 'machine operation', 'practical machining'],
+    description: 'Practical operation of various machine tools',
     display_order: 5
   },
   {
     course: 'fitter',
-    module_id: 'maintenance',
-    module_name: 'Maintenance and Repair',
-    keywords: ['maintenance', 'repair', 'troubleshooting', 'preventive', 'breakdown', 'lubrication'],
-    description: 'Equipment maintenance and repair procedures',
+    module_id: 'fitter-tp-maintenance',
+    module_name: 'Maintenance and Repair (TP)',
+    keywords: ['maintenance', 'repair', 'troubleshooting', 'preventive', 'breakdown', 'lubrication', 'practical maintenance', 'hands-on repair'],
+    description: 'Practical equipment maintenance and repair procedures',
     display_order: 6
   }
 ]
 
-export const ELECTRICIAN_MODULES: ModuleMapping[] = [
+// Fitter Trade Theory (TT) Modules
+export const FITTER_TT_MODULES: ModuleMapping[] = [
+  {
+    course: 'fitter',
+    module_id: 'fitter-tt-engineering-drawing',
+    module_name: 'Engineering Drawing (TT)',
+    keywords: ['engineering drawing', 'technical drawing', 'blueprint', 'orthographic', 'isometric', 'dimensioning', 'tolerances', 'symbols'],
+    description: 'Engineering drawing principles, symbols, and interpretation',
+    display_order: 1
+  },
+  {
+    course: 'fitter',
+    module_id: 'fitter-tt-materials-science',
+    module_name: 'Materials Science (TT)',
+    keywords: ['materials', 'metals', 'alloys', 'properties', 'heat treatment', 'metallurgy', 'steel', 'iron', 'material properties'],
+    description: 'Properties and characteristics of engineering materials',
+    display_order: 2
+  },
+  {
+    course: 'fitter',
+    module_id: 'fitter-tt-manufacturing-processes',
+    module_name: 'Manufacturing Processes (TT)',
+    keywords: ['manufacturing', 'processes', 'casting', 'forging', 'welding', 'machining theory', 'production methods'],
+    description: 'Theory of manufacturing and production processes',
+    display_order: 3
+  },
+  {
+    course: 'fitter',
+    module_id: 'fitter-tt-metrology',
+    module_name: 'Metrology and Quality Control (TT)',
+    keywords: ['metrology', 'measurement', 'precision', 'accuracy', 'quality control', 'inspection', 'standards', 'calibration'],
+    description: 'Measurement science and quality control principles',
+    display_order: 4
+  },
+  {
+    course: 'fitter',
+    module_id: 'fitter-tt-mechanical-principles',
+    module_name: 'Mechanical Principles (TT)',
+    keywords: ['mechanics', 'forces', 'moments', 'stress', 'strain', 'mechanical advantage', 'simple machines', 'kinematics'],
+    description: 'Fundamental mechanical engineering principles',
+    display_order: 5
+  },
+  {
+    course: 'fitter',
+    module_id: 'fitter-tt-workshop-technology',
+    module_name: 'Workshop Technology (TT)',
+    keywords: ['workshop technology', 'machine tools theory', 'cutting tools', 'tool geometry', 'speeds and feeds', 'workshop calculations'],
+    description: 'Theoretical aspects of workshop technology and machine tools',
+    display_order: 6
+  }
+]
+
+// Electrician Trade Practical (TP) Modules
+export const ELECTRICIAN_TP_MODULES: ModuleMapping[] = [
   {
     course: 'electrician',
-    module_id: 'electrical-safety',
-    module_name: 'Electrical Safety',
-    keywords: ['electrical safety', 'shock', 'electrocution', 'earthing', 'grounding', 'isolation', 'lockout'],
-    description: 'Electrical safety practices and procedures',
+    module_id: 'electrician-tp-electrical-safety',
+    module_name: 'Electrical Safety (TP)',
+    keywords: ['electrical safety', 'shock', 'electrocution', 'earthing', 'grounding', 'isolation', 'lockout', 'practical safety', 'safety procedures'],
+    description: 'Practical electrical safety procedures and practices',
     display_order: 1
   },
   {
     course: 'electrician',
-    module_id: 'basic-electricity',
-    module_name: 'Basic Electricity',
-    keywords: ['voltage', 'current', 'resistance', 'ohm', 'circuit', 'conductor', 'insulator', 'semiconductor'],
-    description: 'Fundamental electrical concepts and principles',
+    module_id: 'electrician-tp-basic-wiring',
+    module_name: 'Basic Wiring (TP)',
+    keywords: ['wiring', 'installation', 'conduit', 'cable', 'switch', 'socket', 'practical wiring', 'house wiring', 'electrical connections'],
+    description: 'Practical electrical wiring and installation techniques',
     display_order: 2
   },
   {
     course: 'electrician',
-    module_id: 'electrical-instruments',
-    module_name: 'Electrical Measuring Instruments',
-    keywords: ['multimeter', 'ammeter', 'voltmeter', 'wattmeter', 'oscilloscope', 'clamp meter', 'megger'],
-    description: 'Electrical measuring instruments and their applications',
+    module_id: 'electrician-tp-instruments',
+    module_name: 'Electrical Instruments (TP)',
+    keywords: ['multimeter', 'ammeter', 'voltmeter', 'wattmeter', 'oscilloscope', 'clamp meter', 'megger', 'practical measurement', 'instrument use'],
+    description: 'Practical use of electrical measuring instruments',
     display_order: 3
   },
   {
     course: 'electrician',
-    module_id: 'wiring-installation',
-    module_name: 'Wiring and Installation',
-    keywords: ['wiring', 'installation', 'conduit', 'cable', 'switch', 'socket', 'distribution board'],
-    description: 'Electrical wiring methods and installation practices',
+    module_id: 'electrician-tp-motor-control',
+    module_name: 'Motor Control (TP)',
+    keywords: ['motor', 'starter', 'control circuit', 'contactor', 'relay', 'practical motor control', 'motor installation'],
+    description: 'Practical motor control and installation procedures',
     display_order: 4
   },
   {
     course: 'electrician',
-    module_id: 'motors-generators',
-    module_name: 'Motors and Generators',
-    keywords: ['motor', 'generator', 'induction', 'synchronous', 'dc motor', 'ac motor', 'starter'],
-    description: 'Electric motors and generators operation and maintenance',
+    module_id: 'electrician-tp-power-distribution',
+    module_name: 'Power Distribution (TP)',
+    keywords: ['distribution board', 'panel', 'mcb', 'fuse', 'practical distribution', 'power installation', 'electrical panels'],
+    description: 'Practical power distribution and panel work',
     display_order: 5
   },
   {
     course: 'electrician',
-    module_id: 'power-systems',
-    module_name: 'Power Systems',
-    keywords: ['transformer', 'transmission', 'distribution', 'substation', 'protection', 'relay'],
-    description: 'Power generation, transmission and distribution systems',
+    module_id: 'electrician-tp-maintenance',
+    module_name: 'Electrical Maintenance (TP)',
+    keywords: ['maintenance', 'troubleshooting', 'repair', 'testing', 'practical maintenance', 'electrical repair', 'fault finding'],
+    description: 'Practical electrical maintenance and troubleshooting',
     display_order: 6
   }
 ]
+
+// Electrician Trade Theory (TT) Modules
+export const ELECTRICIAN_TT_MODULES: ModuleMapping[] = [
+  {
+    course: 'electrician',
+    module_id: 'electrician-tt-basic-electricity',
+    module_name: 'Basic Electricity (TT)',
+    keywords: ['voltage', 'current', 'resistance', 'ohm', 'circuit', 'conductor', 'insulator', 'semiconductor', 'electrical theory'],
+    description: 'Fundamental electrical theory and principles',
+    display_order: 1
+  },
+  {
+    course: 'electrician',
+    module_id: 'electrician-tt-ac-dc-theory',
+    module_name: 'AC/DC Theory (TT)',
+    keywords: ['alternating current', 'direct current', 'ac theory', 'dc theory', 'frequency', 'phase', 'power factor', 'impedance'],
+    description: 'Theory of alternating and direct current systems',
+    display_order: 2
+  },
+  {
+    course: 'electrician',
+    module_id: 'electrician-tt-electrical-machines',
+    module_name: 'Electrical Machines (TT)',
+    keywords: ['motor theory', 'generator theory', 'transformer theory', 'induction', 'synchronous', 'machine principles'],
+    description: 'Theory of electrical machines and their operation',
+    display_order: 3
+  },
+  {
+    course: 'electrician',
+    module_id: 'electrician-tt-power-systems',
+    module_name: 'Power Systems (TT)',
+    keywords: ['power generation', 'transmission', 'distribution', 'substation', 'protection', 'relay', 'power system theory'],
+    description: 'Theory of power generation, transmission and distribution',
+    display_order: 4
+  },
+  {
+    course: 'electrician',
+    module_id: 'electrician-tt-electronics',
+    module_name: 'Electronics (TT)',
+    keywords: ['electronics', 'semiconductor', 'diode', 'transistor', 'amplifier', 'digital electronics', 'electronic theory'],
+    description: 'Basic electronics theory and semiconductor devices',
+    display_order: 5
+  },
+  {
+    course: 'electrician',
+    module_id: 'electrician-tt-electrical-codes',
+    module_name: 'Electrical Codes and Standards (TT)',
+    keywords: ['electrical codes', 'standards', 'regulations', 'iec', 'bis', 'safety standards', 'wiring rules'],
+    description: 'Electrical codes, standards and safety regulations',
+    display_order: 6
+  }
+]
+
+export interface SyllabusInfo {
+  course: 'fitter' | 'electrician'
+  syllabusType: 'TP' | 'TT' | 'unknown'
+  confidence: number
+}
 
 export class ModuleDetector {
   private moduleMap: Map<string, ModuleMapping[]>
 
   constructor() {
     this.moduleMap = new Map()
-    this.moduleMap.set('fitter', FITTER_MODULES)
-    this.moduleMap.set('electrician', ELECTRICIAN_MODULES)
+    this.moduleMap.set('fitter-tp', FITTER_TP_MODULES)
+    this.moduleMap.set('fitter-tt', FITTER_TT_MODULES)
+    this.moduleMap.set('electrician-tp', ELECTRICIAN_TP_MODULES)
+    this.moduleMap.set('electrician-tt', ELECTRICIAN_TT_MODULES)
+  }
+
+  /**
+   * Detect syllabus type from filename and content
+   */
+  detectSyllabusType(filename: string, content?: string): SyllabusInfo {
+    const normalizedFilename = filename.toLowerCase()
+    
+    // Extract course from filename
+    let course: 'fitter' | 'electrician' = 'fitter'
+    if (normalizedFilename.includes('electrician')) {
+      course = 'electrician'
+    } else if (normalizedFilename.includes('fitter')) {
+      course = 'fitter'
+    }
+
+    // Extract syllabus type from filename
+    let syllabusType: 'TP' | 'TT' | 'unknown' = 'unknown'
+    let confidence = 0.5
+
+    if (normalizedFilename.includes('tp') || normalizedFilename.includes('trade practical')) {
+      syllabusType = 'TP'
+      confidence = 0.9
+    } else if (normalizedFilename.includes('tt') || normalizedFilename.includes('trade theory')) {
+      syllabusType = 'TT'
+      confidence = 0.9
+    }
+
+    // If filename doesn't clearly indicate type, analyze content
+    if (syllabusType === 'unknown' && content) {
+      const contentAnalysis = this.analyzeSyllabusTypeFromContent(content)
+      syllabusType = contentAnalysis.type
+      confidence = contentAnalysis.confidence
+    }
+
+    return {
+      course,
+      syllabusType,
+      confidence
+    }
+  }
+
+  /**
+   * Analyze content to determine syllabus type
+   */
+  private analyzeSyllabusTypeFromContent(content: string): { type: 'TP' | 'TT'; confidence: number } {
+    const normalizedContent = content.toLowerCase()
+    
+    // Keywords that indicate Trade Practical (TP)
+    const tpKeywords = [
+      'practical', 'workshop', 'hands-on', 'demonstration', 'exercise', 'lab work',
+      'tool handling', 'machine operation', 'assembly practice', 'wiring practice',
+      'safety procedures', 'practical application', 'workshop practice', 'skill development'
+    ]
+
+    // Keywords that indicate Trade Theory (TT)
+    const ttKeywords = [
+      'theory', 'principles', 'concepts', 'fundamentals', 'definition', 'explanation',
+      'formula', 'calculation', 'analysis', 'design', 'theoretical', 'academic',
+      'engineering drawing', 'material science', 'electrical theory', 'mechanical principles'
+    ]
+
+    let tpScore = 0
+    let ttScore = 0
+
+    // Count keyword matches
+    for (const keyword of tpKeywords) {
+      if (normalizedContent.includes(keyword)) {
+        tpScore += keyword.length > 8 ? 2 : 1 // Longer keywords get more weight
+      }
+    }
+
+    for (const keyword of ttKeywords) {
+      if (normalizedContent.includes(keyword)) {
+        ttScore += keyword.length > 8 ? 2 : 1
+      }
+    }
+
+    // Determine type based on scores
+    if (tpScore > ttScore) {
+      return {
+        type: 'TP',
+        confidence: Math.min(0.8, tpScore / (tpScore + ttScore))
+      }
+    } else if (ttScore > tpScore) {
+      return {
+        type: 'TT',
+        confidence: Math.min(0.8, ttScore / (tpScore + ttScore))
+      }
+    } else {
+      // Default to TP if unclear
+      return {
+        type: 'TP',
+        confidence: 0.3
+      }
+    }
   }
 
   /**
    * Detect module boundaries in text content
    */
-  detectModules(text: string, course: 'fitter' | 'electrician'): ModuleDetectionResult {
-    const modules = this.moduleMap.get(course) || []
+  detectModules(text: string, course: 'fitter' | 'electrician', syllabusType: 'TP' | 'TT' = 'TP'): ModuleDetectionResult {
+    const moduleKey = `${course}-${syllabusType.toLowerCase()}`
+    const modules = this.moduleMap.get(moduleKey) || []
     const lines = text.split('\n')
     const detectedModules: ModuleInfo[] = []
     const unmappedSections: Array<{ content: string; startIndex: number; endIndex: number }> = []
@@ -390,14 +601,16 @@ export class ModuleDetector {
   assignChunkToModule(
     chunkContent: string, 
     course: 'fitter' | 'electrician',
+    syllabusType: 'TP' | 'TT' = 'TP',
     detectedModules?: ModuleInfo[]
   ): { moduleId: string; confidence: number } | null {
-    const modules = this.moduleMap.get(course) || []
+    const moduleKey = `${course}-${syllabusType.toLowerCase()}`
+    const modules = this.moduleMap.get(moduleKey) || []
     
     // If we have detected modules, prefer those
     if (detectedModules && detectedModules.length > 0) {
       for (const detected of detectedModules) {
-        if (this.chunkBelongsToModule(chunkContent, detected)) {
+        if (this.chunkBelongsToModule(chunkContent, detected, course, syllabusType)) {
           return {
             moduleId: detected.moduleId,
             confidence: detected.confidence
@@ -429,9 +642,14 @@ export class ModuleDetector {
   /**
    * Check if a chunk belongs to a detected module
    */
-  private chunkBelongsToModule(chunkContent: string, module: ModuleInfo): boolean {
-    const moduleMapping = this.moduleMap.get('fitter')?.find(m => m.module_id === module.moduleId) ||
-                         this.moduleMap.get('electrician')?.find(m => m.module_id === module.moduleId)
+  private chunkBelongsToModule(
+    chunkContent: string, 
+    module: ModuleInfo, 
+    course: 'fitter' | 'electrician',
+    syllabusType: 'TP' | 'TT'
+  ): boolean {
+    const moduleKey = `${course}-${syllabusType.toLowerCase()}`
+    const moduleMapping = this.moduleMap.get(moduleKey)?.find(m => m.module_id === module.moduleId)
     
     if (!moduleMapping) return false
 
@@ -439,10 +657,33 @@ export class ModuleDetector {
   }
 
   /**
-   * Get all modules for a course
+   * Get all modules for a course and syllabus type
    */
-  getModulesForCourse(course: 'fitter' | 'electrician'): ModuleMapping[] {
-    return this.moduleMap.get(course) || []
+  getModulesForCourse(course: 'fitter' | 'electrician', syllabusType: 'TP' | 'TT' = 'TP'): ModuleMapping[] {
+    const moduleKey = `${course}-${syllabusType.toLowerCase()}`
+    return this.moduleMap.get(moduleKey) || []
+  }
+
+  /**
+   * Get all available syllabus types for a course
+   */
+  getSyllabusTypes(course: 'fitter' | 'electrician'): Array<{ type: 'TP' | 'TT'; name: string }> {
+    return [
+      { type: 'TP', name: 'Trade Practical' },
+      { type: 'TT', name: 'Trade Theory' }
+    ]
+  }
+
+  /**
+   * Get comprehensive course information
+   */
+  getCourseInfo(course: 'fitter' | 'electrician') {
+    return {
+      course,
+      syllabusTypes: this.getSyllabusTypes(course),
+      tpModules: this.getModulesForCourse(course, 'TP'),
+      ttModules: this.getModulesForCourse(course, 'TT')
+    }
   }
 }
 

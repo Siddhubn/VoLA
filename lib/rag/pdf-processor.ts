@@ -415,37 +415,48 @@ export class PDFProcessor {
   }
 
   /**
-   * Detect modules in the extracted text
+   * Detect modules in the extracted text with syllabus type detection
    */
-  async detectModules(text: string, course: 'fitter' | 'electrician'): Promise<ModuleDetectionResult> {
-    console.log(`  🔄 Detecting modules for ${course} course...`)
+  async detectModules(
+    text: string, 
+    course: 'fitter' | 'electrician', 
+    filename: string
+  ): Promise<{ moduleDetection: ModuleDetectionResult; syllabusInfo: any }> {
+    console.log(`  🔄 Detecting syllabus type and modules for ${course} course...`)
     
-    const result = moduleDetector.detectModules(text, course)
+    // First detect syllabus type from filename and content
+    const syllabusInfo = moduleDetector.detectSyllabusType(filename, text)
+    console.log(`  📋 Detected syllabus: ${syllabusInfo.course} - ${syllabusInfo.syllabusType} (confidence: ${(syllabusInfo.confidence * 100).toFixed(1)}%)`)
     
-    console.log(`  ✅ Detected ${result.detectedModules.length} modules`)
-    result.detectedModules.forEach(module => {
+    // Then detect modules based on syllabus type
+    const moduleDetection = moduleDetector.detectModules(text, course, syllabusInfo.syllabusType)
+    
+    console.log(`  ✅ Detected ${moduleDetection.detectedModules.length} modules`)
+    moduleDetection.detectedModules.forEach(module => {
       console.log(`    - ${module.moduleName} (confidence: ${(module.confidence * 100).toFixed(1)}%)`)
     })
 
-    return result
+    return { moduleDetection, syllabusInfo }
   }
 
   /**
-   * Assign modules to chunks based on content analysis
+   * Assign modules to chunks based on content analysis with syllabus type
    */
   async assignModulesToChunks(
     chunks: ProcessedChunk[], 
     course: 'fitter' | 'electrician',
+    syllabusType: 'TP' | 'TT' = 'TP',
     detectedModules?: ModuleInfo[]
   ): Promise<ProcessedChunk[]> {
-    console.log(`  🔄 Assigning modules to ${chunks.length} chunks...`)
+    console.log(`  🔄 Assigning ${syllabusType} modules to ${chunks.length} chunks...`)
     
     let assignedCount = 0
     
     const updatedChunks = chunks.map(chunk => {
       const assignment = moduleDetector.assignChunkToModule(
         chunk.content, 
-        course, 
+        course,
+        syllabusType,
         detectedModules
       )
       
@@ -456,21 +467,28 @@ export class PDFProcessor {
           module: assignment.moduleId,
           metadata: {
             ...chunk.metadata,
-            moduleConfidence: assignment.confidence
+            moduleConfidence: assignment.confidence,
+            syllabusType: syllabusType
           }
         }
       }
       
-      return chunk
+      return {
+        ...chunk,
+        metadata: {
+          ...chunk.metadata,
+          syllabusType: syllabusType
+        }
+      }
     })
 
-    console.log(`  ✅ Assigned modules to ${assignedCount}/${chunks.length} chunks`)
+    console.log(`  ✅ Assigned ${syllabusType} modules to ${assignedCount}/${chunks.length} chunks`)
     
     return updatedChunks
   }
 
   /**
-   * Enhanced PDF processing with module detection
+   * Enhanced PDF processing with module detection and syllabus type detection
    */
   async processPDFWithModules(
     pdfPath: string, 
@@ -480,9 +498,11 @@ export class PDFProcessor {
     filteredText: string
     structure: ReturnType<PDFProcessor['detectStructure']>
     moduleDetection: ModuleDetectionResult
+    syllabusInfo: any
     chunks: ProcessedChunk[]
   }> {
-    console.log(`📄 Processing PDF with module detection: ${path.basename(pdfPath)}`)
+    const filename = path.basename(pdfPath)
+    console.log(`📄 Processing PDF with module detection: ${filename}`)
 
     // Extract text
     console.log('  🔄 Extracting text...')
@@ -499,22 +519,28 @@ export class PDFProcessor {
     const structure = this.detectStructure(filteredText)
     console.log(`  ✅ Found ${structure.chapters.length} chapters, ${structure.sections.length} sections`)
 
-    // Detect modules
-    const moduleDetection = await this.detectModules(filteredText, course)
+    // Detect syllabus type and modules
+    const { moduleDetection, syllabusInfo } = await this.detectModules(filteredText, course, filename)
 
     // Chunk content
     console.log('  🔄 Chunking content...')
     let chunks = await this.chunkContent(filteredText)
     console.log(`  ✅ Created ${chunks.length} chunks`)
 
-    // Assign modules to chunks
-    chunks = await this.assignModulesToChunks(chunks, course, moduleDetection.detectedModules)
+    // Assign modules to chunks with syllabus type
+    chunks = await this.assignModulesToChunks(
+      chunks, 
+      course, 
+      syllabusInfo.syllabusType, 
+      moduleDetection.detectedModules
+    )
 
     return {
       content,
       filteredText,
       structure,
       moduleDetection,
+      syllabusInfo,
       chunks,
     }
   }

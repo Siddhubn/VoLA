@@ -1,5 +1,6 @@
 import { PDFProcessor, ProcessedChunk, ExtractedContent } from './pdf-processor'
 import { EmbeddingService, BatchEmbeddingResult } from './embedding-service'
+import { moduleDetector } from './module-detector'
 import { 
   createPDFDocument, 
   updatePDFDocument, 
@@ -242,21 +243,40 @@ export class PDFProcessingPipeline {
   }
 
   /**
-   * Generate chunks from extracted content
+   * Generate chunks from extracted content with syllabus type detection
    */
   private async generateChunks(
     content: ExtractedContent, 
     course: 'fitter' | 'electrician',
     filename: string
   ): Promise<ProcessedChunk[]> {
+    // Use the enhanced PDF processor with module detection
+    const result = await this.pdfProcessor.processPDFWithModules(content.text, course)
+    
+    // The processPDFWithModules method processes the text directly, but we already have extracted content
+    // So we'll use the individual methods with syllabus type detection
+    
+    // Detect syllabus type from filename
+    const syllabusInfo = moduleDetector.detectSyllabusType(filename, content.text)
+    console.log(`📋 Detected syllabus: ${syllabusInfo.course} - ${syllabusInfo.syllabusType} (confidence: ${(syllabusInfo.confidence * 100).toFixed(1)}%)`)
+    
     // Filter the content first
     const filteredText = await this.pdfProcessor.filterContent(content.text)
+    
+    // Detect modules with syllabus type
+    const moduleDetection = moduleDetector.detectModules(filteredText, course, syllabusInfo.syllabusType)
+    console.log(`✅ Detected ${moduleDetection.detectedModules.length} ${syllabusInfo.syllabusType} modules`)
     
     // Chunk the filtered content
     const chunks = await this.pdfProcessor.chunkContent(filteredText)
     
-    // Assign modules to chunks
-    const chunksWithModules = await this.pdfProcessor.assignModulesToChunks(chunks, course)
+    // Assign modules to chunks with syllabus type
+    const chunksWithModules = await this.pdfProcessor.assignModulesToChunks(
+      chunks, 
+      course, 
+      syllabusInfo.syllabusType,
+      moduleDetection.detectedModules
+    )
     
     return chunksWithModules
   }

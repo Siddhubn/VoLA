@@ -23,7 +23,10 @@
     "docker:stop": "powershell -ExecutionPolicy Bypass -File ./scripts/docker-db.ps1 stop",
     "docker:status": "powershell -ExecutionPolicy Bypass -File ./scripts/docker-db.ps1 status",
     "docker:logs": "powershell -ExecutionPolicy Bypass -File ./scripts/docker-db.ps1 logs",
-    "docker:reset": "powershell -ExecutionPolicy Bypass -File ./scripts/docker-db.ps1 reset"
+    "docker:reset": "powershell -ExecutionPolicy Bypass -File ./scripts/docker-db.ps1 reset",
+    "process-pdfs": "npx tsx scripts/process-pdfs.ts",
+    "process-pdfs:dry-run": "npx tsx scripts/process-pdfs.ts --dry-run",
+    "process-pdfs:verbose": "npx tsx scripts/process-pdfs.ts --verbose --report-file processing-report.json"
   },
   "dependencies": {
     "@google/generative-ai": "^0.21.0",
@@ -57,6 +60,7 @@
     "eslint": "9.15.0",
     "eslint-config-next": "15.0.3",
     "fast-check": "^4.5.3",
+    "tsx": "^4.21.0",
     "vitest": "^1.0.4"
   },
   "overrides": {
