@@ -1,6 +1,7 @@
 import pdf from 'pdf-parse'
 import fs from 'fs/promises'
 import path from 'path'
+import { moduleDetector, ModuleInfo, ModuleDetectionResult } from './module-detector'
 
 export interface PDFProcessorConfig {
   chunkSize: number // Target tokens per chunk
@@ -409,6 +410,111 @@ export class PDFProcessor {
       content,
       filteredText,
       structure,
+      chunks,
+    }
+  }
+
+  /**
+   * Detect modules in the extracted text
+   */
+  async detectModules(text: string, course: 'fitter' | 'electrician'): Promise<ModuleDetectionResult> {
+    console.log(`  🔄 Detecting modules for ${course} course...`)
+    
+    const result = moduleDetector.detectModules(text, course)
+    
+    console.log(`  ✅ Detected ${result.detectedModules.length} modules`)
+    result.detectedModules.forEach(module => {
+      console.log(`    - ${module.moduleName} (confidence: ${(module.confidence * 100).toFixed(1)}%)`)
+    })
+
+    return result
+  }
+
+  /**
+   * Assign modules to chunks based on content analysis
+   */
+  async assignModulesToChunks(
+    chunks: ProcessedChunk[], 
+    course: 'fitter' | 'electrician',
+    detectedModules?: ModuleInfo[]
+  ): Promise<ProcessedChunk[]> {
+    console.log(`  🔄 Assigning modules to ${chunks.length} chunks...`)
+    
+    let assignedCount = 0
+    
+    const updatedChunks = chunks.map(chunk => {
+      const assignment = moduleDetector.assignChunkToModule(
+        chunk.content, 
+        course, 
+        detectedModules
+      )
+      
+      if (assignment) {
+        assignedCount++
+        return {
+          ...chunk,
+          module: assignment.moduleId,
+          metadata: {
+            ...chunk.metadata,
+            moduleConfidence: assignment.confidence
+          }
+        }
+      }
+      
+      return chunk
+    })
+
+    console.log(`  ✅ Assigned modules to ${assignedCount}/${chunks.length} chunks`)
+    
+    return updatedChunks
+  }
+
+  /**
+   * Enhanced PDF processing with module detection
+   */
+  async processPDFWithModules(
+    pdfPath: string, 
+    course: 'fitter' | 'electrician'
+  ): Promise<{
+    content: ExtractedContent
+    filteredText: string
+    structure: ReturnType<PDFProcessor['detectStructure']>
+    moduleDetection: ModuleDetectionResult
+    chunks: ProcessedChunk[]
+  }> {
+    console.log(`📄 Processing PDF with module detection: ${path.basename(pdfPath)}`)
+
+    // Extract text
+    console.log('  🔄 Extracting text...')
+    const content = await this.extractText(pdfPath)
+    console.log(`  ✅ Extracted ${content.numPages} pages`)
+
+    // Filter content
+    console.log('  🔄 Filtering content...')
+    const filteredText = await this.filterContent(content.text)
+    console.log(`  ✅ Filtered content (${filteredText.length} characters)`)
+
+    // Detect structure
+    console.log('  🔄 Detecting structure...')
+    const structure = this.detectStructure(filteredText)
+    console.log(`  ✅ Found ${structure.chapters.length} chapters, ${structure.sections.length} sections`)
+
+    // Detect modules
+    const moduleDetection = await this.detectModules(filteredText, course)
+
+    // Chunk content
+    console.log('  🔄 Chunking content...')
+    let chunks = await this.chunkContent(filteredText)
+    console.log(`  ✅ Created ${chunks.length} chunks`)
+
+    // Assign modules to chunks
+    chunks = await this.assignModulesToChunks(chunks, course, moduleDetection.detectedModules)
+
+    return {
+      content,
+      filteredText,
+      structure,
+      moduleDetection,
       chunks,
     }
   }

@@ -163,6 +163,57 @@ export async function getModuleMapping(
   return result.rows.length > 0 ? result.rows[0] : null
 }
 
+export async function createModuleMapping(mapping: ModuleMapping): Promise<number> {
+  const result = await query(
+    `INSERT INTO module_mapping 
+     (course, module_id, module_name, keywords, description, display_order)
+     VALUES ($1, $2, $3, $4, $5, $6)
+     RETURNING id`,
+    [
+      mapping.course,
+      mapping.module_id,
+      mapping.module_name,
+      mapping.keywords || [],
+      mapping.description,
+      mapping.display_order
+    ]
+  )
+  return result.rows[0].id
+}
+
+export async function seedModuleMappings(): Promise<void> {
+  // Import module data
+  const { FITTER_MODULES, ELECTRICIAN_MODULES } = await import('./module-detector')
+  
+  console.log('🌱 Seeding module mappings...')
+  
+  // Check if data already exists
+  const existingFitter = await getModuleMappings('fitter')
+  const existingElectrician = await getModuleMappings('electrician')
+  
+  if (existingFitter.length === 0) {
+    console.log('  📝 Seeding Fitter modules...')
+    for (const module of FITTER_MODULES) {
+      await createModuleMapping(module)
+    }
+    console.log(`  ✅ Seeded ${FITTER_MODULES.length} Fitter modules`)
+  } else {
+    console.log(`  ℹ️  Fitter modules already exist (${existingFitter.length} modules)`)
+  }
+  
+  if (existingElectrician.length === 0) {
+    console.log('  📝 Seeding Electrician modules...')
+    for (const module of ELECTRICIAN_MODULES) {
+      await createModuleMapping(module)
+    }
+    console.log(`  ✅ Seeded ${ELECTRICIAN_MODULES.length} Electrician modules`)
+  } else {
+    console.log(`  ℹ️  Electrician modules already exist (${existingElectrician.length} modules)`)
+  }
+  
+  console.log('🌱 Module mapping seeding complete')
+}
+
 // Knowledge Chunks operations
 
 export async function createKnowledgeChunk(chunk: KnowledgeChunk): Promise<number> {
