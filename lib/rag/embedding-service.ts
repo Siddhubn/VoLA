@@ -44,7 +44,7 @@ export class EmbeddingService {
     this.genAI = new GoogleGenerativeAI(apiKey)
     
     this.config = {
-      model: config?.model || 'text-embedding-004',
+      model: config?.model || 'models/text-embedding-004',
       batchSize: config?.batchSize || 100,
       retryAttempts: config?.retryAttempts || 3,
       initialDelay: config?.initialDelay || 1000,
