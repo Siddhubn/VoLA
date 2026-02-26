@@ -311,7 +311,7 @@ export class PDFProcessor {
     const sentences = this.splitIntoSentences(text)
     const chunks: ProcessedChunk[] = []
     
-    let currentChunk: string[] = []
+    let currentSentences: string[] = []
     let currentTokenCount = 0
     let chunkIndex = 0
 
@@ -320,9 +320,10 @@ export class PDFProcessor {
       const sentenceTokens = this.estimateTokenCount(sentence)
 
       // If adding this sentence exceeds chunk size and we have content, create a chunk
-      if (currentTokenCount + sentenceTokens > chunkSize && currentChunk.length > 0) {
+      if (currentTokenCount + sentenceTokens > chunkSize && currentSentences.length > 0) {
+        // Create the current chunk
         chunks.push({
-          content: currentChunk.join(' '),
+          content: currentSentences.join(' '),
           module: null,
           section: null,
           pageNumber: 0, // Will be set later
@@ -331,36 +332,36 @@ export class PDFProcessor {
           metadata: {},
         })
 
-        // Start new chunk with overlap
-        // Keep last few sentences for overlap
-        const overlapSentences: string[] = []
+        // Calculate overlap for next chunk
+        // Find sentences that fit within overlap limit, starting from the end
         let overlapTokens = 0
+        let overlapSentences: string[] = []
         
-        for (let j = currentChunk.length - 1; j >= 0; j--) {
-          const overlapSentence = currentChunk[j]
-          const tokens = this.estimateTokenCount(overlapSentence)
-          
-          if (overlapTokens + tokens <= chunkOverlap) {
-            overlapSentences.unshift(overlapSentence)
-            overlapTokens += tokens
+        // Work backwards through current sentences to build overlap
+        for (let j = currentSentences.length - 1; j >= 0; j--) {
+          const sentenceTokens = this.estimateTokenCount(currentSentences[j])
+          if (overlapTokens + sentenceTokens <= chunkOverlap) {
+            overlapTokens += sentenceTokens
+            overlapSentences.unshift(currentSentences[j])
           } else {
             break
           }
         }
 
-        currentChunk = overlapSentences
+        // Start new chunk with overlap sentences
+        currentSentences = [...overlapSentences]
         currentTokenCount = overlapTokens
       }
 
       // Add sentence to current chunk
-      currentChunk.push(sentence)
+      currentSentences.push(sentence)
       currentTokenCount += sentenceTokens
     }
 
     // Add final chunk if there's content
-    if (currentChunk.length > 0) {
+    if (currentSentences.length > 0) {
       chunks.push({
-        content: currentChunk.join(' '),
+        content: currentSentences.join(' '),
         module: null,
         section: null,
         pageNumber: 0,

@@ -241,16 +241,31 @@ Sentence six. Sentence seven. Sentence eight. Sentence nine. Sentence ten.
       })
       
       if (chunks.length > 1) {
-        // Check that consecutive chunks have some overlap
+        // Check that consecutive chunks have some overlap using sentence-level comparison
         for (let i = 0; i < chunks.length - 1; i++) {
-          const currentChunk = chunks[i].content
-          const nextChunk = chunks[i + 1].content
+          const currentSentences = chunks[i].content.trim().split(/(?<=[.!?])\s+/).filter(s => s.trim().length > 0)
+          const nextSentences = chunks[i + 1].content.trim().split(/(?<=[.!?])\s+/).filter(s => s.trim().length > 0)
           
-          // Extract last few words from current chunk
-          const currentWords = currentChunk.split(' ').slice(-10).join(' ')
+          // Find sentence overlap
+          let hasOverlap = false
+          for (let j = 1; j <= Math.min(currentSentences.length, nextSentences.length, 5); j++) {
+            const currentSuffix = currentSentences.slice(-j)
+            const nextPrefix = nextSentences.slice(0, j)
+            
+            let allMatch = true
+            for (let k = 0; k < j; k++) {
+              if (currentSuffix[k].trim() !== nextPrefix[k].trim()) {
+                allMatch = false
+                break
+              }
+            }
+            
+            if (allMatch) {
+              hasOverlap = true
+              break
+            }
+          }
           
-          // Check if any of these words appear in the next chunk
-          const hasOverlap = nextChunk.includes(currentWords.split(' ')[0])
           expect(hasOverlap).toBe(true)
         }
       }
@@ -271,6 +286,38 @@ Content here. More content. Even more content. Additional content. Final content
       })
     })
 
+    it('should extract and attach metadata correctly', async () => {
+      const text = `
+Chapter 1: Introduction. This is the introduction content.
+Section 1.1: Overview. This is overview content.
+More content here. Additional sentences for testing.
+      `
+      
+      const chunks = await processor.chunkContent(text, {
+        chunkSize: 100,
+        chunkOverlap: 20,
+      })
+      
+      // All chunks should have the required metadata structure
+      chunks.forEach(chunk => {
+        expect(chunk).toHaveProperty('module')
+        expect(chunk).toHaveProperty('section')
+        expect(chunk).toHaveProperty('pageNumber')
+        expect(chunk).toHaveProperty('chunkIndex')
+        expect(chunk).toHaveProperty('tokenCount')
+        expect(chunk).toHaveProperty('metadata')
+        
+        // Metadata should be an object
+        expect(typeof chunk.metadata).toBe('object')
+        
+        // Page number should be initialized (will be set later in processing)
+        expect(typeof chunk.pageNumber).toBe('number')
+        
+        // Token count should be positive
+        expect(chunk.tokenCount).toBeGreaterThan(0)
+      })
+    })
+
     it('should handle very short text', async () => {
       const text = 'Just one short sentence.'
       
@@ -278,6 +325,8 @@ Content here. More content. Even more content. Additional content. Final content
       
       expect(chunks.length).toBe(1)
       expect(chunks[0].content).toContain('Just one short sentence')
+      expect(chunks[0].chunkIndex).toBe(0)
+      expect(chunks[0].tokenCount).toBeGreaterThan(0)
     })
 
     it('should handle empty text', async () => {
@@ -286,6 +335,64 @@ Content here. More content. Even more content. Additional content. Final content
       const chunks = await processor.chunkContent(text)
       
       expect(chunks.length).toBe(0)
+    })
+
+    it('should handle very long sentences', async () => {
+      const longSentence = 'This is a very long sentence that goes on and on and on '.repeat(50) + '.'
+      
+      const chunks = await processor.chunkContent(longSentence, {
+        chunkSize: 100,
+        chunkOverlap: 20,
+      })
+      
+      expect(chunks.length).toBeGreaterThan(0)
+      
+      // Even with a very long sentence, chunking should work
+      chunks.forEach(chunk => {
+        expect(chunk.content.length).toBeGreaterThan(0)
+        expect(chunk.tokenCount).toBeGreaterThan(0)
+      })
+    })
+
+    it('should handle text with mixed punctuation', async () => {
+      const text = `
+First sentence! Second sentence? Third sentence. Fourth sentence!
+Fifth sentence? Sixth sentence. Seventh sentence! Eighth sentence?
+      `
+      
+      const chunks = await processor.chunkContent(text, {
+        chunkSize: 80,
+        chunkOverlap: 20,
+      })
+      
+      expect(chunks.length).toBeGreaterThan(0)
+      
+      // Should properly split on all sentence-ending punctuation
+      chunks.forEach(chunk => {
+        const content = chunk.content.trim()
+        if (content.length > 0) {
+          expect(/[.!?]$/.test(content) || chunk.chunkIndex === chunks.length - 1).toBe(true)
+        }
+      })
+    })
+
+    it('should maintain token count accuracy', async () => {
+      const text = `
+Sentence one with exactly ten words in this test case.
+Sentence two with exactly ten words in this test case.
+Sentence three with exactly ten words in this test case.
+      `
+      
+      const chunks = await processor.chunkContent(text, {
+        chunkSize: 50,
+        chunkOverlap: 15,
+      })
+      
+      chunks.forEach(chunk => {
+        // Verify token count matches estimated count
+        const estimatedTokens = processor.estimateTokenCount(chunk.content)
+        expect(chunk.tokenCount).toBe(estimatedTokens)
+      })
     })
   })
 
