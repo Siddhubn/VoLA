@@ -41,7 +41,7 @@ export async function GET(request: NextRequest) {
       [Number(decoded.userId), limit]
     )
 
-    const history = result.rows.map(row => ({
+    const history = result.rows.map((row: any) => ({
       id: row.id,
       course: row.course,
       module: row.module,

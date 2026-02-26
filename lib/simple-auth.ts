@@ -48,8 +48,8 @@ export async function comparePassword(password: string, hashedPassword: string):
   return bcrypt.compare(password, hashedPassword)
 }
 
-export function setAuthCookie(token: string) {
-  const cookieStore = cookies()
+export async function setAuthCookie(token: string) {
+  const cookieStore = await cookies()
   cookieStore.set('auth-token', token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
@@ -59,19 +59,19 @@ export function setAuthCookie(token: string) {
   })
 }
 
-export function removeAuthCookie() {
-  const cookieStore = cookies()
+export async function removeAuthCookie() {
+  const cookieStore = await cookies()
   cookieStore.delete('auth-token')
 }
 
-export function getAuthToken(): string | null {
-  const cookieStore = cookies()
+export async function getAuthToken(): Promise<string | null> {
+  const cookieStore = await cookies()
   const token = cookieStore.get('auth-token')
   return token?.value || null
 }
 
-export function getCurrentUser(): TokenPayload | null {
-  const token = getAuthToken()
+export async function getCurrentUser(): Promise<TokenPayload | null> {
+  const token = await getAuthToken()
   if (!token) return null
   return verifyToken(token)
 }

@@ -37,7 +37,7 @@ export async function GET(request: NextRequest) {
 
     const result = await query(queryText, params)
 
-    const leaderboard = result.rows.map(row => ({
+    const leaderboard = result.rows.map((row: any) => ({
       rank: row.rank,
       userId: row.user_id,
       name: row.name,

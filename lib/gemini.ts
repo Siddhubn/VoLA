@@ -47,7 +47,8 @@ export async function generateQuiz(params: QuizGenerationParams): Promise<QuizQu
   const { course, module, numQuestions = 5, difficulty = 'medium' } = params
   
   const moduleKey = module.toLowerCase().replace(/\s+/g, '-')
-  const context = MODULE_CONTEXTS[course]?.[moduleKey] || module
+  const courseContexts = MODULE_CONTEXTS[course] as Record<string, string>
+  const context = courseContexts?.[moduleKey] || module
 
   const prompt = `You are an expert ITI (Industrial Training Institute) instructor creating a quiz for ${course} students.
 
@@ -76,7 +77,7 @@ Return ONLY a valid JSON array with this exact structure (no markdown, no code b
 The correctAnswer should be the index (0-3) of the correct option in the options array.`
 
   try {
-    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-exp' })
+    const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' })
     
     const result = await model.generateContent(prompt)
     const response = await result.response
@@ -123,7 +124,7 @@ Student's Answer: ${userAnswer}
 Provide a hint that guides them toward the correct answer:`
 
   try {
-    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-exp' })
+    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' })
     const result = await model.generateContent(prompt)
     const response = await result.response
     return response.text().trim()

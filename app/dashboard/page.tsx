@@ -3,151 +3,124 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Navigation } from '@/components/Navigation'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
 import { 
   BookOpen, 
   Clock, 
   Trophy, 
-  TrendingUp,
-  Calendar,
-  Award,
   Target,
-  Users,
-  PlayCircle,
-  CheckCircle,
-  Star,
   BarChart3,
   Brain,
   Wrench,
   Zap,
-  HardHat,
-  Settings,
   FileText,
-  HelpCircle
+  PlayCircle
 } from 'lucide-react'
-import { formatDate, formatTime } from '@/lib/utils'
+import { formatDate } from '@/lib/utils'
 
 interface User {
   id: number
   name: string
   email: string
   role: string
+  course?: string
   avatar?: string
-  createdAt: string
-  lastLogin?: string
-  profile: {
-    bio?: string
-    skills: string[]
-    learningGoals: string[]
-    completedCourses: number
-    totalStudyTime: number
-    selectedTrade?: string
-  }
+  created_at: string
 }
 
-interface Trade {
+interface Module {
   id: string
   name: string
-  icon: any
   description: string
-  modules: string[]
-  color: string
 }
 
-interface QuizAttempt {
+interface QuizHistory {
   id: number
-  trade: string
+  course: string
   module: string
   score: number
   totalQuestions: number
-  completedAt: string
+  percentage: number
   timeSpent: number
+  completedAt: string
 }
 
 export default function DashboardPage() {
   const router = useRouter()
   const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState('')
+  const [quizHistory, setQuizHistory] = useState<QuizHistory[]>([])
+  const [stats, setStats] = useState({
+    totalQuizzes: 0,
+    averageScore: 0,
+    totalStudyTime: 0,
+    completedModules: 0
+  })
 
-  // ITI Trades and Modules
-  const trades: Trade[] = [
-    {
-      id: 'fitter',
-      name: 'Fitter',
-      icon: Wrench,
-      description: 'Mechanical fitting, assembly, and maintenance',
-      modules: ['Safety Practices', 'Hand Tools', 'Measuring Tools', 'Filing & Drilling', 'Marking Tools'],
-      color: 'blue'
-    },
-    {
-      id: 'electrician',
-      name: 'Electrician',
-      icon: Zap,
-      description: 'Electrical installation, wiring, and maintenance',
-      modules: ['Electrical Safety', 'Basic Electricity', 'Wiring Circuits', 'Transformers', 'Hand Tools'],
-      color: 'yellow'
-    },
-    {
-      id: 'welder',
-      name: 'Welder',
-      icon: HardHat,
-      description: 'Welding techniques and metal fabrication',
-      modules: ['Welding Safety', 'Arc Welding', 'Gas Welding', 'Metal Preparation', 'Joint Types'],
-      color: 'orange'
-    }
-  ]
-
-  // Mock quiz history - In real app, this would come from API
-  const [recentQuizzes] = useState<QuizAttempt[]>([
-    {
-      id: 1,
-      trade: 'Fitter',
-      module: 'Safety Practices',
-      score: 8,
-      totalQuestions: 10,
-      completedAt: '2024-02-23T10:30:00Z',
-      timeSpent: 12
-    },
-    {
-      id: 2,
-      trade: 'Electrician',
-      module: 'Basic Electricity',
-      score: 7,
-      totalQuestions: 10,
-      completedAt: '2024-02-22T15:45:00Z',
-      timeSpent: 15
-    },
-    {
-      id: 3,
-      trade: 'Fitter',
-      module: 'Hand Tools',
-      score: 9,
-      totalQuestions: 10,
-      completedAt: '2024-02-21T09:15:00Z',
-      timeSpent: 10
-    }
-  ])
+  // Course-specific modules
+  const courseModules: Record<string, Module[]> = {
+    fitter: [
+      { id: 'safety-signs', name: 'Safety Signs', description: 'Industrial safety symbols and hazard warnings' },
+      { id: 'ppe', name: 'PPE', description: 'Personal Protective Equipment usage and safety' },
+      { id: 'vernier-calipers', name: 'Vernier Calipers', description: 'Precision measurement techniques' },
+      { id: 'micrometers', name: 'Micrometers', description: 'Micrometer parts and measurement' },
+      { id: 'filing', name: 'Filing', description: 'Filing techniques and surface finishing' },
+      { id: 'drilling', name: 'Drilling', description: 'Drilling operations and safety' },
+      { id: 'marking-tools', name: 'Marking Tools', description: 'Layout and marking techniques' }
+    ],
+    electrician: [
+      { id: 'ohms-law', name: "Ohm's Law", description: 'Voltage, current, and resistance relationships' },
+      { id: 'wiring-circuits', name: 'Wiring Circuits', description: 'Circuit diagrams and house wiring' },
+      { id: 'transformers', name: 'Transformers', description: 'Transformer principles and applications' },
+      { id: 'electrical-safety', name: 'Electrical Safety', description: 'Safety rules and shock prevention' },
+      { id: 'hand-tools', name: 'Hand Tools', description: 'Electrical hand tools and their usage' }
+    ]
+  }
 
   useEffect(() => {
-    async function checkAuth() {
+    async function loadData() {
       try {
-        const response = await fetch('/api/auth/me')
-        if (response.ok) {
-          const data = await response.json()
-          setUser(data.user)
+        // Get user data
+        const authResponse = await fetch('/api/auth/me')
+        if (authResponse.ok) {
+          const authData = await authResponse.json()
+          setUser(authData.user)
+
+          // Get quiz history
+          const historyResponse = await fetch('/api/quiz/history?limit=10')
+          if (historyResponse.ok) {
+            const historyData = await historyResponse.json()
+            if (historyData.success) {
+              setQuizHistory(historyData.history)
+              
+              // Calculate stats
+              const history = historyData.history
+              if (history.length > 0) {
+                const totalScore = history.reduce((sum: number, q: QuizHistory) => sum + q.percentage, 0)
+                const totalTime = history.reduce((sum: number, q: QuizHistory) => sum + q.timeSpent, 0)
+                const uniqueModules = new Set(history.map((q: QuizHistory) => q.module))
+                
+                setStats({
+                  totalQuizzes: history.length,
+                  averageScore: Math.round(totalScore / history.length),
+                  totalStudyTime: Math.floor(totalTime / 60), // Convert to minutes
+                  completedModules: uniqueModules.size
+                })
+              }
+            }
+          }
         } else {
           router.push('/auth/login')
         }
       } catch (err) {
-        console.error('Auth check failed:', err)
+        console.error('Error loading data:', err)
         router.push('/auth/login')
       } finally {
         setLoading(false)
       }
     }
 
-    checkAuth()
+    loadData()
   }, [router])
 
   if (loading) {
@@ -155,43 +128,21 @@ export default function DashboardPage() {
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading your ITI dashboard...</p>
+          <p className="mt-4 text-gray-600">Loading your dashboard...</p>
         </div>
       </div>
     )
   }
 
-  if (error || !user) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <Card className="w-full max-w-md">
-          <CardHeader>
-            <CardTitle className="text-red-600">Access Denied</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-gray-600">Please log in to access your learning dashboard.</p>
-            <div className="mt-4">
-              <button 
-                onClick={() => router.push('/auth/login')}
-                className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-              >
-                Go to Login
-              </button>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-    )
+  if (!user) {
+    return null
   }
 
-  const stats = {
-    totalQuizzes: recentQuizzes.length,
-    averageScore: Math.round(recentQuizzes.reduce((acc, quiz) => acc + (quiz.score / quiz.totalQuestions * 100), 0) / recentQuizzes.length),
-    totalStudyTime: recentQuizzes.reduce((acc, quiz) => acc + quiz.timeSpent, 0),
-    bestScore: Math.max(...recentQuizzes.map(quiz => quiz.score / quiz.totalQuestions * 100)),
-    completedModules: Array.from(new Set(recentQuizzes.map(quiz => quiz.module))).length,
-    currentStreak: 3
-  }
+  // Get modules for user's course
+  const userCourse = user.course || 'fitter'
+  const modules = courseModules[userCourse] || courseModules.fitter
+  const CourseIcon = userCourse === 'electrician' ? Zap : Wrench
+  const courseColor = userCourse === 'electrician' ? 'yellow' : 'blue'
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -201,21 +152,23 @@ export default function DashboardPage() {
         {/* Welcome Section */}
         <div className="mb-8">
           <div className="flex items-center space-x-3 mb-4">
-            <div className="p-2 bg-blue-100 rounded-lg">
-              <BookOpen className="w-6 h-6 text-blue-600" />
+            <div className={`p-2 ${courseColor === 'yellow' ? 'bg-yellow-100' : 'bg-blue-100'} rounded-lg`}>
+              <CourseIcon className={`w-6 h-6 ${courseColor === 'yellow' ? 'text-yellow-600' : 'text-blue-600'}`} />
             </div>
             <div>
               <h1 className="text-3xl font-bold text-gray-900">
                 Welcome back, {user.name}! 🎓
               </h1>
               <p className="text-gray-600">
-                Continue your ITI learning journey with AI-powered quizzes
+                {userCourse === 'electrician' ? 'Electrician' : 'Fitter'} Course - Master your skills with AI-powered quizzes
               </p>
             </div>
           </div>
-          <div className="p-4 bg-gradient-to-r from-blue-50 to-green-50 border border-blue-200 rounded-lg">
-            <p className="text-sm text-blue-700">
-              🏭 <strong>ITI Quiz & Learning Assistant:</strong> Master vocational skills with personalized AI tutoring and interactive assessments
+          <div className={`p-4 bg-gradient-to-r ${
+            courseColor === 'yellow' ? 'from-yellow-50 to-orange-50 border-yellow-200' : 'from-blue-50 to-green-50 border-blue-200'
+          } border rounded-lg`}>
+            <p className="text-sm text-gray-700">
+              🏭 <strong>Your Learning Path:</strong> Complete quizzes to master each module and track your progress on the leaderboard
             </p>
           </div>
         </div>
@@ -271,8 +224,8 @@ export default function DashboardPage() {
                   <Target className="w-6 h-6 text-orange-600" />
                 </div>
                 <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">Modules</p>
-                  <p className="text-2xl font-bold text-gray-900">{stats.completedModules}</p>
+                  <p className="text-sm font-medium text-gray-600">Modules Done</p>
+                  <p className="text-2xl font-bold text-gray-900">{stats.completedModules}/{modules.length}</p>
                 </div>
               </div>
             </CardContent>
@@ -280,62 +233,56 @@ export default function DashboardPage() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Trade Selection & Modules */}
+          {/* Course Modules */}
           <div className="lg:col-span-2">
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center space-x-2">
-                  <Settings className="w-5 h-5" />
-                  <span>Select Your Trade & Module</span>
-                </CardTitle>
-                <CardDescription>
-                  Choose your vocational trade and start practicing with AI-generated quizzes
-                </CardDescription>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="flex items-center space-x-2 mb-2">
+                      <CourseIcon className={`w-5 h-5 ${courseColor === 'yellow' ? 'text-yellow-600' : 'text-blue-600'}`} />
+                      <h2 className="text-xl font-bold text-gray-900">
+                        {userCourse === 'electrician' ? 'Electrician' : 'Fitter'} Modules
+                      </h2>
+                    </div>
+                    <p className="text-sm text-gray-600">
+                      Select a module to start your AI-powered quiz (5 questions each)
+                    </p>
+                  </div>
+                </div>
               </CardHeader>
               <CardContent>
-                <div className="space-y-6">
-                  {trades.map((trade) => {
-                    const Icon = trade.icon
-                    return (
-                      <div key={trade.id} className="border border-gray-200 rounded-lg p-4 hover:border-blue-300 transition-colors">
-                        <div className="flex items-start space-x-4">
-                          <div className={`p-3 rounded-lg ${
-                            trade.color === 'blue' ? 'bg-blue-100' :
-                            trade.color === 'yellow' ? 'bg-yellow-100' :
-                            'bg-orange-100'
-                          }`}>
-                            <Icon className={`w-6 h-6 ${
-                              trade.color === 'blue' ? 'text-blue-600' :
-                              trade.color === 'yellow' ? 'text-yellow-600' :
-                              'text-orange-600'
-                            }`} />
-                          </div>
-                          <div className="flex-1">
-                            <h3 className="text-lg font-semibold text-gray-900">{trade.name}</h3>
-                            <p className="text-sm text-gray-600 mb-3">{trade.description}</p>
-                            <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-                              {trade.modules.map((module) => (
-                                <button
-                                  key={module}
-                                  className={`px-3 py-2 text-sm rounded border transition-colors hover:bg-blue-50 hover:border-blue-300 ${
-                                    trade.color === 'blue' ? 'border-blue-200 text-blue-700' :
-                                    trade.color === 'yellow' ? 'border-yellow-200 text-yellow-700' :
-                                    'border-orange-200 text-orange-700'
-                                  }`}
-                                  onClick={() => {
-                                    // Navigate to quiz for this trade and module
-                                    router.push(`/quiz/${trade.id}/${module.toLowerCase().replace(/\s+/g, '-')}`)
-                                  }}
-                                >
-                                  {module}
-                                </button>
-                              ))}
-                            </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {modules.map((module) => (
+                    <button
+                      key={module.id}
+                      type="button"
+                      onClick={() => router.push(`/quiz/${userCourse}/${module.id}`)}
+                      className={`p-4 text-left rounded-lg border-2 transition-all hover:shadow-md ${
+                        courseColor === 'yellow'
+                          ? 'border-yellow-200 hover:border-yellow-400 hover:bg-yellow-50'
+                          : 'border-blue-200 hover:border-blue-400 hover:bg-blue-50'
+                      }`}
+                    >
+                      <div className="flex items-start space-x-3">
+                        <div className={`p-2 rounded-lg ${
+                          courseColor === 'yellow' ? 'bg-yellow-100' : 'bg-blue-100'
+                        }`}>
+                          <PlayCircle className={`w-5 h-5 ${
+                            courseColor === 'yellow' ? 'text-yellow-600' : 'text-blue-600'
+                          }`} />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="font-semibold text-gray-900 mb-1">{module.name}</h3>
+                          <p className="text-xs text-gray-600">{module.description}</p>
+                          <div className="mt-2 flex items-center space-x-2 text-xs text-gray-500">
+                            <FileText className="w-3 h-3" />
+                            <span>5 questions • AI-generated</span>
                           </div>
                         </div>
                       </div>
-                    )
-                  })}
+                    </button>
+                  ))}
                 </div>
               </CardContent>
             </Card>
@@ -346,43 +293,50 @@ export default function DashboardPage() {
             {/* Recent Quiz History */}
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center space-x-2">
+                <div className="flex items-center space-x-2">
                   <BarChart3 className="w-5 h-5" />
-                  <span>Recent Quizzes</span>
-                </CardTitle>
+                  <h3 className="font-semibold">Recent Quizzes</h3>
+                </div>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
-                  {recentQuizzes.map((quiz) => (
-                    <div key={quiz.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                      <div className="flex-1">
-                        <p className="text-sm font-medium text-gray-900">{quiz.trade}</p>
-                        <p className="text-xs text-gray-600">{quiz.module}</p>
-                        <p className="text-xs text-gray-500">{formatDate(new Date(quiz.completedAt))}</p>
-                      </div>
-                      <div className="text-right">
-                        <div className={`text-lg font-bold ${
-                          quiz.score / quiz.totalQuestions >= 0.8 ? 'text-green-600' :
-                          quiz.score / quiz.totalQuestions >= 0.6 ? 'text-yellow-600' :
-                          'text-red-600'
-                        }`}>
-                          {quiz.score}/{quiz.totalQuestions}
+                {quizHistory.length > 0 ? (
+                  <div className="space-y-3">
+                    {quizHistory.slice(0, 5).map((quiz) => (
+                      <div key={quiz.id} className="p-3 bg-gray-50 rounded-lg">
+                        <div className="flex items-center justify-between mb-1">
+                          <p className="text-sm font-medium text-gray-900">{quiz.module}</p>
+                          <span className={`text-lg font-bold ${
+                            quiz.percentage >= 80 ? 'text-green-600' :
+                            quiz.percentage >= 60 ? 'text-yellow-600' :
+                            'text-red-600'
+                          }`}>
+                            {quiz.percentage}%
+                          </span>
                         </div>
-                        <p className="text-xs text-gray-500">{quiz.timeSpent} min</p>
+                        <div className="flex items-center justify-between text-xs text-gray-500">
+                          <span>{quiz.score}/{quiz.totalQuestions} correct</span>
+                          <span>{formatDate(new Date(quiz.completedAt))}</span>
+                        </div>
                       </div>
-                    </div>
-                  ))}
-                </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-center py-8 text-gray-500">
+                    <FileText className="w-12 h-12 mx-auto mb-2 text-gray-300" />
+                    <p className="text-sm">No quizzes taken yet</p>
+                    <p className="text-xs mt-1">Start your first quiz!</p>
+                  </div>
+                )}
               </CardContent>
             </Card>
 
             {/* Learning Resources */}
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center space-x-2">
+                <div className="flex items-center space-x-2">
                   <Brain className="w-5 h-5" />
-                  <span>Learning Resources</span>
-                </CardTitle>
+                  <h3 className="font-semibold">Resources</h3>
+                </div>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
@@ -394,45 +348,21 @@ export default function DashboardPage() {
                   >
                     <div className="flex items-center space-x-2">
                       <BookOpen className="w-4 h-4 text-blue-600" />
-                      <span className="text-sm font-medium">Bharat Skills Portal</span>
+                      <span className="text-sm font-medium">Bharat Skills</span>
                     </div>
-                    <p className="text-xs text-gray-600 mt-1">Official NSQF curriculum and resources</p>
+                    <p className="text-xs text-gray-600 mt-1">Official NSQF resources</p>
                   </a>
                   
-                  <a 
-                    href="https://nimilearningonline.in/" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="block p-3 border border-gray-200 rounded-lg hover:border-blue-300 transition-colors"
+                  <button
+                    type="button"
+                    onClick={() => router.push('/leaderboard')}
+                    className="w-full p-3 border border-gray-200 rounded-lg hover:border-green-300 transition-colors text-left"
                   >
                     <div className="flex items-center space-x-2">
-                      <FileText className="w-4 h-4 text-green-600" />
-                      <span className="text-sm font-medium">NIMI Learning</span>
+                      <Trophy className="w-4 h-4 text-green-600" />
+                      <span className="text-sm font-medium">View Leaderboard</span>
                     </div>
-                    <p className="text-xs text-gray-600 mt-1">E-learning materials for ITIs</p>
-                  </a>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* AI Learning Assistant */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center space-x-2">
-                  <HelpCircle className="w-5 h-5" />
-                  <span>AI Assistant</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-center">
-                  <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <Brain className="w-6 h-6 text-white" />
-                  </div>
-                  <p className="text-sm text-gray-600 mb-3">
-                    Get instant explanations, hints, and personalized feedback during quizzes
-                  </p>
-                  <button className="w-full px-4 py-2 bg-purple-600 text-white text-sm rounded hover:bg-purple-700">
-                    Ask AI Tutor
+                    <p className="text-xs text-gray-600 mt-1">See top performers</p>
                   </button>
                 </div>
               </CardContent>
