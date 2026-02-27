@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { verifyToken } from '@/lib/simple-auth'
-import { generateQuiz } from '@/lib/gemini'
+import { generateQuizWithRAG } from '@/lib/gemini'
+import { ContextBuilder } from '@/lib/rag/context-builder'
 
 export async function POST(request: NextRequest) {
   try {
@@ -39,22 +40,33 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Generate quiz using Gemini AI - always 5 questions
-    const questions = await generateQuiz({
+    // Build RAG context for quiz generation
+    const contextBuilder = new ContextBuilder()
+    const quizContext = await contextBuilder.buildQuizContext(course, module, {
+      topK: 5,
+      minSimilarity: 0.6
+    })
+
+    // Generate quiz using Gemini AI with RAG context - always 5 questions
+    const result = await generateQuizWithRAG({
       course,
       module,
       numQuestions: 5,
-      difficulty: difficulty || 'medium'
+      difficulty: difficulty || 'medium',
+      context: quizContext
     })
 
     return NextResponse.json({
       success: true,
-      questions,
+      questions: result.questions,
+      sources: result.sources,
       metadata: {
         course,
         module,
-        totalQuestions: questions.length,
-        difficulty: difficulty || 'medium'
+        totalQuestions: result.questions.length,
+        difficulty: difficulty || 'medium',
+        retrievedChunks: quizContext.chunkCount,
+        usedFallback: result.usedFallback
       }
     })
   } catch (error) {
