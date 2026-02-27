@@ -81,8 +81,19 @@ export class LocalEmbeddingService {
         normalize: true
       })
 
-      // Convert to array
-      const embedding = Array.from(output.data)
+      // Convert to array - handle tensor output properly
+      let embedding: number[]
+      
+      // The output is a Tensor object with a .data property
+      if (output && output.data) {
+        // Convert tensor data to regular array
+        embedding = Array.prototype.slice.call(output.data)
+      } else if (Array.isArray(output)) {
+        embedding = output
+      } else {
+        // Fallback: try to convert to array
+        embedding = Array.from(output)
+      }
 
       return {
         embedding,

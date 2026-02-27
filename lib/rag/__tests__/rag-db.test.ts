@@ -200,8 +200,8 @@ describe('RAG Database Schema Tests', () => {
         file_path: '/path/to/file',
       })
       
-      // Create chunk with embedding
-      const embedding = Array(768).fill(0).map(() => Math.random())
+      // Create chunk with embedding (384 dimensions for local model)
+      const embedding = Array(384).fill(0).map(() => Math.random())
       const chunkId = await createKnowledgeChunk({
         course: 'fitter',
         pdf_source: filename,
@@ -245,8 +245,8 @@ describe('RAG Database Schema Tests', () => {
         content: 'Test content',
       })
       
-      // Update with embedding
-      const embedding = Array(768).fill(0).map(() => Math.random())
+      // Update with embedding (384 dimensions for local model)
+      const embedding = Array(384).fill(0).map(() => Math.random())
       await updateChunkEmbedding(chunkId, embedding)
       
       // Verify embedding was added
@@ -275,8 +275,8 @@ describe('RAG Database Schema Tests', () => {
         file_path: '/path/to/file',
       })
       
-      // Create chunks with similar embeddings
-      const baseEmbedding = Array(768).fill(0).map(() => Math.random())
+      // Create chunks with similar embeddings (384 dimensions for local model)
+      const baseEmbedding = Array(384).fill(0).map(() => Math.random())
       
       for (let i = 0; i < 3; i++) {
         const embedding = baseEmbedding.map(v => v + (Math.random() - 0.5) * 0.1)

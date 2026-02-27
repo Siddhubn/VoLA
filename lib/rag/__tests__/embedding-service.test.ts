@@ -12,7 +12,7 @@ describe('Embedding Service Unit Tests', () => {
       const service = new EmbeddingService()
       const stats = service.getStats()
       
-      expect(stats.config.model).toBe('text-embedding-004')
+      expect(stats.config.model).toBe('models/text-embedding-004')
       expect(stats.config.batchSize).toBe(100)
       expect(stats.config.retryAttempts).toBe(3)
       expect(stats.config.initialDelay).toBe(1000)
@@ -66,7 +66,7 @@ describe('Embedding Service Unit Tests', () => {
       const service = new EmbeddingService(partialConfig)
       const stats = service.getStats()
       
-      expect(stats.config.model).toBe('text-embedding-004') // Default
+      expect(stats.config.model).toBe('models/text-embedding-004') // Default
       expect(stats.config.batchSize).toBe(25) // Custom
       expect(stats.config.retryAttempts).toBe(3) // Default
       expect(stats.config.rateLimit.requestsPerMinute).toBe(30) // Custom

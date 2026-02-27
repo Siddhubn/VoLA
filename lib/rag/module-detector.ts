@@ -226,6 +226,10 @@ export const ELECTRICIAN_TT_MODULES: ModuleMapping[] = [
   }
 ]
 
+// Combined module arrays for convenience
+export const FITTER_MODULES: ModuleMapping[] = [...FITTER_TP_MODULES, ...FITTER_TT_MODULES]
+export const ELECTRICIAN_MODULES: ModuleMapping[] = [...ELECTRICIAN_TP_MODULES, ...ELECTRICIAN_TT_MODULES]
+
 export interface SyllabusInfo {
   course: 'fitter' | 'electrician'
   syllabusType: 'TP' | 'TT' | 'unknown'
