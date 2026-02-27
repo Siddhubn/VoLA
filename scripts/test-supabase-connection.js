@@ -1,73 +1,74 @@
 const { Pool } = require('pg')
 
-const DATABASE_URL = process.env.DATABASE_URL || 'postgresql://postgres:Intern@Xcelerator53@db.hilxnhmexnqxgiuzrbze.supabase.co:5432/postgres'
+// Test different connection formats
+const connections = [
+  {
+    name: 'Direct Connection',
+    url: 'postgresql://postgres:InternXcelerator@db.swnlggxbfjapndekvlgr.supabase.co:5432/postgres'
+  },
+  {
+    name: 'Pooler Connection (IPv4)',
+    url: 'postgresql://postgres.swnlggxbfjapndekvlgr:InternXcelerator@aws-0-ap-south-1.pooler.supabase.com:6543/postgres'
+  },
+  {
+    name: 'Pooler Connection (IPv6)',
+    url: 'postgresql://postgres.swnlggxbfjapndekvlgr:InternXcelerator@aws-0-ap-south-1.pooler.supabase.com:5432/postgres'
+  }
+]
 
-async function testSupabaseConnection() {
+async function testConnection(config) {
+  console.log(`\n🔍 Testing: ${config.name}`)
+  console.log(`   URL: ${config.url.replace(/:[^:@]+@/, ':****@')}`)
+  
   const pool = new Pool({
-    connectionString: DATABASE_URL,
-    ssl: { rejectUnauthorized: false }
+    connectionString: config.url,
+    ssl: { rejectUnauthorized: false },
+    connectionTimeoutMillis: 10000
   })
 
   try {
-    console.log('🔍 Testing Supabase connection...\n')
-
-    // Test basic connection
-    const timeResult = await pool.query('SELECT NOW() as current_time')
-    console.log('✅ Connection successful!')
-    console.log(`⏰ Server time: ${timeResult.rows[0].current_time}\n`)
-
-    // Check PostgreSQL version
-    const versionResult = await pool.query('SELECT version()')
-    console.log('📦 PostgreSQL version:')
-    console.log(`   ${versionResult.rows[0].version.split(',')[0]}\n`)
-
-    // Check if pgvector is enabled
-    const vectorCheck = await pool.query(`
-      SELECT extname, extversion 
-      FROM pg_extension 
-      WHERE extname = 'vector'
-    `)
-
-    if (vectorCheck.rows.length > 0) {
-      console.log('✅ pgvector extension is enabled')
-      console.log(`   Version: ${vectorCheck.rows[0].extversion}\n`)
-    } else {
-      console.log('⚠️  pgvector extension is NOT enabled')
-      console.log('   Run this in Supabase SQL Editor:')
-      console.log('   CREATE EXTENSION IF NOT EXISTS vector;\n')
-    }
-
-    // Check existing tables
-    const tablesResult = await pool.query(`
-      SELECT table_name 
-      FROM information_schema.tables 
-      WHERE table_schema = 'public' 
-      AND table_type = 'BASE TABLE'
-      ORDER BY table_name
-    `)
-
-    if (tablesResult.rows.length > 0) {
-      console.log('📋 Existing tables:')
-      tablesResult.rows.forEach(row => {
-        console.log(`   - ${row.table_name}`)
-      })
-    } else {
-      console.log('📋 No tables found. Run migration script:')
-      console.log('   node scripts/migrate-to-supabase.js')
-    }
-
-    console.log('\n🎉 Supabase is ready to use!')
-
-  } catch (error) {
-    console.error('❌ Connection failed:', error.message)
-    console.error('\n🔧 Troubleshooting:')
-    console.error('   1. Check if DATABASE_URL is correct in .env.local')
-    console.error('   2. Verify your Supabase project is active')
-    console.error('   3. Check if your IP is allowed in Supabase settings')
-    process.exit(1)
-  } finally {
+    const client = await pool.connect()
+    const result = await client.query('SELECT NOW(), version()')
+    client.release()
+    
+    console.log(`   ✅ SUCCESS!`)
+    console.log(`   Time: ${result.rows[0].now}`)
+    console.log(`   Version: ${result.rows[0].version.split(',')[0]}`)
+    
     await pool.end()
+    return true
+  } catch (error) {
+    console.log(`   ❌ FAILED: ${error.message}`)
+    await pool.end()
+    return false
   }
 }
 
-testSupabaseConnection()
+async function testAll() {
+  console.log('🚀 Testing Supabase Connections...\n')
+  console.log('=' .repeat(60))
+  
+  let successCount = 0
+  
+  for (const config of connections) {
+    const success = await testConnection(config)
+    if (success) successCount++
+  }
+  
+  console.log('\n' + '='.repeat(60))
+  console.log(`\n📊 Results: ${successCount}/${connections.length} connections successful`)
+  
+  if (successCount === 0) {
+    console.log('\n⚠️  All connections failed. Please check:')
+    console.log('   1. Is your Supabase project active?')
+    console.log('   2. Is your internet connection working?')
+    console.log('   3. Is the password correct?')
+    console.log('   4. Try accessing Supabase Dashboard: https://supabase.com/dashboard')
+    console.log('\n💡 Alternative: Use the SQL Editor in Supabase Dashboard')
+    console.log('   Copy and paste scripts/setup-supabase.sql into SQL Editor')
+  } else {
+    console.log('\n✅ Connection successful! You can proceed with migration.')
+  }
+}
+
+testAll()

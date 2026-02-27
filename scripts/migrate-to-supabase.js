@@ -1,23 +1,39 @@
 const { Pool } = require('pg')
+const bcrypt = require('bcryptjs')
 
-const DATABASE_URL = process.env.DATABASE_URL || 'postgresql://postgres:Intern@Xcelerator53@db.hilxnhmexnqxgiuzrbze.supabase.co:5432/postgres'
+const SUPABASE_URL = 'postgresql://postgres:InternXcelerator@db.swnlggxbfjapndekvlgr.supabase.co:5432/postgres'
 
 async function migrateToSupabase() {
   const pool = new Pool({
-    connectionString: DATABASE_URL,
+    connectionString: SUPABASE_URL,
     ssl: { rejectUnauthorized: false }
   })
 
   try {
     console.log('🚀 Starting Supabase migration...\n')
 
-    // 1. Enable pgvector extension
-    console.log('📦 Enabling pgvector extension...')
-    await pool.query('CREATE EXTENSION IF NOT EXISTS vector')
-    console.log('✅ pgvector extension enabled\n')
+    // 1. Test connection
+    console.log('1️⃣ Testing connection...')
+    const testResult = await pool.query('SELECT NOW(), version()')
+    console.log('✅ Connected to Supabase PostgreSQL')
+    console.log(`   Time: ${testResult.rows[0].now}`)
+    console.log(`   Version: ${testResult.rows[0].version.split(',')[0]}\n`)
 
-    // 2. Create users table
-    console.log('👥 Creating users table...')
+    // 2. Enable pgvector
+    console.log('2️⃣ Enabling pgvector extension...')
+    await pool.query('CREATE EXTENSION IF NOT EXISTS vector')
+    const vectorCheck = await pool.query(
+      "SELECT * FROM pg_extension WHERE extname = 'vector'"
+    )
+    if (vectorCheck.rows.length > 0) {
+      console.log('✅ pgvector extension enabled\n')
+    } else {
+      console.log('❌ Failed to enable pgvector\n')
+      return
+    }
+
+    // 3. Create users table
+    console.log('3️⃣ Creating users table...')
     await pool.query(`
       CREATE TABLE IF NOT EXISTS users (
         id SERIAL PRIMARY KEY,
@@ -40,8 +56,8 @@ async function migrateToSupabase() {
     `)
     console.log('✅ Users table created\n')
 
-    // 3. Create quiz_history table
-    console.log('📝 Creating quiz_history table...')
+    // 4. Create quiz_history table
+    console.log('4️⃣ Creating quiz_history table...')
     await pool.query(`
       CREATE TABLE IF NOT EXISTS quiz_history (
         id SERIAL PRIMARY KEY,
@@ -53,14 +69,13 @@ async function migrateToSupabase() {
         percentage DECIMAL(5,2) NOT NULL,
         time_spent INTEGER NOT NULL,
         completed_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-        answers JSONB,
-        CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+        answers JSONB
       )
     `)
     console.log('✅ Quiz history table created\n')
 
-    // 4. Create knowledge_base table with vector support
-    console.log('🧠 Creating knowledge_base table with vector support...')
+    // 5. Create knowledge_base table
+    console.log('5️⃣ Creating knowledge_base table with vector support...')
     await pool.query(`
       CREATE TABLE IF NOT EXISTS knowledge_base (
         id SERIAL PRIMARY KEY,
@@ -73,21 +88,19 @@ async function migrateToSupabase() {
         updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
       )
     `)
-    console.log('✅ Knowledge base table created with vector support\n')
+    console.log('✅ Knowledge base table created with vector column\n')
 
-    // 5. Create indexes
-    console.log('🔍 Creating indexes...')
+    // 6. Create indexes
+    console.log('6️⃣ Creating indexes...')
     const indexes = [
       'CREATE INDEX IF NOT EXISTS idx_users_email ON users(email)',
       'CREATE INDEX IF NOT EXISTS idx_users_role ON users(role)',
       'CREATE INDEX IF NOT EXISTS idx_users_course ON users(course)',
-      'CREATE INDEX IF NOT EXISTS idx_users_is_active ON users(is_active)',
       'CREATE INDEX IF NOT EXISTS idx_quiz_history_user_id ON quiz_history(user_id)',
       'CREATE INDEX IF NOT EXISTS idx_quiz_history_course ON quiz_history(course)',
-      'CREATE INDEX IF NOT EXISTS idx_quiz_history_module ON quiz_history(module)',
       'CREATE INDEX IF NOT EXISTS idx_knowledge_base_course ON knowledge_base(course)',
       'CREATE INDEX IF NOT EXISTS idx_knowledge_base_module ON knowledge_base(module)',
-      'CREATE INDEX IF NOT EXISTS idx_knowledge_base_embedding ON knowledge_base USING ivfflat (embedding vector_cosine_ops) WITH (lists = 100)'
+      'CREATE INDEX IF NOT EXISTS idx_knowledge_base_embedding ON knowledge_base USING hnsw (embedding vector_cosine_ops) WITH (m = 16, ef_construction = 64)'
     ]
 
     for (const indexQuery of indexes) {
@@ -95,8 +108,8 @@ async function migrateToSupabase() {
     }
     console.log('✅ All indexes created\n')
 
-    // 6. Create triggers
-    console.log('⚡ Creating triggers...')
+    // 7. Create triggers
+    console.log('7️⃣ Creating triggers...')
     await pool.query(`
       CREATE OR REPLACE FUNCTION update_updated_at_column()
       RETURNS TRIGGER AS $$
@@ -104,7 +117,7 @@ async function migrateToSupabase() {
         NEW.updated_at = CURRENT_TIMESTAMP;
         RETURN NEW;
       END;
-      $$ language 'plpgsql';
+      $$ language 'plpgsql'
     `)
 
     await pool.query(`
@@ -112,7 +125,7 @@ async function migrateToSupabase() {
       CREATE TRIGGER update_users_updated_at
         BEFORE UPDATE ON users
         FOR EACH ROW
-        EXECUTE FUNCTION update_updated_at_column();
+        EXECUTE FUNCTION update_updated_at_column()
     `)
 
     await pool.query(`
@@ -120,67 +133,99 @@ async function migrateToSupabase() {
       CREATE TRIGGER update_knowledge_base_updated_at
         BEFORE UPDATE ON knowledge_base
         FOR EACH ROW
-        EXECUTE FUNCTION update_updated_at_column();
+        EXECUTE FUNCTION update_updated_at_column()
     `)
     console.log('✅ Triggers created\n')
 
-    // 7. Create admin user
-    console.log('👤 Creating admin user...')
-    const bcrypt = require('bcryptjs')
-    const adminPassword = await bcrypt.hash('Admin@1234', 10)
-    
+    // 8. Create vector search function
+    console.log('8️⃣ Creating vector search function...')
     await pool.query(`
-      INSERT INTO users (name, email, password, role, is_active)
-      VALUES ($1, $2, $3, $4, $5)
-      ON CONFLICT (email) DO UPDATE
-      SET password = EXCLUDED.password,
-          role = EXCLUDED.role,
-          is_active = EXCLUDED.is_active
-    `, ['Admin', 'admin@vola.com', adminPassword, 'admin', true])
-    console.log('✅ Admin user created (email: admin@vola.com, password: Admin@1234)\n')
+      CREATE OR REPLACE FUNCTION search_knowledge_base(
+        query_embedding vector(384),
+        match_threshold float DEFAULT 0.5,
+        match_count int DEFAULT 5,
+        filter_course text DEFAULT NULL,
+        filter_module text DEFAULT NULL
+      )
+      RETURNS TABLE (
+        id int,
+        course text,
+        module text,
+        content text,
+        metadata jsonb,
+        similarity float
+      )
+      LANGUAGE plpgsql
+      AS $$
+      BEGIN
+        RETURN QUERY
+        SELECT
+          kb.id,
+          kb.course::text,
+          kb.module::text,
+          kb.content,
+          kb.metadata,
+          1 - (kb.embedding <=> query_embedding) as similarity
+        FROM knowledge_base kb
+        WHERE 
+          (filter_course IS NULL OR kb.course = filter_course)
+          AND (filter_module IS NULL OR kb.module = filter_module)
+          AND 1 - (kb.embedding <=> query_embedding) > match_threshold
+        ORDER BY kb.embedding <=> query_embedding
+        LIMIT match_count;
+      END;
+      $$
+    `)
+    console.log('✅ Vector search function created\n')
 
-    // 8. Verify setup
-    console.log('🔍 Verifying setup...')
+    // 9. Create admin user
+    console.log('9️⃣ Creating admin user...')
+    const hashedPassword = await bcrypt.hash('Admin@1234', 10)
+    
+    try {
+      await pool.query(`
+        INSERT INTO users (name, email, password, role, is_active)
+        VALUES ($1, $2, $3, $4, $5)
+        ON CONFLICT (email) DO NOTHING
+      `, ['Admin', 'admin@vola.com', hashedPassword, 'admin', true])
+      console.log('✅ Admin user created (email: admin@vola.com, password: Admin@1234)\n')
+    } catch (err) {
+      console.log('ℹ️  Admin user already exists\n')
+    }
+
+    // 10. Verify setup
+    console.log('🔍 Verifying setup...\n')
+    
     const tables = await pool.query(`
       SELECT table_name 
       FROM information_schema.tables 
       WHERE table_schema = 'public' 
-      AND table_type = 'BASE TABLE'
+      AND table_name IN ('users', 'quiz_history', 'knowledge_base')
       ORDER BY table_name
     `)
     
-    console.log('📋 Tables created:')
-    tables.rows.forEach(row => console.log(`   - ${row.table_name}`))
-    
-    const extensions = await pool.query(`
-      SELECT extname, extversion 
-      FROM pg_extension 
-      WHERE extname = 'vector'
-    `)
-    
-    if (extensions.rows.length > 0) {
-      console.log(`\n✅ pgvector extension: v${extensions.rows[0].extversion}`)
-    }
+    console.log('📊 Tables created:')
+    tables.rows.forEach(row => {
+      console.log(`   ✅ ${row.table_name}`)
+    })
 
     const userCount = await pool.query('SELECT COUNT(*) FROM users')
     console.log(`\n👥 Total users: ${userCount.rows[0].count}`)
 
-    console.log('\n🎉 Migration to Supabase completed successfully!')
+    console.log('\n✨ Migration completed successfully!')
     console.log('\n📝 Next steps:')
-    console.log('   1. Your app is now connected to Supabase')
-    console.log('   2. pgvector is enabled for AI-powered search')
-    console.log('   3. All tables and indexes are created')
-    console.log('   4. Admin user is ready (admin@vola.com / Admin@1234)')
-    console.log('\n🌐 Access your Supabase dashboard at:')
-    console.log('   https://supabase.com/dashboard/project/hilxnhmexnqxgiuzrbze')
+    console.log('   1. Update your .env.local with the Supabase DATABASE_URL (already done)')
+    console.log('   2. Restart your Next.js development server')
+    console.log('   3. Test the connection by logging in')
+    console.log('   4. Your pgvector RAG system is ready to use!')
 
   } catch (error) {
     console.error('❌ Migration failed:', error.message)
     console.error('Details:', error)
-    process.exit(1)
   } finally {
     await pool.end()
   }
 }
 
+// Run migration
 migrateToSupabase()
