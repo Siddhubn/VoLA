@@ -3,16 +3,14 @@ import { LocalEmbeddingService } from './local-embedding-service'
 import { ChunkCache } from './cache-service'
 import { performanceOptimizer } from './performance-optimizer'
 
-// Use Local Embedding Service (runs offline, no API calls needed)
-// Gemini API key is reserved for text generation only
 type EmbeddingService = LocalEmbeddingService
 
 export interface SearchQuery {
   query: string
   course?: 'fitter' | 'electrician'
   module?: string
-  topK?: number              // Number of results (default: 5)
-  minSimilarity?: number     // Minimum similarity score (default: 0.7)
+  topK?: number
+  minSimilarity?: number
 }
 
 export interface SearchResult {
@@ -34,10 +32,10 @@ export interface VectorSearchConfig {
   defaultMinSimilarity?: number
   embeddingService?: LocalEmbeddingService
   chunkCache?: ChunkCache
-  enableQueryCache?: boolean  // Enable query result caching
+  enableQueryCache?: boolean
 }
 
-export class VectorSearchService {
+export class OptimizedVectorSearchService {
   private embeddingService: LocalEmbeddingService
   private config: Required<VectorSearchConfig>
   private chunkCache: ChunkCache
@@ -58,7 +56,7 @@ export class VectorSearchService {
   }
 
   /**
-   * Perform semantic search on the knowledge base
+   * Perform semantic search on the knowledge base with query result caching
    */
   async search(searchQuery: SearchQuery): Promise<SearchResult[]> {
     if (!searchQuery.query || searchQuery.query.trim().length === 0) {
@@ -78,7 +76,7 @@ export class VectorSearchService {
   }
 
   /**
-   * Search by pre-computed embedding vector
+   * Search by pre-computed embedding vector with caching
    */
   async searchByEmbedding(
     embedding: number[],
@@ -96,6 +94,31 @@ export class VectorSearchService {
     const topK = filters.topK || this.config.defaultTopK
     const minSimilarity = filters.minSimilarity || this.config.defaultMinSimilarity
 
+    // Create cache key for query result caching (use first 10 dimensions for key)
+    const cacheKey = `vsearch:${embedding.slice(0, 10).map(v => v.toFixed(4)).join(',')}:${JSON.stringify({ filters, topK, minSimilarity })}`
+
+    // Use cached query if enabled
+    if (this.enableQueryCache) {
+      return performanceOptimizer.cachedQuery(cacheKey, async () => {
+        return this.executeSearch(embedding, filters, topK, minSimilarity)
+      })
+    } else {
+      return this.executeSearch(embedding, filters, topK, minSimilarity)
+    }
+  }
+
+  /**
+   * Execute the actual search query (optimized version)
+   */
+  private async executeSearch(
+    embedding: number[],
+    filters: {
+      course?: 'fitter' | 'electrician'
+      module?: string
+    },
+    topK: number,
+    minSimilarity: number
+  ): Promise<SearchResult[]> {
     // Check if pgvector is available
     const vectorCheck = await query(
       "SELECT EXISTS (SELECT FROM pg_extension WHERE extname = 'vector')"
@@ -106,7 +129,7 @@ export class VectorSearchService {
       throw new Error('pgvector extension is not enabled. Please install and enable pgvector.')
     }
 
-    // Build the SQL query with filters
+    // Build optimized SQL query with proper parameter placeholders
     let sql = `
       SELECT 
         id as chunk_id,
@@ -221,60 +244,6 @@ export class VectorSearchService {
   }
 
   /**
-   * Get similar chunks to a given chunk
-   */
-  async findSimilarChunks(
-    chunkId: number,
-    options?: {
-      course?: 'fitter' | 'electrician'
-      module?: string
-      topK?: number
-      minSimilarity?: number
-    }
-  ): Promise<SearchResult[]> {
-    // Get the chunk's embedding
-    const chunkResult = await query(
-      'SELECT embedding FROM knowledge_chunks WHERE id = $1',
-      [chunkId]
-    )
-
-    if (chunkResult.rows.length === 0) {
-      throw new Error(`Chunk with id ${chunkId} not found`)
-    }
-
-    const embedding = chunkResult.rows[0].embedding
-
-    if (!embedding) {
-      throw new Error(`Chunk ${chunkId} does not have an embedding`)
-    }
-
-    // Parse the embedding if it's a string
-    let embeddingArray: number[]
-    if (typeof embedding === 'string') {
-      // Remove brackets and parse
-      embeddingArray = embedding
-        .replace(/^\[|\]$/g, '')
-        .split(',')
-        .map(v => parseFloat(v))
-    } else if (Array.isArray(embedding)) {
-      embeddingArray = embedding
-    } else {
-      throw new Error('Invalid embedding format')
-    }
-
-    // Search using the embedding, excluding the original chunk
-    const results = await this.searchByEmbedding(embeddingArray, {
-      course: options?.course,
-      module: options?.module,
-      topK: (options?.topK || this.config.defaultTopK) + 1, // Get one extra to exclude original
-      minSimilarity: options?.minSimilarity
-    })
-
-    // Filter out the original chunk
-    return results.filter(result => result.chunkId !== chunkId).slice(0, options?.topK || this.config.defaultTopK)
-  }
-
-  /**
    * Get configuration
    */
   getConfig(): Required<VectorSearchConfig> {
@@ -282,7 +251,8 @@ export class VectorSearchService {
       defaultTopK: this.config.defaultTopK,
       defaultMinSimilarity: this.config.defaultMinSimilarity,
       embeddingService: this.config.embeddingService,
-      chunkCache: this.config.chunkCache
+      chunkCache: this.config.chunkCache,
+      enableQueryCache: this.config.enableQueryCache
     }
   }
 
@@ -290,16 +260,20 @@ export class VectorSearchService {
    * Get cache statistics
    */
   getCacheStats() {
-    return this.chunkCache.getStats()
+    return {
+      chunkCache: this.chunkCache.getStats(),
+      queryCache: performanceOptimizer.getCacheStats()
+    }
   }
 
   /**
-   * Clear chunk cache
+   * Clear all caches
    */
   clearCache(): void {
     this.chunkCache.clear()
+    performanceOptimizer.clearCache()
   }
 }
 
-// Export a default instance for convenience
-export const vectorSearchService = new VectorSearchService()
+// Export optimized instance
+export const optimizedVectorSearchService = new OptimizedVectorSearchService()
