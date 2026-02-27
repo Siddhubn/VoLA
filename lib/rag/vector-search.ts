@@ -1,5 +1,6 @@
 import { query } from '../postgresql'
 import { LocalEmbeddingService } from './local-embedding-service'
+import { ChunkCache } from './cache-service'
 
 // Use Local Embedding Service (runs offline, no API calls needed)
 // Gemini API key is reserved for text generation only
@@ -31,20 +32,24 @@ export interface VectorSearchConfig {
   defaultTopK?: number
   defaultMinSimilarity?: number
   embeddingService?: LocalEmbeddingService
+  chunkCache?: ChunkCache
 }
 
 export class VectorSearchService {
   private embeddingService: LocalEmbeddingService
   private config: Required<VectorSearchConfig>
+  private chunkCache: ChunkCache
 
   constructor(config?: VectorSearchConfig) {
     this.config = {
       defaultTopK: config?.defaultTopK || 5,
       defaultMinSimilarity: config?.defaultMinSimilarity || 0.7,
-      embeddingService: config?.embeddingService || new LocalEmbeddingService()
+      embeddingService: config?.embeddingService || new LocalEmbeddingService(),
+      chunkCache: config?.chunkCache || new ChunkCache()
     }
     
     this.embeddingService = this.config.embeddingService
+    this.chunkCache = this.config.chunkCache
   }
 
   /**
@@ -142,19 +147,28 @@ export class VectorSearchService {
       const result = await query(sql, params)
 
       // Transform results to SearchResult format
-      return result.rows.map(row => ({
-        chunkId: row.chunk_id,
-        content: row.content,
-        similarity: parseFloat(row.similarity),
-        source: {
-          course: row.course,
-          module: row.module,
-          section: row.section,
-          pageNumber: row.page_number,
-          pdfSource: row.pdf_source
-        },
-        metadata: row.metadata
-      }))
+      const searchResults = result.rows.map(row => {
+        const searchResult: SearchResult = {
+          chunkId: row.chunk_id,
+          content: row.content,
+          similarity: parseFloat(row.similarity),
+          source: {
+            course: row.course,
+            module: row.module,
+            section: row.section,
+            pageNumber: row.page_number,
+            pdfSource: row.pdf_source
+          },
+          metadata: row.metadata
+        }
+        
+        // Cache the chunk
+        this.chunkCache.setChunk(row.chunk_id, searchResult)
+        
+        return searchResult
+      })
+      
+      return searchResults
     } catch (error) {
       console.error('Vector search error:', error)
       throw new Error(`Vector search failed: ${error instanceof Error ? error.message : 'Unknown error'}`)
@@ -262,8 +276,23 @@ export class VectorSearchService {
     return {
       defaultTopK: this.config.defaultTopK,
       defaultMinSimilarity: this.config.defaultMinSimilarity,
-      embeddingService: this.config.embeddingService
+      embeddingService: this.config.embeddingService,
+      chunkCache: this.config.chunkCache
     }
+  }
+
+  /**
+   * Get cache statistics
+   */
+  getCacheStats() {
+    return this.chunkCache.getStats()
+  }
+
+  /**
+   * Clear chunk cache
+   */
+  clearCache(): void {
+    this.chunkCache.clear()
   }
 }
 

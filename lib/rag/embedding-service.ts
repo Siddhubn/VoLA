@@ -1,4 +1,5 @@
 import { GoogleGenerativeAI } from '@google/generative-ai'
+import { EmbeddingCache } from './cache-service'
 
 export interface EmbeddingConfig {
   model: string              // 'text-embedding-004'
@@ -34,8 +35,9 @@ export class EmbeddingService {
   private genAI: GoogleGenerativeAI
   private config: EmbeddingConfig
   private rateLimitState: RateLimitState
+  private cache: EmbeddingCache
 
-  constructor(config?: Partial<EmbeddingConfig>) {
+  constructor(config?: Partial<EmbeddingConfig>, cache?: EmbeddingCache) {
     const apiKey = process.env.GEMINI_API_KEY
     if (!apiKey) {
       throw new Error('GEMINI_API_KEY environment variable is required')
@@ -56,6 +58,9 @@ export class EmbeddingService {
       }
     }
 
+    // Initialize cache
+    this.cache = cache || new EmbeddingCache()
+
     // Initialize rate limit state
     const now = Date.now()
     this.rateLimitState = {
@@ -74,6 +79,15 @@ export class EmbeddingService {
       throw new Error('Text cannot be empty')
     }
 
+    // Check cache first
+    const cachedEmbedding = this.cache.getEmbedding(text)
+    if (cachedEmbedding) {
+      return {
+        embedding: cachedEmbedding,
+        tokenCount: this.estimateTokenCount(text)
+      }
+    }
+
     return this.withRetry(async () => {
       await this.checkRateLimit()
       
@@ -82,8 +96,13 @@ export class EmbeddingService {
       
       this.updateRateLimitState()
       
+      const embedding = result.embedding.values
+      
+      // Cache the result
+      this.cache.setEmbedding(text, embedding)
+      
       return {
-        embedding: result.embedding.values,
+        embedding,
         tokenCount: this.estimateTokenCount(text)
       }
     })
@@ -332,11 +351,20 @@ export class EmbeddingService {
   getStats(): {
     config: EmbeddingConfig
     rateLimitStatus: ReturnType<EmbeddingService['getRateLimitStatus']>
+    cacheStats: ReturnType<EmbeddingCache['getStats']>
   } {
     return {
       config: this.config,
-      rateLimitStatus: this.getRateLimitStatus()
+      rateLimitStatus: this.getRateLimitStatus(),
+      cacheStats: this.cache.getStats()
     }
+  }
+
+  /**
+   * Clear embedding cache
+   */
+  clearCache(): void {
+    this.cache.clear()
   }
 }
 
