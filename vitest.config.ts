@@ -4,8 +4,8 @@ import path from 'path'
 export default defineConfig({
   test: {
     globals: true,
-    environment: 'node',
-    setupFiles: ['./lib/rag/__tests__/setup.ts'],
+    environment: 'jsdom',
+    setupFiles: ['./lib/rag/__tests__/setup.ts', './components/__tests__/setup.ts'],
     testTimeout: 30000,
   },
   resolve: {
