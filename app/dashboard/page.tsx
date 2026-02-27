@@ -340,6 +340,18 @@ export default function DashboardPage() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
+                  <button
+                    type="button"
+                    onClick={() => router.push('/syllabus')}
+                    className="w-full p-3 border border-gray-200 rounded-lg hover:border-purple-300 transition-colors text-left"
+                  >
+                    <div className="flex items-center space-x-2">
+                      <BookOpen className="w-4 h-4 text-purple-600" />
+                      <span className="text-sm font-medium">Explore Syllabus</span>
+                    </div>
+                    <p className="text-xs text-gray-600 mt-1">Browse course modules and topics</p>
+                  </button>
+
                   <a 
                     href="https://bharatskills.gov.in/" 
                     target="_blank" 

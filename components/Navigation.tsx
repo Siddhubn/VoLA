@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { Button } from './ui/Button'
-import { User, LogOut, Settings, BookOpen, BarChart3, Menu, X } from 'lucide-react'
+import { User, LogOut, Settings, BookOpen, BarChart3, Menu, X, Library } from 'lucide-react'
 
 interface NavigationProps {
   user?: {
@@ -46,9 +46,10 @@ export function Navigation({ user }: NavigationProps) {
       ]
     }
     
-    // Regular users: Dashboard, Leaderboard, and Profile (no Settings)
+    // Regular users: Dashboard, Syllabus, Leaderboard, and Profile
     return [
       { href: '/dashboard', label: 'Dashboard', icon: BarChart3 },
+      { href: '/syllabus', label: 'Syllabus', icon: Library },
       { href: '/leaderboard', label: 'Leaderboard', icon: BookOpen },
       { href: '/profile', label: 'Profile', icon: User },
     ]
