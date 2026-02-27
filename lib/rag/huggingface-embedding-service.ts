@@ -27,7 +27,7 @@ export class HuggingFaceEmbeddingService {
   constructor(apiKey?: string, model?: string) {
     this.apiKey = apiKey || process.env.HUGGINGFACE_API_KEY || ''
     this.model = model || 'sentence-transformers/all-MiniLM-L6-v2'
-    this.apiUrl = `https://api-inference.huggingface.co/pipeline/feature-extraction/${this.model}`
+    this.apiUrl = `https://router.huggingface.co/pipeline/feature-extraction/${this.model}`
 
     if (!this.apiKey) {
       throw new Error('HUGGINGFACE_API_KEY environment variable is required. Get your FREE key at: https://huggingface.co/settings/tokens')

@@ -143,7 +143,7 @@ async function createRagTables(pool) {
           chunk_index INTEGER NOT NULL,
           content TEXT NOT NULL,
           content_preview TEXT,
-          embedding vector(768),
+          embedding vector(384),
           token_count INTEGER,
           metadata JSONB DEFAULT '{}',
           created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
@@ -151,7 +151,7 @@ async function createRagTables(pool) {
           FOREIGN KEY (pdf_source) REFERENCES pdf_documents(filename) ON DELETE CASCADE
         )
       `)
-      console.log('✅ knowledge_chunks table created (with vector support)')
+      console.log('✅ knowledge_chunks table created (with vector support - 384 dimensions for HuggingFace embeddings)')
     } else {
       await pool.query(`
         CREATE TABLE IF NOT EXISTS knowledge_chunks (

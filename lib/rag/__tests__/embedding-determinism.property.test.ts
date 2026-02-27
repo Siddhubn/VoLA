@@ -1,41 +1,20 @@
-import { describe, it, expect, beforeAll, vi } from 'vitest'
+import { describe, it, expect, beforeAll } from 'vitest'
 import * as fc from 'fast-check'
-import { EmbeddingService } from '../embedding-service'
+import { LocalEmbeddingService } from '../local-embedding-service'
 
 /**
  * Property-Based Test for Embedding Determinism
  * **Feature: rag-knowledge-base, Property 2: Embedding Determinism**
  * **Validates: Requirements 3.1, 3.3**
+ * 
+ * Uses Local embedding service with all-MiniLM-L6-v2 model (384 dimensions)
+ * Runs completely offline, no API calls needed
  */
 describe('Property Test: Embedding Determinism', () => {
-  let embeddingService: EmbeddingService
+  let embeddingService: LocalEmbeddingService
 
   beforeAll(() => {
-    // Mock the Gemini API for testing
-    vi.mock('@google/generative-ai', () => ({
-      GoogleGenerativeAI: vi.fn().mockImplementation(() => ({
-        getGenerativeModel: vi.fn().mockReturnValue({
-          embedContent: vi.fn().mockImplementation((text: string) => {
-            // Create deterministic mock embeddings based on text content
-            const hash = simpleHash(text)
-            const embedding = Array.from({ length: 768 }, (_, i) => 
-              Math.sin(hash + i) * 0.5 + 0.5 // Normalize to [0, 1]
-            )
-            return Promise.resolve({
-              embedding: { values: embedding }
-            })
-          })
-        })
-      }))
-    }))
-
-    embeddingService = new EmbeddingService({
-      retryAttempts: 1, // Reduce retries for faster tests
-      rateLimit: {
-        requestsPerMinute: 1000, // High limit for tests
-        requestsPerDay: 10000
-      }
-    })
+    embeddingService = new LocalEmbeddingService()
   })
 
   it('Property 2: Embedding Determinism - For any text input, generating embeddings multiple times should produce identical results', async () => {
@@ -69,10 +48,10 @@ describe('Property Test: Embedding Determinism', () => {
             expect(embedding2.embedding).toEqual(embedding3.embedding)
             expect(embedding1.embedding).toEqual(embedding3.embedding)
 
-            // Property: Embeddings should have consistent dimensions
-            expect(embedding1.embedding.length).toBe(768) // Gemini embedding dimension
-            expect(embedding2.embedding.length).toBe(768)
-            expect(embedding3.embedding.length).toBe(768)
+            // Property: Embeddings should have consistent dimensions (384 for all-MiniLM-L6-v2)
+            expect(embedding1.embedding.length).toBe(384)
+            expect(embedding2.embedding.length).toBe(384)
+            expect(embedding3.embedding.length).toBe(384)
 
             // Property: Embeddings should contain valid numbers
             embedding1.embedding.forEach(value => {
@@ -87,17 +66,14 @@ describe('Property Test: Embedding Determinism', () => {
             }
 
           } catch (error) {
-            // If there's an API error, that's not a determinism issue
-            if (error instanceof Error && error.message.includes('API')) {
-              return // Skip this test case
-            }
+            console.error('Embedding generation error:', error)
             throw error
           }
         }
       ),
       { 
-        numRuns: 20, // Reduced for faster execution with API calls
-        timeout: 30000
+        numRuns: 20,
+        timeout: 60000 // Longer timeout for first run (model download)
       }
     )
   })
@@ -139,17 +115,14 @@ describe('Property Test: Embedding Determinism', () => {
             expect(batchResult.failedIndices.length).toBe(0)
 
           } catch (error) {
-            // If there's an API error, that's not a determinism issue
-            if (error instanceof Error && error.message.includes('API')) {
-              return // Skip this test case
-            }
+            console.error('Batch embedding error:', error)
             throw error
           }
         }
       ),
       { 
-        numRuns: 10, // Reduced for faster execution
-        timeout: 45000
+        numRuns: 10,
+        timeout: 60000
       }
     )
   })
@@ -177,34 +150,18 @@ describe('Property Test: Embedding Determinism', () => {
 
             // Property: Both methods should produce identical results
             expect(queryEmbedding).toEqual(embeddingResult.embedding)
-            expect(queryEmbedding.length).toBe(768)
+            expect(queryEmbedding.length).toBe(384) // Local all-MiniLM-L6-v2 dimension
 
           } catch (error) {
-            // If there's an API error, that's not a determinism issue
-            if (error instanceof Error && error.message.includes('API')) {
-              return // Skip this test case
-            }
+            console.error('Query embedding error:', error)
             throw error
           }
         }
       ),
       { 
         numRuns: 15,
-        timeout: 30000
+        timeout: 60000
       }
     )
   })
 })
-
-/**
- * Simple hash function for creating deterministic mock embeddings
- */
-function simpleHash(str: string): number {
-  let hash = 0
-  for (let i = 0; i < str.length; i++) {
-    const char = str.charCodeAt(i)
-    hash = ((hash << 5) - hash) + char
-    hash = hash & hash // Convert to 32-bit integer
-  }
-  return Math.abs(hash)
-}

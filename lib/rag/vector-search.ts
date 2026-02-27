@@ -1,5 +1,9 @@
 import { query } from '../postgresql'
-import { EmbeddingService } from './embedding-service'
+import { LocalEmbeddingService } from './local-embedding-service'
+
+// Use Local Embedding Service (runs offline, no API calls needed)
+// Gemini API key is reserved for text generation only
+type EmbeddingService = LocalEmbeddingService
 
 export interface SearchQuery {
   query: string
@@ -26,18 +30,18 @@ export interface SearchResult {
 export interface VectorSearchConfig {
   defaultTopK?: number
   defaultMinSimilarity?: number
-  embeddingService?: EmbeddingService
+  embeddingService?: LocalEmbeddingService
 }
 
 export class VectorSearchService {
-  private embeddingService: EmbeddingService
+  private embeddingService: LocalEmbeddingService
   private config: Required<VectorSearchConfig>
 
   constructor(config?: VectorSearchConfig) {
     this.config = {
       defaultTopK: config?.defaultTopK || 5,
       defaultMinSimilarity: config?.defaultMinSimilarity || 0.7,
-      embeddingService: config?.embeddingService || new EmbeddingService()
+      embeddingService: config?.embeddingService || new LocalEmbeddingService()
     }
     
     this.embeddingService = this.config.embeddingService
