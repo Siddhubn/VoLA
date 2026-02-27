@@ -1,13 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { generateToken } from '@/lib/auth'
-
-// Get admin credentials from environment variables
-const ADMIN_USERNAME = process.env.ADMIN_USERNAME
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD
-
-if (!ADMIN_USERNAME || !ADMIN_PASSWORD) {
-  throw new Error('Admin credentials not configured. Please set ADMIN_USERNAME and ADMIN_PASSWORD in .env.local')
-}
+import { generateToken, comparePassword } from '@/lib/auth'
+import { User } from '@/lib/models/UserPostgres'
 
 export async function POST(request: NextRequest) {
   try {
@@ -16,27 +9,52 @@ export async function POST(request: NextRequest) {
     // Validation
     if (!username || !password) {
       return NextResponse.json(
-        { error: 'Username and password are required' },
+        { error: 'Email and password are required' },
         { status: 400 }
       )
     }
 
-    // Check admin credentials
-    if (username !== ADMIN_USERNAME || password !== ADMIN_PASSWORD) {
-      console.log(`❌ Failed admin login attempt: ${username}`)
+    // Find admin user by email
+    const user = await User.findByEmail(username)
+
+    if (!user) {
+      console.log(`❌ Failed admin login attempt: ${username} (user not found)`)
       return NextResponse.json(
         { error: 'Invalid admin credentials' },
         { status: 401 }
       )
     }
 
-    console.log(`✅ Admin login successful: ${username}`)
+    // Check if user is admin
+    if (user.role !== 'admin') {
+      console.log(`❌ Failed admin login attempt: ${username} (not an admin)`)
+      return NextResponse.json(
+        { error: 'Admin access required' },
+        { status: 403 }
+      )
+    }
+
+    // Verify password
+    const isValidPassword = await comparePassword(password, user.password)
+
+    if (!isValidPassword) {
+      console.log(`❌ Failed admin login attempt: ${username} (invalid password)`)
+      return NextResponse.json(
+        { error: 'Invalid admin credentials' },
+        { status: 401 }
+      )
+    }
+
+    console.log(`✅ Admin login successful: ${user.name} (${user.email})`)
+
+    // Update last login
+    await User.update(user.id, { last_login: new Date() })
 
     // Generate JWT token for admin
     const token = generateToken({
-      userId: 0, // Special ID for admin
-      email: 'admin@vola.system',
-      role: 'admin'
+      userId: user.id,
+      email: user.email,
+      role: user.role
     })
 
     // Create response with admin data
@@ -44,11 +62,11 @@ export async function POST(request: NextRequest) {
       success: true,
       message: 'Admin login successful',
       user: {
-        id: 0,
-        name: 'System Administrator',
-        email: 'admin@vola.system',
-        role: 'admin',
-        avatar: null
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        avatar: user.avatar
       }
     })
 

@@ -6,7 +6,7 @@ import { hashPassword, generateToken } from '@/lib/auth'
 
 export async function POST(request: NextRequest) {
   try {
-    const { name, email, password, role = 'student', course } = await request.json()
+    const { name, email, password, role, course } = await request.json()
 
     // Validation
     if (!name || !email || !password) {
@@ -16,9 +16,39 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // Validate role is provided and not admin
+    if (!role) {
+      return NextResponse.json(
+        { error: 'Please select your account type (Student or Instructor)' },
+        { status: 400 }
+      )
+    }
+
+    if (role === 'admin') {
+      return NextResponse.json(
+        { error: 'Admin accounts cannot be created through registration. Please contact system administrator.' },
+        { status: 403 }
+      )
+    }
+
+    if (role !== 'student' && role !== 'instructor') {
+      return NextResponse.json(
+        { error: 'Invalid role. Please select Student or Instructor.' },
+        { status: 400 }
+      )
+    }
+
+    // Validate course is provided
     if (!course) {
       return NextResponse.json(
         { error: 'Please select a course (Fitter or Electrician)' },
+        { status: 400 }
+      )
+    }
+
+    if (course.toLowerCase() !== 'fitter' && course.toLowerCase() !== 'electrician') {
+      return NextResponse.json(
+        { error: 'Invalid course. Please select Fitter or Electrician.' },
         { status: 400 }
       )
     }

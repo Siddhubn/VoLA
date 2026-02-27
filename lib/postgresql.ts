@@ -168,24 +168,40 @@ export async function testConnection(): Promise<boolean> {
   }
 }
 
+// Track if we're already closing to prevent multiple close attempts
+let isClosing = false
+
 // Close all connections (useful for cleanup)
 export async function closePool(): Promise<void> {
-  if (pool) {
-    await pool.end()
-    pool = null
-    console.log('✅ PostgreSQL pool closed')
+  if (pool && !isClosing) {
+    isClosing = true
+    try {
+      await pool.end()
+      pool = null
+      console.log('✅ PostgreSQL pool closed')
+    } catch (error) {
+      console.error('Error closing pool:', error)
+    } finally {
+      isClosing = false
+    }
   }
 }
 
-// Handle process termination
-process.on('SIGINT', async () => {
-  console.log('🔄 Closing PostgreSQL connections...')
-  await closePool()
-  process.exit(0)
-})
+// Track if cleanup handlers are registered to prevent duplicates
+let cleanupRegistered = false
 
-process.on('SIGTERM', async () => {
-  console.log('🔄 Closing PostgreSQL connections...')
-  await closePool()
-  process.exit(0)
-})
+// Handle process termination - only register once
+if (!cleanupRegistered) {
+  cleanupRegistered = true
+  
+  const cleanup = async (signal: string) => {
+    if (!isClosing) {
+      console.log(`🔄 Closing PostgreSQL connections (${signal})...`)
+      await closePool()
+      process.exit(0)
+    }
+  }
+
+  process.once('SIGINT', () => cleanup('SIGINT'))
+  process.once('SIGTERM', () => cleanup('SIGTERM'))
+}

@@ -34,12 +34,27 @@ export function Navigation({ user }: NavigationProps) {
     }
   }
 
-  const navItems = [
-    { href: '/dashboard', label: 'Dashboard', icon: BarChart3 },
-    { href: '/leaderboard', label: 'Leaderboard', icon: BookOpen },
-    { href: '/profile', label: 'Profile', icon: User },
-    { href: '/settings', label: 'Settings', icon: Settings },
-  ]
+  // Different nav items based on user role
+  const getNavItems = () => {
+    if (!user) return []
+    
+    if (user.role === 'admin') {
+      // Admin: only Dashboard and Leaderboard
+      return [
+        { href: '/admin/dashboard', label: 'Dashboard', icon: BarChart3 },
+        { href: '/leaderboard', label: 'Leaderboard', icon: BookOpen },
+      ]
+    }
+    
+    // Regular users: Dashboard, Leaderboard, and Profile (no Settings)
+    return [
+      { href: '/dashboard', label: 'Dashboard', icon: BarChart3 },
+      { href: '/leaderboard', label: 'Leaderboard', icon: BookOpen },
+      { href: '/profile', label: 'Profile', icon: User },
+    ]
+  }
+
+  const navItems = getNavItems()
 
   return (
     <nav className="bg-white shadow-sm border-b border-gray-200">

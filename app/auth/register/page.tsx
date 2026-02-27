@@ -31,10 +31,7 @@ export default function RegisterPage() {
     watch,
     formState: { errors }
   } = useForm<RegisterForm>({
-    defaultValues: {
-      role: 'student',
-      course: 'Fitter'
-    }
+    // No default values - user must select both role and course
   })
 
   const password = watch('password')

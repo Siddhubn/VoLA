@@ -52,19 +52,27 @@ export class User {
       name,
       email,
       password,
-      role = 'student',
-      course = '',
+      role, // No default - must be provided
+      course, // No default - must be provided
       avatar = '',
       bio = '',
       skills = [],
       learning_goals = []
     } = userData
 
+    // Validate required fields
+    if (!role) {
+      throw new Error('Role is required')
+    }
+    if (!course) {
+      throw new Error('Course is required')
+    }
+
     const result = await query(
       `INSERT INTO users (name, email, password, role, course, avatar, bio, skills, learning_goals)
        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
        RETURNING *`,
-      [name, email.toLowerCase(), password, role, course, avatar, bio, skills, learning_goals]
+      [name, email.toLowerCase(), password, role, course.toLowerCase(), avatar, bio, skills, learning_goals]
     )
 
     return result.rows[0]
