@@ -429,7 +429,7 @@ export async function createChatMessage(message: ChatMessage): Promise<number> {
   const result = await query(
     `INSERT INTO chat_history 
      (user_id, course, session_id, message_type, message, sources)
-     VALUES ($1, $2, $3, $4, $5, $6)
+     VALUES ($1, $2, $3::uuid, $4, $5, $6)
      RETURNING id`,
     [
       message.user_id,
@@ -449,7 +449,7 @@ export async function getChatHistory(
 ): Promise<ChatMessage[]> {
   const result = await query(
     `SELECT * FROM chat_history 
-     WHERE session_id = $1 
+     WHERE session_id::text = $1 
      ORDER BY created_at DESC 
      LIMIT $2`,
     [sessionId, limit]
