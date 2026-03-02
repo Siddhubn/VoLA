@@ -346,9 +346,20 @@ export class ModuleDetector {
   /**
    * Detect module boundaries in text content
    */
-  detectModules(text: string, course: 'fitter' | 'electrician', syllabusType: 'TP' | 'TT' = 'TP'): ModuleDetectionResult {
-    const moduleKey = `${course}-${syllabusType.toLowerCase()}`
-    const modules = this.moduleMap.get(moduleKey) || []
+  detectModules(text: string, course: 'fitter' | 'electrician', syllabusType?: 'TP' | 'TT'): ModuleDetectionResult {
+    // If syllabusType is not specified, search across both TP and TT modules
+    const modulesToSearch: ModuleMapping[] = []
+    if (syllabusType) {
+      const moduleKey = `${course}-${syllabusType.toLowerCase()}`
+      modulesToSearch.push(...(this.moduleMap.get(moduleKey) || []))
+    } else {
+      // Search both TP and TT modules
+      const tpKey = `${course}-tp`
+      const ttKey = `${course}-tt`
+      modulesToSearch.push(...(this.moduleMap.get(tpKey) || []))
+      modulesToSearch.push(...(this.moduleMap.get(ttKey) || []))
+    }
+
     const lines = text.split('\n')
     const detectedModules: ModuleInfo[] = []
     const unmappedSections: Array<{ content: string; startIndex: number; endIndex: number }> = []
@@ -358,7 +369,7 @@ export class ModuleDetector {
       const line = lines[i].trim()
       
       // Check for module header patterns
-      const moduleMatch = this.matchModuleHeader(line, modules)
+      const moduleMatch = this.matchModuleHeader(line, modulesToSearch)
       if (moduleMatch) {
         detectedModules.push({
           moduleId: moduleMatch.module_id,
@@ -372,7 +383,7 @@ export class ModuleDetector {
     // Second pass: use content-based matching for sections without explicit headers
     if (detectedModules.length === 0) {
       // If no explicit modules found, use content-based detection
-      const contentBasedModules = this.detectModulesByContent(text, modules)
+      const contentBasedModules = this.detectModulesByContent(text, modulesToSearch)
       detectedModules.push(...contentBasedModules)
     }
 

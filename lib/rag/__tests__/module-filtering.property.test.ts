@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeAll, afterAll } from 'vitest'
 import { VectorSearchService } from '../vector-search'
-import { EmbeddingService } from '../embedding-service'
+import { LocalEmbeddingService } from '../local-embedding-service'
 import { query } from '../../postgresql'
 import { createKnowledgeChunk } from '../rag-db'
 import * as fc from 'fast-check'
@@ -18,7 +18,7 @@ import * as fc from 'fast-check'
 
 describe('Property Test: Module Filtering', () => {
   let searchService: VectorSearchService
-  let embeddingService: EmbeddingService
+  let embeddingService: LocalEmbeddingService
   let hasPgVector = false
 
   beforeAll(async () => {
@@ -33,11 +33,12 @@ describe('Property Test: Module Filtering', () => {
       return
     }
 
-    embeddingService = new EmbeddingService()
+    embeddingService = new LocalEmbeddingService()
     searchService = new VectorSearchService({ embeddingService })
 
     // Create test data across multiple courses and modules
     await query("DELETE FROM knowledge_chunks WHERE pdf_source LIKE 'module-test-%'")
+    await query("DELETE FROM pdf_documents WHERE filename LIKE 'module-test-%'")
 
     const testData = [
       // Fitter - Safety module
@@ -69,6 +70,18 @@ describe('Property Test: Module Filtering', () => {
       { course: 'electrician', module: 'motors', content: 'DC motors use direct current for operation.' }
     ]
 
+    // Create PDF document records first
+    for (let i = 0; i < testData.length; i++) {
+      const data = testData[i]
+      await query(
+        `INSERT INTO pdf_documents (course, filename, file_path, processing_status)
+         VALUES ($1, $2, $3, $4)
+         ON CONFLICT (filename) DO NOTHING`,
+        [data.course, `module-test-${i}.pdf`, `/test/module-test-${i}.pdf`, 'completed']
+      )
+    }
+
+    // Then create knowledge chunks
     for (let i = 0; i < testData.length; i++) {
       const data = testData[i]
       const embedding = await embeddingService.generateEmbedding(data.content)
@@ -90,6 +103,7 @@ describe('Property Test: Module Filtering', () => {
   afterAll(async () => {
     if (hasPgVector) {
       await query("DELETE FROM knowledge_chunks WHERE pdf_source LIKE 'module-test-%'")
+      await query("DELETE FROM pdf_documents WHERE filename LIKE 'module-test-%'")
     }
   })
 

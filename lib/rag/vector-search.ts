@@ -11,6 +11,7 @@ export interface SearchQuery {
   query: string
   course?: 'fitter' | 'electrician'
   module?: string
+  tradeType?: 'trade_theory' | 'trade_practical'
   topK?: number              // Number of results (default: 5)
   minSimilarity?: number     // Minimum similarity score (default: 0.7)
 }
@@ -25,6 +26,7 @@ export interface SearchResult {
     section: string | null
     pageNumber: number | null
     pdfSource: string
+    tradeType?: string
   }
   metadata?: Record<string, any>
 }
@@ -72,6 +74,7 @@ export class VectorSearchService {
     return this.searchByEmbedding(queryEmbedding, {
       course: searchQuery.course,
       module: searchQuery.module,
+      tradeType: searchQuery.tradeType,
       topK: searchQuery.topK || this.config.defaultTopK,
       minSimilarity: searchQuery.minSimilarity || this.config.defaultMinSimilarity
     })
@@ -85,6 +88,7 @@ export class VectorSearchService {
     filters: {
       course?: 'fitter' | 'electrician'
       module?: string
+      tradeType?: 'trade_theory' | 'trade_practical'
       topK?: number
       minSimilarity?: number
     }
@@ -117,6 +121,7 @@ export class VectorSearchService {
         page_number,
         content,
         metadata,
+        trade_type,
         1 - (embedding <=> $1::vector) as similarity
       FROM knowledge_chunks
       WHERE embedding IS NOT NULL
@@ -139,6 +144,13 @@ export class VectorSearchService {
       paramIndex++
     }
 
+    // Add trade_type filter
+    if (filters.tradeType) {
+      sql += ` AND trade_type = $${paramIndex}`
+      params.push(filters.tradeType)
+      paramIndex++
+    }
+
     // Add similarity threshold
     sql += ` AND (1 - (embedding <=> $1::vector)) >= $${paramIndex}`
     params.push(minSimilarity)
@@ -152,7 +164,7 @@ export class VectorSearchService {
       const result = await query(sql, params)
 
       // Transform results to SearchResult format
-      const searchResults = result.rows.map(row => {
+      const searchResults = result.rows.map((row: any) => {
         const searchResult: SearchResult = {
           chunkId: row.chunk_id,
           content: row.content,
@@ -162,7 +174,8 @@ export class VectorSearchService {
             module: row.module,
             section: row.section,
             pageNumber: row.page_number,
-            pdfSource: row.pdf_source
+            pdfSource: row.pdf_source,
+            tradeType: row.trade_type
           },
           metadata: row.metadata
         }
@@ -282,7 +295,8 @@ export class VectorSearchService {
       defaultTopK: this.config.defaultTopK,
       defaultMinSimilarity: this.config.defaultMinSimilarity,
       embeddingService: this.config.embeddingService,
-      chunkCache: this.config.chunkCache
+      chunkCache: this.config.chunkCache,
+      enableQueryCache: this.config.enableQueryCache
     }
   }
 

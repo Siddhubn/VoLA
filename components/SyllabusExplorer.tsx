@@ -1,5 +1,6 @@
 'use client'
 
+import React from 'react'
 import { useState, useEffect } from 'react'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
@@ -17,9 +18,8 @@ interface ModuleInfo {
 
 interface TopicInfo {
   section: string
-  chunkCount: number
-  pageNumbers: number[]
-  contentExcerpts: string[]
+  description: string
+  keyPoints: string[]
 }
 
 interface ModuleDetail {
@@ -35,6 +35,46 @@ interface SyllabusExplorerProps {
   course: 'fitter' | 'electrician'
 }
 
+type TradeType = 'trade_theory' | 'trade_practical'
+
+// Utility function to format text with proper capitalization
+function formatText(text: string): string {
+  if (!text) return text
+  
+  // Handle all caps text
+  if (text === text.toUpperCase() && text.length > 3) {
+    return text
+      .toLowerCase()
+      .split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ')
+  }
+  
+  // Capitalize first letter of each sentence
+  return text
+    .split('. ')
+    .map(sentence => {
+      const trimmed = sentence.trim()
+      return trimmed.charAt(0).toUpperCase() + trimmed.slice(1)
+    })
+    .join('. ')
+}
+
+// Utility function to extract module number from module name
+function extractModuleNumber(moduleName: string): number {
+  const match = moduleName.match(/module[_\s-]*(\d+)/i)
+  return match ? parseInt(match[1], 10) : 999
+}
+
+// Utility function to sort modules by number
+function sortModulesByNumber(modules: ModuleInfo[]): ModuleInfo[] {
+  return [...modules].sort((a, b) => {
+    const numA = extractModuleNumber(a.name)
+    const numB = extractModuleNumber(b.name)
+    return numA - numB
+  })
+}
+
 export function SyllabusExplorer({ course }: SyllabusExplorerProps) {
   const [modules, setModules] = useState<ModuleInfo[]>([])
   const [selectedModule, setSelectedModule] = useState<ModuleDetail | null>(null)
@@ -44,6 +84,14 @@ export function SyllabusExplorer({ course }: SyllabusExplorerProps) {
   const [loading, setLoading] = useState(true)
   const [loadingModule, setLoadingModule] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const [tradeType, setTradeType] = useState<TradeType>('trade_theory')
+
+  // Reset trade type when course changes
+  useEffect(() => {
+    setTradeType('trade_theory')
+    setExpandedModules(new Set())
+    setSelectedModule(null)
+  }, [course])
 
   // Fetch modules list
   useEffect(() => {
@@ -52,8 +100,8 @@ export function SyllabusExplorer({ course }: SyllabusExplorerProps) {
       setError(null)
       try {
         const url = searchQuery 
-          ? `/api/rag/syllabus/${course}?search=${encodeURIComponent(searchQuery)}`
-          : `/api/rag/syllabus/${course}`
+          ? `/api/rag/syllabus/${course}?search=${encodeURIComponent(searchQuery)}&tradeType=${tradeType}`
+          : `/api/rag/syllabus/${course}?tradeType=${tradeType}`
         
         const response = await fetch(url)
         if (!response.ok) {
@@ -62,7 +110,9 @@ export function SyllabusExplorer({ course }: SyllabusExplorerProps) {
         
         const data = await response.json()
         if (data.success) {
-          setModules(data.modules)
+          // Sort modules by number
+          const sortedModules = sortModulesByNumber(data.modules)
+          setModules(sortedModules)
         } else {
           throw new Error(data.error || 'Failed to load syllabus')
         }
@@ -75,13 +125,13 @@ export function SyllabusExplorer({ course }: SyllabusExplorerProps) {
     }
 
     fetchModules()
-  }, [course, searchQuery])
+  }, [course, searchQuery, tradeType])
 
   // Fetch module details
   async function fetchModuleDetails(moduleId: string) {
     setLoadingModule(moduleId)
     try {
-      const response = await fetch(`/api/rag/syllabus/${course}/${moduleId}`)
+      const response = await fetch(`/api/rag/syllabus/${course}/${moduleId}?tradeType=${tradeType}`)
       if (!response.ok) {
         throw new Error('Failed to fetch module details')
       }
@@ -111,6 +161,12 @@ export function SyllabusExplorer({ course }: SyllabusExplorerProps) {
     setExpandedModules(newExpanded)
   }
 
+  function handleTradeTypeChange(newTradeType: TradeType) {
+    setTradeType(newTradeType)
+    setExpandedModules(new Set())
+    setSelectedModule(null)
+  }
+
   function handleSearch(e: React.FormEvent) {
     e.preventDefault()
     setSearchQuery(searchInput)
@@ -138,6 +194,33 @@ export function SyllabusExplorer({ course }: SyllabusExplorerProps) {
           Explore course modules, topics, and content from the ITI curriculum
         </p>
       </div>
+
+      {/* Trade Type Selector */}
+      <Card>
+        <CardContent className="p-4">
+          <div className="flex items-center gap-2">
+            <span className="text-sm font-medium text-gray-700">Content Type:</span>
+            <div className="flex gap-2">
+              <Button
+                variant={tradeType === 'trade_theory' ? 'default' : 'outline'}
+                onClick={() => handleTradeTypeChange('trade_theory')}
+                className="flex items-center gap-2"
+              >
+                <BookOpen className="w-4 h-4" />
+                Trade Theory
+              </Button>
+              <Button
+                variant={tradeType === 'trade_practical' ? 'default' : 'outline'}
+                onClick={() => handleTradeTypeChange('trade_practical')}
+                className="flex items-center gap-2"
+              >
+                <FileText className="w-4 h-4" />
+                Trade Practical
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
 
       {/* Search */}
       <Card>
@@ -201,7 +284,7 @@ export function SyllabusExplorer({ course }: SyllabusExplorerProps) {
             <p className="text-gray-600">
               {searchQuery 
                 ? 'No modules found matching your search'
-                : 'No modules available for this course'}
+                : `No ${tradeType === 'trade_theory' ? 'Trade Theory' : 'Trade Practical'} content available for this course`}
             </p>
           </CardContent>
         </Card>
@@ -228,11 +311,13 @@ export function SyllabusExplorer({ course }: SyllabusExplorerProps) {
                         ) : (
                           <ChevronRight className="w-5 h-5 text-gray-500" />
                         )}
-                        <CardTitle className="text-xl">{module.name}</CardTitle>
+                        <CardTitle className="text-xl font-bold text-gray-900">
+                          {formatText(module.name)}
+                        </CardTitle>
                       </div>
                       {module.description && (
-                        <CardDescription className="mt-2 ml-7">
-                          {module.description}
+                        <CardDescription className="mt-2 ml-7 text-gray-600">
+                          {formatText(module.description)}
                         </CardDescription>
                       )}
                       <div className="flex items-center space-x-4 mt-2 ml-7 text-sm text-gray-500">
@@ -240,10 +325,12 @@ export function SyllabusExplorer({ course }: SyllabusExplorerProps) {
                           <FileText className="w-4 h-4 mr-1" />
                           {module.chunkCount} sections
                         </span>
-                        <span className="flex items-center">
-                          <BookOpen className="w-4 h-4 mr-1" />
-                          Pages {module.pageRange}
-                        </span>
+                        {module.pageRange && module.pageRange !== 'N/A' && (
+                          <span className="flex items-center">
+                            <BookOpen className="w-4 h-4 mr-1" />
+                            Pages {module.pageRange}
+                          </span>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -268,33 +355,35 @@ export function SyllabusExplorer({ course }: SyllabusExplorerProps) {
                           moduleDetails.topics.map((topic, index) => (
                             <div 
                               key={index}
-                              className="p-4 bg-gray-50 rounded-lg"
+                              className="p-5 bg-gradient-to-br from-blue-50 to-white rounded-lg border border-blue-200 shadow-sm hover:shadow-md transition-shadow"
                             >
-                              <div className="flex items-start justify-between mb-2">
-                                <h4 className="font-semibold text-gray-900">
-                                  {topic.section}
-                                </h4>
-                                <div className="text-sm text-gray-500">
-                                  {topic.pageNumbers.length > 0 && (
-                                    <span>
-                                      Pages: {topic.pageNumbers.join(', ')}
-                                    </span>
-                                  )}
-                                </div>
-                              </div>
+                              <h4 className="font-bold text-gray-900 text-lg mb-2 flex items-center">
+                                <span className="bg-blue-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm mr-3">
+                                  {index + 1}
+                                </span>
+                                {formatText(topic.section)}
+                              </h4>
                               
-                              {topic.contentExcerpts.length > 0 && (
-                                <div className="space-y-2 mt-3">
-                                  {topic.contentExcerpts.map((excerpt, excerptIndex) => (
-                                    <div 
-                                      key={excerptIndex}
-                                      className="p-3 bg-white rounded border border-gray-200"
-                                    >
-                                      <p className="text-sm text-gray-700 leading-relaxed">
-                                        {excerpt}
-                                      </p>
-                                    </div>
-                                  ))}
+                              {topic.description && (
+                                <p className="text-gray-700 mb-3 ml-10 leading-relaxed">
+                                  {formatText(topic.description)}
+                                </p>
+                              )}
+                              
+                              {topic.keyPoints && topic.keyPoints.length > 0 && (
+                                <div className="ml-10 mt-3">
+                                  <p className="text-sm font-semibold text-gray-600 mb-2">Key Learning Points:</p>
+                                  <ul className="space-y-2">
+                                    {topic.keyPoints.map((point, pointIndex) => (
+                                      <li 
+                                        key={pointIndex}
+                                        className="flex items-start text-gray-700"
+                                      >
+                                        <span className="text-blue-600 mr-2 mt-1">•</span>
+                                        <span className="text-sm leading-relaxed">{formatText(point)}</span>
+                                      </li>
+                                    ))}
+                                  </ul>
                                 </div>
                               )}
                             </div>

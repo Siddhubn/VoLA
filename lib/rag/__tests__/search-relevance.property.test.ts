@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeAll, afterAll } from 'vitest'
 import { VectorSearchService } from '../vector-search'
-import { EmbeddingService } from '../embedding-service'
+import { LocalEmbeddingService } from '../local-embedding-service'
 import { query } from '../../postgresql'
 import { createKnowledgeChunk } from '../rag-db'
 import * as fc from 'fast-check'
@@ -18,7 +18,7 @@ import * as fc from 'fast-check'
 
 describe('Property Test: Search Relevance', () => {
   let searchService: VectorSearchService
-  let embeddingService: EmbeddingService
+  let embeddingService: LocalEmbeddingService
   let hasPgVector = false
 
   beforeAll(async () => {
@@ -33,11 +33,12 @@ describe('Property Test: Search Relevance', () => {
       return
     }
 
-    embeddingService = new EmbeddingService()
+    embeddingService = new LocalEmbeddingService()
     searchService = new VectorSearchService({ embeddingService })
 
     // Create diverse test data for property testing
     await query("DELETE FROM knowledge_chunks WHERE pdf_source LIKE 'prop-test-%'")
+    await query("DELETE FROM pdf_documents WHERE filename LIKE 'prop-test-%'")
 
     const testContents = [
       'Safety equipment includes helmets, gloves, and protective eyewear for worker protection.',
@@ -52,6 +53,18 @@ describe('Property Test: Search Relevance', () => {
       'Workshop safety rules must be followed at all times to prevent accidents.'
     ]
 
+    // Create PDF document records first
+    for (let i = 0; i < testContents.length; i++) {
+      const course = i % 2 === 0 ? 'fitter' : 'electrician'
+      await query(
+        `INSERT INTO pdf_documents (course, filename, file_path, processing_status)
+         VALUES ($1, $2, $3, $4)
+         ON CONFLICT (filename) DO NOTHING`,
+        [course, `prop-test-${i}.pdf`, `/test/prop-test-${i}.pdf`, 'completed']
+      )
+    }
+
+    // Then create knowledge chunks
     for (let i = 0; i < testContents.length; i++) {
       const content = testContents[i]
       const embedding = await embeddingService.generateEmbedding(content)
@@ -73,6 +86,7 @@ describe('Property Test: Search Relevance', () => {
   afterAll(async () => {
     if (hasPgVector) {
       await query("DELETE FROM knowledge_chunks WHERE pdf_source LIKE 'prop-test-%'")
+      await query("DELETE FROM pdf_documents WHERE filename LIKE 'prop-test-%'")
     }
   })
 

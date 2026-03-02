@@ -111,7 +111,7 @@ export async function GET(request: NextRequest) {
 
     const result = await query(sql, params)
 
-    const chunks = result.rows.map(row => ({
+    const chunks = result.rows.map((row: any) => ({
       chunkId: row.id,
       course: row.course,
       pdfSource: row.pdf_source,

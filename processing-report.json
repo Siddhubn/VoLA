@@ -1,0 +1,100 @@
+{
+  "metadata": {
+    "generatedAt": "2026-03-01T15:14:28.954Z",
+    "processingStarted": "2026-03-01T15:12:15.474Z",
+    "processingCompleted": "2026-03-01T15:14:28.955Z",
+    "totalDuration": 133.476911,
+    "configuration": {
+      "chunkSize": 750,
+      "chunkOverlap": 100,
+      "embeddingBatchSize": 50,
+      "maxConcurrentFiles": 2,
+      "course": "electrician",
+      "dryRun": false,
+      "reportFile": "processing-report.json",
+      "verbose": false
+    }
+  },
+  "summary": {
+    "totalFiles": 2,
+    "successfulFiles": 2,
+    "failedFiles": 0,
+    "successRate": 100,
+    "averageProcessingTime": 66.7384555
+  },
+  "statistics": {
+    "totalChunks": 528,
+    "totalEmbeddings": 528,
+    "totalTokens": 381432,
+    "averageChunksPerFile": 264,
+    "averageTokensPerChunk": 722.4090909090909,
+    "moduleDistribution": {
+      "trade_practical:General Content": 57,
+      "trade_practical:Basic Wiring (TP)": 77,
+      "trade_practical:Electrical Maintenance (TP)": 13,
+      "trade_practical:Electrical Safety (TP)": 3,
+      "trade_practical:Electrical Instruments (TP)": 32,
+      "trade_practical:Power Distribution (TP)": 2,
+      "trade_theory:General Content": 72,
+      "trade_theory:Electrical Codes and Standards (TT)": 5,
+      "trade_theory:Basic Electricity (TT)": 255,
+      "trade_theory:AC/DC Theory (TT)": 5,
+      "trade_theory:Power Systems (TT)": 7
+    },
+    "courseDistribution": {
+      "electrician": 2
+    }
+  },
+  "fileResults": [
+    {
+      "filename": "Electrician - 1st year - TP (NSQF 2022).pdf",
+      "success": true,
+      "course": "electrician",
+      "processingTimeMs": 125325,
+      "totalChunks": 184,
+      "totalEmbeddings": 184,
+      "summary": {
+        "extractedPages": 273,
+        "generatedChunks": 184,
+        "successfulEmbeddings": 184,
+        "failedEmbeddings": 0,
+        "storedChunks": 183,
+        "moduleDistribution": {
+          "trade_practical:General Content": 57,
+          "trade_practical:Basic Wiring (TP)": 77,
+          "trade_practical:Electrical Maintenance (TP)": 13,
+          "trade_practical:Electrical Safety (TP)": 3,
+          "trade_practical:Electrical Instruments (TP)": 32,
+          "trade_practical:Power Distribution (TP)": 2
+        },
+        "averageChunkSize": 723,
+        "totalTokens": 132980
+      }
+    },
+    {
+      "filename": "Electrician - 1st year - TT (NSQF 2022).pdf",
+      "success": true,
+      "course": "electrician",
+      "processingTimeMs": 133471,
+      "totalChunks": 344,
+      "totalEmbeddings": 344,
+      "summary": {
+        "extractedPages": 308,
+        "generatedChunks": 344,
+        "successfulEmbeddings": 344,
+        "failedEmbeddings": 0,
+        "storedChunks": 344,
+        "moduleDistribution": {
+          "trade_theory:General Content": 72,
+          "trade_theory:Electrical Codes and Standards (TT)": 5,
+          "trade_theory:Basic Electricity (TT)": 255,
+          "trade_theory:AC/DC Theory (TT)": 5,
+          "trade_theory:Power Systems (TT)": 7
+        },
+        "averageChunkSize": 722,
+        "totalTokens": 248452
+      }
+    }
+  ],
+  "errors": []
+}

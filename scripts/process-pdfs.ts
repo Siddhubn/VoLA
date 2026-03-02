@@ -21,9 +21,13 @@
  *   --help                       Show this help message
  */
 
+import { config } from 'dotenv';
 import fs from 'fs/promises';
 import path from 'path';
 import { performance } from 'perf_hooks';
+
+// Load environment variables from .env.local
+config({ path: path.join(process.cwd(), '.env.local') });
 
 // Dynamic imports to avoid database connection issues in dry-run mode
 let PDFProcessingPipeline: any;
@@ -316,13 +320,29 @@ class ReportGenerator {
     content += `Avg Tokens/Chunk: ${statistics.averageTokensPerChunk.toFixed(1)}\n\n`;
     
     if (Object.keys(statistics.moduleDistribution).length > 0) {
-      content += `Module Distribution:\n`;
-      content += `-------------------\n`;
-      Object.entries(statistics.moduleDistribution)
-        .sort(([,a], [,b]) => (b as number) - (a as number))
-        .forEach(([module, count]) => {
-          content += `${module}: ${count} chunks\n`;
-        });
+      content += `Module Distribution by Trade Type:\n`;
+      content += `----------------------------------\n`;
+      
+      // Group by trade type
+      const byTradeType: Record<string, Array<[string, number]>> = {}
+      Object.entries(statistics.moduleDistribution).forEach(([key, count]) => {
+        const [tradeType, ...moduleParts] = key.split(':')
+        const moduleName = moduleParts.join(':')
+        if (!byTradeType[tradeType]) {
+          byTradeType[tradeType] = []
+        }
+        byTradeType[tradeType].push([moduleName, count as number])
+      })
+      
+      // Display by trade type
+      Object.entries(byTradeType).forEach(([tradeType, modules]) => {
+        content += `\n${tradeType.toUpperCase()}:\n`
+        modules
+          .sort(([,a], [,b]) => b - a)
+          .forEach(([module, count]) => {
+            content += `  ${module}: ${count} chunks\n`
+          })
+      })
       content += `\n`;
     }
     
@@ -495,6 +515,7 @@ async function main(): Promise<void> {
     console.log(`  Embedding Batch Size: ${config.embeddingBatchSize}`);
     console.log(`  Max Concurrent Files: ${config.maxConcurrentFiles}`);
     console.log(`  Verbose Mode: ${config.verbose ? 'enabled' : 'disabled'}`);
+    console.log(`  ${colors.cyan}Embedding Model: Local (HuggingFace all-MiniLM-L6-v2)${colors.reset}`);
     
     if (config.dryRun) {
       console.log(`\n${colors.yellow}🔍 Dry run mode - no actual processing will occur${colors.reset}`);
@@ -506,11 +527,8 @@ async function main(): Promise<void> {
       return;
     }
     
-    // Validate environment (only for actual processing)
-    if (!process.env.GEMINI_API_KEY) {
-      console.error(`${colors.red}❌ Error: GEMINI_API_KEY environment variable is required${colors.reset}`);
-      process.exit(1);
-    }
+    // Note: Using local embeddings - no API key required!
+    console.log(`\n${colors.cyan}ℹ️  Using LOCAL embedding model (no API costs!)${colors.reset}`);
     
     // Import pipeline modules (only when actually processing)
     try {
@@ -563,15 +581,50 @@ async function main(): Promise<void> {
     console.log(`⏱️ Total Time: ${progressTracker.formatDuration(summary.totalProcessingTime)}`);
     console.log(`📈 Success Rate: ${summary.successRate.toFixed(1)}%`);
     
+    // Display statistics by course, trade_type, and module
+    const report = reportGenerator.generateReport(summary, config);
+    if (Object.keys(report.statistics.moduleDistribution).length > 0) {
+      console.log(`\n${colors.bright}📚 Module Distribution by Trade Type:${colors.reset}`);
+      
+      // Group by trade type
+      const byTradeType: Record<string, Array<[string, number]>> = {}
+      Object.entries(report.statistics.moduleDistribution).forEach(([key, count]) => {
+        const [tradeType, ...moduleParts] = key.split(':')
+        const moduleName = moduleParts.join(':')
+        if (!byTradeType[tradeType]) {
+          byTradeType[tradeType] = []
+        }
+        byTradeType[tradeType].push([moduleName, count as number])
+      })
+      
+      // Display by trade type
+      Object.entries(byTradeType).forEach(([tradeType, modules]) => {
+        console.log(`\n${colors.cyan}${tradeType.toUpperCase()}:${colors.reset}`)
+        modules
+          .sort(([,a], [,b]) => b - a)
+          .slice(0, 10) // Show top 10 modules per trade type
+          .forEach(([module, count]) => {
+            console.log(`  ${colors.green}•${colors.reset} ${module}: ${count} chunks`)
+          })
+        if (modules.length > 10) {
+          console.log(`  ${colors.yellow}... and ${modules.length - 10} more modules${colors.reset}`)
+        }
+      })
+    }
+    
     // Generate and save report if requested
     if (config.reportFile) {
       console.log(`\n${colors.cyan}📄 Generating detailed report...${colors.reset}`);
       
-      const report = reportGenerator.generateReport(summary, config);
-      const { reportPath, summaryPath } = await reportGenerator.saveReport(report, config.reportFile);
-      
-      console.log(`${colors.green}✅ Report saved to: ${reportPath}${colors.reset}`);
-      console.log(`${colors.green}✅ Summary saved to: ${summaryPath}${colors.reset}`);
+      try {
+        const { reportPath, summaryPath } = await reportGenerator.saveReport(report, config.reportFile);
+        
+        console.log(`${colors.green}✅ Report saved to: ${reportPath}${colors.reset}`);
+        console.log(`${colors.green}✅ Summary saved to: ${summaryPath}${colors.reset}`);
+      } catch (error) {
+        console.error(`${colors.red}❌ Failed to save report: ${(error as Error).message}${colors.reset}`);
+        console.error(`${colors.yellow}⚠️  Continuing despite report save failure${colors.reset}`);
+      }
     }
     
     // Exit with appropriate code

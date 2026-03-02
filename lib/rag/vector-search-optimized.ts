@@ -175,7 +175,7 @@ export class OptimizedVectorSearchService {
       const result = await query(sql, params)
 
       // Transform results to SearchResult format
-      const searchResults = result.rows.map(row => {
+      const searchResults = result.rows.map((row: any) => {
         const searchResult: SearchResult = {
           chunkId: row.chunk_id,
           content: row.content,

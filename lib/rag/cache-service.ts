@@ -152,7 +152,7 @@ export class CacheService<T = any> {
     let oldestKey: string | null = null
     let oldestTime = Infinity
 
-    for (const [key, entry] of this.cache.entries()) {
+    for (const [key, entry] of Array.from(this.cache.entries())) {
       if (entry.lastAccessed < oldestTime) {
         oldestTime = entry.lastAccessed
         oldestKey = key
@@ -174,7 +174,7 @@ export class CacheService<T = any> {
     const now = Date.now()
     let removed = 0
 
-    for (const [key, entry] of this.cache.entries()) {
+    for (const [key, entry] of Array.from(this.cache.entries())) {
       if (now > entry.expiresAt) {
         this.cache.delete(key)
         removed++

@@ -34,7 +34,7 @@ export class ModuleMappingService {
       [course]
     )
 
-    const mappings: ModuleMapping[] = result.rows.map(row => ({
+    const mappings: ModuleMapping[] = result.rows.map((row: any) => ({
       id: row.id,
       course: row.course,
       moduleId: row.module_id,

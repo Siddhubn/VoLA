@@ -1,3 +1,8 @@
+// Ensure this module only runs on the server
+if (typeof window !== 'undefined') {
+  throw new Error('LocalEmbeddingService can only be used on the server side')
+}
+
 import { pipeline, env } from '@xenova/transformers'
 
 // Configure transformers.js to use local cache
@@ -84,15 +89,27 @@ export class LocalEmbeddingService {
       // Convert to array - handle tensor output properly
       let embedding: number[]
       
-      // The output is a Tensor object with a .data property
-      if (output && output.data) {
-        // Convert tensor data to regular array
-        embedding = Array.prototype.slice.call(output.data)
+      // Try different methods to extract the embedding
+      if (output && typeof output.tolist === 'function') {
+        // Method 1: Use tolist() if available (preferred)
+        const result = output.tolist()
+        embedding = Array.isArray(result[0]) ? result[0] : result
+      } else if (output && output.data) {
+        // Method 2: Extract from data property
+        const tensorData = output.data
+        if (tensorData instanceof Float32Array) {
+          embedding = Array.from(tensorData)
+        } else if (typeof tensorData[Symbol.iterator] === 'function') {
+          // It's iterable, convert to array
+          embedding = Array.from(tensorData)
+        } else {
+          throw new Error(`Unexpected tensor data type: ${typeof tensorData}`)
+        }
       } else if (Array.isArray(output)) {
+        // Method 3: Already an array
         embedding = output
       } else {
-        // Fallback: try to convert to array
-        embedding = Array.from(output)
+        throw new Error(`Unexpected output format from embedding model`)
       }
 
       return {

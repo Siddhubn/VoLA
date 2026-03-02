@@ -2,9 +2,11 @@ import '@testing-library/jest-dom'
 import { cleanup } from '@testing-library/react'
 import { afterEach, beforeAll } from 'vitest'
 
-// Mock scrollIntoView
+// Mock scrollIntoView (only in browser/jsdom environment)
 beforeAll(() => {
-  Element.prototype.scrollIntoView = () => {}
+  if (typeof Element !== 'undefined') {
+    Element.prototype.scrollIntoView = () => {}
+  }
 })
 
 // Cleanup after each test

@@ -15,6 +15,7 @@ interface LeaderboardEntry {
   totalQuizzes: number
   averageScore: number
   bestScore: number
+  highestScore: number
   lastQuizAt: string
 }
 
@@ -90,6 +91,8 @@ export default function LeaderboardPage() {
     return <span className="text-lg font-bold text-gray-600">#{rank}</span>
   }
 
+  const userEntry = leaderboard.find(entry => entry.userId === user.id)
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Navigation user={user} />
@@ -138,6 +141,40 @@ export default function LeaderboardPage() {
             <span>Electrician</span>
           </button>
         </div>
+
+        {/* Your Rank Card */}
+        {userEntry && (
+          <Card className="mb-6 border-2 border-blue-500 bg-gradient-to-r from-blue-50 to-indigo-50">
+            <CardContent className="pt-6">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-4">
+                  <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center">
+                    {getRankIcon(userEntry.rank)}
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-600 font-medium">Your Rank</p>
+                    <p className="text-3xl font-bold text-gray-900">#{userEntry.rank}</p>
+                    <p className="text-sm text-gray-600">out of {leaderboard.length} students</p>
+                  </div>
+                </div>
+                <div className="grid grid-cols-3 gap-6 text-center">
+                  <div>
+                    <p className="text-2xl font-bold text-blue-600">{userEntry.totalScore}</p>
+                    <p className="text-xs text-gray-600">Total Points</p>
+                  </div>
+                  <div>
+                    <p className="text-2xl font-bold text-green-600">{userEntry.averageScore}%</p>
+                    <p className="text-xs text-gray-600">Average Score</p>
+                  </div>
+                  <div>
+                    <p className="text-2xl font-bold text-purple-600">{userEntry.totalQuizzes}</p>
+                    <p className="text-xs text-gray-600">Quizzes Taken</p>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        )}
 
         <Card>
           <CardHeader>
@@ -191,6 +228,14 @@ export default function LeaderboardPage() {
                     <div className="text-right">
                       <p className="text-2xl font-bold text-blue-600">{entry.totalScore}</p>
                       <p className="text-xs text-gray-500">total points</p>
+                      <div className="mt-2 space-y-1">
+                        <p className="text-sm text-gray-600">
+                          Avg: <span className="font-medium">{entry.averageScore}%</span>
+                        </p>
+                        <p className="text-sm text-gray-600">
+                          Best: <span className="font-medium">{entry.highestScore}%</span>
+                        </p>
+                      </div>
                     </div>
                   </div>
                 ))}

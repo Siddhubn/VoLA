@@ -1,7 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { verifyToken } from '@/lib/simple-auth'
-import { query } from '@/lib/postgresql'
+import { Pool } from 'pg'
 
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL || 'postgresql://postgres:admin@localhost:5433/vola_db',
+  password: 'admin',
+})
+
+/**
+ * GET /api/quiz/history
+ * Get quiz history for the authenticated user
+ * 
+ * Query params:
+ * - limit?: number (default: 10)
+ */
 export async function GET(request: NextRequest) {
   try {
     // Verify authentication
@@ -21,45 +33,45 @@ export async function GET(request: NextRequest) {
       )
     }
 
+    const userId = decoded.userId
     const { searchParams } = new URL(request.url)
-    const limit = parseInt(searchParams.get('limit') || '20')
+    const limit = parseInt(searchParams.get('limit') || '10')
 
-    // Get user's quiz history
-    const result = await query(
+    // Get quiz history
+    const result = await pool.query(
       `SELECT 
         id,
         course,
         module,
         score,
-        total_questions,
-        time_spent,
-        completed_at
-       FROM quiz_attempts
+        total_questions as "totalQuestions",
+        percentage,
+        time_spent as "timeSpent",
+        completed_at as "completedAt"
+       FROM quiz_history
        WHERE user_id = $1
        ORDER BY completed_at DESC
        LIMIT $2`,
-      [Number(decoded.userId), limit]
+      [userId, limit]
     )
-
-    const history = result.rows.map((row: any) => ({
-      id: row.id,
-      course: row.course,
-      module: row.module,
-      score: row.score,
-      totalQuestions: row.total_questions,
-      percentage: Math.round((row.score / row.total_questions) * 100),
-      timeSpent: row.time_spent,
-      completedAt: row.completed_at
-    }))
 
     return NextResponse.json({
       success: true,
-      history
+      history: result.rows
     })
+
   } catch (error) {
-    console.error('Quiz history error:', error)
+    console.error('❌ Quiz history error:', error)
+    
+    if (error instanceof Error) {
+      return NextResponse.json(
+        { error: error.message },
+        { status: 500 }
+      )
+    }
+
     return NextResponse.json(
-      { error: 'Failed to fetch quiz history' },
+      { error: 'An unexpected error occurred while fetching quiz history' },
       { status: 500 }
     )
   }

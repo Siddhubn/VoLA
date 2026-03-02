@@ -36,6 +36,7 @@ export interface KnowledgeChunk {
   course: 'fitter' | 'electrician'
   pdf_source: string
   module?: string
+  module_name?: string
   section?: string
   page_number?: number
   chunk_index: number
@@ -43,6 +44,7 @@ export interface KnowledgeChunk {
   content_preview?: string
   embedding?: number[]
   token_count?: number
+  trade_type?: 'trade_theory' | 'trade_practical'
   metadata?: Record<string, any>
   created_at?: Date
   updated_at?: Date
@@ -226,14 +228,15 @@ export async function createKnowledgeChunk(chunk: KnowledgeChunk): Promise<numbe
   if (hasVector) {
     const result = await query(
       `INSERT INTO knowledge_chunks 
-       (course, pdf_source, module, section, page_number, chunk_index, content, 
-        content_preview, embedding, token_count, metadata)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
+       (course, pdf_source, module, module_name, section, page_number, chunk_index, content, 
+        content_preview, embedding, token_count, trade_type, metadata)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
        RETURNING id`,
       [
         chunk.course,
         chunk.pdf_source,
         chunk.module,
+        chunk.module_name,
         chunk.section,
         chunk.page_number,
         chunk.chunk_index,
@@ -241,6 +244,7 @@ export async function createKnowledgeChunk(chunk: KnowledgeChunk): Promise<numbe
         chunk.content_preview || chunk.content.substring(0, 200),
         chunk.embedding ? `[${chunk.embedding.join(',')}]` : null,
         chunk.token_count,
+        chunk.trade_type,
         JSON.stringify(chunk.metadata || {})
       ]
     )
@@ -248,14 +252,15 @@ export async function createKnowledgeChunk(chunk: KnowledgeChunk): Promise<numbe
   } else {
     const result = await query(
       `INSERT INTO knowledge_chunks 
-       (course, pdf_source, module, section, page_number, chunk_index, content, 
-        content_preview, embedding_placeholder, token_count, metadata)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
+       (course, pdf_source, module, module_name, section, page_number, chunk_index, content, 
+        content_preview, embedding_placeholder, token_count, trade_type, metadata)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
        RETURNING id`,
       [
         chunk.course,
         chunk.pdf_source,
         chunk.module,
+        chunk.module_name,
         chunk.section,
         chunk.page_number,
         chunk.chunk_index,
@@ -263,6 +268,7 @@ export async function createKnowledgeChunk(chunk: KnowledgeChunk): Promise<numbe
         chunk.content_preview || chunk.content.substring(0, 200),
         chunk.embedding ? JSON.stringify(chunk.embedding) : null,
         chunk.token_count,
+        chunk.trade_type,
         JSON.stringify(chunk.metadata || {})
       ]
     )
@@ -287,13 +293,14 @@ export async function createKnowledgeChunksBatch(chunks: KnowledgeChunk[]): Prom
       if (hasVector) {
         await client.query(
           `INSERT INTO knowledge_chunks 
-           (course, pdf_source, module, section, page_number, chunk_index, content, 
-            content_preview, embedding, token_count, metadata)
-           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`,
+           (course, pdf_source, module, module_name, section, page_number, chunk_index, content, 
+            content_preview, embedding, token_count, trade_type, metadata)
+           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)`,
           [
             chunk.course,
             chunk.pdf_source,
             chunk.module,
+            chunk.module_name,
             chunk.section,
             chunk.page_number,
             chunk.chunk_index,
@@ -301,19 +308,21 @@ export async function createKnowledgeChunksBatch(chunks: KnowledgeChunk[]): Prom
             chunk.content_preview || chunk.content.substring(0, 200),
             chunk.embedding ? `[${chunk.embedding.join(',')}]` : null,
             chunk.token_count,
+            chunk.trade_type,
             JSON.stringify(chunk.metadata || {})
           ]
         )
       } else {
         await client.query(
           `INSERT INTO knowledge_chunks 
-           (course, pdf_source, module, section, page_number, chunk_index, content, 
-            content_preview, embedding_placeholder, token_count, metadata)
-           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`,
+           (course, pdf_source, module, module_name, section, page_number, chunk_index, content, 
+            content_preview, embedding_placeholder, token_count, trade_type, metadata)
+           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)`,
           [
             chunk.course,
             chunk.pdf_source,
             chunk.module,
+            chunk.module_name,
             chunk.section,
             chunk.page_number,
             chunk.chunk_index,
@@ -321,6 +330,7 @@ export async function createKnowledgeChunksBatch(chunks: KnowledgeChunk[]): Prom
             chunk.content_preview || chunk.content.substring(0, 200),
             chunk.embedding ? JSON.stringify(chunk.embedding) : null,
             chunk.token_count,
+            chunk.trade_type,
             JSON.stringify(chunk.metadata || {})
           ]
         )
@@ -389,12 +399,13 @@ export async function searchSimilarChunks(
   course?: 'fitter' | 'electrician',
   module?: string,
   topK: number = 5,
-  minSimilarity: number = 0.7
+  minSimilarity: number = 0.7,
+  tradeType?: 'trade_theory' | 'trade_practical'
 ): Promise<SearchResult[]> {
   let sql = `
     SELECT 
-      id, course, pdf_source, module, section, page_number, chunk_index,
-      content, content_preview, token_count, metadata,
+      id, course, pdf_source, module, module_name, section, page_number, chunk_index,
+      content, content_preview, token_count, trade_type, metadata,
       1 - (embedding <=> $1) as similarity
     FROM knowledge_chunks
     WHERE embedding IS NOT NULL
@@ -411,6 +422,11 @@ export async function searchSimilarChunks(
   if (module) {
     sql += ` AND module = $${paramIndex++}`
     params.push(module)
+  }
+
+  if (tradeType) {
+    sql += ` AND trade_type = $${paramIndex++}`
+    params.push(tradeType)
   }
 
   sql += ` AND (1 - (embedding <=> $1)) >= $${paramIndex++}`
@@ -518,12 +534,12 @@ export async function getRagStatistics(): Promise<{
   `)
 
   const pdfsByStatus: Record<string, number> = {}
-  statusCounts.rows.forEach(row => {
+  statusCounts.rows.forEach((row: any) => {
     pdfsByStatus[row.processing_status] = parseInt(row.count)
   })
 
   const chunksByCourse: Record<string, number> = {}
-  courseCounts.rows.forEach(row => {
+  courseCounts.rows.forEach((row: any) => {
     chunksByCourse[row.course] = parseInt(row.count)
   })
 

@@ -57,7 +57,7 @@ export class StatisticsService {
     `)
     
     const pdfsByCourseMap: Record<string, number> = {}
-    pdfsByCourse.rows.forEach(row => {
+    pdfsByCourse.rows.forEach((row: any) => {
       pdfsByCourseMap[row.course] = parseInt(row.count)
     })
     
@@ -77,7 +77,7 @@ export class StatisticsService {
       total_chunks: basicStats.total_chunks,
       total_embeddings: basicStats.total_embeddings,
       chunks_by_course: basicStats.chunks_by_course,
-      chunks_by_module: chunksByModule.rows.map(row => ({
+      chunks_by_module: chunksByModule.rows.map((row: any) => ({
         course: row.course,
         module: row.module,
         count: parseInt(row.count)
@@ -101,7 +101,7 @@ export class StatisticsService {
       GROUP BY course, processing_status
     `)
     
-    return result.rows.map(row => ({
+    return result.rows.map((row: any) => ({
       course: row.course,
       status: row.processing_status,
       count: parseInt(row.count),
@@ -134,7 +134,7 @@ export class StatisticsService {
     
     return {
       database_size: dbSize.rows[0]?.size || 'Unknown',
-      largest_tables: tableSizes.rows.map(row => ({
+      largest_tables: tableSizes.rows.map((row: any) => ({
         table_name: row.tablename,
         size: row.size
       }))
@@ -172,7 +172,7 @@ export class StatisticsService {
     
     const result = await query(sql, params)
     
-    return result.rows.map(row => ({
+    return result.rows.map((row: any) => ({
       course: row.course,
       module_id: row.module,
       module_name: row.module_name || row.module,
@@ -213,7 +213,7 @@ export class StatisticsService {
     `)
     
     const messagesByCourseMap: Record<string, number> = {}
-    messagesByCourse.rows.forEach(row => {
+    messagesByCourse.rows.forEach((row: any) => {
       if (row.course) {
         messagesByCourseMap[row.course] = parseInt(row.count)
       }
@@ -285,7 +285,7 @@ export class StatisticsService {
           ? `${chunkInfo.rows[0].first_page}-${chunkInfo.rows[0].last_page}`
           : null
       },
-      modules: moduleBreakdown.rows.map(row => ({
+      modules: moduleBreakdown.rows.map((row: any) => ({
         module: row.module,
         chunk_count: parseInt(row.chunk_count)
       }))

@@ -17,6 +17,7 @@ interface ChatRequest {
   message: string
   course: 'fitter' | 'electrician'
   module?: string
+  tradeType?: 'trade_theory' | 'trade_practical'
   sessionId?: string
   history?: Array<{
     role: 'user' | 'assistant'
@@ -129,51 +130,56 @@ export async function POST(request: NextRequest): Promise<NextResponse<ChatRespo
     const chatContext = await contextBuilder.buildChatContext(body.message, {
       course: body.course,
       module: body.module,
+      tradeType: body.tradeType,
       conversationHistory,
-      topK: 5,
-      minSimilarity: 0.7
+      topK: 8, // Increased from 5 to get more context
+      minSimilarity: 0.5 // Lowered from 0.7 to be more inclusive
     })
 
     // Check if relevant content was found
-    const hasContent = chatContext.chunkCount > 0 && chatContext.relevantContent.length > 100
+    const hasContent = chatContext.chunkCount > 0 && chatContext.relevantContent.length > 50
 
     // Build system prompt
     let systemPrompt: string
     
     if (hasContent) {
-      systemPrompt = `You are an expert ITI (Industrial Training Institute) instructor assistant for ${body.course} students.
+      systemPrompt = `You are an expert ITI (Industrial Training Institute) instructor for ${body.course} students. You are knowledgeable, helpful, and educational.
 
 Your role is to:
-1. Answer questions based ONLY on the provided course content
-2. Cite sources with page numbers and sections when available
-3. Be clear, concise, and educational
-4. If the content doesn't contain the answer, say so and suggest related topics
+1. Answer questions clearly and comprehensively
+2. Use the provided course content as your PRIMARY source
+3. If the course content doesn't fully cover the topic, supplement with your general knowledge about ${body.course} training
+4. Cite sources when using course materials
+5. Be practical and provide real-world examples
 
-IMPORTANT: Base your answers ONLY on the following course content:
-
---- COURSE CONTENT ---
+COURSE MATERIALS:
 ${chatContext.relevantContent}
---- END COURSE CONTENT ---
 
 When answering:
-- Reference specific sections or page numbers from the content
+- Start with information from the course materials if available
+- Supplement with general ${body.course} knowledge when needed
 - Use simple, clear language appropriate for students
-- Provide practical examples when relevant
-- If the question cannot be answered from the content, inform the user
+- Provide practical examples and applications
+- Cite sources when referencing course materials: [Section Name, Page X]
+- If explaining concepts not in the materials, clearly state you're providing general ${body.course} knowledge
 
-Format your citations like: [Section Name, Page X]`
+Remember: You're here to help students learn. Be thorough, accurate, and encouraging.`
     } else {
-      // No relevant content found
-      systemPrompt = `You are an expert ITI (Industrial Training Institute) instructor assistant for ${body.course} students.
+      // No relevant content found - provide general knowledge
+      systemPrompt = `You are an expert ITI (Industrial Training Institute) instructor for ${body.course} students.
 
-Unfortunately, I couldn't find specific content in the course materials to answer your question about "${body.message}".
+I couldn't find specific content in the course materials for your question: "${body.message}"
 
-Please:
-1. Rephrase your question or ask about a different topic
-2. Make sure your question is related to ${body.course} training
-3. Try asking about specific modules or topics from the course
+However, I can still help you! I'll provide general ${body.course} knowledge and principles to answer your question.
 
-I can help with questions about ${body.course} course content, tools, techniques, safety, and practical applications.`
+Your role is to:
+1. Answer the question using your expertise in ${body.course} training
+2. Provide clear, educational explanations
+3. Use practical examples relevant to ${body.course} work
+4. Mention that this is general knowledge, not from specific course materials
+5. Encourage the student to verify with their course materials or instructor
+
+Be helpful, thorough, and educational. Students need to learn, even if the specific content isn't in the indexed materials.`
     }
 
     // Build conversation context
@@ -184,7 +190,7 @@ I can help with questions about ${body.course} course content, tools, techniques
     }
 
     // Generate response using Gemini
-    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-exp' })
+    const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' })
     
     const prompt = `${systemPrompt}${conversationContext}
 
@@ -192,9 +198,29 @@ Student Question: ${body.message}
 
 Your Response:`
 
-    const result = await model.generateContent(prompt)
-    const response = await result.response
-    const responseText = response.text().trim()
+    let responseText: string
+    
+    try {
+      const result = await model.generateContent(prompt)
+      const response = result.response
+      responseText = response.text().trim()
+    } catch (error: any) {
+      // Handle rate limit errors gracefully
+      if (error.message?.includes('429') || error.message?.includes('quota')) {
+        console.warn('⚠️ Gemini API rate limit reached')
+        
+        // Provide a helpful fallback response
+        responseText = `I apologize, but I'm currently experiencing high demand and have reached my API quota limit. 
+
+However, I can still help! Based on your question about "${body.message}", here's what I can tell you:
+
+${hasContent ? `I found relevant information in the course materials:\n\n${chatContext.relevantContent.substring(0, 500)}...\n\nPlease try again in a few moments for a more detailed AI-generated response.` : 'Please try again in about 30 seconds, or contact your instructor for immediate assistance.'}
+
+Tip: You can also browse the course syllabus directly from the dashboard.`
+      } else {
+        throw error // Re-throw other errors
+      }
+    }
 
     // Extract citations from response
     const citations: string[] = []
@@ -252,7 +278,8 @@ Your Response:`
           source: {
             section: s.section,
             pageNumber: s.pageNumber,
-            pdfSource: s.pdfSource
+            pdfSource: s.pdfSource,
+            tradeType: s.tradeType
           }
         })),
         citations: Array.from(new Set(citations)) // Remove duplicates

@@ -26,6 +26,7 @@ export interface ChatContext {
     pageNumber: number | null
     pdfSource: string
     similarity: number
+    tradeType?: string
   }>
   chunkCount: number
 }
@@ -115,6 +116,7 @@ export class ContextBuilder {
     options?: {
       course?: 'fitter' | 'electrician'
       module?: string
+      tradeType?: 'trade_theory' | 'trade_practical'
       conversationHistory?: Array<{
         role: 'user' | 'assistant'
         content: string
@@ -128,6 +130,7 @@ export class ContextBuilder {
       query,
       course: options?.course,
       module: options?.module,
+      tradeType: options?.tradeType,
       topK: options?.topK || this.config.maxChunks,
       minSimilarity: options?.minSimilarity || 0.7
     })
@@ -140,7 +143,8 @@ export class ContextBuilder {
       section: result.source.section,
       pageNumber: result.source.pageNumber,
       pdfSource: result.source.pdfSource,
-      similarity: result.similarity
+      similarity: result.similarity,
+      tradeType: result.source.tradeType
     }))
 
     return {

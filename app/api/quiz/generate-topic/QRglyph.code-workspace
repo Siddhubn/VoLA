@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "../../../../../../qrglyph/QRglyph"
+		},
+		{
+			"path": "../../../../../../the-matrix-within"
+		},
+		{
+			"path": "../../../.."
+		}
+	],
+	"settings": {
+		"typescript.autoClosingTags": false,
+		"liveServer.settings.multiRootWorkspaceName": "User Authentication and Dashboard"
+	}
+}

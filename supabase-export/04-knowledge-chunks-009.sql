@@ -1,0 +1,4100 @@
+-- Import data for knowledge_chunks
+-- Total rows: 50
+
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1398, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-5', NULL, 158, 142, 'installation and the general mass of earth exceeds 24V. 
+This voltage signal will cause the relay to operate (Fig 1). 
+ Fig 1   
+PROTECTED METALWORK 
+L oe   an   4 
+ |   te 
+ LIMITING   | 
+ RESISTOR   Mio) 
+ L$] 
+ |   F 
+ OPERATING   $5 
+ col   4 
+ =] 
+ E   nw 
+ = 
+ =   &E   =   4  iT} 
+ Voltage operated ELCBs are meant to be used where it is 
+not practicable to meet the requirements of IEE   wiring 
+regulation by direct earthing orwhere additional protection 
+Construction of current operated ELCB 
+It consists of a Torroid ring made of high permeability 
+magnetic material.   It has two primary windings each 
+carrying the current flowing through phase and neutral of 
+the installation. The secondary winding is connectedtoa 
+highly sensitive electro - magnetictrip relay which operates 
+the trip mechanism. 
+Working principle 
+The residual current device (RCD) is acircuit breaker which 
+continuously compares the current inthe phase with that 
+inthe neutral. The difference between the twois called as 
+the residual current which is flowing to earth. 
+The purpose of the residual current device is to monitorthe 
+residual current and to switch off the circuit if it rises from 
+a preset level (Fig 2&3). 
+is desirable.   Fig 2   
+PRIMARY 
+ Current operated ELCB 
+ This device is used for making and breaking a circuit and   SERIE 
+ for breaking a circuit automatically when the vector sumof   RELAY 
+current in all conductors differs from zero by a precieter-   col. 
+mined amount. Current operated ELCBs are much more 
+reliable in operation, easier to install and maintain. 
+ TORROID   Z 
+MAGNETIC   PRIMARY   § 
+MATERIAL   4 
+ Fig3 
+ © qT 
+ a) 2-POLE ELCB   3 
+b} 4-POLE ELCB   Z 
+ The main contacts are closed against the pressure of a 
+spring which, provides the energy to open them whenthe 
+device trios.   Phase and neutral current pass through 
+identical coils wound In opposing direction ona magnetic 
+circuit, so that each coil will provide equal but opposing 
+numbers of ampere turns whenthere   is no residual current. 
+The opposing ampere turns will cancel and no magnetic 
+flux will be set up in the magnetic circuit. 
+Ina healthy circuit the sum ofthe currentin phases is equal 
+tothe currentinthe neutral andvectorsum   ofall the current 
+is equal to zero. If there is any insulation fault in the circuit 
+then leakage current flows to earth. This residual current 
+ 442   Power : Electrician (NSQF Revised - 2022) - Related Theory for Exercise 1.7.62', NULL, '[-0.02397334,0.04500256,0.0103123095,0.011250971,-0.021306412,-0.006229452,0.029291663,0.015552166,-0.009709227,0.010535228,0.021775236,-0.027425038,0.06385724,0.014411312,0.03672118,-0.0106019415,-0.04498733,0.040992934,0.049568556,0.05211302,0.12613387,-0.054688834,-0.012065004,0.0111934375,0.06104,0.1089916,-0.031304583,0.047674775,-0.042372454,-0.24862538,-0.011235083,-0.0062037036,-0.030963227,0.046864703,-0.06644719,-0.09588308,-0.0032815018,-0.0027622352,-0.026902916,0.0825829,-0.015696593,-0.025432348,0.034629,-0.028601512,-0.00042768984,0.015222381,-0.061945528,-0.040230796,0.047305584,0.0006832835,0.112039596,0.02328806,0.024045277,-0.013218175,0.011434618,-0.0035859614,0.029776275,0.03657092,0.04682054,0.08224542,0.031302184,0.028230326,-0.23190102,0.028487543,0.04761684,0.04348782,-0.028097333,-0.009303228,0.05262842,0.015632797,0.026073383,-0.060735125,-0.024388872,0.038186003,-0.09298247,0.045634437,-0.003547063,0.0025893825,-0.07245143,-0.066273384,-0.026386395,-0.016450673,-0.042960204,-0.024526346,-0.0024268436,0.020420423,0.033342898,-0.05867364,0.0667153,0.056581944,-0.039833374,0.04481432,0.007274823,-0.020348338,-0.021035379,-0.053954735,-0.012561057,0.002859924,0.024121143,0.1301235,-0.017509073,0.020752557,-0.012406327,0.053556427,0.03439557,-0.05234787,0.00035261668,-0.00077336165,-0.017808774,0.014608307,0.038667645,-0.07830297,-0.020401325,0.006190634,0.022242261,0.004785797,-0.007890975,-0.014969677,-0.063697495,0.008072271,-0.059372503,0.05843916,0.07645052,0.023517279,0.016728643,-0.04757964,0.01916786,0.051073343,-0.008265332,0.03686722,-0.023296881,-0.043811962,-0.036935166,0.016136348,-0.03330823,0.064199984,-0.010118478,0.057187885,0.05078676,-0.017722262,-0.051530387,0.008824886,-0.027382847,-0.08814374,-0.01699918,-0.041435204,-0.07913341,-0.02342664,-0.011206335,-0.06266168,-0.029302072,0.013344682,-0.045104813,-0.020044295,0.06114879,0.11789101,-0.061092433,0.063317485,-0.011180608,-0.005701899,-0.04081461,0.0102372775,-0.02015683,0.14495641,0.0021399197,-0.05089016,-0.039175034,0.008289588,0.01396232,-0.071929276,0.026042337,0.035575725,-0.0054740487,-0.114284955,0.058575712,-0.003016791,-0.042781226,-0.033146318,-0.042455472,-0.009437749,0.005655878,-0.02774077,-0.0224086,0.010744684,-0.021079183,0.014417277,-0.05327291,-0.030897746,-0.006006952,0.042913713,-0.064994074,0.11340889,-0.011530091,0.013205922,0.05352209,-0.0426658,-0.049033128,-0.05046501,-0.008706243,-0.012898442,0.060289517,-0.021545775,0.032652393,0.0697011,-0.02398394,0.055703994,0.032641456,-0.0023266203,-0.0094540985,0.0709362,-0.039618652,-0.014990579,0.055474933,-0.0060839234,-0.020506209,-0.025334833,0.010969698,0.02215432,0.062383015,-0.002855756,0.023944816,0.042532142,0.008585218,-0.19984479,-0.018606372,-0.025661733,-0.02770402,0.1124234,-0.11390434,0.019791353,-0.010959308,-0.015412753,-0.057315588,0.10134643,0.009569263,-0.036344677,0.016137045,-0.011595274,0.065749936,0.024042124,0.0017449977,-0.055270884,0.029620036,-0.0054670046,0.07520071,0.04137572,-0.009934767,-0.004263264,0.024779359,0.08297459,-0.027034536,0.007351271,-0.034869436,0.018537497,-0.01485331,0.028745463,-0.0698998,-0.028373802,-0.040444233,0.017335836,0.0014823122,-0.0054685073,-0.024670288,-0.08712828,-0.0021636044,0.011575768,-0.04744423,-0.0051347916,-0.0236688,-0.039423432,0.018677805,-0.0440443,-0.019216524,0.05776565,-0.0029070538,-0.010218145,-0.0100837145,0.081825644,-0.0012056096,-0.05850009,-0.055716492,-0.0780142,0.07659543,-0.022851666,0.048885565,-0.021603383,0.014547014,0.032610565,0.058455195,-0.018611629,0.031121153,0.03318051,-0.024160303,-0.050247815,0.14335622,0.0005958275,-0.0078220675,-0.051279027,-0.0029669192,-0.054209735,-0.024943652,-0.032302864,-0.01639896,0.025318602,-0.0400852,0.0502544,-0.03083078,0.010301752,0.017987551,-0.026263941,0.0050142845,-0.005374825,-0.026756307,-0.0008665104,0.005727579,-0.029913424,-0.03870452,-0.016390419,-0.04231538,-0.2358596,0.0030397673,-0.021835016,-0.050541088,-0.057476655,0.044106424,0.029119778,0.006406694,-0.06068469,0.04808678,-0.11164792,0.066759124,0.0331424,0.04602276,-0.00029718608,0.019275183,0.04130177,-0.019675992,-0.0003663294,-0.031526744,-0.0023840081,0.07076331,0.17695872,0.03997082,0.069133475,0.0061626057,-0.005989706,0.052189097,-0.0071340385,-0.05686897,0.023089334,0.030335743,0.022513911,0.019098636,0.030616574,0.042565916,-0.04194164,0.04005247,0.064938776,-0.038406976,-0.018358901,0.06970126,-0.017206755,-0.034270547,0.13780002,-0.044470407,-0.014468737,-0.050862238,0.031525176,-0.017627098,-0.016145991,0.05269319,0.0098590255,0.025113657,-0.057519805,0.09937095,-0.063308015,0.06895738,-0.05470926,-0.020844322,0.049484223,-0.017681682,0.034976598,0.025557846,0.10862984]', NULL, '{}'::jsonb, '2026-03-01T19:26:35.171Z', '2026-03-01T21:39:32.406Z', 'trade_theory', 'Measuring Instruments');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1399, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-5', NULL, 159, 143, 'passes to the circuit through the phase coil but returns 
+throughthe earth path andavoids the neutral coil, whichwill 
+therefore carry less current. 
+So the phase ampere turns exceeds neutral ampere turns 
+and an alternating   magnetic flux results inthe core. The 
+flux links with the secondary coil wound on the same 
+magnetic circuit inducing an emf into it. The value of this 
+ Fuses 
+ emf depends on the residual current, so it drives a current 
+to the tripping system which depends on the difference 
+between themand neutral current. 
+When tripping current reaches a predetermined level the 
+circuit breaker trios and open the main contacts and thus 
+interrupts the circuit. 
+Objectives: At the end of this lesson you shall be able to 
+*   explain the purpose of the fuse in a circuit 
+*   classify the different types of fuses and their uses. 
+Purpose of fuses: Afuse isa safety device used for the 
+purpose of protectinga   circuitagainst excess current. Inthe 
+event of excessive current, the fuse element melts and 
+opens up the circuit thereby protecting it from damage. 
+Symbols:   These   are   the   graphical   symbols   used   to 
+illustrate an electrical fuse in electro-technical diagrams. 
+*   General symbols of a fuse (Fig 1) 
+ Fig 1 
+ | |  ees  i a  ee 
+ fa)   (b)  ELN227051 
+ Placement of fuses: |n electrical installations, the fuses 
+are always connected into the live wires (Fig 2) and never 
+into the neutral N. 
+ Fig2 
+ tl | 
+ Types of fuses used in domestic wiring: 
+*   Re-wirable type (upto 200A) 
+*   Cartridge type (upto 1250A) 
+Rewirable type fuse (Fig3): The fuse elementinthis type 
+of fuse consists of a wire which may be replaced when 
+necessary. These fuses are simple inconstructionandthe 
+initial cost as Well as the renewal cost is very low. 
+ ELN227052 
+ The fuse elements used inthistype are tinned copper wire, 
+lead and tin alloy or aluminium wire (Table 1). 
+The fuse element will melt after approximately 2 minutes 
+when carrying a current equal to twice the current rating. 
+ Fig 3 
+ ASBESTOS TUBE 
+FUSE ELEMENT 
+FUSE-CARRIER 
+a} FUSE CARRIER   CONTACT 
+FUSE-BASE 
+ Z   CONTACT   4 
+ Wl   MM   . 
+ b) FUSE BASE UNIT 
+SEM! - ENCLOSED {KIT - KAT} FUSE UNIT 
+ Table 1 
+ Approxi- | Tinned copper wire | Alumi- 
+ Current   mate   nium 
+rating   fusing   ;   wire 
+ for   current | s.w.c. | Diameter | gia. in 
+ Amp   in mm   rari 
+ 1.5   3   40   12192   = 
+25   4   39   .13208   - 
+3.0   5   38   1524   195 
+40   6   37   17272   - 
+5.0   8   35   21336   - 
+5.5   9   34   23368   - 
+6.0   10   33   204   307 
+7.0   11   32   27432   - 
+8.0   12   31   29464   - 
+8.5   13   30   31496   - 
+9.5   15   —   ——   400 
+10.0   16   2g   34544   - 
+12.0   18   28   3/592   - 
+13.0   20   _   ——   ATS 
+13.5   20   _   ——-   560 
+14.0   28   26   A572   - 
+15.0   30   23   508   .630 
+ Power : Electrician (NSQF Revised - 2022) - Related Theory for Exercise 1.7.62   143', NULL, '[-0.10472367,0.030319775,0.08236439,0.012575046,-0.041606784,0.03265224,0.0528209,0.048880007,-0.01029994,-0.033915102,0.030209364,-0.008705621,0.030787822,0.02148183,-0.014784468,0.048797525,-0.046645865,0.010814113,0.03588581,-0.020378357,0.09100504,-0.09351017,-0.014206492,-0.006544986,0.0537049,0.022108322,-0.002303981,0.03753378,-0.0609065,-0.24353975,0.0038872752,0.030964259,-0.12837836,0.008625975,-0.1332337,-0.10014731,-0.016227717,-0.021123044,0.014667014,0.06546454,0.034693953,0.012576491,0.039873615,-0.07104994,-0.0432132,0.0057475665,-0.066629164,-0.032766152,0.085502684,-0.0364692,-0.010564294,-0.011423151,0.0050797267,-0.015673624,0.032751955,0.09940271,0.067333736,0.09033263,-0.00029127006,0.0053746826,0.0134492,0.05022548,-0.16601275,-0.009408409,0.07987167,0.02721379,-0.014746778,-0.039890308,0.03677462,0.0005466486,-0.02706612,-0.012889889,-0.05229399,-0.014451788,-0.052278385,0.019139508,0.03335917,-0.0066417307,-0.038632307,-0.060225338,-0.0141747575,-0.013340982,-0.011128651,-0.04443095,0.0047101947,0.032589823,0.058626715,-0.078585856,0.028408462,-0.06220431,0.009458268,-0.02388048,-0.030548789,0.018133737,0.050358083,-0.034344703,0.0019791014,-0.015473925,0.036468413,0.08438136,-0.025251556,0.023036662,0.044319324,0.02476603,0.0057639354,-0.0013830618,-0.024296608,0.017556906,-0.04981263,0.00060509413,0.0318794,-0.07484007,0.013478158,-0.06008986,0.05040338,0.04694613,0.019632263,0.01044647,-0.06701543,-0.010853028,-0.011580159,0.038767733,0.04988347,-0.014620596,-0.022277998,-0.032553453,-0.0026588538,0.05135069,-0.029446995,0.005284086,0.022077778,-0.060950518,-0.09516625,-0.03389224,-0.056426704,0.047047116,-0.017746245,0.05117057,0.051954877,-0.021043237,-0.03576441,0.0062532756,-0.06936897,-0.11035607,-0.034237616,-0.0007344192,-0.11131042,-0.007935045,-0.006453655,0.037403796,-0.013392583,-0.024176147,-0.08810144,-0.08442866,-0.02235936,0.02546347,-0.010527203,0.060406215,0.019244734,0.044256397,-0.08899262,-0.01924079,-0.03293805,0.105625875,-0.0044268174,-0.037748985,-0.0041140458,0.03325235,-0.014631948,-0.07771248,-0.026476093,-0.01158239,-0.009233598,-0.052571528,0.06353401,0.05057105,-0.028337639,-0.07632174,-0.052873053,-0.00011319156,0.027830638,0.0031492296,-0.008441248,0.013775386,0.01779002,0.026058368,-0.060386423,-0.030112412,-0.04962311,0.06801226,-0.04021502,0.058259558,-0.037787937,0.04940388,0.0038281097,-0.09224288,-0.027874565,0.07354947,0.015428007,0.012378799,0.05110109,0.0033320393,0.08574073,0.0810688,0.03081785,0.049279783,-0.016159866,-0.020648668,0.05031388,0.069980405,0.0033774166,0.004866328,0.06511198,0.033291273,-0.007625162,-0.00812017,0.040258735,-0.045915734,0.084418625,0.055992857,0.0061122016,-0.03828715,-0.027027426,-0.18666144,-0.049870484,-0.029960884,0.0065329606,0.094863944,-0.03790442,-0.023008324,0.009076712,-0.018493697,-0.06599817,0.08331559,0.008191193,0.0026917916,-0.022810861,0.010964521,0.02309085,-0.04160993,0.007166348,-0.029595384,0.056067407,0.016528005,0.089186996,0.060207903,-0.03240565,0.0302721,-0.016443633,0.13066222,-0.062029794,0.027813874,-0.03562385,0.015357325,0.023037637,0.038540438,0.034743883,-0.008650486,-0.07583837,0.036509316,-0.071891576,-0.032067325,0.0071144807,-0.06281998,-0.0006733249,-0.008823421,-0.04270713,0.01719113,-0.019540884,-0.047961567,-0.010917821,0.0018623248,0.047254324,0.08181196,-0.03265744,0.008846541,-0.0016709408,0.048457723,-0.02807286,-0.014762034,-0.036453705,-0.086392015,0.049872886,-0.030136444,-0.0011240462,-0.015775463,-0.028307434,0.020960027,0.061581526,0.038813084,0.007066522,0.024303885,-0.049741704,-0.020671086,0.16788383,0.017016357,-0.03024582,-0.03705667,-0.00867953,0.011964065,-0.020042345,0.019632973,0.04164312,0.015105816,-0.040435582,0.040755868,-0.0065271268,-0.015814165,0.020686295,0.005525211,0.033155642,-0.013658052,0.008649718,-0.027122509,0.0010095712,-0.060058266,-0.025058249,-0.003243181,0.048289105,-0.22553907,-0.010100593,-0.008187187,-0.0124671245,-0.032794148,0.057855375,0.0659246,-0.026050398,-0.017741462,0.049903296,-0.08526868,0.08728751,0.07380579,0.07890271,0.018591255,0.087402605,0.066442154,0.010763167,-0.0073062833,-0.017880538,0.035038117,0.08578518,0.18108127,-0.0043229596,0.05770966,-0.01722218,-0.024434455,0.017605029,-0.014624049,-0.01037063,0.029809712,-0.005537752,0.014779326,0.010315509,0.06755193,-0.02391555,-0.033498537,-0.00553523,0.06705367,-0.040250655,-0.0054937457,0.057576034,-0.019477185,-0.053516082,0.09054568,-0.06676827,-0.048323948,-0.054346178,-0.00545824,0.002012773,0.010593652,0.09625526,0.0042444794,0.039819755,0.042126775,0.020509502,-0.06928082,-0.005409237,0.021978242,0.007857159,0.0774365,-0.01218403,0.039571885,-0.009419552,0.10292257]', NULL, '{}'::jsonb, '2026-03-01T19:26:35.490Z', '2026-03-01T21:39:32.406Z', 'trade_theory', 'Measuring Instruments');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1400, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-5', NULL, 160, 144, 'Disadvantages of rewirable type fuse: 
+*   Effected by the fluctuation ofthe ambient temperature. 
+¢   External flash or arc on blowing. 
+*   Poorrupturing capacity (under short-circuit condition). 
+*   Wrong rating possible by human error. 
+Rewirable-type fuses upto   16A rated current shouldnot be 
+used in locations where short circuit level exceeds 2 KA, 
+(lS. 2086-963). 
+Cartridge fuses: Cartridge fuses are developed to over- 
+come the disadvantages ofthe rewirablefuses. As cartridge 
+fuse   elements   are   enclosed   in   an   air tight   chamber, 
+deterioration does not take place. Further the rating of a 
+cartridge fuse couldbe accurately determinedtfrom its marking. 
+However, the cost of replacement of cartridge fuses is more 
+than that of rewirable fuses. 
+*   Ferrule-contact cartridge fuses (Fig 4). 
+ \ GLASS TUBING 
+ —-+ 
+ FUSE   OPEN 
+ELEMENT 
+SOLDER 
+{c¢) OPEN FUSE 
+ {b) 
+FERRULE -CONTACT GATRIDGE FUSE UNIT  ELN227054 
+ Relays - types - symbols 
+ Ferrule-contact cartridge fuses: This type,   is used for 
+protecting electrical and electronic circuits. These are 
+available in 25, 50, 100, 200, 250, 500 milliamperes, and 
+also in 1,2,5,6,10,16 & 32 amperes capacity. 
+Normally the current rating is written on one side ofthe cap, 
+and while replacing, the same capacity fuse should be 
+used.   Its body   is   made of glass and the fuse wire   is 
+connected between two   metallic caps. 
+This fuse can be plugged into the fuse socket (Fig 4a) or it 
+canbe fitted into a fuse base witn a screw, type fuse- holder 
+ (Fig 4b). 
+ High rupturing capacity (HRC) fuses (Fig 5): They are 
+cylindrical inshape and are made of aceramic body filled 
+in with   a   chemically treated filling   powder or silica to 
+quench the arcing quickly without any fire hazard. 
+Normally a silver alloy is used as the fusing element and 
+when it melts due to the excessive current, it combines 
+with the surrounded sand/powder, and forms small glob- 
+ules without making an are, spark or gas. HRC fuses can 
+opena   short-circuited circuit withinO.013 second. Ithasan 
+indicator to show the fuse has blown. 
+AS HRC fuses are capable of opening circuits having very 
+high faulty currents, these are preferred in high power 
+circuits even though the replacement cost is high. 
+ Fig 5 
+ ELN227059 
+ Objectives: At the end of this lesson you shall be able to 
+*   define a relay and classify the relays 
+*   classify relays according to the operating force and function 
+*   state the causes of the failure of the relay. 
+Relay: A relay is a device which opens or closes an 
+auxiliary circuit under predetermined conditions in the 
+ main circuit. 
+ Relays   are   extensively   used   in   electronics,   electrical 
+engineering and many other fields. 
+There are relays that are sensitive to conditions of voltage, 
+current, temperature, frequency or some combination of 
+ these conditions. 
+ Relays are also classified accordingtotheir main operating 
+force as stated under. 
+*   Electromagnetic relays 
+«   Thermal relays 
+Electromagnetic relay: A relay switch assembly is a 
+combination of movable and fixed low-resistance contacts 
+thatopenorclosea circuit. The fixedcontacts are mounted 
+on springs or brackets, which have some flexibility. The 
+movable contacts are mounted ona spring or   ahingedarm 
+that is moved by the electromagnet in the relay (Fig 1). 
+The other types of relays coming under this group are as 
+follows. 
+144   Power : Electrician (NSQF Revised - 2022)   - Related Theory for Exercise 1.7.62', NULL, '[-0.05804122,-0.015247696,0.0382813,0.015873127,-0.017271154,-0.027767567,0.01340484,0.05474161,-0.054309677,-0.017896857,-0.014031491,0.011784219,0.039460648,0.042831313,0.04383037,0.07881099,0.030545617,0.018254917,-0.056764767,0.030019676,0.07178732,-0.07679391,-0.0021656172,-0.0032225046,0.03190212,-0.036394678,0.013983026,-0.0313016,-0.0148728285,-0.22652604,0.03910734,0.051880598,-0.100271195,-0.018250026,-0.0871093,-0.056142695,-0.027082896,0.043876357,-0.04656556,0.06934976,0.021562105,0.0077045993,-0.018674398,-0.030570524,-0.07172605,-0.032695774,-0.068969525,-0.021696443,0.044146582,-0.042883616,0.049840152,0.027130788,0.008518168,-0.016049534,-0.0041088616,-0.015129926,0.06941882,0.09766604,0.056801412,0.003724502,0.06654706,0.021484258,-0.16990934,-0.005823775,0.060145713,0.05100966,-0.073672116,-0.039424047,0.003819972,-0.034233168,-0.03139446,0.028747058,-0.01677958,0.050463278,-0.06139126,0.025862854,-0.0018078879,-0.077711254,-0.022824802,0.037545696,0.010866298,-0.03813562,-0.022672081,-0.040383082,-0.051529028,-0.06428365,-0.006663358,-0.02359263,0.028226644,0.025935397,0.013325689,0.028198138,0.07716584,-0.0018097998,0.018021815,0.001670057,0.060249325,-0.01744442,0.036261752,0.09881083,-0.024698794,0.019502867,0.04152115,0.009708771,0.041277546,0.045773745,-0.03644434,0.0013286637,-0.057785865,-0.0045625824,0.09262034,0.03570448,0.031048236,-0.020327216,-0.027936427,0.045780573,-0.03257631,-0.03104876,-0.02320658,0.032599974,-0.08222409,0.03845899,-0.0019259277,0.014996373,0.0067788814,-0.04027598,0.032748714,0.024622642,-0.0061594485,0.065032244,0.049048327,-0.05550849,0.06716392,0.0025116494,0.0040421584,0.006338393,0.033130582,0.013744847,0.097984836,0.015919402,0.00097387115,-0.034720484,-0.0062698014,-0.06111886,-0.019592121,0.02686262,-0.14958446,0.028450167,0.052221615,0.012107516,-0.019003868,0.0027861593,-0.07623489,-0.052338865,0.042051446,0.023384215,0.025334004,0.0825333,-0.051229473,0.0067271725,-0.00814542,-0.012762533,-0.030525833,0.03758936,0.0077615352,-0.07478857,0.009722437,-0.010921622,0.020177873,-0.012265997,-0.018615905,0.030506363,0.042158674,-0.0158154,0.01488553,0.03476795,0.008087566,-0.11717582,-0.0058349674,0.050002974,-0.05496738,0.033616893,-0.058108594,-0.0101627195,-0.033076014,0.016239263,-0.06324625,-8.0518716e-05,0.026913935,0.13217126,-0.08738864,-0.005372742,-0.07701948,0.077143684,0.012745395,0.006167231,-0.046728477,-0.011191286,0.020454176,-0.039958976,0.038543,-0.02813853,0.04397202,0.060561914,0.095875844,0.095020816,0.04407496,-0.05310966,-0.005444211,0.011383397,-0.062833935,-0.027535988,0.036525294,0.058270566,-0.0602806,-0.016014751,0.0054624192,-0.00031121346,0.07263281,0.0029584507,0.02628398,-0.027510589,-0.05262687,-0.15001306,-0.020466276,-0.06949506,-0.0048602517,0.051617537,-0.117995866,0.0017395336,-0.0066592293,-0.0065229633,-0.027539024,0.1024539,-0.008986659,-0.024682136,0.024994403,0.014262523,-0.0170296,-0.06667586,-0.026738225,-0.0004518348,0.031952787,-0.00185485,0.06484339,0.036212165,-0.005512149,0.0291283,-0.07394871,0.14681284,-0.15214536,-0.009950847,-0.0049051824,0.032192722,-0.0223255,0.021407967,-0.008125134,0.020823149,-0.012799462,-0.010332293,-0.02356905,0.024348265,-0.011907506,-0.032471213,-0.024119675,0.0073826136,-0.06959961,0.01683716,-0.064136826,-0.042265516,0.022909101,-0.056100998,0.13416061,0.014986657,-0.0031257798,0.04157749,0.05505164,0.05647682,0.017465297,-0.09073185,-0.0022591755,-0.04028454,0.027486037,0.012625026,-0.00014078603,0.02109614,-0.0655399,-0.002932522,0.005095228,0.06085601,-0.01708101,-0.018502027,0.007521344,0.00069461,0.151039,-0.007161865,0.0016877269,-0.052024364,-0.002653464,-0.036677,-0.049187664,0.009442459,-0.043153394,-0.018927328,-0.0056464407,0.024477126,0.0752001,-0.008161497,-0.031935822,-0.008015846,0.049750965,0.029587392,0.037206072,-0.03791074,-0.032261293,-0.076717936,0.0018427828,0.032473776,0.037192956,-0.24577247,0.012293329,0.025216306,-0.03693565,-0.05230707,-0.0069930675,-0.0021776205,-0.046311535,0.008749427,0.021282637,-0.031162538,0.05911561,-0.028929252,0.013251178,0.025755197,-0.02158517,0.03309914,-0.052032072,0.02892942,-0.009088026,0.048780724,0.014170616,0.18748535,-0.021747416,0.00675598,-0.005774043,0.009714072,0.032636996,-0.064675935,-0.005457466,0.0024573114,-0.04238802,0.059287503,0.03821239,0.08140052,-0.04124642,-0.036655158,-0.02254714,0.0424976,-0.029759007,0.023792846,0.027094759,-0.061603323,-0.039489523,0.16717617,-0.0705888,-0.039520714,-0.02009406,0.059989613,-0.041722693,-0.04881895,0.06848032,0.004353537,0.0155906435,-0.013498802,0.014185778,-0.020482257,0.014160952,0.057276603,-0.005968372,0.07218766,0.015279036,-0.0051750694,0.12350807,0.08639421]', NULL, '{}'::jsonb, '2026-03-01T19:26:35.872Z', '2026-03-01T21:39:32.406Z', 'trade_theory', 'Measuring Instruments');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1401, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-5', NULL, 161, 145, 'Fig 1   CONTACT POINTS 
+ TERMINALS 
+ADJUSTABLE 
+BACK REST 
+ INSULATORS   4   im) 
+ = COIL 
+ IRON FRAME 
+ ELN227051  ELECTRO MAGNETIC RELAY 
+ Currentsensing relay: A current sensing relay functions 
+whenever the current inthe coilreaches an upper limit. The 
+difference between the current specified for pick up (must 
+operate) and non-pick up (must not operate) is usually 
+closely controlled. The difference in current may also be 
+closely controlledfor dropout   (must release) andnon-drop 
+out (must not release). 
+Under-current relay: Under-current relay is an alarm or 
+protective relay. Itis specifically designedto operate when 
+the current falls below a predeterminedvalue. 
+Voltage sensing relay: A voltage sensing relay is used 
+where a condition of under-voltage or over-voltage may 
+cause a damage to the equipment. For example, these 
+types of relays are used in voltage stabilizers.   Either a 
+proportional AC voltage derived from a transformer or a 
+proportional DC derived from a transformer and rectifier 
+used for this purpose. 
+Thermal relay: A thermal relay (Fig 2} is one thatoperates 
+by changes in temperature. Most of the bimetallic relays 
+where   the bimetallic element changes its shape, inresponse 
+to changes in temperature comes under this group. 
+Ittakes time for the heating elementto reach the necessary 
+temperature and mere time to raise the temperature of the 
+bimetallic element. Therefore, thermal relays are often 
+used as time-delay relays. 
+ Types   domestic   wiring 
+ Fig 2   STATIONARY CONTACT 
+—~—}— VACUUM 
+BIMETALLIC 
+a   STRIP 
+\ 
+i   HEATER 
+W   ELEMENT 
+CONTACT   i 
+ADJUSTMENT   Mi 
+SCREW   iy 
+ 1 
+ BACK STOP   g 
+ ia)   (b)   3 lu 
+ Causes of   relay failures:   Relay failures are   usually 
+ caused by the gradual deterioration of the parts. This 
+ deterioration can be electrical, mechanical or chemical in 
+nature. 
+ The   environmental   shirks that   contribute   to   physical 
+ breakdown include large temperature changes, shock, 
+ vibration and voltage or current changes. Therefore, it is 
+ important thatthese factors are taken into consideration to 
+ensure reliable performance of relays. 
+In general, when a relay fails, look for the following. 
+1   Improper control voltage. 
+2   Dirt, grease or gum on contacts or moving parts. 
+3   Excessive heating of parts: discolouration or charred 
+insulation on coil or base. 
+Bending of moving parts. 
+Corrosion or deposits on metal parts. 
+Excessive wear on moving parts. 
+Loose connections. 
+Improper spring tension. 
+ Oo 
+  
+oa 
+  
+~n 
+  
+OD 
+  
+om 
+  
+& 
+ Impropercontrol pressure. 
+10 Improperfunctioning of the time delay device. 
+Objectives: At the end of this lesson you shall be able to 
+*   state the types wiring used in domestic installations. 
+ Introduction 
+ The type of wiring to be adopted is dependent on various 
+factors viz. location durability, safety, appearance, cost 
+and consumer''s budget etc. 
+Types of wiring 
+The following   are the types of internal wiring   used   in 
+domestic installations. 
+*   Cleat wiring (fortemporary wiring only) 
+*   CTS/TRS (batten) wiring 
+*   Metal/PVC conduitwiring, either onsurface orconcealed 
+in the wall. 
++   PVC casing & capping wiring 
+Cleat wiring 
+ Thissystem uses insulated cables supported in porcelain 
+ cleats (Fig 1). 
+Cleat   wiring   is   recommended   only   for   temporary 
+ installations. These cleats are made in pairs having battam 
+andtop halves (Fig 2). Bottomhalfis grooved to receive the 
+ wire and the top half is for cable grip. 
+ Initially the bottom and top cleats are fixed on the wall 
+ loosely according to the layout. Then the cable is drawn 
+ through the cleat grooves, and itis tensioned by pulling 
+ and the cleats are tightened by the screw. 
+The cleats are of three types,   having one, two or three 
+grooves, so as to receive one, two or three wires. 
+ Power : Electrician (NSQF Revised - 2022) - Related Theory for Exercise 1.7.62   145', NULL, '[-0.078272775,0.0008283293,0.08481331,-0.004953918,-0.017236432,-0.008815379,0.09729115,0.035960488,-0.0013728912,-0.02648172,0.027694147,-0.06911303,0.056148212,0.04389402,0.028760038,0.041523278,-0.061538424,0.0141474195,0.032434944,0.036966577,0.10440431,-0.042883437,-0.01611363,0.04028322,0.052585635,-0.0022420245,-0.04608546,0.027874492,-0.05837851,-0.2004491,-0.009805612,0.02312132,0.0130030615,0.02964143,-0.054746673,-0.097360425,-0.030718355,-0.052517258,-0.015924152,0.0029190425,-0.026458403,0.042297956,0.027127823,-0.05102218,0.0038656148,-0.03630364,-0.019503424,-0.032413658,0.040891748,-0.038236618,0.031032214,0.0055972505,0.0029669015,0.021926455,0.03713315,0.07378223,0.09671626,0.08038716,0.044950604,0.021577781,0.046239913,0.005841941,-0.1867958,0.034054194,0.06279812,-0.025936361,-0.03357918,-0.10889837,0.058921117,0.019407064,-0.02707025,-0.04196486,-0.1005284,0.055372324,-0.057856362,0.05779861,0.040118326,-0.035982076,-0.063565575,-0.02356341,0.024423955,0.05631033,-0.014218132,0.015202346,0.00050194626,0.001012132,0.09207649,-0.060899626,0.08287963,-0.03560383,-0.013940185,0.02014752,0.0075632487,0.061944135,-0.004130246,-0.0346012,-0.008753228,0.018892793,-0.06716482,0.111787565,-0.08827154,0.06590558,0.0040419535,0.03545905,0.07684348,0.0015064438,-0.06305339,-0.034767862,-0.09989578,0.047710862,-0.027225282,-0.04389262,0.047472853,-0.021436669,-0.008142539,0.008239067,0.05665789,0.047379006,-0.03583005,0.024619717,-0.017910212,0.04800401,0.07755435,-0.021615623,0.030071134,-0.032176998,0.017511956,0.070978485,-0.047198497,-0.016974404,-0.0005545641,-0.039301362,-0.052212294,-0.045669433,0.012547935,0.031819414,0.028164867,0.015805017,0.07020734,0.057186414,0.018815326,-0.045954373,0.05392042,-0.06697604,-0.023978338,0.0037800553,-0.10842139,0.03922534,-0.0036729646,0.0063384823,-0.01707347,0.071842134,-0.07854756,-0.04572043,0.0025957038,0.0057833046,-0.029098205,0.02158759,0.025112456,0.01405308,-0.0036623678,-0.0015101825,-0.028934654,0.074051775,0.0033039749,-0.095086455,-0.050855137,-0.05740286,0.015140862,-0.07977097,0.021898072,0.041037504,0.027130196,-0.1056482,0.03209175,0.05959448,-0.019870693,-0.006222894,-0.024584588,0.063518286,-0.038685586,-0.011250059,0.0009599433,0.028094657,0.010432871,0.0037790083,-0.03342019,-0.055894114,-0.034743022,0.14798653,-0.07683817,-0.035244696,-0.038954794,6.2032464e-05,0.009862499,0.04096019,-0.025268314,-0.00053328637,0.012026553,0.031122303,-0.044471342,-0.04467342,0.011110187,0.056655042,-0.01796724,0.040093277,0.0067559443,-0.056562714,-0.057091173,0.009843034,-0.004447465,-0.004345804,0.07519155,0.026403667,-0.04534676,-0.06456235,-0.017555304,0.01880734,0.05806598,-0.013670399,0.06705431,0.08735761,-0.03614275,-0.1669603,-0.0133963525,-0.029509362,0.04731842,0.07087088,-0.072537035,0.0001729728,-0.008383336,-0.0020407706,-0.078594714,0.08206566,0.031282514,-0.009912569,-0.0034993405,0.000961049,0.045358475,-0.0085069705,-0.0024760154,0.00019150772,0.05879146,-0.07427638,0.11278735,0.049003247,-0.013323555,0.028290758,0.006794472,0.11108424,-0.06537049,0.043055102,-0.050461248,0.034578588,-0.0048001977,0.02882578,-0.022510534,0.049291883,-0.0057848636,-0.04769041,0.00061645923,0.0007370981,-0.05300194,-0.034296997,0.014759003,-0.037327603,0.013979305,0.011586439,-0.07867131,-0.016900063,0.036405202,-0.04612183,-0.033474848,0.066828206,-0.02159465,-0.019720258,0.0062461123,0.05877172,-0.01812864,-0.040526964,-0.031100772,-0.052042928,0.015671235,-0.015138095,0.01953464,0.001884429,-0.024897486,0.07186586,0.07115647,-0.014005042,0.021557385,-0.021136938,0.023087496,-0.053246614,0.17473988,0.049046732,-0.0013334356,-0.063480414,0.0066079856,-0.05246846,-0.05637954,-0.040349144,-0.032127313,0.07939629,-0.029390749,-0.005375344,0.023605967,-0.0044738497,0.03249827,0.009005154,0.0058955457,0.0642728,0.024123905,-0.038938913,0.0110607045,-0.014637199,-0.046663966,0.003326058,0.02429065,-0.22410512,0.005551636,0.01204999,-0.03839415,-0.044499233,-0.015878487,0.06960302,-0.08960456,-0.057908785,0.048190538,-0.118668966,0.04061628,-0.005918812,0.045501653,0.013277128,0.09531132,0.0072857863,-0.04539143,-0.026254768,-0.0643724,0.0537757,0.037741423,0.17689587,-0.029387856,0.08097239,0.053544156,-0.008580816,-0.02896554,-0.007093221,-0.02951574,0.0106466785,-0.0010457296,-0.0033146897,0.0140141435,0.073282935,0.053740013,-0.019524502,0.0051233247,0.045114007,-0.022328509,-0.015991658,0.06051463,-0.02159515,-0.043046765,0.11729859,-0.044096727,-0.057449263,-0.0037905963,-0.02737762,0.010871074,-0.051941443,-0.011059487,-0.019883607,0.022572624,0.009335055,0.04231337,-0.038927972,-0.006780581,-0.035859734,-0.03843258,0.03535838,0.027905934,-0.013663761,-0.0063403193,0.07806583]', NULL, '{}'::jsonb, '2026-03-01T19:26:36.235Z', '2026-03-01T21:39:32.406Z', 'trade_theory', 'Measuring Instruments');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1402, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-5', NULL, 162, 146, 'Fig 1 
+ _ CEILING 
+ ——"\ cleats 
+ N   es 
+ E 
+ Fig 2 
+ SCREW 
+ TOP HALF 
+BOTTOM HALF 
+ ELN227082  2-WAY CLEAT   a-WAY CLEAT 
+ ELN227081 
+ Types of Power wiring 
+ Cleat wiring is one of the cheapest wirings considering the 
+initial cost and labour, and is most suitable for temporary 
+wiring. This wiring can be quickly installed, easily inspected 
+and   altered.   When   not   required   this wiring   could   be 
+dismantled without damage to the cables,   cleats and 
+ accessories.   This type of wiring may be done by semi- 
+ skilled persons. 
+Objectives: At the end of this lesson you shall be able to 
+*   explain the types of electrical wiring and their application 
+*   state the advantages and disadvantages of each types. 
+Many wiring systems are developed to meet the safety 
+requirements, economy of cost, easy maintenance and 
+trouble shooting.   A particular system can   be chosen 
+according te technical requirements butthe systemneeds 
+to be approved by the local electricity authorities.   The 
+following are the fundamental requirements for any wiring 
+system.   They are: 
+i   Forsafety, switches should control the live phase wire. 
+The second terminal of the switch called as half wire 
+shouldbe connected to the appliance or socket through 
+the wire.   The neutral can be connected directly to the 
+appliance, socket or lamp. 
+ii   Forsafety, fuses should be placed inthe live/phasewire 
+only. 
+iii   Tosupply the rated voltage, parallel connections should 
+be given to all lamps and appliances. 
+Types of wiring system: There are three types ofwiring 
+systems used fortapping supply from mainsto the different 
+branches. They are as follows. 
+|   Tree system 
+2   Ring main system 
+3   Distribution board system 
+Tree system:   In this system, copper or aluminium strips 
+inthe formof bus bars are usedto connectthe mainsupply 
+to the raising mains (Fig1).   This system is suitable for 
+multi-story buildings and the bus bar trunking space is 
+provided inthe building at aconvenient locationand atload 
+centres for the purpose of economy. 
+Fig 1   
+TO SECOND FLOOR 
+-———*- NORTH SUB-BOARD 
+ ad   ALLL 
+ TO SECOND FLOOR 
+WEST SUB-BOARD 
+SUB MAIN BOARD 
+FIRST FLOOR   ==] 
+RISING   Z 
+MAINS 
+TO FIRST FLOOR,   FIRST FLOOR NORTH 
+CENTRAL AND   MAIN BOARD 
+WEST SUB BOARD 
+GROUND FLOOR 
+NORTH SUB-BOARD 
+TO GROUND FLOOR 
+ CENTRAL SUB- 
+ SUBMAIN   |   BOARD 
+BOARD GROUND 
+ MAINSWITCH   [fh m   wh   4   | FLOOR   t 
+TRIPPLE POLE   |   | 
+WITH NEUTRAL | a q   |   TO GROUND FLOOR 
+LINK   ''y =e {   WEST SUB BOARD 
+ 4   lela   N 
+ THREE PHASE 
+FOUR WIRE SUPPLY 
+WIRING OF BUILDING BY TREE SYSTEM  ELN227031 
+ 146   Power : Electrician (NSQF Revised - 2022)   - Related Theory for Exercise 1.7.62', NULL, '[0.02668527,0.006740829,0.038024705,-0.00090826896,-0.02330125,0.0699327,0.0043796203,-0.0039699343,0.0014989547,-0.012150465,-0.011051043,-0.06842965,0.005035413,0.05304168,0.050733875,0.027403435,0.034066856,0.065406695,-0.02601632,-0.0019567134,0.13212898,-0.021844383,-0.029870575,-0.032789826,0.051921744,-0.06655582,0.07441127,-0.020281993,-0.047587752,-0.17774215,-0.032465793,0.051996466,-0.0042738095,-0.013896894,-0.041912775,-0.063254684,-0.08038151,-0.0044866274,-0.1057616,-0.014441811,0.0640775,-0.030215962,0.025024487,-0.07180905,-0.033089142,-0.020199915,-0.020671789,0.0153531525,0.047674872,-0.027199822,0.00942869,0.009663314,0.032000467,-0.038094502,0.040689304,0.07559846,-0.0062883147,0.048169184,0.024198191,-0.038272336,0.050222255,0.03934543,-0.19512776,0.042615574,0.0473113,0.043477844,-0.014734811,-0.0072712647,0.07350494,0.02580695,-0.016553704,-0.01734042,-0.0033782977,-0.005106979,0.02457934,-0.008829354,-0.051834896,-0.04231514,-0.08318985,-0.003662648,-0.001845678,-0.005040468,-0.013526186,0.044492226,-0.005466139,-0.032368112,0.010382246,-0.029023623,-0.04722801,-0.023802463,-0.01309443,0.0047073914,-0.010970157,0.012401883,0.01305139,-0.035200372,0.0071979365,-0.03893961,0.006692907,0.10658161,0.0021665401,-0.012938807,0.124601565,0.015322491,0.091070615,0.017992899,-0.00526705,-0.054200154,-0.03164821,-0.04503821,0.011354225,0.00066497864,-0.057301432,-0.003200114,-0.025420886,-0.0028104063,0.010037194,0.042376284,0.0054435143,0.012724129,-0.09008471,0.0733599,0.073899895,-0.011434827,0.010008078,-0.09703031,0.03217908,-0.004628799,0.018872434,0.1069626,-0.005653726,0.007522444,0.01750985,-0.02519067,-0.00992404,0.010580486,0.029158218,0.011849719,0.04119328,-0.039468147,0.02596607,-0.07823251,0.034637522,-0.070718765,0.0045463885,0.032001734,-0.12970273,0.061932605,-0.06791049,-0.03152897,-0.035152458,-0.0072076996,-0.03973741,-0.026053073,-0.019773453,0.004706523,0.07018545,0.027154524,0.014346616,0.005888554,-0.021312173,0.035881937,-0.08510255,0.06316183,0.023939872,-0.12773177,0.025431812,-0.00839873,0.004454795,-0.010540034,0.006874389,0.03857475,-0.012690044,0.028047102,0.025728242,0.009037211,-0.053224754,-0.089785926,-0.02911503,0.07906819,0.04162839,0.024667073,-0.03632172,-0.00064128934,0.0015919408,-0.03499553,-0.008982258,-0.0068987533,0.008154309,0.07174381,-0.10879977,0.023447823,-0.12698154,0.02726373,-0.04474258,0.022204159,-0.04441073,-0.07906273,0.053430844,0.024118997,-0.022580424,0.004113343,-0.021043466,0.06347417,-0.04886017,0.015249792,0.010829644,-0.064617924,0.096136265,0.01990734,-0.009708191,0.008763428,0.094251096,-0.036861286,-0.029672148,-0.020621948,0.0037523622,0.039039105,0.08150322,0.027931847,-0.0071290378,-0.004182057,-0.025564706,-0.16434975,0.03952388,-0.016179502,0.0015829891,0.094199896,-0.0971324,0.015775187,-0.043587394,-0.07510199,0.0304837,0.1486823,0.0043624826,-0.004289464,0.02509417,0.02947577,0.10612652,-0.0021489402,-0.035810504,-0.029485209,0.071445495,0.057281446,0.07580616,0.027552653,-0.07021929,-0.04088883,-0.0037465976,0.14071633,-0.07507537,0.11457897,0.008366102,0.048151594,-0.044271834,0.016819201,-0.04303323,0.026662564,0.05157805,-0.02417157,-0.055894576,-0.011202188,0.027222421,-0.11195044,0.015298174,0.004558469,-0.023434287,0.034616813,-0.09029121,-0.06287068,0.021819213,-0.103385754,-0.00612349,0.0024590024,-0.03215457,0.02500959,-0.018041937,0.03386196,0.017248012,-0.09928533,0.025650155,-0.039954923,0.015295411,0.019792961,0.00028729433,0.04321749,-0.007565231,-0.021023907,0.037493255,-0.007479962,0.07439739,-0.02928885,-0.0405012,-0.018463476,0.12460028,0.035271555,-0.0128810685,-0.030078221,0.02539637,-0.021745898,0.004505284,0.048368007,0.008869906,-0.031835705,-0.066064395,-0.011277828,0.02924047,0.01449072,0.02216356,0.023248272,-0.014448179,0.058205444,-0.016832247,-0.062144794,0.0005737587,-0.04030316,0.015734239,0.033478994,0.033330455,-0.19553551,0.0242445,0.06012926,-0.073130295,-0.02955309,-0.003191252,-0.020447569,-0.03740498,0.013732775,0.027882414,-0.026872147,0.031438965,0.0202691,0.018944208,0.020367304,0.0016652704,0.080496915,-0.083833195,-0.008923758,-0.002986337,0.045920342,-0.06831183,0.14063933,-0.04060557,0.116576865,-0.0031136065,0.017074497,0.0430387,-0.015030035,-0.009139022,0.06119551,0.017479941,0.08572556,-0.013332462,0.112357,0.07835852,-0.014186402,0.017669283,-0.004349093,-0.05987542,-0.031882323,0.06378098,-0.08130481,0.013552763,0.10291957,-0.030125009,-0.033559687,-0.0806857,0.034900855,0.011970234,-0.050652497,0.07051772,-0.019643037,-0.012047869,-0.032666687,0.013778481,-0.03175862,-0.010147374,-0.009364355,-0.031103358,0.07549964,-0.01318103,-0.00028496454,-0.012833945,0.0884919]', NULL, '{}'::jsonb, '2026-03-01T19:26:36.568Z', '2026-03-01T21:39:32.406Z', 'trade_theory', 'Measuring Instruments');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1403, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-5', NULL, 163, 147, 'Ateach floor the running mainis connected to the sub-main 
+board through proper   cable terminations. Ifthere are more 
+than one flatin each floor the   individual main switches for 
+the flat get their supply fromthe sub-main boardthrougha 
+distribution network which may include an energy meterfor 
+each flat. 
+However the system adopted within the flat will be the 
+distribution board system. 
+Advantages 
+1   The length of the cables required for installation will 
+become less.   Hence, the cost is less. 
+2   This system is suitable for high rise buildings. 
+Disadvantages 
+1   The voltage across the appliances which are at the 
+farthest end of the tree system   may be   less when 
+ comparedito the one connectedto the nearest end ifthe 
+ bus bars size is not of sufficient size. 
+2   As fuses are located at different places, fault location 
+becomes   troublesome. 
+Tappings are taken for sockets or ceiling roses from the 
+pair of cables through fuses and controlling switches. 
+There may be saving of copper used because the current 
+can be fed from both   sides.   As this system requires 
+special sockets or plugs with fuses it becomes costly; and 
+hence rarely used in India. 
+ Fig 2   
+PERMANENTLY 
+ NON-FUSED   CONNECTED 
+FUSED   SPUR   EQUIPMENT 
+o   O   SPUR   i 
+ FUSED CONNEC- 
+ il   TION UNIT WITH 
+SWITCH 
+ |a| 
+NON-FUSED 
+SPUR 
+ i 
+in 
+ : |   NON-FUSED SPUR   : | 
+anal   CONSUMER UNIT   He 
+30A FUSE FOR   SINGLE SOCKET ;   ;   ;   ;   :   RING CIRCUIT   OUTLET 
+ Ring mainsystem:   This system consists of two pairs of   d 
+cables of size 4 or 68q. mm which run through the rooms 
+and are brought back to the main or sub-board (Fig 2&3). 
+ Fig 3   
+STATIONARY APPLIANCE   1A SOCKET-OUTLET   NEUTRAL 
+ AND CONTROL SWITCH 
+EARTH 
+LINE   4+ T   FUSED SPUR 
+ li   =   co   oo 
+ l   af   RING AND NON- 
+ I   ——= 
+ | —   FUSED CONDUCTORS NOT   NON-FUSED SPURS 
+ LESS THAN 0.67 X RATING OF 
+1   PROTECTIVE DEVICE-MINIMUM 408MM 
+ | 
+ I   P.V.C OR RUBBER INSULATED OR 0.003" M.LC.C 
+| 
+ONE RING CIRCUIT (AND SPURS) FOR 
+EVERY 100 SQ.M FLOOR AREA 134 
+SOCKET-OUTLET PLUGS FUSED 
+ 6A OR 164 AS APPROPRIATE 
+ fe   — <=> 
+ L SWITCHED FUSED Ss   ~   1   -o   | 
+ TWIN OR MULTIPLE   Vrib_ue-   SPUR BOX 
+SOCKET-OUTLET   1}   |   Fr   (ALTERNATIVELY 
+EACH OUTLET   Teen   |   | ene 
+ COUNTS AS ONE   nT   CIRCUIT-BREAKER) 
+ é   NON-FUSED 
+SPUR FROM 
+NEUTRAL   392A   EARTHING|   THE ORIGIN OF THE 
+BAR   FUSE   TERMINAL|   RING CIRCUIT 
+ FUSE BOARD  ELN227093 
+ As per IEE regulations one ring circuit has to be there for 
+every 100 sq metres   of   the floor area or partthereocf. The 
+number of power plugs fedfrom branchlines (spurs) should 
+not exceed two and the total current should not exceed 30 
+Power : Electrician (NSQF Revised - 2022)   - Related Theory for Exercise 1.7.62 
+amps. Protectionfor individual power plug can be provided 
+by having built-in-fuses with the individual power plugs or by 
+having MCB type switch and socket arrangement. 
+ 147', NULL, '[-0.04122586,0.034211345,0.019319922,0.015492612,-0.030620188,-0.023198942,-0.003553031,0.061857488,0.040457435,0.03948565,0.015057748,-0.018291507,0.0616748,0.021016154,0.043217648,0.0131110875,-0.032327138,0.045395188,-0.02546275,0.06679792,0.113371976,-0.062374365,-0.054814763,-0.004353939,0.03366671,-0.027901595,0.011475512,-0.046580985,-0.043032452,-0.19359747,0.019319069,0.037786793,0.04097351,0.009340639,-0.08401697,-0.08409944,-0.0028324006,0.013241196,-0.064747155,0.023874026,0.030484824,0.055367142,0.009257015,-5.012497e-05,-0.017094241,-0.012178623,-0.02931707,0.0070962203,0.020022653,-0.030273693,-0.0142270485,0.02140163,0.0060783303,0.0168643,-0.0069756266,0.008497519,-0.0031746987,0.024340047,-0.0037091516,0.042240713,0.06720172,0.035670247,-0.16072693,0.04702641,0.0540036,-0.005537063,0.007018659,-0.033893794,0.09060088,0.039967984,-0.0052302945,0.020876663,0.058387574,0.023152286,-0.0051872097,-0.07015319,0.010588362,-0.02999964,-0.04639377,-0.007284165,0.034464594,-0.0672646,-0.02968147,0.011067233,-0.07820932,-0.0045811427,-0.018803306,-0.097878635,0.050559442,0.000738233,0.034675993,0.0015252293,0.026169108,0.023143249,0.105210826,-0.027007919,-0.006139992,-0.04743871,-0.047451194,0.109482214,-0.0029940263,0.03651582,0.08103467,0.016289761,0.004836671,-0.049331285,-0.015021448,0.034426987,0.0015994769,-0.0354904,-0.0028420263,0.0035049368,-0.053796157,0.0066010747,0.016683538,-0.028687619,0.00988592,-0.019025516,-0.02735806,-0.028952245,-0.09289743,0.06178898,0.063802786,-0.02846008,-0.025665373,-0.04271948,0.032156575,0.024329584,0.02554231,0.06804937,0.024460645,-0.10334984,0.014191998,0.010020073,-0.039204918,0.056182783,0.10669748,0.021275207,-0.010810415,0.029943468,0.027591558,-0.053306505,0.045813132,-0.07756111,0.049918465,0.0069723343,-0.071601555,0.023542468,-0.045955952,0.030167734,-0.07556856,-0.009134419,-0.0073732985,-0.008082581,0.018929224,-0.027254662,0.042154074,0.065417,-0.02531427,-0.03258876,-0.058487125,0.012511734,-0.060058247,0.091883235,0.04288475,-0.121866256,-0.065351225,0.002491801,0.0047237366,-0.032320328,0.032616463,0.033348296,0.020211838,0.039982144,0.054913316,-0.024104802,-0.039030254,-0.09524565,-0.06378664,0.026542291,0.04788673,0.0072342893,-0.008597065,-0.038992934,0.043328557,-0.08283313,-0.01136414,-0.008362863,-0.033916507,0.09042461,-0.09637058,0.033853486,-0.07105595,0.051106825,0.008624578,-0.050292887,-0.05278845,-0.007106665,-0.009070648,0.005055249,-0.00044178302,-0.032913595,0.0064543113,-0.016328407,0.0150684165,0.07742668,0.0019008074,-0.057990074,0.03635912,-0.0046838284,0.012247972,0.018000277,0.092194505,-0.030348875,-0.050851528,0.014573384,0.067905426,0.05327681,0.07830151,0.02927092,-0.02251525,0.009229279,0.018557772,-0.17841944,-0.014812921,0.051779065,-0.062225576,0.08797361,-0.05099308,-0.010599489,-0.015054815,-0.075054266,-0.0015573016,0.14820181,-0.014656838,0.043245926,0.058701765,0.011376906,0.06583929,-0.03709484,0.0034136272,-0.038002852,-0.026103295,-0.0044902717,0.09967036,0.0045939027,0.008323637,-0.0009656831,-0.02060059,0.10355425,-0.13494527,0.03682171,0.055548105,-0.0008501075,-0.04975641,0.008925626,-0.061903678,-0.0146288015,0.07621706,0.035847533,-0.031949744,-0.020054402,-0.04208536,-0.09415674,-0.004168566,-0.027522942,-0.104540735,0.02006479,-0.093192466,-0.027868696,-0.02870119,-0.005326507,0.035133436,0.049780406,-0.057303727,0.063832924,-0.019235786,0.12164212,-0.06292125,-0.008134293,0.055222284,-0.012601432,0.079798125,-0.04099513,0.04352523,0.011789863,-0.057064205,-0.017623715,0.024899602,-0.07535516,0.06806519,-0.015649173,-0.05321638,-0.0180719,0.09419781,0.020763814,0.008257037,0.007167406,0.032917526,0.015076271,-0.031644695,0.031943716,-0.035882905,0.0078028757,-0.03662097,0.017781438,0.033613205,0.04308459,0.030163983,0.007044668,0.02945589,0.040358037,-0.010485439,-0.015783092,-0.00224902,-0.074640766,0.02248823,0.030026585,0.035095666,-0.25701264,0.0004493244,-0.0015862195,-0.055193424,-0.06829686,0.0062513934,-0.007164958,0.023069084,0.010545331,0.020515557,-0.027918372,0.012466672,-0.049927983,-0.06449729,-0.017787006,-0.018810747,0.070223905,0.014425598,0.032029852,-0.058181446,0.036836095,0.0124220485,0.19226174,-0.0408141,0.027246865,-0.0069573456,-0.021732623,0.06396618,-0.10295582,0.0070918044,0.026608111,0.019757148,0.023413,-0.054911103,0.083673984,0.035211664,-0.0017718043,0.008739518,-0.005393693,0.008261197,-0.017268619,0.043975532,-0.08786351,0.0022067209,0.121659204,-0.06622609,-0.04149375,-0.043127205,0.060481146,-0.014144737,0.021156773,0.036418747,0.054745354,0.018343898,-0.028839415,-0.004170425,-0.008559132,-0.0048116017,0.0006844107,-0.03286746,0.02979559,-0.06428492,0.04721542,0.0064349305,0.11238264]', NULL, '{}'::jsonb, '2026-03-01T19:26:36.886Z', '2026-03-01T21:39:32.406Z', 'trade_theory', 'Measuring Instruments');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1404, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-5', NULL, 164, 148, 'Distribution board system:   Thisis the most commonly 
+used   system.   This   system   enables   the   appliances 
+connected to the system to have the same voltage.   The 
+main switch is connected tothe distribution board through 
+suitable cables.   The distribution board has a number of 
+fuses depending upon the number of circuits required inthe 
+installation, andthe phase and neutral cable ofeach phase 
+are taken from the distribution board (Fig 4). 
+ LINK 
+ CIRCUIT 
+1   2   3   
+EARTH TERMINAL 
+Ly]   Ny]   Le]   No]   bg}   Ng}   q 
+!   NEUTRAL   ! 
+ | 
+| 
+ x 
+MAIN ICDP   5 
+ 16A,240V,50Hz   2 
+ Ww 
+ As each circuit can have power up to 800 watt, the phase 
+wire which is taken from the circuit fuse of the distribution 
+board is looped to the other light switches or fanswitches 
+of the same circuit by any one of the following ways. 
+No joint is allowed in the cable route except in 
+switches, ceiling roses and joint boxes. 
+a   Looping out from switch and ceiling rose:   Fig5 
+shows the simple looping in method which is commonly 
+employed.   The phase wire which is connected to the 
+terminals of the switch is looped out to the next switch 
+and   so   on,   whereas the   neutral wires   are   looped 
+together fromceiling roses (Fig 5). Cable consumedin 
+this system is very high. 
+ Fig 5   
+FLEXIBLE FOR   - CEILING ROSE 
+PENDANT LAMP 
+NEUTRAL   a   ke 
+W)   TO NEXT 
+CEILING 
+ROSE AND 
+Loe   SWITCH 
+ FUSE ON   ~— HALF OR 
+ PHASE   OFF WIRE 
+ (Cf) “SJ   “sed  SWITCHES —”   a 
+PHASE OR LIVE WIRE   § 
+ wi 
+ b   Looping out from switch:   This system employs 
+special switches havingtwo terminals and one connector 
+(Fig6). Both the phase and neutral cables aretakento 
+the switch for looping the cables. Asthese accessories 
+are notcommonly manufactured in Indiasuchasystem 
+is not used. 
+ Fig 6   
+FUSE ON   BRACKET OR 
+ PHASE   GEILING ROSE   BATTEN HOLDER 
+b—   SS 
+ NOW 
+ NEUTRAL 
+ SWITCH 
+ TERMINALS 
+CONNECTOR 
+ :   NEUTRAL   TEGMINAE 
+ f   |   TO NEXT 
+ SPECIAL SWITCH   PHASE FOR LIVE WIRE   ELECTRIC   2 
+ POINT   8 
+ WIRING WITH TWO TERMINALS AND ONE CONNECTOR SWITCH   3  Lu 
+ c   Looping outfrom3-plate Ceiling roses: Inthis type 
+of system, three terminal ceiling roses needto be used. 
+Asthis system usesless cables whencompared to (a), 
+this system is in use in some parts of India. (Fig 7) 
+ Fig 7   
+PHASE 
+NEUTRAL 
+NO   TO NEXT 
+CEILING 
+ROSE 
+ Lo—=—   al 
+ FUSE ON   NEUTRAL 
+ PHASE 
+ |   FLEXIBLE FOR 
+ TWO TERMINALS   PENDANT 
+ AND ONE   LAMP 
+ GONNECTOR   a 
+CEILING ROSE   aa 
+ z 
+ WIRING WITH THREE TERMINALS CEILING ROSE   3  uw 
+ d   Looping outwith junction bex:   Inthis systema   pair 
+of conductors fromthe distribution board is brought to 
+the junction box and tappings are taken to switches, 
+two plate ceiling roses as well as other points fromthe 
+junction   box.   This method may be economical for 
+lodges where a row of rooms are constructed on either 
+side of a common corridor. (Fig 8) 
+ Fig8   
+NEUTRAL   TO NEXT 
+POINT 
+ |   |   ft 
+ ———   fA   | 
+FUSE ON SHAS   c   CEILING ROSE 
+ Pama 
+ JUNCTION BOX —~]   y)   Ne 
+ WITH THREE   FLEXIBLE 
+TERMINALS   bee   eet   NZ   FOR 
+Aaa   PENDANT 
+a   LAMP   sg 
+z 
+SWITCH   3 
+ int 
+ 148   Power : Electrician (NSQF Revised - 2022)   - Related Theory for Exercise 1.7.62', NULL, '[-0.052714325,-0.0009044837,0.06807736,-0.05648446,0.023199396,-0.04578757,0.07151724,0.019363413,0.07299548,0.050769817,0.0076789064,-0.030888163,-0.014196793,0.014338831,-0.016527865,0.07313204,-0.021728331,0.026427848,0.010460764,0.06286706,0.1408653,-0.009953838,-0.09421766,-0.017090566,0.051564243,-0.066060565,0.008937655,-0.032111403,-0.06279586,-0.1854369,0.018358754,0.02371393,0.015039275,0.010550433,-0.058402073,-0.107298866,-0.04903198,-0.02877694,-0.02134512,-0.020880094,-0.054294467,-0.018146774,0.056541927,-0.005440859,-0.018672414,0.011600676,-0.072089635,-0.016435657,0.06688809,-0.0071252002,0.046814766,-0.0037188893,0.039256543,-0.0100605665,-0.030584995,0.071147196,0.044851612,0.029777365,0.043496486,0.061599232,0.040749837,0.028342964,-0.20593205,0.039909244,0.05917772,-0.0010073844,0.027167026,-0.039692506,0.06652578,0.010355073,-0.024334604,-0.0013959464,0.027699804,-0.009657447,-0.008714675,-0.034254726,0.02445648,-0.0594969,-0.03257224,-0.016517233,-0.01444569,-0.056618046,-0.0025754513,-0.0019476515,-0.001443869,0.00763214,-0.029219821,-0.06416373,0.0030980874,-0.031015882,-0.0060554733,-0.0035286245,-0.02054456,-0.0027202375,0.00016513353,-0.10279415,-0.010620814,-0.023907715,0.004527074,0.08399062,-0.0077288225,0.07930144,0.05904488,0.026335355,0.05074989,-0.049671907,0.03642308,-0.0033449333,-0.0036524776,0.0150883,0.022679668,-0.05290611,0.039817717,-0.00075951073,0.051806796,-0.04539249,-0.0017750537,-0.030886792,-0.010110635,-0.052760694,-0.07216344,0.08508372,0.06802845,-0.016853942,-0.03505434,-0.016385041,0.013886667,0.014270423,0.03545651,0.018055663,0.041478552,-0.062243298,0.005975277,-0.023305962,-0.051998366,0.08640397,0.066950366,0.034474354,0.043356124,0.0066421647,0.040404957,-0.02668388,0.010167319,-0.06693894,0.0076317843,-0.014389512,-0.043732774,0.03950378,-0.0014645089,0.04659279,-0.028608274,0.00014151064,-0.029842522,-0.043399744,0.0004413357,-0.017051183,0.030632738,0.119427115,0.007019303,0.0041931905,-0.031084325,0.042420503,-0.042449597,0.058696125,-0.0029959534,-0.13540976,0.014858349,0.017062932,0.016949356,-0.03258282,0.020631526,0.052732106,0.013305958,0.031712055,0.06251507,-0.01284109,0.013994457,-0.053562593,0.038785286,0.041233942,0.011742225,0.010667513,-0.031754274,0.07376788,0.07913618,-0.049574308,0.03220206,-0.041877713,-0.071692705,0.033626404,-0.0767432,0.08407211,-0.07331787,0.08005672,-0.013665576,-0.06709398,-0.12951817,-0.04423992,0.03576191,-0.0002704768,0.028462198,0.0059370543,-0.006559185,-0.020065064,0.024333104,0.035066996,0.014054158,-0.06594054,0.036466975,0.013437698,-0.016517503,0.02828178,0.07438378,0.01834585,-0.06544062,0.023924287,-0.005795678,0.05511803,0.04915934,0.05362726,0.07290824,-0.0019342707,-0.0042703943,-0.18841189,0.022029236,0.096407145,-0.025358079,0.06730633,-0.038399648,-0.04547194,-0.07019177,-0.063572414,0.032513715,0.12539451,0.02558223,0.08922567,0.03837097,0.057022475,0.061616953,0.0022637448,-0.010112087,-0.011345496,0.030766184,0.020320036,0.010594538,0.05450908,-0.06614975,0.03236123,-0.0024758321,0.11600079,-0.049646936,0.0069075916,0.042325743,0.024894267,-0.016883641,-0.034193065,-0.0040076994,0.067395195,-0.03871023,0.016676381,-0.04882057,0.0041173184,0.04458929,-0.056570847,0.005165865,-0.016302923,-0.0673655,0.048433747,-0.06621876,-0.03830484,-0.048187867,0.01451392,-0.0074041667,-0.014532765,-0.04539357,-0.031383403,0.003933757,0.11576975,-0.06766191,-0.05591312,0.030867098,-0.04819414,0.05491952,0.005814298,0.052019965,0.007885291,-0.03533406,-0.027643885,0.009450821,-0.023833353,0.06311977,0.02777633,-0.033608213,-0.071393,0.11017849,0.023316571,0.012704483,-0.002246031,-0.0012887613,-0.018541308,-0.017445363,-0.0034741075,-0.014428849,0.009342855,-0.044998884,-0.019491587,0.08905941,0.024980357,0.01229319,-0.017294973,0.026214015,0.078725226,0.01800853,-0.038207646,-0.0131530985,-0.08046315,0.0034087212,0.03224033,-0.03328786,-0.22969295,0.0009537628,-0.059591126,-0.026028195,-0.08293773,0.039962254,0.06225198,0.00019512056,-0.012582973,0.0074284226,-0.07480537,0.018116327,0.0026296454,-0.025818469,0.0014029467,0.018713662,0.06555945,-0.02436164,-0.019488795,-0.0936659,0.012612348,-0.002471929,0.17564785,-0.013433275,0.021791967,-0.058348134,-0.006521732,0.08025184,-0.09803144,0.019651558,0.0018323923,0.007301977,0.012518182,-0.043896724,0.056880902,0.046269547,-0.01819577,-0.012235372,-0.0049028103,0.0021293764,-0.045837253,0.06815991,-0.12155853,-0.048956323,0.11070655,-0.04852101,-0.04682915,-0.052059367,0.031349257,0.001068924,-0.07391652,0.06569231,0.010441736,-0.034412503,-0.0039742943,-0.0023216675,-0.04868396,-0.030214144,0.011383458,-0.024864364,0.03305091,-0.041084033,0.024681032,0.0001724196,0.13570586]', NULL, '{}'::jsonb, '2026-03-01T19:26:37.191Z', '2026-03-01T21:39:32.406Z', 'trade_theory', 'Measuring Instruments');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1405, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-5', NULL, 165, 149, 'Power 
+Electrician - Basic Wiring   Practice 
+Related Theory for Exercise 1.7.63 
+Principle of laying out of domestic wiring 
+ Objectives: At the end of this lesson you shall be able to 
+*   explain the layout, installation plan, circuit -diagram, wiring diagram and state their uses 
+*   State the B.I.S. regulation pertaining to wiring installation. 
+In electrical wiring work, the electrician is supplied with a 
+layoutof wiring installation and aninstallation planinitially. 
+On the   basis   of the   layout   and   installation   plan,   the 
+electrician should draw the circuit and wiring diagrams 
+beforethe commencement of   workfor systematicexecution 
+of the work. 
+The terms used inwiring installation drawings are explained 
+ here. 
+ Layoutdiagram: Some customers give their requirements 
+in writing. But a few can give them in the form of a layout 
+diagram to the electrician. 
+The layout diagram (Fig 1) is a simplified version of the 
+wiring diagram. Its purpose is to inform the reader quickly 
+and exactly, what the circuitis designed for without giving 
+any information on the circuit itself. 
+ Fig 1 
+ 4 
+ 250   160)   2   300 
+ Ps   a   3 =   >   > 
+600 
+a3   73   |450 
+ oA   E 
+ LAYOUT   3  ub 
+ Thistype of layout diagramis used for preparing architectural 
+ diagrams, plans, etc. of a building. 
+ In   a   layout   diagram,   it   is   necessary   to   indicate   with 
+symbols   details like whether   the wiring isonthe surface or 
+concealed, andthe run “up or down’, the number of wires 
+inrun, dimensions, and accessories with appropriate |.S. 
+symbols. 
+Installation plan (Fig 2): This plan shows the physical 
+position of accessoriesin an installation, andalso givesthe 
+final appearance of   the installation. 
+Circuit   diagram   (Fig   3):   This   shows the   schematic 
+connections of the circuit for aspecific task inthe simplest 
+form, incorporating the graphical symbols. 
+The purpose ofa circuit diagram is to explain the function 
+ofthe various accessoriesinthe circuit. Fiq3isanexample 
+of acircuit   diagramfor controlling a lampfrom two different 
+places. 
+Wiring diagram (Fig 4): Thisistnhe diagram in which the 
+position   of   the   components   in   the   diagram   bears   a 
+resemblance to their actual physical position. 
+ Fig 2 
+ 5 
+ INSTALLATION PLAN   2  Wu 
+ Fig   3 
+ N   NZ 
+ 7N 
+ 240 
+50 Hz 
+ SCHEMATIC {CIRCUIT} DIAGRAM 
+ ELN227113: 
+ Fig 4also shows the wiring planfor controlling a lampfrom 
+ two different places with their actual locations. 
+ Fig 4   
+ie ou   “I LAMP-HOLDER 
+ *)   WITH LAMP 
+ I 
+| 
+ =| 
+ TWO-WAY SWITCH 
+WIRING DIAGRAM 
+TWO-WAY SWITCH 
+ELN227414 
+ Forhisown good and to facilitate quicklocation of faults at 
+a later stage, the   customer shouldinsist onthe electrician 
+giving him a copy of the wiring diagram soon after the 
+completion of wiring. 
+ 149', NULL, '[0.007974585,0.021916255,0.05433777,-0.03319139,-0.111733794,0.06955453,-2.2439339e-05,0.044862576,0.013685338,-0.029713253,-0.0013710033,-0.020277135,0.042650945,0.047044355,-0.01879763,-0.041607592,-0.075017594,0.029873468,0.000100100304,-0.008959053,0.147426,-0.060411815,-0.054500237,-0.021316824,0.083702564,0.04042973,0.07516769,-0.014130762,0.030760957,-0.19887258,-0.019648962,0.05123479,0.018335437,0.018705793,-0.08451007,-0.05835094,-0.02211924,0.049823157,-0.006585142,-0.024918048,0.021449083,-0.06417738,0.0564122,-0.061984744,0.0228295,-0.00541047,-0.010765713,-0.011039489,0.010445717,0.0018445743,0.046953805,-0.035373393,0.022049464,0.04898669,0.03655949,-0.011271334,0.07878474,0.003102058,0.043600775,0.03123571,-0.018930623,0.07018482,-0.23577398,0.06906947,0.064523615,-0.0070183766,-0.01589298,0.0026014477,0.102359094,0.0844888,-0.061693795,-0.098570496,-0.0630619,0.022634288,-0.008801324,-0.030452074,0.013449566,-0.027381944,-0.0625886,-0.03212142,-0.032033686,0.053121056,-0.021760335,0.025303772,-0.0434228,0.07060682,0.032884616,-0.057763264,0.038803525,0.024423419,0.040164784,-0.019862786,-0.08153544,-0.029325103,0.0024373534,-0.07705929,-0.013803552,-0.034715757,-0.03446563,0.07783391,-0.071973994,0.008292611,0.069267206,0.09766021,-0.0006224649,0.0012244905,-0.008474865,-0.006838439,-0.06313621,-0.044932224,-0.028814176,-0.03466076,-0.08086834,0.03779997,0.103196755,-0.021279726,0.028588852,0.07388772,0.07524602,0.00041736584,-0.018179867,0.019300021,0.057489138,0.008613276,0.015935171,-0.084967956,-0.011809105,0.015483557,0.016365718,0.05453998,0.03125509,-0.015286077,-0.014210653,0.02926399,-0.005720626,0.017879132,0.053291067,0.039054714,-0.026229203,-0.023001097,-0.011545956,0.026830267,-0.016540676,-0.083365776,0.032277655,0.07153035,-0.1006335,0.03392953,-0.046571646,0.0054902676,-0.044891436,0.058026776,-0.04893198,-0.019796537,0.012468059,0.036656253,0.0050254283,0.0033006195,-0.029049458,0.035535663,-0.036845453,-0.03754692,-0.05579128,0.03289655,0.027324991,-0.11441175,-0.036325797,-0.029617202,-0.006544137,-0.026200617,0.005813911,0.036367815,-0.009139885,0.0035327424,0.030597445,0.029646108,-0.035139635,-0.045332685,-0.026477573,0.013155789,0.033560365,-0.023214761,-0.040647075,-0.01882901,0.026899213,-0.006315063,-0.03730673,-0.006770372,-0.027745461,0.07951624,-0.09267491,0.06318402,-0.024694933,0.04829478,-0.007917784,0.004070954,-0.032056883,-0.034853723,-0.043704905,0.059105482,0.031450063,-0.022163156,-0.012647184,0.012343828,-0.09156543,0.07076982,0.03242098,-0.03524174,0.060897425,0.05302052,-0.057971984,-0.0053773737,0.06116581,-0.013777025,0.028875574,0.0056208945,-0.025110604,0.03322555,0.06191066,-0.00054264633,0.02127004,0.020675048,-0.009158543,-0.1864413,0.027698042,0.03675,-0.028100744,-0.018758116,-0.034912314,0.07742176,0.010465883,-0.03949348,0.025347676,0.09054371,0.006657153,-0.015634455,-0.011392386,-0.100788616,0.026405133,0.011995685,-0.008883384,-0.08181658,0.013104927,0.021725178,0.024409529,-0.034634825,-0.059179083,-0.027305717,-0.0029628,0.12893936,-0.043431558,0.08004317,0.033289373,0.033966534,-0.020970898,-0.03509361,-0.06482312,0.012904135,0.026042694,-0.020728705,0.024660792,0.040014137,-0.017790185,-0.040092565,0.063129425,-0.011143515,-0.031588126,0.019460391,-0.043089222,-0.034597825,-0.028177205,-0.046964467,-0.0234897,0.09404047,-0.015609751,0.012832173,0.025273142,0.038391147,-0.029320851,-0.038954448,0.07109424,-0.05398384,0.0155029185,0.010496536,0.0018464493,0.044680998,-0.03775768,0.034396354,0.054573014,0.028029243,0.043704502,0.020410875,0.05061539,0.0016979142,0.10095843,0.033110123,-0.045630094,0.054085705,-0.028203836,0.026411097,-0.019743092,0.019471353,-0.056191955,-0.021752374,-0.0641498,0.023486609,0.001105283,0.0044315443,0.04387907,-0.007589673,-0.01952881,0.027934736,0.045474984,-0.07382126,0.024401514,-0.004334492,0.0051725786,0.0145202745,0.015016283,-0.27359807,0.03548064,0.043470666,0.048630964,-0.07148624,-0.024934994,0.03750518,-0.0494611,-0.008911193,-0.038220476,-0.050164487,0.026493784,0.06386558,0.019255769,-0.01978334,0.002394615,0.1006473,-0.0375381,0.020759108,-0.009500803,0.046943303,0.042269778,0.17111027,-0.056520276,0.063456304,0.0029907373,0.012734541,0.016087668,0.041583378,-0.010564523,0.038971726,0.020867784,0.09497117,0.0037087717,0.08793995,0.047690563,-0.024425961,-0.021344421,-0.013535979,-0.0761336,-0.09685613,-0.02416607,-0.07917028,0.014786579,0.071082816,-0.019210434,-0.05066907,-0.019485394,-0.060754146,-0.035418693,-0.04843085,0.039432384,-0.031843346,-0.0066127037,8.115598e-05,0.046097502,-0.0472931,-0.019853884,-0.004158937,0.0010066548,-0.0071760803,-0.084301084,0.085460454,0.006546612,0.08019476]', NULL, '{}'::jsonb, '2026-03-01T19:26:37.508Z', '2026-03-01T21:39:32.406Z', 'trade_theory', 'Measuring Instruments');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1406, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-6', NULL, 166, 150, 'B.I.S. Regulations and the N .E.   code pertaining to 
+wiring installations 
+The wiring installation shell generally be carried out in 
+conformity with the requirements ofthe Indian Electricity 
+Act 1910, as updated from time to time and the Indian 
+Electricity Rules 1956, framed thereunder, and also the 
+relevant regulations of the electric supply authority of the 
+concerned area (State Government). 
+The following are some of the extracts of B.S. (Bureauof 
+Indian   Standards)   regulations   pertaining   to   wiring 
+installations. Allthe B.1.S. regulations are recommended 
+by the National Electrical Code (NEC). 
+B.1.S. regulations pertaining to wiring installations 
+Wiring: Any one of   the following types of wiring may be 
+used ina residential building. 
+*«   Tough rubber-sheathed or P¥C-sheathed or batten 
+wiring. 
+*   Metal-sheathed wiring system 
+*   Conduit wiring system: 
+a   rigid steel conduit wiring 
+b rigid non-metallic conduit wiring 
+¢«   Wood casing wiring 
+Permissible load in sub circuit and power circuit 
+Sub-circuits - different types: The sub-circuits may be 
+divided into the following two groups: 
+¢   Light and fan sub-circuit 
+*   Powersub-circuit. 
+After the main switch, the supply shall be brought to a 
+distribution board. Separate distribution boards shall be 
+used for light and power circuits. 
+Lightand fan sub-circuits: Lights and fans may be wired 
+onacommoncircuit. Each sub-circuitshall have not more 
+than a total of ten points of lights, fans and 6A socket- 
+outlets. The load on each sub-circuit shall be restricted to 
+800 watts.   If   a separate circuit is installed for fans, the 
+number of fans in that circuit shall not exceed ten. 
+Power sub-circuits: The load oneach power sub-circuit 
+should normally be restricted to 3000 watts.   In no case 
+shall there be more than two outlets on each sub-circuit. 
+If the load on any power sub-circuit exceeds 3000 watts, 
+the wiring for that sub-circuit shall be done inconsultation 
+with the supply authority. 
+Lighting   :   A switch shall be   provided adjacent to the 
+normal entrance to any area for controlling the general 
+lighting in that area. The switches should be fixed on a 
+usable wall space and should not be obstructed by a door 
+or window inits fully open position. They may be installed 
+at any height up to 1.3m above the floor level. 
+The light fittings in kitchens should be so placed that all 
+working surfaces are well illurninatec and no shadow falls 
+on them when in normal use. 
+For bathrooms, it is recommended to use ceiling lighting 
+with the switch located outside the bathroom. 
+It is recommended that lighting facilities be provided for 
+lighting of all steps, walkways, driveways, porch, carport, 
+terrace, etc, with switches for each provided inside the 
+house at a convenient place. Ifthe switches are installed 
+outdoors, they should be weatherproof. 
+Waterproof lighting fittings should be used for outdoor 
+lighting. 
+Socket-outlets: All plugs and socket-outlets shall be of 3- 
+pintype, the appropriate pin ofthe socket beingconnected 
+permanently to the earthing system. 
+An adequate number of socket-outlets shall be placed 
+suitably in all rooms so as to avoid the use of long lengths 
+of flexible cords. 
+Only 3-pin, 6A socket-outlets shall be used in all light and 
+fan sub-circuits. 3 pin,   16Asocket-outlets shall be controlled 
+by individual switches which shall be located immediately 
+adjacenttoit For6A socket-outlets, if installed at a height 
+of 130 cm above the floor level,   in situations where a 
+socket-outlet is accessible to children, itisrecommended 
+to use shuttered or interlocked socket-outlets. 
+Dining rooms, bedrooms, living rooms, and study rooms, 
+if required, shall each be provided with atleast one 3-pin, 
+16A socket outlet. 
+No socket-outlet shall be provided in the bathroom at a 
+height less than 130 cm. 
+Fans: Ceiling fans shall be wired to ceiling roses or to 
+special connector boxes. Allceiling fans shall be provided 
+with a switch besides its regulator. 
+Fans shall be suspended from hooks or shackles with 
+insulators between the hooks or shackles and also with 
+insulators between the hooks and suspension reds. 
+Unless otherwise specified, all ceiling fans shall be hung 
+not less than 2.75 m above the floor. 
+Flexible cords: Flexible cords shall be used only for the 
+following purposes. 
+*   Forpendents 
+*   Forwiring of fixtures 
+*   For   connection   of   transportable   and   hand-held 
+appliances 
+Mounting   levels of the accessories and cables as 
+recommended in B.I.S. and N.E.C. 
+Height of main and branch distribution boards should be 
+hot   more than 2m from the floor level.   Afrant clearance of 
+1 mshould also be provided. 
+All the lighting fittings shall be at a height of not less than 
+2.20 mfromthe floor. 
+A switch shall be installed at any height   1.3 mabove the 
+floorlevel. 
+Socket-outlets shall be installed either 0.25 or   1.3 mabove 
+ the floor as desired. 
+ 150   Power : Electrician (NSQF Revised - 2022)   - Related Theory for Exercise 1.7.63', NULL, '[0.02964445,0.012572984,-0.019344544,-0.08374635,-0.036558326,0.04311396,0.041542288,-0.03836209,0.027487097,0.014149281,-0.08123091,-0.059204474,0.05128525,0.032403864,-0.019732999,-0.0036003136,0.055714525,0.035039492,-0.0066789566,0.03774805,0.15086536,0.010588102,-0.044800844,-0.0012768077,0.026911482,-0.01323074,0.037497647,-0.045082953,-0.01499126,-0.14790183,0.021829942,0.0044230856,0.03870376,0.03390039,-0.061107915,-0.06750197,-0.04114359,-0.0052223625,-0.0008418636,-0.024129357,-0.017729832,-0.030169783,0.11681935,-0.059296828,-0.055840883,0.038343113,-0.005797503,-0.02260147,-0.016923292,-0.015852813,0.05029923,-0.000782129,0.015100688,0.02019624,-0.01725724,0.0085557485,0.01965935,0.06943298,0.05844551,0.050498325,0.025272451,0.07150277,-0.2310991,0.056392938,0.1251041,0.003002728,-0.032141168,-0.053548392,0.05933673,0.05119535,-0.055121224,-0.032544043,-0.0016817667,-0.022457493,-0.044415753,0.049359176,-0.018747022,-0.036397107,-0.05190554,0.005756588,-0.027656019,-0.015518235,-0.024600724,0.011600257,-0.027352706,0.039773736,-0.0126756085,-0.051378142,0.008799485,0.023755262,-0.016600065,-0.02938226,0.015946401,0.017964035,-0.024228262,-0.13249008,-0.0783368,-0.013297571,0.0013837434,0.079087764,-0.005288259,-0.039369572,-0.012102988,0.04725275,0.044042155,-0.028879017,0.034998793,-0.0114581,-0.0062699057,-0.0018478181,-0.0017793423,-0.013570215,-0.011297105,-0.0632767,0.037340224,0.0017687547,0.039550744,0.049300622,0.025136374,-0.0015463493,-0.065291576,0.044691313,0.07801881,-0.014521526,0.0006538725,-0.03238269,-0.017533137,0.026997944,0.028224587,0.042293258,0.009805411,-0.007347867,-0.06283728,-0.0196926,-0.018394658,0.030433705,0.042623043,0.0835517,0.029113762,-0.03991851,-0.010501716,-0.05389388,0.08974798,-0.074579336,0.0072136554,-0.04582533,-0.05374164,0.09591283,-0.039757818,-0.048739973,-0.074064635,0.06785335,-0.06558364,-0.0353784,0.014307035,0.0042403685,0.011068068,0.031511407,-0.04467761,-0.015363118,-8.892005e-05,0.023167375,-0.029376203,0.057682533,0.015362199,-0.08427485,0.0026485838,-0.018709794,-0.012710103,-0.010461075,-0.017454702,0.06780239,-0.019889532,0.020590888,0.025797019,0.051533867,-0.013494223,-0.0070735333,-0.09207491,0.066441916,-0.021207953,-0.054959808,-0.07400407,-0.0017461474,0.056948766,-0.023675455,-0.051074527,0.015618207,-0.020188985,0.058734078,-0.10937375,0.04506018,-0.1189035,0.0696491,0.0011031543,-0.03581739,-0.055681217,-0.051465612,0.0024578243,-0.049294803,0.015684716,-0.015124031,-0.03437439,0.025679203,-0.02964523,0.02895508,0.01820319,-0.05414929,0.022617547,0.045145925,-0.04386347,-0.0029216611,0.10194691,-0.002383799,-0.021504378,-0.010686692,0.0037606317,0.04599039,0.11054587,0.037237026,0.02443021,-0.0017726256,-0.0010531482,-0.15000015,0.07453449,0.040861357,0.015389693,0.048143253,-0.076088205,0.038980834,-0.003771221,-0.07552701,0.062411584,0.08754517,-0.00032246546,-0.0011811325,0.00902195,0.037508287,0.029661335,-0.0037013171,-0.053280026,-0.011175135,-0.013458316,0.013070177,0.023413269,0.038654868,-0.07941392,-0.0078265825,-0.049273856,0.14306557,-0.06292538,0.08842417,0.0015086805,0.007636141,-0.010982458,-0.005833934,-0.09407055,0.041345455,0.02638602,-0.053664103,0.056546405,0.02132422,0.010974228,-0.06829717,0.044172954,-0.0271775,-0.01102777,0.060283136,-0.063283436,0.00917126,-0.048023153,-0.09381205,0.011900138,0.04213357,-0.087922335,-0.015800476,0.042361896,0.04711177,-0.08298812,-0.061364032,0.009837619,0.004463257,0.0077172453,0.005633853,-0.012058383,0.039410375,-0.05860806,-0.05334364,0.085903816,0.008759722,0.07781421,-0.014150123,0.01945835,-0.03312825,0.13034411,0.02122936,-0.04778183,-0.0006988898,0.022034267,-0.02386333,0.0025175447,0.008653418,-0.020778807,0.014101187,-0.075812526,0.058517616,0.050739195,-0.005342577,0.054535184,-0.010023002,-0.01242631,0.09622496,0.061471447,-0.08500661,0.009821555,-0.044662394,0.034647804,0.028853528,0.034374822,-0.2517882,0.0029364598,0.051016815,-0.041560035,-0.039238956,-0.0062859734,0.030715922,-0.03615638,-0.00039857227,-0.005599646,-0.014862321,-0.031652115,0.016189586,0.068591736,0.019233907,-0.005379823,0.03424371,-0.047435183,0.024770021,-0.003175009,0.0253361,0.00069389516,0.1821983,0.041973036,0.05295227,0.010998797,0.025513062,0.03606377,-0.050873455,-0.0014162447,0.09446314,0.0032490084,0.13075101,-0.0622881,0.056122664,0.01822623,-0.03345511,0.033227947,0.014427266,0.00066229986,-0.095939346,0.021983799,-0.052026056,0.041450895,0.1126983,-0.021703409,-0.054444443,-0.066348225,0.02997647,-0.014927032,-0.012007196,0.08481335,0.056831203,0.022004744,-0.017353456,0.00952035,-0.007734609,-0.044743232,0.024628295,-0.039482664,-0.0008040264,-0.04656005,-0.0066286344,0.018484551,0.034807984]', NULL, '{}'::jsonb, '2026-03-01T19:26:37.837Z', '2026-03-01T21:39:32.481Z', 'trade_theory', 'AC Circuits and Motors');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1407, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-6', NULL, 167, 151, 'The clearance between the bottom point ofthe ceiling fan 
+and the floor shall be not less than 2.4m. The minimum 
+clearance between the ceiling and the plane ofthe blades 
+of the fan shall not be less than 300 mm. 
+The cables shall be run at any desired height from the 
+ground level, and while passing through the floors in the 
+case of wood casing and capping andT.R-S. wiring, itshall 
+be carried inheavy gauge conduit 1.5   mabove floor level. 
+References 
+ LS. 732-1963 
+|S. 4648-1968 
+ N.E. Code 
+ Selection of the type and   size of cable for a given wiring   installation   and 
+voltage drop concept 
+ Objectives: At the end of this lesson you will be able to 
+*   state the factors to be considered for selecting the   cable   for a circuit 
+*   apply the factors and select the cable. 
+Inorder to determine the type and   size   of the cable for 
+agiven circuit, the following points should be taken into 
+account. 
+*   Suitability of the type of cable   for the location of the 
+circuit and the type of wiring. 
+*   Sizeofthecable depending upon the currentcarrying 
+capacity of the cable. 
+*   Size of the cable depending   uponthe   length of the 
+wiring and   permissible voltage drop in the cable. 
+«   Minimum size of the   cable based on the economy. 
+Location   of the circuit and the type of wiring 
+decide the   type of cable. 
+It is necessary to   consider whether the installation is for 
+industry   or domestic use andwhether the atmosphere is 
+damp or corrosive. Accordingly the type of cable has to 
+be chosen. 
+Further the type of wiring determines the type of cable 
+suitable for the   installations. 
+The   current carrying   capacity of   the cable 
+decides the   size of the cable. 
+In this, the first step is te find   out the current expected 
+to flow inthe circuit   when the total connected load is fully 
+switched   on. This   current   is the maximum current that 
+would flow through   the   circuit   in case all the loads are 
+working at the same time. But   this   is not the   case   in 
+actual situations. 
+Diversity factor 
+Inthe   case of lighting   installation all the   lamps in   a 
+domestic   installation may   not be   switched ‘on’ at   the 
+same time. Hence, it is assumed only two   thirds of the 
+lights   (say 66%)   only willbe ‘on’   at agiven   time. This 
+introduces   afactor   called   ‘diversity factor’. 
+When the   connectedload   is multiplied by the diversity 
+factor you get a load value which can be said as normal 
+working   load.   Use   ofthis   diversity factor   enables the 
+technician to use a   lesser size   cable   than   the   one 
+calculated,   based   on   the connected   load. 
+Based onthe working load the current   in each circuit is 
+to be calculatedand the size of the cable suitable to carry 
+the current   has to be chosen. 
+Voltage drop in the cable 
+In any currentcarrying   conductor,   voltage drop takes 
+place due to itsinternal   resistance.   This voltage drop 
+inapremises as per BIS 732 should not be more than3 
+percent of the standard supply voltage when measured 
+between the consumer   supply point and any   point of 
+the installation   when   the conductors   are   carrying 
+the maximum   current   under   the normal conditions of 
+service. 
+Tables 3and4 for aluminiumcable and5 for copper cable 
+give the relation   betweenvoltage dropandlength of the 
+cable runfor various cables. Incase the voltage drop found 
+in   the cable   exceeds   the stipulated limit of 3%   voltage 
+drop, the technician has tochoose the next bigger sized 
+cable   to maintain the voltage drop within limits. 
+Ifthe cable size is increasedto avoid voltage drop in the 
+circuit, the rating of the cable shall be the currentwhich 
+the circuit is   designed to   carry. In each   circuit   or sub- 
+circuit the fuse shall be selected to   match the load orthe 
+cable rating whichever is minimum, to ensure the desired 
+protection (BIS 732). 
+Declared   voltage of supply to consumer 
+Onthe other hand according to IE Rule No.54, the voltage 
+atthe pointof commencement ofsupply atthe consumer 
+should not vary from the   declared voltage by more than 
+5 percentin thecase oflow or medium voltage or by more 
+than   12 percent inthe case of high or extra high voltage 
+ (Fig 1}. 
+ Fig 1   
+L.T/MEDIUM 
+GENERATING   VOLTAGE CONSUMER 
+STATION   ne 
+ak   11K J5x6   naanr|   (280V   5% FACTORY 
+ —   Te.   ae 
+ SUPPLY   S%LIGHTING 
+ 12.5% HT   SUPPLY 
+ aay   CONSUMER TRANSFORMER   
+S%HEATING 3%MOTOR 
+ CONSUMER 12.5%| E.H.T.CONSUMER 
+ VARIATION WITHIN 12.5% OF 35kV 
+PERMISSIBLE VOLTAGE DROP-DIAGRAM  ELN227141 
+ Power : Electrician (NSQF Revised - 2022) - Related Theory for Exercise 1.7.63   151', NULL, '[0.03504103,0.045349196,0.0240277,-0.050458364,-0.037944682,0.10616493,-0.02137747,0.037621997,0.035587706,0.0036834138,0.031457093,-0.0644947,0.02347016,0.045222808,-0.017428478,0.0904979,0.02138825,0.023021355,-0.055831425,0.0635726,0.07863462,-0.050302073,-0.009698592,-0.038204227,0.061458603,-0.09529193,0.01286846,-0.013372776,-0.04329996,-0.22339503,-0.060474653,-0.035831835,0.07883294,0.0027178358,-0.005811522,-0.061832964,-0.03142512,-0.031528823,-0.05620527,0.008287622,0.028450893,-0.029549066,0.055714745,-0.033965863,-0.014257467,0.013207869,-0.047721036,-0.013824826,-0.008285873,0.021134757,0.009580731,0.0044314526,-0.058482844,0.025818096,-0.035750117,0.040664278,0.027582994,-0.013090402,0.044995163,0.030007133,0.011318697,0.03454977,-0.21673314,0.046196006,0.070561394,-0.008200679,-0.07627025,-0.0274067,0.021384493,0.09517083,-0.062574044,0.04063772,-0.0043679657,0.015308209,0.02313513,0.015400724,-0.002364971,-0.049824744,-0.0021207866,-0.011751918,-0.016958997,0.04339788,-0.055106685,0.03253644,-0.02436968,0.057398442,-0.03023233,-0.038614623,-0.03861402,-0.015969323,0.00042460425,0.011441373,-0.058574878,-0.0007582978,-0.022176098,-0.059638575,0.00787573,-0.040710118,-0.011839058,0.08903499,0.031538572,-0.02473373,0.017623682,0.000537993,0.07175784,0.015005834,-0.010365696,-0.050299525,0.036356136,-0.06269594,0.027590778,0.0041611195,-0.01889455,-0.024704415,0.044261444,0.030764202,-0.04823682,0.020823954,-0.06068961,-0.037590683,-0.0984223,0.012242097,0.079237044,-0.021035759,0.025204329,-0.039082084,0.02126983,0.036545686,0.031997968,0.058874007,0.013721152,-0.049369384,-0.005453981,-0.051022302,-0.012723269,0.0874809,0.031432662,0.05425851,-0.0052123847,0.016670758,0.011127001,-0.0791651,0.02036645,-0.06258654,-0.027408704,0.059265126,-0.09192563,0.033714782,0.00076741824,-0.046218507,-0.00971518,0.08080303,-0.056300137,-0.03885782,0.028082598,0.017989751,0.01726164,0.098166846,-0.04039584,-0.014724228,-0.01158265,-0.019168518,-0.040437415,0.08625007,-0.055646233,-0.12129723,-0.028009819,0.041358832,0.031613078,0.0029737358,0.02898963,0.06457061,-0.0013402298,-0.026658593,0.045742966,0.00898109,-0.08572287,-0.020705873,-0.05739378,0.035054937,0.054690707,0.008893419,0.006903143,-0.0045524198,0.05512862,-0.086645305,0.0030264829,0.036376815,0.019485544,0.04510018,-0.0979763,0.04434799,-0.027430693,0.022601407,0.00012249115,-0.009502098,-0.020202613,-0.00812758,0.035084367,0.029520929,0.06314776,0.018142194,-0.010183241,0.07687521,-0.032814488,0.08458238,0.06065715,-0.08348511,0.022685599,0.042407617,-0.027476955,-0.08077247,0.06935932,0.0113135,0.0023371268,-0.00614523,0.02818192,-0.00460133,0.036377206,0.024233295,0.07743032,-0.03423109,-0.014179143,-0.21411474,0.033459246,-0.004201777,-0.023590285,0.079364315,-0.0646645,-0.024992557,-0.08449882,-0.06343816,0.007129896,0.13622558,0.02825375,0.040590934,0.0030680606,0.022572353,0.08611953,-0.07166836,-0.01309745,-0.07353151,0.013916974,0.017595759,0.047825992,-0.007877517,-0.03967967,-0.026510522,-0.07059538,0.10957991,-0.07359,0.034591112,0.025906736,0.005063664,-0.008070617,0.015802644,-0.013095018,0.02306255,0.0021527417,-0.015147095,-0.033143286,0.0041290717,-0.033713907,-0.042714532,0.052810077,0.022359908,-0.08903801,-0.012076994,-0.04707083,0.044861704,0.00023461481,-0.07669683,-0.009222723,0.08794798,-0.05815029,0.03415818,0.022161828,0.07754799,-0.05996355,-0.04149317,0.06999614,-0.05765922,0.036685966,0.023539519,0.0002591833,0.05538298,-0.004672295,-0.015637984,0.06086632,-0.001192256,0.062983446,-0.025907759,-0.0027966872,0.020901704,0.09788447,0.01954917,0.025257014,0.031373076,-0.04495657,-0.005971371,0.026352813,0.04381357,-0.01824403,0.028936876,-0.0829563,0.04467126,0.082950264,-0.016955938,0.0003806786,-0.00964706,-0.016733252,0.10053745,0.020977918,-0.044504106,0.009508262,0.0011803942,0.034115635,-0.026076013,-0.07519263,-0.21114187,0.015428933,0.0147114545,-0.011414388,-0.048911627,0.021832258,0.056606717,-0.043761037,0.012614204,-0.010905358,-0.032386713,0.019726312,0.021592999,0.014327174,0.03314398,0.049811136,0.056141257,-0.019383,-0.043796524,-0.027320446,0.049521323,0.02340284,0.17166546,-0.041094247,0.022127423,0.009536653,-0.018650146,0.013773222,-0.06571113,-0.022356838,0.007250838,0.026363594,0.13069698,-0.08508351,0.06160947,-0.008247214,-0.010985906,-0.007813677,0.040632136,-0.051182456,-0.035370115,0.021751963,-0.07064058,-0.011368014,0.09872178,-0.05495177,-0.048921183,-0.0024033338,-0.022483349,-0.013452997,-0.030058308,0.08069351,-0.0014199296,0.004498904,-0.04776383,0.055513825,-0.048729442,-0.0010979084,0.027531099,-0.06800656,0.022490902,-0.0023006308,-0.01698621,-0.049226437,0.12197924]', NULL, '{}'::jsonb, '2026-03-01T19:26:38.215Z', '2026-03-01T21:39:32.481Z', 'trade_theory', 'AC Circuits and Motors');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1408, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-6', NULL, 168, 152, 'At this stage itis better to remember   that when   current 
+ flows through a conductor, the resistance offered by the 
+ conductor produces   heat.   The increase   in   heat   is 
+proportional   to   the   cable resistance   which   in   turn 
+ depends   upon   the   cross-sectional area of the cable. 
+ Since overheating damages the insulation, the conductor 
+size must be adequate to   preventthis from occurring. 
+ While choosing   the   cable   size, voltage drop is a more 
+ severe limitation   than   any   othercriterion.   Hence,   it 
+ is advisable   to   select the   cable   size   only   after 
+ascertaining the   permissible voltage   drop. Excessive 
+ voltage drop   impairs the   performance   of   heating 
+ appliances,   lights   and   the electric motors. 
+Calculation of voltage drop 
+In DC and single phase AC two-wire circuits 
+Voltage drop = Current x Total resistance of cables 
+= 2IR 
+where   lis the current and 
+ Ris the resistance of one conductor only 
+Wherever voltage dropis givenas 1 volt drop per metre run 
+of cable,   we have to assume that both (lead and return) 
+cables are taken   into   account   and   the cable   carries 
+its   rated current.   In such cases   the voltage drop for X 
+metre length of cable fora current of Y amps is calculated 
+asgiven. 
+ Length of k eee current 
+ po = the cable of the load 
+ drop   Metre length  of ; 
+the  cable per one} x Rated current 
+ ofthe cable volt drop 
+= XY 
+ ~ ff Met 
+ ae ne Rated current  the  cable per one§ x 
+ ofthe cable volt drop 
+ 3-phase circuits 
+ Voltagedrop = 1.73xIR= 4/3 IR 
+ where   lis the line current 
+R   is the   resistance   of one core only. 
+ The above points could be explained through the following 
+set of examples. 
+Example 1 
+ A guest house   installation   has   the following   loads 
+ connected tothe three phase 415 V supply with neutral. 
+Selecta   propersize   of   cable   for   this installation. 
+ 1   Lighting-3 circuits of   tungsten lighting total 2860 watts 
+ 2   Power from 3x 30A ring circuits to 16A socket outlets 
+for 
+ a   1x7 KW Water heater (Instant) 
+b   2x   3   KW Immersion   heater   (Thermostatically 
+ controlled) 
+c   Cooking   appliances: 1 x 3 KW cooker 
+ 1x 10.7 KVV cooker 
+Current demand   in amperes in each of the circuit is 
+ calculated by referring the Table 1. Calculate   current 
+taking account into the   diversity factor. 
+ Assuming the declared voltage as 240 volts andthe length 
+ of the longest run ina   circuit as 50 metres 
+ Permissible voltage drop at the rate of 3% 
+ _ 3x240 
+in 7.2 Volts 
+ If   the size of the conductor   selected is   35.0 
+sq.mm which can   carry 69 amps, the voltage 
+ drop at 69 amperes   rating will be 1 volt for 
+ every 7.2 metres cable run. 
+For   50   metres cable   run   the voltage crop at 69 amps 
+current rating = 50 / 7.2 volts. 
+Voltage drop for 65 amps 
+ _ aE og   caver 
+— 92869   7   TOS 
+ As   the actual voltage drop   inthe   circuit,   that   is   6.54 
+valts,   is well within   the permissible value, of 7.2 volts, 
+the cable   selected   is suitable for the installation. 
+Table 1 
+SI.   Demand   Current   | Diversity | Current 
+No   description|   Demand | Factor   allowing 
+ (Ampere) | (Table 2) | for 
+ Diversity 
+(Ampere) 
+ 4   Lighting   11.9   15%   9.00 
+ 2   Power   i   30   100%   |30 
+ il   30   80%   |24 bo 00 
+ill   30   60%   18 
+ 3   Vater 
+heaters   29,2   100%   29.2 
+(inst) 
+ 4 |   Water   25.00   100%   25.00 
+ heaters 
+(thermo) 
+ 5   Cooker i   12.5   80%   10.00 
+ il   445   100%   445 
+ Total current   = 213.1   189.7 
+Total current demand (allowing diversity) = 189.7 amps 
+ Load spread over 3 phases = 189.7/3 = 63.23 amps, 
+ say 65   amps   per phase. 
+152   Power : Electrician (NSQF Revised - 2022)   - Related Theory for Exercise 1.7.63', NULL, '[-0.052070912,0.0500115,0.060105056,0.032133486,0.02680638,0.042002775,-0.023386808,0.05142837,0.06881178,-0.015202257,0.03672628,-0.09075151,0.020686787,0.064144805,0.007243791,0.03807469,-0.05126256,-0.0067754155,-0.06169091,0.033577688,0.110536635,-0.06890591,-0.033812854,-0.06442557,0.06593342,-0.0727541,0.0026254468,-0.0018975881,-0.037911367,-0.21679594,-0.021728642,0.0038740614,0.0046795197,-0.015923776,-0.05098608,-0.077268474,-0.0032280402,-0.023490695,-0.046403177,0.031194095,0.017552238,0.014540841,0.025828954,-0.055051465,0.0006077324,-0.026885577,-0.03033638,-0.048536323,0.0635885,0.062028,0.022844082,-0.009608097,0.0027580808,-0.0047342572,0.055600572,-0.00014547945,0.05721689,0.050127808,0.025903817,0.017670346,-0.06375684,0.0376542,-0.2152187,0.043419752,0.013909243,0.012946925,-0.028427659,0.05308785,0.05858461,0.037953075,-0.055653915,-0.0040738788,0.0017616441,0.057054356,-0.0021119039,-0.022853635,0.007578681,0.0051702065,-0.000617894,-0.01095697,0.033718802,0.04190267,-0.06743586,0.03644097,-0.018823706,-0.008461459,0.043741107,-0.051172048,0.060908243,-0.088110544,0.037695095,0.034705345,-0.10638801,-0.010339129,-0.055614285,-0.023265008,0.019259617,-0.028128915,-0.06085782,0.09007575,-0.03999207,-0.026413832,-0.004890023,0.0027935267,0.053416513,0.001786711,-0.015318705,-0.06370873,0.019535743,-0.014241987,-0.0026294223,-0.012670209,-0.03506499,-0.034647755,0.029963568,0.028676953,0.00044393935,0.028858066,-0.068934724,0.028130695,-0.04863686,0.06911964,0.12150714,0.053621646,0.05818068,-0.045251857,0.047187507,0.060744945,-0.040903367,0.021560619,0.010038789,-0.0031318532,-0.056728013,-0.04317105,-0.004554735,0.035273757,0.030230412,0.057241604,0.010306164,0.02119461,0.08217,-0.071312934,-0.0025740894,-0.08354329,0.022413537,0.025094284,-0.04651579,0.056497153,-0.035527285,-0.063976854,0.02264728,0.08220793,-0.0063749715,-0.099796556,0.04996166,0.011252948,-0.0080313925,0.01959253,0.002325253,-0.002160567,-0.012673406,0.011691875,-0.03897612,0.12862313,-0.034307797,-0.068135224,-0.0005938559,0.011665196,0.024656037,-0.015709316,0.011450911,0.07585507,-0.07833167,-0.05900304,0.053068787,-0.0019312137,-0.08034757,-0.029646946,-0.024132853,0.052580185,0.047851782,-0.016820993,0.0046364237,0.021523377,0.045915466,-0.060276683,-0.021776674,-0.02479469,-0.044315856,0.12254371,-0.08375568,0.00982707,-0.0492443,0.019729866,9.962901e-05,0.030288376,-0.060339656,-0.028896058,0.03791109,0.039949775,0.028814672,-0.05093654,0.006989196,0.035430975,-0.03944341,0.073955186,0.043544617,-0.0911562,-0.009324594,0.07459333,-0.02987188,-0.055954784,0.054173797,-0.022549845,0.01883769,-0.010620551,0.017018141,0.060560856,0.045604575,-0.026346857,0.08358956,-0.052786246,0.031437017,-0.17927738,0.0013158186,0.03658851,-0.034755215,0.0789177,-0.073849775,0.022925511,-0.13298345,-0.009591242,0.010387916,0.07990264,0.0176783,0.015562471,-0.040644936,0.03775869,0.004574991,0.0008153951,-0.023852868,-0.06844337,0.029120808,-0.028140688,0.0375336,-0.015462387,-0.030159103,0.04214731,0.0023301907,0.124258146,-0.03966631,0.020546557,-0.025297299,0.035901394,-0.0014746808,0.055277888,-0.016850842,0.007470894,0.05953751,-0.00012239414,0.04128149,0.0048382124,-0.0010415461,-0.06392481,0.04518467,-0.002581854,-0.012592135,-0.021117087,-0.026134597,0.007307522,-0.0039633177,-0.08947305,0.013767519,0.09919598,-0.01279759,-0.002345632,-0.0055685984,0.09763471,-0.054171447,-0.057379942,0.07349617,-0.0042251037,-0.021461423,-0.00032547483,-0.031913564,-0.023724703,-0.017401632,-0.011576713,0.07494474,0.0014615096,0.058594186,-0.022364857,-0.0411943,-0.0108183585,0.114767894,0.038592435,-0.021957219,0.00029599085,-0.041974958,-0.057581645,-0.00280938,0.03490138,-0.008425797,0.009389352,-0.02704042,-0.00095512654,0.0710831,0.0066120136,0.011923723,0.0068826373,0.03897942,0.029983765,-0.027643757,-0.04638779,-0.034748685,-0.025677042,-0.045946363,-0.033305842,-0.02870994,-0.22692484,0.05963292,0.044602904,0.00554129,-0.014159222,-0.009892245,0.059377354,-0.03079344,0.018419499,0.039357785,-0.09823642,0.027910002,-0.0089287395,0.043775927,0.0434003,-0.045056388,-0.008562451,-0.028308367,-0.023869341,-0.009049442,0.06436086,0.025064254,0.16486797,0.00088177,0.010772051,0.029135238,-0.00068858877,0.0078667635,-0.00771643,-0.034159407,0.003908584,0.025501885,0.041913934,-0.111585535,0.08474549,-0.0013211151,0.008049734,-0.016788654,0.0392223,-0.052316558,0.07888587,0.057106562,-0.08144172,-0.04802808,0.15532792,-0.01017788,-0.015004949,-0.009546955,-0.043950226,0.007143416,-0.007813218,-0.007841644,-0.006692227,-0.03552576,-0.040437806,0.05766382,-0.045168407,-0.03195209,0.02375825,-0.05842548,-0.017019935,-0.030744247,0.01683945,-0.048864838,0.13640209]', NULL, '{}'::jsonb, '2026-03-01T19:26:38.552Z', '2026-03-01T21:39:32.481Z', 'trade_theory', 'AC Circuits and Motors');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1409, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-6', NULL, 169, 153, 'Metal conduit pipe - methods of cutting, threading and bending 
+ Objectives: At the end of this lesson you shall be able to 
+*   state the methods of cutting a metal conduit pipe 
+*   state the purpose and process of threading   and list out the precautions of conduit pipes 
+*   list the different accessories used in conduit installation 
+*   state the purpose and methods of bending the conduit pipes and list out the precautions. 
+Cutting: Rigidand intermediate conduits may be cut witha 
+hacksaw (Fig 1) ora pipe cutter (Fig 2). With either method, 
+the conduit must be locked ina pipe vice before   making the 
+cut. 
+After cutting (Figs 1 and 2) the inside edge of the conduit 
+must be smoothed with a half round file   (Fig 3) or a pipe 
+reamer mounted ina brace. 
+ Fig 1 
+ 5 
+ 3 
+ i 
+Fig 2 
+ Pa 
+ CUTTING A PIPE USING A PIPE CUTTER   3 
+ Fig 3 
+ if ye 
+ DEBURRING PROCESS.   H 
+ Threading: Conduit is threaded by using dies and a die 
+stock. Apply cutting cil to the end of the conduit before 
+starting to cut threads. Cutting the threads longer than 
+necessary will   leave the   exposed threads   subject   to 
+corresion. 
+De not use any lubricant which is an electrical insulator, 
+as   this   may   increase   the   resistance   of the   conduit 
+assembly and   affect   its   use   as the   circuit   protective 
+earthing conductor. 
+Precautions to be observed while threading conduit 
+pipes 
+1   Chamfer the end of the conduit to be threaded. 
+2   Applyalubricantfrequently while threading the conduit 
+pipe. It helps the die to cut more easily and the clie to 
+stay sharp. 
+3   Reverse turnings of the die stock are necessary to 
+break off cut chips and to clearthe cutting edges of the 
+die. 
+4   Useonlyabrushto remove the metal burrsfromthedie. 
+De not use your hand. 
+Conduitfittings like elbows, bends and Tees: Allthese 
+fittings are available in two categories. 
+*   Normal 
+*   Inspectiontype 
+They are made from cast iron. 
+Elbows are suitable for short bends whereas bends are 
+suitable for long bends. In general where a conduit runs 
+betweenthewallandthe ceiling, elbows are used. (Fig4a,b 
+ & d) 
+ Tees are used in switch-drops and diversions. Various 
+types of these accessories (Fig 4c). 
+ Fig 4 
+ d) NORMAL BENDS HEAVY GAUGE 
+CONDUIT ACCESSORIES 
+ b) INSPECTION TEE 
+ ELNZ2T156 
+ Conduit saddles are used to fasten the conduit on the 
+surface of the walls. These saddles could be used along 
+with any one ofthe following bases. They are: 
+*   spacers made from sheet metal 
+*   distance piece made from wood or PVC 
+*   hospital piece made from wood or PVC. 
+Varioustypes ofthese base fittings along withthe saddles 
+are shown in Fig 5. 
+Power : Electrician (NSQF Revised - 2022)   - Related Theory for Exercise 1.7.63   153', NULL, '[-0.022014676,-0.012568516,0.0456629,-0.025722874,-0.030333206,-0.046862658,0.030074488,0.100539185,-0.052308872,-0.046500113,-0.0011970511,-0.07821699,-0.003991992,-0.015504427,0.020367982,0.025306268,0.0068884874,0.10685766,-0.060700033,0.020577455,0.111727186,-0.041833993,0.01969049,-0.047497876,0.120311156,0.02186239,0.01787114,-0.03663361,0.016853658,-0.19353081,-0.016414164,0.021513468,-0.034308854,0.028996361,-0.10695977,-0.076676965,0.01619532,0.04238192,-0.03503915,0.024021212,0.020106379,0.004841148,-0.03606334,-0.03464349,-0.03653243,0.030875368,0.00028576056,-0.07303156,0.075706445,0.0213421,0.044578645,-0.006752708,0.04202095,0.027213076,0.009449763,0.008793446,-0.009639244,0.05905295,0.048568573,0.0328483,0.07427704,0.06804958,-0.19855773,0.11063507,0.041806,0.030058531,-0.030423969,-0.043944545,0.09147878,0.029140333,-0.022576988,0.04296672,0.018299911,0.080274574,-0.04559676,-0.021416951,0.013601108,-0.0011012735,-0.010827892,0.024366809,-0.07300988,0.025974495,-0.004586248,-0.016248794,-0.03564092,-0.03820509,-0.009326342,-0.05430722,-0.003027611,0.02500546,-0.05599742,-0.04541689,0.006376089,-0.048119787,-0.023991706,-0.02475103,0.053864557,0.055083532,-0.019584535,0.0712093,-0.063867286,0.028767927,-0.03156012,-0.009335888,0.026954953,0.032242566,-0.021110488,-0.06739139,-0.03243408,0.09580441,0.041596733,-0.0033550397,-0.060202576,-0.044707138,0.055831768,0.020309528,-0.055060472,0.008227189,-0.0154371625,0.037433743,-0.047663786,0.03847255,0.007730781,0.005769807,0.03434848,-0.074823946,0.062002912,0.0070349365,0.01576401,0.01789664,-0.005977198,-0.032852832,-0.03958814,-0.059079528,-0.0011919633,0.06494996,0.0114418175,0.014406225,0.042309996,-0.048954967,-0.053949505,-0.026029145,-0.07006381,-0.1029413,0.023706127,-0.04088288,-0.07811221,0.022147583,0.0405656,-0.1017612,-0.023728965,-0.028219821,-0.046713475,-0.049807824,0.0417406,0.015338015,-0.05995636,0.05253307,-0.0070025637,0.031975426,0.031461626,-0.046380114,-0.04512031,0.03012423,0.032839034,-0.10218733,-0.030056084,-0.044133645,0.055396322,-0.020912059,0.013064291,0.019145548,-0.021372128,0.009418634,0.011293462,0.037863567,-0.07182855,-0.033576384,0.009146971,0.06626667,0.035786644,0.07788048,0.0023136188,-0.030339109,0.014891059,-0.044596724,0.026904581,-0.024826342,-0.006598877,0.024563173,-0.120831855,0.053191684,-0.031237494,0.026335945,0.022398883,-0.0066556926,0.012518746,-0.02085212,-0.047226023,0.022438534,0.017187543,-0.017922716,0.0013588938,0.019922312,-0.033221237,0.013681159,0.001086042,0.013199789,0.07199188,0.0442738,-0.055637296,-0.046960954,0.05875939,0.023311246,-0.0068625635,-0.04759273,0.08851722,0.062646024,0.014517822,0.034563407,0.026134282,-0.051376358,0.007988468,-0.202125,0.013626872,0.016466616,0.03257333,0.09376172,-0.044513002,-0.02798712,-0.0073768273,0.003470092,-0.01832681,0.0044936026,0.043451414,-0.042888094,-0.041506294,0.040161356,0.10348249,-0.0532973,-0.046731584,-0.0036590255,0.08347999,-0.047635864,0.023177803,0.015471347,-0.07475344,-0.07195197,-0.025603428,0.16239525,-0.069031,-0.01403992,-0.001782611,-0.021835977,0.0056335004,-0.013098748,-0.062124334,-0.021621637,0.019554248,0.012009321,0.04022448,0.044992525,0.014454376,-0.052858233,0.025689248,0.014305077,-0.08242717,0.04383929,-0.00768062,-0.020867087,0.076131985,-0.030766316,-0.0045933155,-0.011128524,0.03422426,0.008785987,-0.011920065,-0.011435552,0.034215227,-0.06519104,0.018946467,-0.05701663,-0.041155916,0.031733282,0.0021563894,0.052517418,-0.030293085,-0.010173119,0.060089316,-0.00021744959,0.044221908,0.006392746,0.0010310308,-0.024803389,0.10077624,0.020264396,0.034533445,0.027819661,-0.0223245,0.01835304,-0.044504806,0.030514514,-0.01889688,0.07193838,-0.0060095987,0.06371121,-0.015594455,-0.010959757,0.04070291,-0.005163126,-0.005579092,0.08567947,-0.0063180374,-0.00030690446,-0.012955972,-0.048686158,0.08852742,-0.0040563596,-0.0016402967,-0.26913354,-0.012464406,0.012033728,0.00895672,-0.02765743,0.03261682,0.025349798,-0.026370134,0.045270152,0.021315316,-0.13154183,0.021850161,0.036164574,-0.04127535,0.053121537,0.039173875,0.059685897,-0.05571373,0.007476363,0.017358629,-0.023974402,-0.0057857498,0.18802038,-0.023611294,0.10093694,0.043647848,-0.046126515,-0.024676798,0.022692136,-0.02893327,0.06712864,-0.09501304,0.046595786,-0.032392945,0.082636684,0.015557862,-0.045437038,0.056695506,0.035457235,-0.019933214,-0.034863085,0.052957267,-0.021250186,0.03393895,0.032846823,-0.026275324,-0.100829646,-0.09093226,0.07449841,-0.056158673,-0.019566825,0.0716305,0.03237089,0.013711189,-0.038848795,0.0398955,-0.044294383,0.0014799385,0.038232386,0.050535124,0.005146132,-0.02027669,-0.016916316,0.021191323,0.026996681]', NULL, '{}'::jsonb, '2026-03-01T19:26:38.896Z', '2026-03-01T21:39:32.481Z', 'trade_theory', 'AC Circuits and Motors');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1410, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-6', NULL, 170, 154, 'd) SADDLE, SPACER BAR TWO-WAY   e) COMBINED SPACER BAR SADDLE   g 
+ CONDUIT SADDLE ASSEMBLY   5 int} 
+ Metal conduit boxes: Termination of rigid conduits is 
+done at metal conduit boxes of either cast iron or sheet 
+metal. Various shapes and sizes of boxes are commer- 
+cially available in the market. Junction boxes of round, 
+square, rectangular and hexagonal shapes are manufac- 
+tured for one-way, 2-way, 3-way and 4-way outlets. 
+These outlets may be straight, angular or tangential as 
+required for the situation. VWvhen ordering, the specification 
+should contain the material with which the box is to be 
+made, the size of the conduit to be fitted, the number of 
+ways, shape and the position of outlets. (Fig 6) 
+ Fig 6 
+ b) ANGLE 
+CONDUIT OUTLET BOXES 
+ ELIs2714 
+ Conduit pipe bending: It is often necessary to set or 
+bend the conduit to enable it to pass over an obstruction 
+(Fig /)ortoturna   corner which is less or more than 90° 
+(Fig 8). The bending may be   a   little offset to the line of 
+conduit installation. This can be manipulated by proper 
+bending as required. 
+The bending may be done by using a simple bending block 
+or by a hickey or with the help of   a bending machine. 
+Further, inconcealedconduitwiring, the B.I.S. recommends 
+bending of conduit pipesin preference to the use of bends 
+and elbows. 
+Using bending block for bending conduit: The bending 
+block (Fig 9) is made preferably with teak wood or strong 
+country wood,   and should   have   holes suitable for the 
+conduitto be bent. Edges are chamferred to avoid kinks in 
+the bent portion of the conduit. Light gauge conduits need 
+to be filled with sand and heated before bending to have 
+smooth bends. 
+ Fig? 
+ b) PASSING OBSTRUCTION 
+OFFSETTING THE CONDUIT RUN ELN227 
+  15M 
+ Fig8 
+ PIPE 
+ WALL SURFACE 
+WALL SKIRTING 
+ ‘Co 
+ a) PASSING THROUGH WALL SKIRTING 
+ a   <7 SURFACE 
+ PIPE :   — 
+ b) PASSING THROUGH WIDE CORNER WALL 
+CONDUIT RUN THROUGH OFFSET WALL SURFACE  ELN22715N 
+ Fig 9 
+ ELN@27150  BENDING CONDUIT WITH THE BENDING BLOCK 
+ Using hickeyfor bending conduits: A hickey isa special 
+bending tool (Fig   10) and is made of forged steel or alloy 
+steel. A particular size of pipe requires that size of hickey. 
+Bending of pipes could be performed cold or hot by using 
+a hickey. 
+Using bending machine for bending conduit: Various 
+types of bending machines are available inthe market. They 
+can either be operated by hand (Fig 11) or by hydraulic 
+pressure. Foreachsize ofconduit, the guide and collet need 
+to be changed. 
+Precautions to be observed while bending 
+*   The pipe used should be mechanically strong to with- 
+stand the pressure while bending. 
+154   Power : Electrician (NSQF Revised - 2022)   - Related Theory for Exercise 1.7.63', NULL, '[-0.025181688,-0.020039892,0.050925802,0.0044999607,-0.111596756,0.015301005,-0.030311234,0.0581718,-0.0073593217,-0.03246729,0.028158652,-0.10929809,0.023145165,-0.019792337,0.034552045,-0.027582647,0.009578614,0.13340257,-0.05456409,0.093684435,0.08400797,0.005752069,-0.01237468,-0.042502597,0.055149276,0.0017594051,-0.004641055,0.015038449,0.020861072,-0.20449066,-0.03189357,-0.040514402,-0.038267903,-0.007953864,-0.066542886,-0.064018525,0.022029208,-0.014103644,-0.07787435,0.0329635,0.05908815,0.022974225,-0.008282301,-0.023303103,-0.018850598,0.013078029,0.004103793,-0.08476155,0.0724624,-0.007474945,0.04777944,-0.01960253,0.06079778,0.014546422,0.017436482,0.03547592,-0.026738366,0.041522417,-0.03400444,0.023600694,0.043300215,0.0592971,-0.21872775,0.03842436,0.06021575,0.047328897,-0.033658255,-0.051060718,0.051931527,0.11250992,0.007286988,0.0036961862,-0.012214929,0.025667582,8.705492e-05,-0.06733235,0.013219415,-0.0133561585,-0.0226553,0.016410938,-0.07018208,0.026451893,-0.04154111,0.015182162,-0.0013582815,0.008605698,0.013899342,-0.04284453,0.031713128,0.009803865,-0.025034413,-0.026395079,0.006581585,-0.05511732,-0.035670202,-0.012207709,0.0072332593,0.03929714,-0.03300613,0.052148502,-0.012960792,-0.014913661,0.018214291,-0.020334423,0.038919527,0.006356171,-0.05259791,-0.06009396,0.009642436,0.00968424,0.026998386,-0.01336924,-0.0695144,-0.036604904,-0.015517804,0.042376082,-0.021459006,0.006904072,-0.018170808,-0.011102453,-0.05804227,0.054911934,0.06923349,0.042980757,0.020214396,-0.0831944,0.055275597,-0.020733234,0.019732825,0.0064000995,-0.00193155,0.030199634,-0.042675804,-0.055362634,0.0073582265,0.032518417,0.06942132,0.07515407,0.048314136,-0.057421636,-0.0334601,-0.03479433,-0.0074036526,-0.031780533,0.06002129,-0.028432706,-0.07250053,-0.046360575,-0.018871544,-0.00888405,0.0035521246,-0.0463415,-0.042555187,-0.07256508,-0.05158764,0.03133034,-0.037972525,0.07323834,-0.06056409,-0.00031382707,0.013006906,0.0027634555,-0.03616401,0.022020206,-0.028397974,-0.15142469,0.017963618,-0.011526737,0.06965436,-0.050704155,0.046954606,-0.026804617,0.02244941,0.012250343,0.06612133,-0.012940804,-0.080929615,0.009447898,0.004679119,0.044536352,0.026153117,-0.0045112665,-0.01629835,-0.059569083,0.081322365,-0.020918531,-0.03719256,-0.008094585,-0.011992106,0.06855462,-0.075410515,0.046603236,-0.097895704,0.049409926,0.005687488,-0.058342442,0.009180913,-0.008113095,0.015251227,0.046306863,0.036382135,-0.003149804,-0.019914577,0.021926697,-0.023329621,-0.010729851,0.0344115,-0.01958012,0.029331107,-0.02920627,-0.06331153,-0.02892342,0.038125936,-0.005666711,0.041605785,-0.020788543,0.03303345,-0.017544035,0.03040346,0.036883764,0.046135627,-0.03357334,0.023817709,-0.19220546,0.02387304,0.027134396,0.023881068,0.037164215,-0.05388426,0.0126878265,0.07870003,0.016829863,-0.0035943612,0.034864873,0.029138062,-0.056423284,0.026458794,0.026212182,0.06945243,-0.005144896,0.0021995332,-0.053073872,-0.012250386,-0.05211047,0.049760208,-0.04644788,-0.07058715,0.0011220804,0.0017503962,0.17724068,-0.04245715,-0.009318338,0.045615796,0.0050911815,-0.013294892,-0.005487905,-0.0347807,0.027003352,0.041753173,0.026923554,0.0050649224,0.06457319,0.0011730928,-0.06641691,0.041266654,0.04954675,-0.0939987,0.05685474,-0.028687898,-0.026670823,-0.030943384,-0.026735844,0.0031607738,0.0010388559,-0.026041556,0.041002963,0.03100102,0.051719904,-0.014282546,-0.027959846,0.007706602,0.0039138272,0.041800037,0.029269077,0.005986814,0.037837837,0.011349076,-0.0039251065,0.13399875,0.008039694,0.03488477,-0.023539986,-0.010152357,0.018412175,0.1248382,0.027532525,0.013170421,0.0328086,-0.06897532,0.07175009,0.046748027,0.010397823,-0.021079198,0.03493904,-0.029011736,0.056603212,-0.015710944,0.015926423,0.020706613,-0.018103776,-0.024623942,0.09718011,-0.033082895,0.05706921,-0.004340059,-0.055585776,0.094805844,0.010227758,0.007045579,-0.2548188,-0.033036202,-0.01828463,-0.0035018707,-0.03220892,0.03242745,0.00070823904,0.0019661705,0.06186212,-0.04313154,-0.14474218,0.029546028,0.044236384,-0.08408861,0.045540422,0.03157541,0.067877255,-0.13213962,0.0012979873,-0.045113865,-0.0064355927,-0.024413507,0.17508332,-0.029447835,0.022793643,-0.0083972,-0.00527836,0.017712021,0.02485332,0.0030460993,0.044283938,-0.050925933,0.050859455,-0.11384605,0.06838384,0.07044925,-0.04674013,0.08051717,0.040418938,0.0011852457,0.0015194726,0.026778003,-0.038050164,0.023991633,0.06308396,-0.033099696,-0.11948204,-0.03919436,0.0873364,-0.07120155,0.008360356,0.038317606,-0.019928355,0.041206986,-0.04282463,0.04262428,-0.018839372,-0.022168918,-0.010567761,0.040134404,-0.021598978,-0.017436745,0.01659396,0.06120486,0.03718811]', NULL, '{}'::jsonb, '2026-03-01T19:26:39.231Z', '2026-03-01T21:39:32.481Z', 'trade_theory', 'AC Circuits and Motors');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1411, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-6', NULL, 171, 155, 'ELN22715P 
+ BENDING CONDUIT WITH THE BENDING MACHINE  ELN227150, 
+ Poorly seam-welded pipes are not suitable for bending 
+as they may split while bending. 
+One of the easy methods of bending is to draw the 
+bending curve on the floor and bend the pipe accord- 
+ingly. 
+Whena wooden blockis usedfor bending, chamfer both 
+sides of the hole opening in the block. 
+Ensure that the conduit does not twist while bending. 
+Use a proper size of hickey according to the dia. of the 
+pipe to be bent. 
+While doing manual hot bending do not use wet sandas 
+the steam generated during heating may cause an 
+explosion. 
+ Power : Electrician (NSQF Revised - 2022) - Related Theory for Exercise 1.7.63   155', NULL, '[-0.026783116,0.009586128,0.064514205,-0.03417807,-0.038027003,-0.030959329,0.012212937,0.092076644,-0.0024312923,-0.0032434317,-0.032647863,-0.08719053,-0.043351643,0.027483743,0.053372588,0.0211757,-0.028885646,0.11863621,-0.09476243,0.067939945,0.12199915,-0.010592231,-0.049740892,-0.0135392705,0.050671145,-0.053022616,-0.030594656,-0.020051392,0.022569595,-0.16881174,-0.029367607,0.018919725,-0.020287454,0.010349122,-0.011518856,-0.0526404,0.014842341,0.0043838862,-0.0049467417,0.020994218,0.017741973,0.041565392,-0.021701138,-0.012363928,0.017379496,0.004197401,0.04882606,-0.0056906436,0.10979755,0.004343457,0.033682924,-0.030155722,0.011545209,-0.005995345,0.038222346,0.0056326874,0.0015595226,0.025927043,0.0010369351,0.03316371,0.053186085,0.055836424,-0.18657343,0.091389105,0.063232735,-0.00022989801,0.011852299,-0.053241532,0.084066905,0.09853239,0.0057423552,0.07398897,-0.021815019,0.04494005,0.030860588,-0.009366804,0.034264643,-0.017754318,-0.007980241,0.023730775,-0.07293655,0.014564043,0.0057154107,-0.027925316,-0.028465219,-0.021516496,-0.023790605,-0.06111925,0.018581158,-0.02806459,-0.08789681,0.012240276,-0.06382284,-0.045724414,-0.037487324,0.0038954995,0.039100792,0.055400636,-0.02456204,0.07881771,-0.046130646,0.033362824,-0.004288289,0.017320635,0.047433853,0.023216954,-0.06785456,-0.041704375,0.012248373,0.027871322,0.0612917,-0.005030549,0.009246192,0.030470561,-0.022560257,-0.029311465,0.0009918079,0.0073947404,-0.089371085,-0.0043744254,-0.019239023,0.08780079,-0.0040865997,0.023656629,0.040715095,-0.06212507,0.056867898,-0.01881391,0.014503831,0.029428985,-0.047557358,-0.016641602,0.008514241,-0.06249158,0.009063141,0.011654229,0.029763885,0.070996515,0.087894194,0.007118515,0.022606062,-0.06551294,-0.019099155,-0.04307293,0.04263388,-0.03925399,-0.086965196,0.033737216,-0.003074428,-0.04287479,-0.022537474,-0.03088075,-0.045346536,-0.10572081,0.095612384,0.02171573,0.029483289,0.05914077,-0.06334841,0.002726666,-0.006001825,-0.056791034,-0.07358254,0.023741262,-0.011657935,-0.051821128,-0.015786534,0.02950789,0.06759276,-0.07833581,0.03271361,0.016820936,-0.015231284,-0.03426583,0.02556374,0.004632963,-0.006357181,-0.014485305,-0.0020761585,0.05078405,-0.010268121,-0.023826586,-0.016343249,-0.020571033,0.07721621,-0.01018778,0.0090248855,-0.05846513,0.028480481,0.025455337,-0.12952745,0.061407983,-0.09322966,0.08842275,0.012206207,-0.0063564684,-0.0019032331,-0.023738928,-0.027536878,0.060177844,0.0046693,-0.046073228,0.023087071,-0.013789648,-0.016377663,0.025618475,0.023417903,-0.009942871,0.043469265,0.04734599,-0.042237278,-0.049104728,0.030995864,0.0022346391,0.019269878,0.009429187,0.08471702,0.0681575,0.05529527,-0.010343269,-0.0014877887,-0.019693635,0.0131947575,-0.21084529,0.048920985,0.07093312,0.00022162426,0.08157495,-0.058703832,0.017491987,-0.021934228,0.009344823,-0.018708507,0.01904845,0.01869387,-0.057417378,-0.07194498,0.016782125,0.021519216,-0.0042520147,-0.050348632,-0.031482533,0.08066993,-0.054470956,0.014939142,-0.034848988,-0.105473526,-0.053932764,0.022228044,0.16814233,-0.08497411,-0.0057779658,0.030256433,0.0011802589,-0.036300614,-0.0535804,-0.11498533,0.008992393,0.060361635,0.019030096,-0.042656213,-0.0023582238,-0.039416946,-0.09111811,0.053303067,0.008678099,-0.073853984,0.04363459,-0.058792915,-0.055377938,0.035178028,-0.05153722,-0.032657184,0.009920313,0.039022192,-0.040529832,0.0622613,-0.026248801,-0.0073000155,-0.051405426,0.03443353,-0.06049122,0.016360676,0.057364997,0.022958662,0.042242985,-0.03378275,0.02218089,0.09072921,-0.044630025,0.058870252,0.020599505,0.035259377,0.007196629,0.07698898,0.024103008,0.07856643,0.027446922,-0.025921743,0.023030818,-0.00030211124,0.018706948,0.0108616995,0.06632941,-0.043535262,0.07262584,0.0020996989,-0.01800417,0.0059978203,-0.056951504,-0.029983234,0.006962381,-0.047682345,-0.016842484,-0.046352636,-0.035896763,0.106920384,-0.04217844,0.008894037,-0.24300884,0.04149185,-0.022001997,-0.032503005,-0.018643292,0.033692386,-0.009487713,-0.077605814,0.018957123,0.017057365,-0.089220636,0.01888891,-0.02011476,-0.07149755,0.03690217,0.0134659195,0.02243029,0.014950026,0.048802257,-0.04117673,0.017983641,0.034951255,0.16827339,-0.05231657,0.080510505,0.010248556,-0.026797678,-0.018250627,0.00013087552,0.009030213,0.005793721,-0.049069077,0.07752939,-0.08184521,0.10655023,0.074677184,0.0100048445,0.06917521,0.049266763,-0.015855163,-0.053416573,0.056862317,-0.02103164,-0.017292712,0.031473655,-0.030243693,-0.07688651,-0.011365034,0.08394459,-0.059053462,0.038630627,0.018814025,0.04240197,0.062140644,-0.05580706,0.07892883,-0.024052056,-0.00737463,-0.01662212,-0.042344578,-0.022181291,-0.012093142,0.013041407,-0.008928501,0.010593637]', NULL, '{}'::jsonb, '2026-03-01T19:26:39.356Z', '2026-03-01T21:39:32.481Z', 'trade_theory', 'AC Circuits and Motors');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1412, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-6', NULL, 172, 156, 'Power 
+Electrician - Basic Wiring   Practice 
+Related Theory for Exercise 1.7.64 & 65 
+ Test   board,   Extension   board   and   colour code of cables 
+ Objectives: At the end of this lesson you shall be able to 
+*   explain the method of using a test board 
+*   state the general colour codes used in cables. 
+Test board: Atest boardis an electric switch board, used 
+for conducting the following tests. 
+*   Continuitytest (Load connectedinseries witha lamp) 
+Example: Testing of fan winding, condition of choke 
+and tube light   starter etc. 
+ ¢   Directtest 
+ Example : Testing electrical appliances of 1000 watts 
+orlower rating for properfunctioning. 
+Fig 1 source the schematic diagram of atest board with 
+all the outlets and controls. Sockets P, and P,   provide 
+direct, single-phase supply whereas socket P,, andterminal 
+block T provide a single-phase supply in series with the 
+lamp L,. 
+ Figt = _ 
+ ee   
+Py   Pp   Py   T 
+ t   4   Lc   Lc   o<   Lo 
+ i   4 @!   @k   ©   @t ©-0 
+ litt   | 
+ ,   4d   Fp 
+ E   TEST   BOARD   f 
+ SCHEMATIC DIAGRAM   Es 
+ Continuity test: VVhileé performing a continuity test, the 
+ appliance to be tested is connected to the socket P, or tothe 
+ terminal T which are in series with the lamp L, and are 
+controlled by switch S,.   Normally thistest is conducted bythe 
+electrician   to   ascertain whether the   appliance   is open- 
+circuited or short-circuited. A low wattage, appliance when 
+connected, will make the lamp L, to burn dim, and a high 
+wattage appliance will make the lamp to bum bright. 
+According to the brightness ofthe lamp, the behaviour ofthe 
+appliance, as well as the wattage of the appliance and the 
+lampandthe condition ofthe appliance could be judged. “No 
+light indicates either open circuit or high resistance in the 
+appliance. Inthe same way, achokecoil and astarter ofatube 
+light can be checked. (The flickering of the lamp L, with the 
+starter indicates that the starter is good.) 
+Thus the testing board also works as a continuity tester. 
+Direct testing: By connecting the appliance direct to the 
+socket P, or P.,, the performance of the appliance can be 
+verified after repair. 
+ 156 
+ Fuses: lfthe indicator lampL, does not burn, itindicates no 
+supply.   On the other hand,   in normal conditions,   the 
+indicator lamp L, will not burn, and it burns only when the 
+fuse F, is open. 
+Thus the test board is a cheap and handy test set whichis 
+easy to use by anelectricianto carry out his routine checks 
+in the course of his work. 
+Colour identification of cables: The colour ofthe cables 
+indicates theirfunction. Table 1 gives the colour code and 
+the alpha-numericnotationas recommended by N.E.Code. 
+The rules apply for marking conductors in equipment? 
+apparatus/installation. 
+Table 1 
+Alpha-numeric notation and colours 
+Designation of   Identification by 
+alpha   colour 
+Supply AC   Phase 14   L1   Red 
+system   Phase 2   |2   Yellow 
+Phase 3   La   Blue 
+Neutral   N   Black 
+Apparatus   Phase 14   U   Red 
+AC system   Phase 2   V   Yellow 
+Phase 3   W   Blue 
+Neutral   N   Black 
+Supply   Positive   L+   Red 
+DC system   Negative   L-   Blue 
+Mid-wire   M   Black 
+Supply AC   Phase   L   Red 
+system   Neutral   N   Black 
+(Single 
+phase) 
+Protective Earth   PE   Green and 
+conductor   yellow 
+Earth   E   Colour of the 
+bare 
+conductor. 
+Extension board (Fig 2) 
+Extension boards are used to operate portable electrical 
+appliances/ machines. Itis also used where more number 
+of sockets are required at a time. 
+Extension boards are available in different shapes with 
+PVC (or) plastic boxes provided with 2 core (or) 3 core 
+cables and moulded plugs. Extension boards are available 
+in 6A and 16A ratings.', NULL, '[-0.060609363,0.089275844,0.052599564,-0.0143755,-0.01999443,0.055457555,0.052261353,0.047862753,-0.033548746,-0.013831406,0.010944211,-0.056073297,-0.032269556,0.0028562502,-0.038220216,0.019557657,-0.024815867,0.017133208,-0.008091716,0.02525328,0.12956746,-0.009127653,-0.028425604,-0.046280533,0.03826924,-0.005487907,0.0836685,-0.050834566,-0.01014134,-0.22256076,-0.009570932,-0.022416245,0.017341448,-0.008796988,-0.02798386,-0.063159145,-0.042928316,-0.053951934,-0.078407064,-0.018926613,0.03020354,-0.022089496,0.017248897,-0.014760379,-0.020758137,-0.017111683,0.021094937,-0.046618138,0.031157669,0.012479109,0.022067295,-0.05129357,0.027298566,-0.048882425,0.043986995,0.02530649,0.069047734,-0.0074827275,0.009531098,0.04615334,0.016318334,0.056360714,-0.19773471,0.07674343,0.016196253,0.029567735,-0.017126169,-0.0046592476,0.057497367,0.048218697,-0.012544393,-0.017348342,0.012982059,0.103092864,-0.053973954,-0.00055850984,0.015570546,-0.07476738,-0.04271937,-0.044114046,-0.0218956,-0.030244492,-0.015082302,-0.002225346,0.005463707,0.0340956,-0.029840779,-0.0219981,0.0596256,0.031291917,0.03799109,-0.01010662,-0.016712653,0.004178729,-0.004197739,-0.06781895,0.010505932,0.0041400953,-0.015526525,0.12939054,-0.08159994,0.022606052,-0.022752816,0.009577828,0.028173894,-0.027823161,0.034306843,-0.0119079845,-0.054777857,0.0029627818,-0.023267936,-0.043274574,-0.00035504551,-0.009805899,-0.00032214372,0.035845537,-0.0077647376,-0.02212492,0.05494801,-0.040572945,-0.049720827,0.03828951,0.05228751,-0.07898717,0.045315363,-0.017414352,0.020938007,0.06942018,0.017724304,0.018290864,0.01391971,-0.048936058,0.0083428295,0.023811731,-0.018145055,0.04051897,0.10191807,0.03256001,0.034696598,0.0396418,-0.003583208,-0.0019333519,0.042578,-0.03278187,0.00025451617,-0.06756493,-0.10467672,0.014300366,-0.046886865,0.038250692,0.058225587,0.026168482,-0.011753717,0.01197374,0.017372696,0.043210723,0.066409856,0.06811389,-0.02822973,-0.010269781,0.00026359587,0.014706227,-0.093383364,0.047914445,0.03554669,-0.03889757,-0.016850961,0.0049001165,-0.007764335,-0.06538505,0.08851117,0.0892926,0.018889595,-0.039688427,0.0021447642,-0.061483547,0.021485057,0.02975756,0.002418184,0.032263584,0.029688798,-0.024056448,-0.031391643,0.043364488,0.0090264175,-0.040848345,0.0012148251,-0.09483928,-0.027992114,0.09347113,-0.019659901,0.03785104,-0.095242,0.10726774,0.013419156,-0.061620865,-0.07107878,-0.09441163,0.018884497,-0.047427114,0.07967482,-0.04403556,0.02015798,0.012199893,-0.024146233,0.06425572,-0.001164849,-0.08410761,0.07403939,0.022877319,-0.032867726,-0.026421143,0.047799353,0.03333014,-0.03488072,-0.034741517,0.01186248,-0.00489544,0.052052658,0.05794326,0.05622104,-0.020125683,0.016330676,-0.199208,-0.0014403788,0.025768615,-0.0033142082,0.07410321,-0.0736381,-0.00725671,0.007956618,-0.012721107,-0.059615996,0.047110993,0.04322181,0.024606396,-0.00708271,-0.029438067,0.026867503,0.002816154,-0.0393315,-0.0090783695,0.0026801133,-0.015289895,0.0065394943,0.04606275,-0.02230631,0.05227298,-0.04129565,0.11812894,-0.05855928,0.09944006,-0.005029287,-0.013149932,-0.04654648,0.013817526,-0.040152848,0.036010295,0.014546961,0.0005517443,0.023730246,0.04298335,-0.01799098,-0.0077370945,0.060026057,-0.02870897,-0.04847865,0.014339592,-0.072230875,0.032895803,-0.036969177,-0.052692953,0.03549561,0.06720889,-0.053344157,-0.010202928,0.03559337,0.08182496,-0.08435667,-0.064432204,-0.00864461,-0.042659085,0.008047888,0.03953304,0.092130154,-0.0049813516,-0.021046806,0.051689006,0.04143596,-0.020145018,-0.017971057,0.08057721,-0.024189876,-0.022859989,0.123048425,0.06678352,0.008795138,-0.0025322447,0.010200401,-0.0098773725,-0.032325618,0.03888815,0.0046918183,-0.015790213,-0.0018988493,0.025424764,0.028527943,0.028829325,0.017657407,-0.008439014,-0.0037153899,0.13488927,0.03106618,-0.0394936,0.030414598,-0.015441435,-0.024762494,-0.014698557,-0.019726705,-0.22593628,0.016418995,-0.06054837,0.00062046305,-0.11796766,0.08871872,0.002550099,-0.02818894,-0.0418275,-0.015190713,-0.032130163,-0.003934224,0.026389904,-0.06577693,-0.025682291,0.045244846,0.1009377,-0.046695273,0.024414124,-0.064664595,0.049605787,-0.05204956,0.19823666,-0.111740984,0.037360746,0.025347417,0.060724217,0.010912301,0.011729308,-0.034769192,0.069092035,0.017052291,0.025253316,-0.07109662,0.06237435,0.03993425,0.0111656925,-0.025829291,0.0076029315,-0.068737805,0.022690028,0.008404722,-0.110732734,-0.029360453,0.048894476,0.030620843,-0.07085388,-0.1016564,-0.027077919,-0.024653886,0.008306568,-0.022459932,0.02384237,-0.01912129,0.0032043096,0.0038783306,-0.055312198,-0.0019228416,0.030449549,-0.050015207,-0.017413879,-0.06985812,0.07128707,0.033502217,0.10067631]', NULL, '{}'::jsonb, '2026-03-01T19:26:39.697Z', '2026-03-01T21:39:32.481Z', 'trade_theory', 'AC Circuits and Motors');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1413, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-6', NULL, 173, 157, '.   Vite 
+ EXTENSION BOARDS 
+ELN227212 
+ Conduit wiring - types of conduits - non-metallic conduits (PVC) 
+ Objectives: At the end ofthis lesson you shall be able to 
+¢ distinguish between the different types of conduits used in wiring 
+¢ State the different types of accessories used in non-metallic conduits wiring. 
+Ingeneral, conduit is defined as a tube or channel, which 
+is the   most commonly used   in electrical   installations. 
+Whencables are drawn through the conduit andterminated 
+at the outlet or switch points, the system ofwiring is called 
+conduit wiring. 
+Types of conduits 
+There are four types of conduits used for wiring. 
+*   Rigid steel conduits 
+*   Rigid non-metallic conduits 
+*   Flexible conduits 
+«   Flexible non-metallic conduits. 
+Non-metallic conduits 
+These are made of fibres,   asbestos, polyvinyl chloride 
+(PVC), high density polyethylene (HDP) or poly vinyl (PV). 
+Ofthe above, PVC conduits are popular owingto   their high 
+resistance to moisture and chemical atmosphere,   high 
+dielectric strength, low weight and low cost. These conduits 
+may be buried in lime, concrete or plaster without harmful 
+effects. 
+However, light gauge (lower than 1.5 mm wall thickness) 
+PVC pipes are not as strong as metal conduits against 
+mechanical impact. Special PVC pipes which are heavy 
+gauge and high impact resistance are available in the 
+market which can withstand heavy mechanical impact as 
+the thickness of the pipe   is more than 2 mm. 
+There are some PVC heavy gauge conduits having special 
+base material madeto withstand temperatures upto 85°C. 
+These PVC conduits are available in 3 m length. 
+Variation in conduit wiring systems 
+There are two types of conduit wiring systems as stated 
+below, for either metallic or non-metallic types. 
+*   Surface conduit wiring system done on wall surfaces. 
+*   Concealed   (recessed) conduit wiring   system done 
+inside the concrete, plaster or wall. 
+Selection of the type of conduit 
+Metallic or PVC conduits are equally popular in electrical 
+installations. Selectionofthe type of conduit depends upon 
+the following criteria. 
+*   Type oflocation, outdoor or indoor 
+*   Type of atmosphere,   dry or damp or   explosive or 
+corrosive 
+*   Expected workingtemperature 
+*   Exposureto physical damage dueto mechanical impact 
+*   Allowable weight of conduit runs 
+*   Estimated cost. 
+Special precautions with non- metallic conduits 
+1   Ifthe conduits are liable to mechanical damages they 
+should be adequately protected. 
+2   Non-metallicconduits shall not be used forthe following 
+applications. 
+3   In   concealed/inaccessible   places   of   combustible 
+constructionwhere the ambient temperature exceeds 
+ 60°C. 
+ 4   Inplaces where the ambient temperature is less than 
+ oC. 
+Power : Electrician (NSQF Revised - 2022) - Related Theory for Exercise 1.7.64&65   157', NULL, '[-0.019872868,0.039500717,0.002094036,-0.04199439,-0.022915103,-0.00372894,0.07996362,0.0066693043,-0.015466885,-0.011683207,0.019306315,-0.084085695,-0.0047826255,0.00037957108,0.063962825,0.0071169226,0.029157221,0.09513766,0.040526636,0.042951766,0.13486138,-0.041173972,-0.02118162,-0.0027455518,0.03761805,0.0025659497,0.055909157,-0.0181127,-0.031179748,-0.18509977,-0.02941791,0.037676364,-0.08089973,0.05681213,-0.05912084,-0.116761446,-0.07687603,0.022913525,-0.07295054,0.052816898,-0.01752005,-0.035855282,-0.0046067145,-0.066777475,-0.0665638,-0.029675653,-0.030880155,-0.093597375,0.054316204,-0.021444377,0.0437045,-0.032202616,-0.018215531,-0.0031670504,0.040497344,-0.011152459,-0.023898976,0.024663182,0.06250016,-0.009851621,0.10103406,0.05902783,-0.18269196,0.019917259,0.044951558,0.05532755,-0.060777474,0.021486912,0.105461255,0.0075174714,-0.013505766,0.024066791,-0.088810354,0.05094775,0.033402544,-0.006801063,-0.017805448,-0.031268947,-0.048015762,-0.006100785,-0.0041119587,-0.019788487,-0.058762975,-0.058272373,0.019749233,-0.024930155,-0.03306427,-0.039046038,0.01751052,0.0061754156,-0.04751091,0.015400894,-0.04758293,-0.012181681,-0.015767258,-0.055348933,0.03627536,-0.0015559972,0.01569635,0.08863724,-0.030766804,0.026173528,0.029131982,0.015123349,0.064419664,0.026149713,-0.009893021,-0.077343166,-0.022002041,0.020346133,0.040938806,-0.010471892,-0.044080447,-0.034508422,0.041818723,-0.028919982,-0.02626909,0.0052845343,0.017649395,0.052974496,-0.08424079,0.01606087,0.0413016,-0.025413739,0.062059708,-0.064367324,0.019559393,0.0033481454,0.0011346537,0.046782304,-0.0020220126,0.008656098,-0.0127590075,-0.058137987,0.015089972,0.016903913,0.03885638,0.070886664,0.0056110057,-0.048756175,-0.036485698,0.006590249,0.006216139,-0.09786493,0.0029054706,-0.0523089,-0.09615334,0.061428163,-0.030083884,0.04457736,-0.013359945,0.06492344,-0.049255297,-0.041884247,0.019102229,-0.021356143,-0.03018461,-0.02193797,-0.04887512,0.013290747,0.09110222,0.025555415,-0.04120772,0.09705054,0.0013640949,-0.15115596,0.010579743,-0.003592609,0.027190212,-0.040540397,0.015182154,0.069789894,0.028011244,-0.008294976,0.047316875,0.022507776,-0.11519457,-0.062329464,0.012489268,0.07820616,0.011002077,0.019409826,-0.03877801,-0.017777069,0.04459547,0.012167855,-0.03269525,-0.011375037,0.034028545,0.10805597,-0.08467592,0.024855806,-0.11814259,0.033864606,0.007027654,0.00073062413,-0.024582565,-0.049955588,0.022781985,0.026920661,0.032937102,-0.032511745,0.026048888,0.022140043,-0.0058983783,0.014189719,-0.019525731,-0.047430836,0.04696486,0.019875797,-0.04772481,0.0054197526,0.024493432,0.030833224,-0.07654309,0.01414972,0.057082962,0.026368815,0.08602257,0.04392157,0.050646853,-0.07358753,-0.012489244,-0.13156529,-0.002389595,0.033106238,0.05624504,0.06552632,-0.029250419,0.012410787,0.048509274,-0.026326442,-0.017642986,0.070423625,0.08898861,-0.0053428006,-0.038249142,0.030054208,0.09595023,0.025376102,-0.07237399,0.027302919,0.010109282,-0.048077185,0.0073569706,0.008516964,-0.03203661,-0.009517136,-0.09769324,0.13241322,-0.09979068,-0.019510359,0.04714269,-0.025407078,0.009532444,0.026018994,-0.03997412,0.016658934,-0.010816354,-0.009938326,0.010831065,0.0069409986,0.05865714,-0.03824036,0.04997434,0.016374273,-0.026282795,0.072933465,-0.06791158,0.013977487,0.012100279,-0.076275334,0.044247862,-0.049765408,0.00024530033,0.012134898,0.03083593,0.017795185,0.006470975,-0.05759406,0.06079616,-0.016656524,0.0295701,0.025702814,0.023982137,0.018679673,-0.040240273,-0.016810969,0.07937437,-0.003735372,0.05521589,0.044692457,-0.01782355,0.0028265426,0.17484277,-0.007434725,0.002133427,-0.0048086275,-0.036487475,0.006390387,-0.031833638,0.023370257,-0.035173938,-0.021563862,0.004184475,0.06167347,0.030890983,-0.030547356,-0.01991134,0.0068060053,-0.030785756,0.10269713,0.01122101,-0.020628512,-0.01617622,-0.052233364,0.052907262,0.048648328,0.015694244,-0.23772666,0.0054329066,0.08625692,-0.0769731,-0.057562698,0.027110925,-0.004830568,-0.019029599,0.0380412,0.06352839,-0.05069351,-0.0003724433,0.022472728,-0.031933304,0.028530471,0.02109263,0.08163161,-0.055885743,0.026835412,-0.011695596,0.005009456,0.00405176,0.16057938,-0.045284845,0.0730713,-0.017415794,-0.07311956,0.0071856347,0.0043539056,-0.044168435,0.028014803,-0.017984005,0.06348497,-0.097528875,0.10567165,0.06483602,0.017622134,0.021274056,-0.00046459388,-0.027712673,-0.019717125,0.03471911,-0.079018444,0.0048838663,0.052971095,-0.008773693,-0.06549505,-0.09960883,0.04997969,-0.06571745,-0.053220466,0.04276172,-0.008031711,0.022992993,-0.051338445,0.013536474,-0.039872475,0.0022498553,0.025018234,0.04134773,0.018173872,-0.018806616,-0.03867065,0.017248595,0.09027149]', NULL, '{}'::jsonb, '2026-03-01T19:26:40.023Z', '2026-03-01T21:39:32.481Z', 'trade_theory', 'AC Circuits and Motors');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1414, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-6', NULL, 174, 158, '5   Forsuspensionoffluorescent fittings and other fixtures 
+6   Inareas exposed to sunlight. 
+PVC fittings and accessories 
+Couplers (Fig 1) 
+Normally push type couplers are used and the conduit 
+shall be pushed right through   to the interior of the fittings. 
+Inspection type couplers are usedin straight conduitruns 
+to assist in the inspection of the cables. 
+Circular boxes (Fig 5) 
+ Fig 1 
+ Q))   Q_) 
+COUPLERS. 
+TYPES OF COUPLERS 
+ Fig5 
+ CIRCULAR BOXES 
+ ELN227225 
+ELN@27221 
+ Elbow (Fig 2) 
+ The axis of any elbow shall be a quadrant of a circle plus 
+a straight portion of each end. Elbows are used at sharp 
+ends of nearby walls or roof and wall. 
+ Fig 2 
+ SOLID ELBOW 
+ELBOWS.   : 
+ Bends (Fig 3) 
+Abendgivesa diversion of 90°C inthe turnofa conduit, and 
+a normal bend shall be a large sweep.   Inspection type 
+bends are used to assist in the inspection at the corners 
+and for drawing cables. 
+ Fig3 
+ SOLID   BEND 
+ELN22?223 
+ Tees (Fig 4) 
+Tees are usedtotake diversionfrom the mainline eitherto 
+the   switch points or the light points.   It may be either an 
+ordinary type or an inspection type. Inspection type tees 
+are used to assist inthe inspection incase there is   aneed. 
+ Fig 4 
+ SOLID TEE 
+TEE 
+ ELN227224 
+ Small circular boxes shall be provided with two machine 
+screws of a diameter not less than 2.8 mm for fixing the 
+covers. Large circular boxes have four machine screws of 
+not less than 4 mm diameter having not less than   10mm 
+threaded portion for fixing the cover. 
+They areavailableinasingle-way, two-way, three-way and 
+four-way as well as back outlet types which can be used 
+as per necessity in wiring. The minimum depth ofjunction 
+boxes used in roof slabs shallbe65 mm. The coverofthe 
+circular box shall be made of the same material as that of 
+the the box, and have a minimum thickness of 1.6 mm. 
+Apart from the above various other types are used as 
+junction boxes. (Fig 6) 
+ Fig 6 
+ TEE BOX 
+TYPES OF BOXES (JUNCTION BOXES) 
+ANGLE BOX 
+ ELN@2T227 
+ Method of cutting, joining and bending PVC conduit 
+pipes 
+While doing the conduit wiring, it becomes essential, that 
+the length has to be increased or decreased. Further the 
+conduit is to be bent according to the required situation. 
+Cutting PVC conduit 
+APVC conduit is easily cut by holding at the corner of a 
+bench and using a hacksaw. Any roughness of cut and 
+burrs should be removed with the aid ofa knife blade/emery 
+sheet, or sometimes by using a reamer. Before installing 
+the PVC conduit pipe great care shouldbe takento remove 
+the burrs inside the pipes to avoid damage to the cables 
+during the cable drawing process. 
+ 158   Power : Electrician (NSQF Revised - 2022) - Related Theory for Exercise 1.7.64&65', NULL, '[-0.024671447,0.01936469,0.034189228,-0.03767353,0.023672104,0.07122298,0.07353034,-0.014481452,-0.018943232,-0.02453807,0.03199587,-0.09045903,0.029565565,0.016518865,0.07573871,-0.0066904104,-0.022739165,0.058768608,-0.0035045496,0.04249766,0.10328248,-0.031168813,-0.042133123,-0.039592158,-0.010188064,0.011028571,0.0009177883,-0.029036904,-0.04362824,-0.1532826,-0.011199609,0.028487422,-0.02340578,0.08942839,-0.08012254,-0.11775265,-0.048392065,-0.016577316,-0.022356054,-0.02083336,-0.020686662,-0.059705954,-0.039952647,0.0011598977,-0.07885915,0.0042768363,0.011413526,-0.06893434,0.058713906,-0.033549383,-0.015402982,-0.0670516,0.04249622,-0.010161649,0.010032563,0.004849786,0.04673341,0.017020376,0.00413878,0.039726023,0.088763654,0.027121704,-0.22776859,0.023281178,0.01213259,0.02183056,-0.020152468,-0.012156164,0.06252237,0.0896847,0.0032837996,0.023290008,-0.10377006,0.013182987,-0.0150674265,-0.016472438,-0.078488834,-0.08220888,-0.0152554335,0.02705544,-0.024952002,0.015266779,0.017461121,-0.00056643435,-0.042658124,0.019455615,-0.013612746,-0.020183688,0.047575496,-0.007090404,-0.004095782,-0.029141514,-0.022489246,0.034628317,-0.0039825845,-0.007201053,0.055442832,0.044992592,0.021327276,0.0801254,-0.045541834,-0.019030394,0.023705693,-0.0031452458,0.047983896,0.01373858,-0.016499354,-0.0671996,0.019974519,0.015004527,0.004957136,0.008504789,-0.045065615,-0.0020820224,0.0064374926,0.007098614,-0.005863039,0.050709955,-0.017228352,-0.0127985645,-0.07971231,0.014893862,0.06307393,-0.0033495666,0.047253374,-0.034273114,-0.00096199015,-0.022740439,0.0077691874,0.08826805,-0.023558106,0.021892395,-0.000658974,-0.005402814,0.034765515,0.023356285,0.044978485,0.06644916,-0.005346252,-0.040112857,-0.052608863,-0.031321812,0.042044025,-0.0472195,0.017043505,0.040010702,-0.104407884,0.022245862,-0.017274408,-0.049920272,0.038882367,0.028528748,-0.06917659,-0.03720078,0.04439255,-0.025477476,0.029409012,-0.00891169,-0.067287154,0.03768941,0.06314544,0.013826413,-0.08868626,0.042928644,-0.01774005,-0.16090235,0.0029422122,-0.030264407,0.0013875294,-0.042607058,0.037928846,0.023784833,0.0104102185,0.016907236,0.03722544,0.035589635,-0.05807053,-0.04774888,-0.013722289,0.030967642,-0.036965393,-0.021899892,-0.064435184,0.039071806,0.05168605,-0.009406313,-0.03913245,-0.021048587,0.034443635,0.081774555,-0.07775285,0.022287339,-0.12382896,0.063724376,0.03594228,-0.05234481,-0.053143878,-0.01475636,-0.042197637,0.02407067,0.05852892,-0.015822848,0.051770855,-0.014367592,0.02278622,0.03487515,0.046354387,-0.022873607,0.031476513,0.048452005,-0.06745311,-0.009453272,0.052531503,0.025327459,-0.043702383,0.039266948,0.055019792,-0.016874785,0.033468634,0.053319808,0.009170988,-0.024171157,-0.0061787637,-0.15852575,-0.004442361,0.022189902,0.042730104,0.07033663,-0.10066553,-0.006638093,0.03747691,-0.05672191,0.02934493,0.099897034,0.06130012,-0.023074115,-0.023558142,0.06600235,0.11943716,-0.041637704,0.0040993914,-0.019204967,-0.015200044,-0.026462253,0.0388929,-0.03054135,-0.01996031,0.01688764,-0.019496063,0.16629915,-0.062793575,-0.01936105,0.058218103,-0.036207687,-0.017102886,0.024425365,-0.051097956,-0.010250217,0.04674814,0.01520997,0.02046708,0.025186423,0.022606835,-0.08877581,0.05609522,-0.025310617,-0.04267251,0.084152706,-0.045293186,-0.032304343,0.026719073,-0.06184527,0.013775473,-0.044651587,-0.00940688,-0.01337096,0.019919006,0.024328183,-0.0063362354,-0.05929109,-0.014960944,-0.008870243,0.05086144,-0.000954196,0.042740423,0.058999673,-0.041365165,0.015170433,0.029443575,0.02216134,0.07661615,0.013185993,-0.013311218,-0.001965951,0.11142499,-0.043182045,0.028044077,-0.02721003,-0.04766814,0.014594389,0.030182932,0.013247398,-0.06708825,0.048976757,0.004772897,0.022437174,0.010561219,-0.009834556,-0.02647033,0.0053602993,0.0031000804,0.081774406,-0.025088197,0.018179104,0.021279546,-0.015069633,0.044908587,0.055379,-0.007283423,-0.25682634,0.0015174847,-0.031190474,-0.052620284,-0.11636861,0.068444595,0.028618746,0.00041288693,0.051552672,-0.025419043,-0.071273476,0.018851684,0.018634668,-0.05675562,0.022445334,0.042946134,0.021063304,-0.078830816,0.006284723,-0.106880374,-0.006639892,-0.05557512,0.21267885,-0.026979722,0.06869798,-0.0054420163,-0.0033624016,-0.0018270162,0.030139051,-0.021691281,0.061345145,-0.031154046,0.06500457,-0.077659,0.10361806,0.050720837,0.0062375497,0.047802024,0.044717286,0.013166778,0.026353735,0.058488335,-0.08215863,-0.01457828,0.047337446,-0.025191123,-0.025857285,-0.06140667,0.041648727,-0.04058611,-0.039679896,0.05974495,0.042224463,-0.007972721,-0.05463938,0.04434382,-0.057368986,0.025620192,-0.04410385,0.06639011,0.017959537,-0.0513954,-0.010023405,0.05539894,0.11428804]', NULL, '{}'::jsonb, '2026-03-01T19:26:40.343Z', '2026-03-01T21:39:32.481Z', 'trade_theory', 'AC Circuits and Motors');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1415, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-6', NULL, 175, 159, 'Joining conduit with fittings 
+The most common   jointing procedure uses a PVC solvent 
+adhesive. Before applyingthe adhesive the inner surface of 
+the accessory and the outer surface of the PVC pipe shall 
+be cleaned with emery sheet to have a better grip. The 
+adhesive should be applied to the receiving portion of the 
+conduit fitting, and the conduit twisted into it to ensure a 
+total coverage. 
+Generally,   the joint   is solid   enough for use after two 
+minutes although complete adhesion takes several hours. 
+Inorder to ensure a sound joint, the tube and fittings must 
+be clean and free from dust and oil. 
+Where   expansion   is   likely   and   adjustments   become 
+necessary a mastic adhesive should be used. This is a 
+flexible adhesive which makes a weatherproof joint, ideal 
+for surface installations and in conditions of wide temperature 
+variation. It is also advisable to use the mastic adhesive 
+where there are straight runs on the surface exceeding & 
+metres in length. 
+with suitable dummy covers. The portionwherethe bend is 
+to be   made shall   be heated   uniformly   (Fig 8a)   toa 
+temperature below its melting point. 
+ Fig7   
+4 
+ “   a 
+ 5   SSS 
+ 7 
+7 
+ Z 
+v 
+ a” 
+ SPRING   ae 
+INSERTED   Fa 
+SPRING   5 
+BENDING OF PVC PIPE BY HAND   2 
+Then bend the required angle is made by holding both 
+sides, with sufficient gap from the heated portion to avoid 
+burning of hands, andapplying uniform pressure (Fig 8b). 
+Care shall be taken to avoid kinks on the conduits while 
+ bending. 
+ Conduit fittings should be best avoided, as far 
+as possible, on outdoor systems. 
+ Bends in conduit 
+ All bends inthe non-metallicsystem shall be formed either 
+by bending the pipes by proper heating or by inserting 
+suitable accessories such as bends elbows or similar 
+fittings.   Solid type fittings   shall   be   used for recessed 
+wiring.   Solid type/inspection type of fittings shall be used 
+for surface conduit wiring. 
+The minimum bending radius of conduits shall be 7.5 cm. 
+Care should be taken while bending the pipes to ensure 
+that conduit pipes are not damaged or cracked and the 
+internal diameter is not effectively reduced. 
+Inrecessed conduit wiring, conduit bending, otherthanat 
+the ends,   shall   be made   by bending the pipes to the 
+required angle and clamping at short intervals. Inthe case 
+of conduits laid in the roof slab, it can be clamped or tied 
+to steel reinforcement bars with suitable metallic clamps. 
+Inthe case of conduits recessed onwalls, the chasis shall 
+be made in the required shape and conduit fixed in the 
+groove with suitable clamps.   In the case of bending for 
+surface conduit system, bending can be done either at 
+cold state or by proper heating. 
+Bending PVC conduit in cold weather (Fig 7) 
+In cold weather it may become necessary to warm the 
+conduit slightly at the point where the bend is required. 
+One of the simplest ways to do this is to rub the conduit 
+with the hand or a cloth. The PVC will retain the heat 
+created long enough forthe bend to be mace. Inorderthat 
+the bend is maintained at the correct angle, the conduit 
+should be saddled as quickly as possible. 
+Bending of conduit by heating 
+The piece of conduit to be bent is first cut and inspected 
+for any sharp edges or burrs left out. Insuch cases it shall 
+be made smooth   by using suitable emery sheet. The 
+conduit is then filled with riversand. The ends are sealed 
+ Fig 8 
+ DUMMY   : 
+COVERS   
+e   DUMMY 
+COVERS 
+ SAND-FILLED PIPE 
+ {b} 
+HOT BENDING OF THE PVC PIPE 
+ ELN227225 
+ In PVC conduit wiring the first step is to select the correct 
+size of conduit. The conduit size is determined by the 
+size of cables and the number of cables to be drawnina 
+particular section. This information can be obtained from 
+the wiring layout and the wiring diagram. 
+ Selection of conduit size 
+ Anon-metallic conduit pipe, used in wiring, should have a 
+minimum size of 20 mm in diameter. Where a large number 
+of conductors are to be drawn, the size of the diameter 
+depends on the size of the conductor and the number of 
+conductors. Table 1 gives details of the numbers and the 
+sizes of conductors that can be drawn in each size of a 
+non-metallic conduit. 
+When 2.5 sq mm 650 V grade single core cables of six 
+numbers are to be drawn in a single run, we can use 25 
+mm non-metallic conduit as per the table. 
+When 6 sq mm.   650 V single core 6 cables are to be 
+drawnina single pipe we can use 32 mm PVC pipe. The 
+following are the maximum permissible number of 650/ 
+1100¥V volts grade single core cables that may be drawn 
+into rigid non-metallic conduits (Table 1}. 
+ Power : Electrician (NSQF Revised - 2022) - Related Theory for Exercise 1.7.64865   159', NULL, '[-0.039704356,-0.028464569,0.03097912,-0.10885274,-0.013710517,0.013423024,0.060967047,-0.0005789933,0.02042448,-0.04539308,0.024491586,-0.13647236,0.047389146,0.050300326,0.058714733,-0.040594056,-0.021347519,0.12186844,-0.03743625,0.040267285,0.02767706,-0.030738553,-0.07160447,0.01972421,0.06495998,0.028227152,0.0024828047,-0.018017262,0.0063261115,-0.19161999,-0.061669126,0.05159765,-0.06594492,0.05097522,-0.065090425,-0.052392796,-0.01620465,0.033579662,-0.024901442,0.025372624,-0.0039229663,0.021884633,-0.084666066,-0.04747216,-0.0019754388,0.02307592,0.01777968,-0.07330791,0.08646672,0.013262397,0.052537005,-0.056767147,-0.009958775,0.043698113,-0.007745937,0.07167405,0.021687973,-0.030910492,0.028994968,0.012573271,0.048549097,0.01918691,-0.21002138,0.09739749,0.08216713,0.026691345,0.04826101,-0.057754993,0.040457215,0.056568522,-0.03190846,0.04939793,-0.034449317,0.052580997,-0.019554166,0.030408204,-0.03863429,-0.0060136844,-0.04724694,0.00526966,-0.02395423,0.06309299,0.022560166,-0.015885677,-0.0112210065,0.0020893854,0.029684184,-0.022306534,0.0031788112,0.011376655,-0.029220913,-0.036308944,-0.03940702,-0.034478787,-0.012403421,0.02658547,0.04029104,0.023990145,0.001884162,0.0594529,-0.067933604,0.06291805,0.017838899,0.01000303,0.015903885,0.01737783,-0.06344026,-0.023855418,0.015273306,0.049052835,0.004502216,0.006588504,-0.0466151,0.000117775235,0.024005888,-0.026708074,-0.031067552,0.014672086,-0.075812556,-0.009447436,-0.06300415,0.028809559,0.05026148,0.050784633,0.037470967,-0.010982519,0.033094995,0.01296542,-0.018126568,0.07761795,0.03208709,0.00360725,0.026230795,-0.04108322,0.058630157,0.0057459003,-0.03115276,0.046433214,0.018024782,0.01832386,-0.018487113,-0.05346647,-0.026163204,-0.053986818,0.024476644,0.023705605,-0.10738673,0.008016845,-0.0096380105,-0.017860625,-0.00067209324,0.017968575,-0.027597496,-0.029844249,0.05709661,-0.019961119,0.024920944,0.0028258387,-0.06737688,0.020204965,0.0202162,-0.033819363,-0.022320632,0.021881394,-0.009542054,-0.13688253,0.0064668735,-0.017441034,0.059174553,0.0067272377,0.030150473,0.002348668,0.044875655,0.0039971657,0.00023748787,0.019764567,-0.041465092,-0.03557227,0.0072726468,0.038639218,-0.005014435,-0.01135605,-0.01755011,-0.06568841,0.05242821,-0.027314832,-0.029955998,-0.014199676,0.0070047593,0.04584429,-0.118196614,0.03403278,-0.10571709,0.035033166,0.0178967,0.0028470505,-0.0067718923,-0.04056538,0.020031065,0.016888933,0.023921346,-0.057576858,-0.008863175,-0.036390852,0.039192982,0.05515192,-0.0022538216,-0.043617588,0.0430813,0.039968498,-0.022372771,-0.011503057,0.050459795,0.011067778,-0.021100929,0.067058526,0.044590905,0.021608401,0.07044368,0.039085574,-0.032319035,-0.011210208,0.04262536,-0.17323613,0.05268179,0.030869164,0.07970874,0.107024744,-0.106495425,0.010135282,5.4745626e-05,-0.06492218,-0.042058937,0.080940716,0.048997056,0.021106055,-0.051732022,0.0024800685,0.04802185,-0.018345632,0.022497762,0.009993929,0.024466453,-0.015284112,0.036710717,-0.035285477,0.017190568,0.001703906,0.01147877,0.1472171,-0.03601736,-0.072267674,0.006996461,-0.0058063706,0.0002628103,-0.040000826,-0.09699864,-0.024755085,0.017350147,0.040890537,-0.0007750535,0.035673004,0.029947702,-0.07881657,0.095258,0.030833354,-0.07939189,0.073053904,-0.052097645,-0.03718055,0.025072971,-0.09427114,0.010157735,-0.0404352,0.004006295,0.021882502,0.027476978,-0.014499618,0.019981332,-0.03891098,0.01920207,-0.018408371,0.027221862,0.024378637,0.06486826,0.0649976,-0.0225832,-0.003353464,0.06955776,0.016879927,0.016480915,-0.014411305,0.010623965,-0.013802852,0.07223958,-0.039462198,0.043407965,0.003799056,-0.06867641,-0.037637245,-0.018680274,0.050317023,-0.071897246,0.055146206,-0.07747594,0.056135863,-0.022774173,-0.012965996,0.0038691382,0.04699646,-0.0040748334,0.049503054,0.000117300784,-0.016760373,-0.0146000525,0.02927633,0.087321356,0.050747547,0.019312995,-0.2714675,0.02022705,-0.005188826,-0.033756882,-0.08899281,0.0020407473,0.036002167,0.0063222847,0.028236642,0.0015377244,-0.08684527,0.011131316,-0.05849076,-0.06705821,0.01667928,0.06024686,0.03679512,-0.05965437,-0.022100272,-0.07563623,-0.032086764,-0.049511097,0.2108628,-0.04765113,0.058598686,0.03031603,-0.09670592,0.023576489,0.028508427,-0.030494306,0.03872459,-0.0067266473,0.046402488,-0.08592466,0.06778531,0.08829468,-0.03618451,0.03765718,0.050580963,0.03096959,0.019758249,0.049695894,0.027336596,-0.0042927205,0.07754648,-0.05717034,-0.026439462,-0.10322557,0.04346005,-0.042952187,-0.0358366,0.010487114,0.030075694,0.0014384728,-0.0776633,0.014757835,-0.03770522,0.009283778,0.028003056,0.033402134,-0.024260748,-0.0908014,-0.012682943,0.04231496,0.06766223]', NULL, '{}'::jsonb, '2026-03-01T19:26:40.330Z', '2026-03-01T21:39:32.481Z', 'trade_theory', 'AC Circuits and Motors');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1416, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-6', NULL, 176, 160, 'TABLE 1 
+ Maximum number of PVC insulated 650 V/1100 V grade aluminium/copper conductor cable 
+drawing through conduits conforming to IS: 694-1990. 
+Nominal Cross- sectional   20 mm   25 mm   32 mm   38 mm   51mm   70 mm 
+area of condutor in sq.mm 
+ sS*   BF   1S   B   Ss   B   S)   B   S$   B   Ss   B 
+1.50   5   4   10   «68   18   12   | -   -   -   -   -   - 
+2.50   5   8   6   12   10   |—-   -   -   -   -   - 
+4   3   2   6   5   10   8   |-   -   -   -   -   - 
+6   2   -   5   4   8   7   [-   -   -   -   -   - 
+10   2   -   4   3   6   5   | 8   6   -   -   -   - 
+16   -   -   2   2   3   3/6   5   10   7   42   8 
+20   -   -   -   -   3   2   [5   3   8   6   ot 
+35   -   -   -   -   -   -   |3   2   6   5   8   6 
+30   -   -   -   -   -   -   |-   -   &   33   6   5 
+70   -   -   -   -   -   -   |-   -   4   3   5   4 
+ 15 degrees. 
+ Conduit sizes are the nominal external diameters. 
+ The above table shows the maximum capacity of conduits for a simultaneous drawing in of cables. 
+The columns headed ‘S’ apply to runs of conduits which have a distance not exceeding 4.25 m between 
+draw in boxes and which do not deflect from the straight by an angle of more than 15 degrees. The 
+columns headed ‘B’ apply to runs of conduit which deflect from the straight by an angle of more than 
+ PVC Channel (casing and capping) wiring 
+ Objectives: At the end of this lesson you shall be able to 
+*   state the use limitation and rules of channel wiring system 
+*   select the channel size according to size and number of cables from the chart 
+*   explain the method of fabricating neutral, bend, and junction in PVC channel . 
+Introduction : Channel (Casing and Capping) wiring is a 
+system of wiring   in which   PVC/metallic channels with 
+ covers are used for drawing wires. Thissystem of wiringis 
+ suitable for indoor surface wiring works.   This system is 
+adopted to give a good appearance and for extension of 
+existing wiring   installation.   PVC insulated cables are 
+generally used for wiring in casing and capping system. 
+This is otherwise called ‘wireways’. 
+The channel and top cover shall be of the same material 
+either PVC or anodised aluminium. The casing is square 
+orrectangularin shape. The capping shall be slide intype 
+with double grooving inthe case of PVC wire ways.   Plain 
+type capping are used for metallic wireways. 
+The only disadvantage in a channel wiring is that it is 
+inflammable and risk offire. 
+Dimensions: The sizes of channel, the maximum number 
+of wires which can be drawn in each size are giveninthe 
+table 1 below. 
+ The thickness of channel should be 1.2mm +0.1mm. 
+ Table 1 
+Nominal cross   10/15mm x   20mm x   25mm xX   30mm xX   40mm x   50mm x 
+ sectional area of | 10mm size   10mm size   10mm size |   10mm size   20mm size   20mm size 
+ conductor   channel   channel   channel   channel   channel   channel 
+in sq.mm 
+ No. of   No. of   No. of   No. of   No. of   No. of 
+ wires   wires   wires   wires   wires   wires 
+ie   3   5   6   8   12   18 
+D5   2   4   5   6   9   15 
+ 160   Power : Electrician (NSQF Revised - 2022) - Related Theory for Exercise 1.7.64&65', NULL, '[0.010490986,-0.0087500075,-0.009159397,-0.08983239,-0.0694251,0.04443918,0.03888839,0.033252187,0.047591917,0.06586109,0.058508717,-0.10052493,-0.00018471852,0.031045834,0.024009643,-0.008521749,0.023020888,0.022824027,0.007819286,0.06853901,0.14601651,-0.036514264,-0.07549783,-0.09730413,0.03877476,-0.0030469699,0.054701325,-0.03567679,-0.035654005,-0.22179927,-0.03525073,-0.0052473675,-0.0016781572,0.056929916,-0.0902468,-0.089663476,-0.028970918,0.0050582904,-0.027715573,0.07679635,-0.021638036,0.009661236,-0.009859993,0.015598761,-0.062403604,-0.030144587,-0.05676147,-0.062097453,0.11211512,0.039877377,0.04125544,-0.013561135,0.016226733,-0.013881744,0.031411055,-0.003032962,0.019247683,0.024081856,0.06595158,0.014957444,0.032754898,0.052308623,-0.24427533,0.027015496,0.0075601735,0.038855057,-0.039801735,0.04892037,0.06901081,0.05609246,-0.022241434,0.0033571762,-0.06461065,0.051644728,0.04897624,0.010162275,-0.08877782,0.012423965,-0.008284886,0.032097336,-0.008280327,-0.019377073,-0.00015542183,-0.02980054,-0.009706019,0.00036094757,-0.04324409,-0.03500912,-0.00041295213,-0.022114178,-0.01001255,0.040484227,-0.07181722,-0.002824243,-0.12108836,-0.05294247,0.050650924,-0.008274794,-0.041512594,0.07310179,0.039995726,-0.034931466,0.010220239,0.010458301,0.060582448,-0.0033176383,-0.013042205,-0.00037063388,0.0024595314,0.003465669,-0.0037489084,0.01564572,-0.050577495,-0.039912198,0.077286586,0.012788671,0.009427451,-0.0058886413,-0.030246368,0.010633379,-0.06358225,0.048608012,0.05463867,0.009542547,0.07417522,-0.01647491,0.018921573,0.028036904,-0.012190611,0.04549115,0.025485175,0.06579299,-0.006576769,-0.04295862,-0.027544409,0.003090807,0.018095247,0.07921672,0.028816588,-0.035798468,0.010723036,-0.016905062,0.02344639,-0.053905297,-0.013706754,-0.0048505673,-0.058578346,0.0372849,-0.044049807,-0.030748224,0.036532592,0.015895566,-0.005125727,-0.077360556,-0.012742048,-0.01125411,0.008562751,0.05605755,-0.03605577,0.004814484,0.05353105,0.0014817201,-0.009030289,0.12086616,-0.008636108,-0.1602421,-0.01696498,0.0152067905,0.0034177129,-0.0062582283,0.03832809,0.058587626,-0.0015820117,0.016661588,0.07422798,0.016931107,-0.10998242,-0.021144802,0.017129282,0.07646531,0.065752394,-0.016457109,0.012201435,-0.03056318,0.06914053,-0.009794909,0.0037650606,-0.058480598,0.028364087,0.059826605,-0.051443174,0.011958788,-0.08147087,0.06564372,-0.050161876,0.008850896,-0.0035509071,0.016482487,0.011412769,0.012506282,0.042275533,-0.045517262,-0.029137269,0.024006255,0.013019245,-0.002057058,0.010021266,-0.05050902,0.033600472,0.061930053,-0.06990878,-0.017558195,0.034039456,-0.037252843,-0.020706303,-0.0029243382,0.033779778,0.03649079,0.04131726,0.042159464,0.077223755,-0.07468163,0.0014989118,-0.20407346,0.016477048,0.048131,-0.02592207,0.0671136,-0.0969309,0.023646105,0.0036125921,-0.050400086,-0.0073668184,0.0768074,0.065535285,-0.0401754,-0.022705596,0.0036967702,0.048957553,-0.0633862,0.012897329,-0.03353297,0.01688987,-0.023542773,0.05983872,-0.03309845,0.011237754,-0.025853414,-0.045540314,0.1490281,-0.0842672,-0.06246848,0.055695903,-0.003816426,0.010598758,-0.001901638,-0.049681958,0.012608676,0.02344586,-0.030544888,0.04475281,-0.033621486,0.048742406,-0.032353405,0.03333725,-0.040363777,-0.05778831,0.03257869,-0.03106076,-0.044418152,-0.012413599,-0.06479533,0.04360916,0.012580239,-0.020985056,0.0046064127,0.024912665,0.051059272,0.0014395044,-0.04795709,0.0026793187,-0.033090822,0.03485538,0.010923864,0.040733013,0.022702366,-0.031552874,-0.026133638,0.04997433,0.009094341,0.08409621,0.022636222,-0.0029693868,-0.012231671,0.14599714,0.046855576,-0.014457399,0.016163781,-0.043284085,0.016695036,0.012265588,0.020016221,-0.0190475,0.02070546,-0.048299756,0.06378671,0.028768348,-0.0063050142,0.01044492,-0.013483022,0.024299577,0.06888568,0.035752837,0.00865191,0.01188866,-0.0159909,0.016563006,0.015676128,-0.006824829,-0.24812932,0.0109550515,0.011873346,-0.032952532,-0.06488893,0.046780355,0.040410057,0.035404284,0.041878536,0.0072432617,-0.066774935,0.05050571,-0.022353137,-0.018060058,0.00986046,0.02071572,0.025926571,-0.055331238,0.010164918,-0.010320662,-0.024631679,-0.04109656,0.16176504,-0.024089279,0.07139331,-0.04158234,-0.067880094,0.036828145,0.034301147,-0.11095475,0.016324611,0.017475585,0.0675274,-0.04369394,0.06789768,0.0763917,-0.0216411,-0.021197457,0.028727476,0.029676015,-0.03346642,-0.016510446,-0.09282567,0.03864669,0.080615886,0.001666902,-0.024202412,-0.058865212,0.0039434326,-0.07329342,-0.059105597,0.05691721,-0.01642582,-0.041342687,-0.0055710366,-0.02168983,0.0026026182,-0.08292877,0.00045506493,-0.017527388,0.016997468,-0.046476774,-0.025122305,0.030104388,0.08157032]', NULL, '{}'::jsonb, '2026-03-01T19:26:38.236Z', '2026-03-01T21:39:32.481Z', 'trade_theory', 'AC Circuits and Motors');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1417, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-6', NULL, 177, 161, '10   -   1 
+16   -   - 
+25   -   - 
+35   :   : 
+50   :   : 
+70   :   : 
+ 12 
+ 1 
+o—S—* 
+NH 
+WwW 
+BS 
+- 
+NO 
+WwW 
+KR 
+Mm 
+- 
+=A 
+NY 
+WO 
+fo 
+DD 
+@w 
+MS 
+wo 
+bho 
+DD 
+wo 
+© 
+ Precautions 
+ 1   Neutral   (Negative) cables should   be   carried in top 
+channel and phase (Positive) in the bottom channel. 
+2   Crossingofcables between phase (Positive) and neutral 
+(Negative) should be avoided. 
+3   PorcelainorPVC pipe should be used for crossing the 
+cables through the walls. 
+Installation of PVC channel : The channel should be 
+fixed to wall/ceiling with flatheaded screws andrawl plugs. 
+These screws shall be fixed at an interval of 60cm.   On 
+either side of joints this distance shall not exceed 15cm 
+fromthe end point. Channel under steel joints shall be fixed 
+with MS clips of not less than 1.2mm (18SW6G} thickness 
+and width not less than 19mm. 
+Floor/Wall crossings : VWnen conductor pass through 
+floorsAvall the same should be carried in a steel conduit/ 
+PVC conduits properly bushed at both ends. The conduits 
+shall be carried 20cm above floor level and 2.5cm below 
+ceiling level and properly terminated into the channel. 
+Joints   in   PVC/Metal   channel   :   As   far   as   possible 
+wireways in straight runs shouldbe single piece. Alljoints 
+shall be scarfed or cut diagonally in longitudinal section. 
+The section ends shall be filed smoothly but joined without 
+any gap. Care shall be taken to see that the joints in PVC 
+ cover does not overlap those channel. 
+ Joints shall also be done using standard accessories like 
+elbows, tees, 3 ways/4 ways   junction box etc of high grade 
+P¥C/Aluminium alloy.   InPVC channel separate channel 
+cover for joint, elbows, tees, crossetcare available. These 
+can   be fixed   after fixing   the   channel to   give   a   good 
+appearance. The radius of curvature of the cables insidea 
+bend should be more than 6 times its over all diameter. 
+Inthe case of PVC channel,   making joints is comparatively 
+easy. Mark the joints by placing the two pieces inrequired 
+angle.   Identify the position to be cut and remove on each 
+pieces.   Cut through the lines and file the edges to get 
+gapless joint. 
+Fabricating a right-angled vertical bend 
+1   Mark out the position of bend of all sides as shown in 
+Fig 1. the width "Y’ must be made equal to the diagonal 
+length “Y’ to be cut. 
+2   Drill small holes in corners at point of bend to stop 
+channel folding (Fig 1). 
+ Fig 1 
+ SMALL HOLE TO STOP 
+THE METAL FOLDING 
+ ELN227231 
+ 3   Place wood blocks inside trunking for support.   Cut 
+sides oftrunking (Fig 2). 
+ Fig2 
+ CUT SIDES OF 
+TRUNKING 
+ ELN22?232 
+ 4   Cut, file and break-off waste (Fig 3). 
+ Fig 3 
+ CUT HERE 
+ ELN2272a3 
+ 5   Fileallthe edges smoothinorder to bend to shape 
+(Fig 4). 
+ 6   Make''L plates out of PVC scrap (Fig 5). 
+?   Make andsecure assembly with''L’ plates and paste it 
+with suitable adhesive (Fig 6). 
+Fabricating 90° bend 
+1   Mark out the position of bend (Fig 7a & b). 
+ Power : Electrician (NSQF Revised - 2022) - Related Theory for Exercise 1.7.64865   161', NULL, '[-0.06807831,-0.031254094,0.045006372,-0.100214735,-0.007719347,0.039634746,-0.0069178315,0.02025654,0.0044364086,0.044788174,0.033288926,-0.100927085,0.00886325,0.03381902,0.05526248,0.015521646,-0.020669976,0.07964987,-0.03994822,0.10378855,0.048714127,0.013573532,-0.012810694,-0.042447474,0.09928643,-0.029791698,0.06552824,-0.012007977,-0.008088118,-0.20181571,-0.031957567,0.046197653,-0.040801812,0.05765364,-0.07678296,-0.055925492,-0.04226529,-0.009733874,-0.05160619,0.025431205,-0.03506506,-0.03692199,-0.025733994,-0.0102650095,-0.023893304,-0.005357714,0.010190419,-0.08895527,0.1170067,-0.010127861,0.024212312,-0.012412105,-0.03806843,0.022127109,-0.045199737,0.018728618,0.045597192,0.0039928467,0.016941024,0.034931105,0.08265799,0.02479903,-0.22577706,0.08098787,0.03612846,0.04342508,-0.0028726584,-0.0043059452,0.043425664,0.15614796,-0.05394938,0.018526873,-0.016104523,0.019889245,0.046192937,0.0060861795,-0.023649389,-0.008201444,0.010732865,0.032711215,0.017061371,0.0048727253,0.031238196,-0.04563376,-0.031756304,0.03347421,-0.029586252,0.0009991803,-0.041045353,0.052411817,-0.006733148,-0.007495328,-0.054095455,0.05851117,-0.056235913,-0.04064157,0.0025969043,-0.00699243,-0.028717874,0.09333281,0.039423887,0.020433055,0.05357547,0.060696263,0.029719217,-0.030010156,0.024897784,0.033438276,-0.04865192,-0.008518624,-0.040308256,0.0012941491,-0.0053997627,-0.011760299,0.08343043,0.040507276,-0.03410594,-0.017619757,-0.09069474,-0.05715786,-0.066188455,0.006567291,0.13680995,0.036953267,0.0549137,-0.061677657,0.047725283,0.025281452,-0.06317856,0.040815946,0.011479922,0.0008484582,0.027838046,-0.024762943,-0.012221447,0.045174975,-0.0038007053,0.055175964,0.0067493175,-0.043759633,-0.030902829,-0.0497886,-0.044595703,-0.061352327,-0.0061544124,-0.003387958,-0.063255906,0.042667486,0.011162597,-0.07051272,0.032971412,-0.00015800368,0.010101998,-0.039031666,0.0051276586,-0.066647805,0.042939484,0.02706776,-0.04864277,0.017459024,0.055746306,-0.002404358,-0.06663862,0.12205818,0.016906869,-0.12053538,0.03751623,-0.040000457,0.017550245,-0.020629318,0.014627583,0.063633375,0.024535598,0.011650701,0.01459414,0.053669985,-0.040572565,0.002506389,0.0011840082,0.016099177,-0.012541528,-0.06740072,-0.022955516,-0.05471651,0.11946212,-0.019930309,-0.040875986,-0.00465026,0.035767242,-0.01921197,-0.09054576,-0.003679847,-0.07351766,0.041294176,-0.0248531,0.02319883,0.0026995032,-0.08005831,0.011581452,0.03975133,0.046051428,-0.042046435,-0.029099843,0.032891046,0.03552007,0.049780477,0.04373534,-0.01868996,0.009587695,0.104464136,-0.033246484,-0.043611135,0.07815075,-0.045368657,-0.04310999,-0.02758604,0.017076792,0.05291377,0.043394584,0.048332892,0.0012394151,0.03231115,0.042346478,-0.17878564,0.021268483,0.031814914,0.06728955,0.043198206,-0.065105915,-0.02717431,-0.033393312,-0.051536478,-0.036806643,0.12868348,0.019852107,-0.032252077,-0.04712334,0.037377138,0.093525015,0.014789585,0.003368885,-0.011962278,-0.043126103,-0.07721818,0.047693912,-0.03345115,0.009851781,0.0049501266,-0.062762134,0.10564374,-0.029398428,-0.022924626,0.056156065,0.002622287,-0.010998049,-0.014727855,-0.049279008,-0.005633985,0.029732699,0.03908223,0.013893544,-0.016103735,-0.040162656,0.011541639,0.07782308,-0.03234194,-0.11537905,-8.110483e-05,-0.032521084,-0.06607635,0.004740774,-0.04439394,0.004609635,0.040244605,-0.042331163,0.027014943,0.03755907,-0.004238972,-0.0012774377,-0.014263459,-0.04423902,-0.03102872,0.04897519,-0.010417128,0.056195706,0.09412916,-0.036687028,0.0035474328,0.071618676,0.08851231,0.07820511,0.04997398,0.056017723,0.006857014,0.043349136,-0.029455012,0.018600855,0.01515933,0.0055407938,-0.025942525,-0.008772558,0.005847514,-0.02161523,-0.01374134,-0.0066302884,0.06443696,0.02281876,0.012013888,-0.026409203,-0.018625835,-0.0083833635,0.092478365,0.028397258,0.023187298,-0.019133365,0.02607002,-0.015144252,0.023782063,-0.028968416,-0.23523544,-0.025445873,-0.0037261,-0.06655362,-0.092459455,-0.01653928,0.10967965,-0.009015909,-0.061499353,0.0147577105,-0.07414438,0.039285045,-0.018250803,-0.0445095,0.025979498,0.03336053,0.04609329,-0.017835254,-0.020959722,-0.044436004,0.023625905,-0.033530604,0.15896192,-0.009610593,0.023341266,-0.07920969,-0.08806967,0.0585545,0.013869962,-0.021991733,-0.0013670444,0.059858546,0.06742469,-0.009003555,0.08085958,0.06599145,-0.012083621,-0.034000073,-0.021261752,0.03573383,-0.019950602,0.009998036,-0.015432253,0.011183246,0.026608694,-0.014176784,-0.048578568,0.026872495,0.027700927,-0.056224864,-0.046222754,0.034693893,-0.012627923,-0.01326501,-0.036449008,0.018708711,-0.099825256,-0.061395712,-0.012281706,0.02207749,0.014096707,-0.07352984,-0.016497117,0.025564646,0.01977397]', NULL, '{}'::jsonb, '2026-03-01T19:26:38.548Z', '2026-03-01T21:39:32.481Z', 'trade_theory', 'AC Circuits and Motors');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1418, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-6', NULL, 178, 162, 'Fig 4 
+ ELN227234 
+ELN@27235 
+ 6   Make andsecure the assembly with fish plate (Fig 8). 
+ Fig 8 
+ G 
+ELN227233:  (e) 
+ Fabricating a Tee junction 
+1   Mark out the position of tee using another piece of 
+trunking to gauge width 
+2   Cutout the space for the tee (Fig 9a).   Blocks of wood 
+should be used to support section being cut. 
+3   Inanother piece cut away the section   (Fig 9b) to form 
+two legs (Fig 9c). 
+ ELN227238 
+i  Wi 
+ 2   Place wood blocks in trunking for support and make 
+cuts with hacksaw. 
+Remove sections and file smoothly. 
+Bend shape and adjust the fit as required (Fig 8a, b & c}. 
+Make fish plates from PVC scrap (Fig 8b). 
+ Fig 9 
+ (a) 
+ -— CUT THIS PORTION 
+ (b)   (e) 
+ ELN227238 
+ 4   File edges smooth and remove burrs. Check fit and 
+adjust as necessary. 
+5   Make, assemble and secure the Tee junction using 
+suitable aclhesive (Fig 10). 
+Installation of cables : Cables carrying the direct current 
+or alternate current shall always be bunched seperately so 
+that the outgoing and returncables are drawn inthe same 
+channel. Clamps shall be provided to hold the wires inside 
+the channel at suitable intervals, so at the time of opening 
+of the cover of channel, the wires do not fall out. 
+ 162   Power : Electrician (NSQF Revised - 2022) - Related Theory for Exercise 1.7.64865', NULL, '[-0.016293926,-0.00033479705,0.04680055,0.015707714,-0.040315855,-0.018883381,-0.019529382,0.050481346,-0.048165143,-0.045868743,0.027827365,-0.115270376,0.040494382,0.04452428,0.026568288,0.025583964,0.0083680665,0.049908828,0.0020908194,0.05096901,0.02393656,-0.047829214,-0.010756084,-0.0404652,0.003959217,0.04119981,-0.02342493,-0.02375084,-0.044627752,-0.22398806,0.027514197,0.026041286,-0.0377588,0.054217517,-0.027072381,-0.04143923,-0.027027592,-0.0152987875,-0.054048356,-0.007822553,0.06653431,0.026509877,-0.027276648,-0.04631648,-0.0022649525,-0.030144166,0.015421351,-0.020501073,0.0914028,0.015507045,-0.017591566,-0.0673418,0.038967762,-0.027572397,0.023328517,0.053793713,0.0028821675,0.049378905,0.025533844,0.024640162,0.017295048,-0.007139252,-0.22807127,0.124508806,0.07018664,-0.0076533295,-0.040984724,0.060329005,0.05531919,0.09302182,-0.00915593,-0.022181664,-0.018385258,0.05898435,0.002832028,0.053082574,0.024101071,-0.041556057,-0.03931894,0.012775853,-0.06957098,0.06474357,-0.017816402,-0.0060900287,-0.030104605,-0.012415098,0.0392056,-0.0050974344,-0.06333399,0.048564814,0.0051709823,-0.004955208,-0.02734413,-0.067094624,-0.07576039,-0.055588536,-0.0030873886,-0.028264746,0.0077216295,0.07832557,-0.023458399,0.024404913,0.04998264,-0.009083899,0.022070458,0.031487208,-0.08324399,0.021748416,-0.028939335,-0.052605752,0.005484376,0.024821507,-0.03424628,0.022955293,0.033567164,0.0705107,-0.027485654,-0.0029876938,-0.026573112,-0.03333058,-0.070561804,0.008110508,-0.0070081614,0.003297491,0.022329943,-0.027946353,0.0007482149,0.032323025,0.042692512,0.05174726,0.011845961,-0.035837214,0.024720268,0.05237919,-0.025578894,-0.0350577,0.0028303652,0.003950967,0.04248724,-0.061942507,-0.0410861,-0.064543456,0.023137584,-0.039596297,-0.006585133,-0.018643152,-0.04197067,-0.038069747,-0.048996095,-0.03824314,-0.047206823,-0.002155187,-0.050057817,-0.04894209,0.02904027,0.034532547,0.019205295,0.03551753,-0.0071002077,0.022792699,0.0045637474,-0.0134571465,-0.011808723,0.110676534,0.056073517,-0.090473115,-0.027134182,-0.010647042,0.05600818,-0.015022097,0.020389926,0.079720356,-0.0127477385,0.063848786,0.08921917,0.054403152,-0.019017281,0.005129864,0.023043845,0.0778493,0.069315515,-0.043441948,-0.060227487,-0.038519047,0.046602163,-0.051394362,-0.04020282,-0.039187275,0.010341407,-0.005775603,-0.10783435,0.048516583,-0.07550644,0.06934218,-0.00925265,-0.080151185,0.016927661,-0.05338755,-0.045643248,0.0012596605,0.078291036,0.00048997626,-0.018970752,0.09204652,-0.057157323,0.049067356,0.06914446,-0.043307077,0.06485598,0.035388336,-0.030179307,-0.002264847,0.04290365,-0.015718615,-0.051463593,-0.009944758,0.071987115,0.044787038,0.015394172,0.026577746,-0.0035017382,-0.024260614,-0.01043188,-0.21507245,0.024855135,-0.01194468,0.0072397524,-0.023041075,-0.053255204,-0.01124782,0.02073935,-0.02370139,0.028637964,0.07428242,-0.026365776,-0.047392234,0.00303729,0.030342108,0.11948863,-0.012184509,0.005916444,-0.034053747,0.045316353,-0.05032203,0.056443762,-0.09043536,0.048704006,0.008052552,0.044767547,0.15124217,0.018089019,0.021537658,0.03787264,0.057170223,0.014224019,-0.032375887,-0.038103327,-0.009114794,0.043921515,0.02516051,0.08911171,0.024051033,-0.023475623,-0.050697565,0.07034622,-0.02559907,-0.12725605,-0.006227418,-0.061795942,-0.08396797,-0.0061549894,-0.046009913,-0.015073004,0.039541084,-0.019759545,0.0050346903,0.04246779,-0.012478927,0.01580457,0.03526219,0.0079474095,-0.04798431,-0.024293123,0.02631351,0.034968406,0.0130384145,-0.01925207,-0.0125091085,0.055491753,-0.049384978,0.044212256,-0.05912813,-0.020141914,0.016606739,-0.026331646,0.037244946,-0.02113292,0.0034259039,0.0010633409,-0.08466385,-0.020267189,0.040669784,-0.030732354,0.02057109,-0.036456216,0.06977319,0.0047020847,-0.022216516,0.08933286,0.02244547,-0.012944774,0.08100032,0.010298521,0.029845247,0.009956471,-0.011761519,0.053133514,0.032337014,0.0442291,-0.24006985,0.031689305,0.00015679507,-0.030007783,-0.0477217,0.047517695,0.11479966,-0.023976829,0.009571087,-0.011575818,-0.07630375,0.0009273656,0.02535189,0.0074299565,0.005242379,-0.031303488,0.024840187,-0.08275734,0.0061002066,-0.07295114,0.00019628576,-0.05766117,0.1716544,-0.07093799,0.055681176,0.052060064,-0.0011080301,0.0050793104,0.09945941,0.0064757783,0.06758846,0.033338197,0.0738358,-0.034750342,0.0712361,0.027089128,0.016461229,0.019824767,-0.01963124,-0.04083304,0.004309862,-0.02067332,-0.05277764,-0.00862135,0.080416374,-0.0066358056,-0.0168541,-0.0599418,0.013070333,-0.019091375,-0.08221362,0.07407616,0.0041264305,-0.0023437466,-0.086881205,0.023993315,-0.09628035,0.057796568,-0.06708706,0.017087145,0.03509785,-0.062160674,0.029198045,0.07246629,0.031227782]', NULL, '{}'::jsonb, '2026-03-01T19:26:38.744Z', '2026-03-01T21:39:32.481Z', 'trade_theory', 'AC Circuits and Motors');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1419, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-6', NULL, 179, 163, 'Fig 10 
+ ASSEMBLEDTEE JUNCTION  ELN22723& 
+ Power   wiring 
+ Attachment of cover :   Cover should   be attached to 
+channelin individual sections after drawing all wires inside. 
+No screws or nails shall be used for fixing PVC capping 
+(cover) tothe casing (channel). The capping (cover) should 
+be slided inthroughthe grooves. Metallic capping (cover) 
+shall   be   fixed   by   using   cadmium   plated   screws   in   a 
+staggered mannerwith axial spacing not exceeding 30cm. 
+Earth continuity conductor : Earthcontinuity conductor 
+shall be drawn inside the casing and capping (channel) for 
+earthing ofall metallic boxes of the installation as well as 
+for connecting to earthpin of the socket. 
+Objectives: At the end of this lesson you shall be able to 
+*   state the power, control, communication and entertainment wiring. 
+A panel wiring diagram usually gives information about the 
+relative position and arrangement   of devices and termi- 
+nals of the devices to help in installing or servicing the 
+device. 
+Generally all the control panel / commercial / industrial 
+wiring invariably consists oftwo sections viz control wiring 
+and power wiring. 
+Fig 1 shows the typical layout diagram of a motor wiring. 
+The control panel consisting of allthe controland protective 
+devices installed near to the power source and the load 
+like, furnace, compressor etc, are installed away fromthe 
+power source / panel boards. 
+Powerwiring isa high current carrying circuitwhichis wired 
+to connect / disconnect the load   like   motors/ furnace 
+through the protective devices like OLR and fuses etc.. 
+ Fig 4 
+ Oo———___ 
+Oo——_   MAINS 
+30 
+Oo———_   M15V 
+0 
+ OFF/ON 
+ CONTROL CIRCUIT 
+(WIRING)   4   A 
+ POWER CIRCUIT (WIRING) 
+ ELN227241 
+ Power wiring has to be done as per the guideline andrules 
+specified in IE rules. The cable size depends on the load 
+current and it varies according to the load. 
+The power and control cable should not be run into single 
+conduit.   As the current radiation influences the control 
+cable,   a seperate conduit to be provided for control and 
+power cables. 
+Control wiring 
+Control wiring is a circuit which is wired to communicate 
+the commands and other information between control 
+devices and lighting. 
+Control wiring enables the control circuitforvarious control 
+purpose. Ina motor control unit the control circuitis wired 
+andkept nearto motor. In othersystem such asfire alarm, 
+fire detector etc. The control circuitis wired seperately with 
+low current carrying condutors and drawn seperately for 
+easy maintenance. 
+ Fire   alarm 
+ The purpose of fire alarmsystemisto provide animmediate 
+alarm incase of any fire andto prevent loss of life, also to 
+secure the immediate attention of fire fighting staff. 
+ Fire detectors 
+ The three principal fire detection methed involve sensing 
+the heat, presence of flame or smoke. The third method 
+identifies the pre - fire condition that is a flammable gas 
+detector, which istechniclaly not afire detector andits use 
+is limited to places where flammable gases are likely to be 
+present. 
+ Power : Electrician (NSQF Revised - 2022) - Related Theory for Exercise 1.7.64&65   163', NULL, '[-0.005264691,0.065954246,0.07982593,-0.0077536586,-0.020309184,0.021331122,0.037180893,0.008984927,0.0037736243,0.027682517,0.042073622,-0.049364135,0.06780682,0.045442518,0.032562874,0.028931268,-0.027238123,0.04930661,0.0228224,0.06644665,0.078009,-0.03297788,-0.012140615,-0.05475967,0.03751985,0.026434176,0.041411918,-0.044027682,-0.037870176,-0.21876815,-0.0543746,0.03091777,-0.04355621,0.04661974,-0.11895919,-0.042541817,-0.07309216,-0.009716725,-0.02455461,0.011452873,-0.0028912239,-0.013459856,-0.014747695,-0.03430826,-0.060427394,-0.0044723502,0.016251024,-0.07262469,0.08537212,-0.013369871,0.047226556,-0.0034626948,0.009440887,0.010803591,0.0070386133,0.03670868,0.031879038,0.00017081904,0.08609864,0.070992135,-0.006190787,0.056657843,-0.24733894,0.045215547,0.09088704,0.032971345,0.03018647,0.040448725,0.011667681,0.09289959,-0.065072946,-0.021136217,-0.06768598,0.04120713,-0.013057441,0.03321158,-0.032752838,-0.009736422,-0.063867435,0.023630945,-0.00047966174,0.031004809,-0.017894035,-0.0028613633,-0.057604335,0.043649927,0.025593426,-0.01956518,0.016020017,0.04094563,-0.011255439,0.0026657188,-0.030368138,-0.003645338,-0.051464,-0.0760833,0.07508058,0.028893303,-0.033042934,0.07285198,0.003628994,-0.044121962,0.050035056,0.02830742,0.040118933,-0.021214202,0.021462986,0.038169,-0.02578629,-0.00622716,-0.022216467,0.028298534,-0.07119253,-0.04432087,0.049672805,0.027059754,-0.036793977,-0.0041156737,-0.017706888,-0.030038059,-0.04057811,0.032160874,0.05642756,-0.013277758,0.0652641,-0.04185194,0.016339395,0.043683082,0.0315723,0.014052015,0.028120844,0.020759245,-0.03000363,-0.015724102,-0.016181516,-0.0027122204,0.026784144,0.066903524,0.054128617,-0.08021875,-0.026296334,-0.030664746,-0.05621424,-0.10818875,-0.007861621,0.023524985,-0.10140606,-0.02585583,-0.0049967547,-0.03110736,-0.01832719,0.03013025,-0.008784456,-0.010042089,-0.009472708,0.016844282,0.030012898,0.064227104,-0.013423379,0.020379696,0.06842756,0.04341846,-0.005783959,0.122612,0.047585405,-0.1550097,0.0115474,-0.02645517,0.0016732363,-0.011249203,0.013062061,0.11075233,0.005160436,0.0075872764,0.042378843,0.010662823,-0.05515351,0.014483176,-0.044533372,0.085899286,0.028893413,-0.047674682,0.013589365,-0.010659422,0.0024469856,-0.050221547,-0.03534886,-0.05202854,-0.0077499095,0.061171286,-0.086545944,0.018900266,-0.023972562,0.07936767,-0.01650216,0.0077104704,0.0071494905,-0.09019392,0.010964306,-0.017726168,0.019205729,-0.026624184,-0.0238639,0.017664254,0.00025262375,0.058844496,0.027023815,-0.0054961676,0.0022355805,0.068849325,-0.07143709,-0.048666302,0.044080738,-0.010315941,-0.080784634,-0.0041665584,0.017120492,0.0016917216,0.056597386,0.061586637,0.10244783,0.039188266,0.026610244,-0.16061257,0.020477299,-0.0134485755,-0.022837782,0.04212453,-0.10764195,0.016853146,-0.0091302525,-0.072004914,-0.07036623,0.07562657,0.055983294,-0.0085732285,0.0073838755,-0.0056805806,0.04482096,0.014178153,-0.050965913,-0.09435908,0.019288452,-0.0056218593,0.050838985,-0.01632328,0.011418244,0.01993092,-0.0663995,0.118738376,-0.06094164,0.105434686,-0.00241924,0.026841024,0.030309476,-0.007610723,-0.044249453,0.00537791,0.028033463,-0.00514077,0.04558634,-0.057797562,0.0069682347,-0.013994497,0.03922826,-0.08348742,-0.077645294,0.047127366,-0.029045463,-0.058062483,-0.0093801515,-0.060044184,-0.043665055,0.059830505,-0.024499405,-0.020663133,0.06333157,0.014955131,0.029130358,-0.031117786,-0.021560129,-0.046153534,0.05626844,0.0069320486,0.052672785,0.020047532,-0.031584974,0.038691718,0.050905712,-0.00035327292,0.06999568,0.020867573,0.04126943,-0.054497372,0.108508185,0.0031537528,0.008227156,-0.019462023,-0.04799462,-0.057985455,0.018666364,0.01446382,0.016223017,-0.005732765,0.0069760736,0.038682964,0.032618064,-0.03443952,0.017982714,-0.023394354,0.0040759835,0.05656777,0.0264015,-0.064001374,0.04834003,-0.044047773,-0.0039607696,0.05090981,0.03238836,-0.26366103,0.03189411,0.008412211,0.010508138,-0.12282286,0.033998515,0.082055874,0.028711453,-0.07245467,-0.025527347,-0.05064774,0.034993507,0.01760668,0.0046851644,-0.047248602,0.024016546,0.024756031,-0.039573304,-0.001124026,0.03133125,0.0043345564,-0.008573416,0.15931824,-0.024735175,0.08036963,-0.0060715107,-0.030072993,0.024902686,0.06492859,-0.08363504,0.027632378,0.055664532,0.04089848,0.018264478,0.062751986,0.040991057,-0.00016254517,0.014061418,-0.0060471734,-0.027425718,-0.02110205,0.03097135,-0.025031596,-0.05999311,0.050028004,-0.07026441,-0.03357114,-0.0089615425,0.01783359,-0.05341645,-0.054987475,0.047528043,-0.028636033,-0.034349073,-0.098861516,-0.0013683545,-0.024329348,-0.070088826,-0.047218617,-0.018964116,-0.01883293,-0.050926983,-0.01436695,-0.00026922158,0.09008557]', NULL, '{}'::jsonb, '2026-03-01T19:26:39.072Z', '2026-03-01T21:39:32.481Z', 'trade_theory', 'AC Circuits and Motors');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1420, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-6', NULL, 180, 164, '|   Heat detector 
+The three basic operating principles for heat detection are: 
+a   Fusion detector (melting of a metal} 
+b   Thermalexpansion detector 
+c   Electrical sensing 
+ll   Smoke detectors 
+There are three types of smoke detectors namely 
+1   lonisation detector 
+2   Light - scattering smoke detector 
+3   Obscuration smoke detector. 
+Ill   Flammable gas detector 
+A flammable gas detector is designed to measure the 
+ amount of flammable gas in the atmosphere.   The gas 
+ mixture is drawn over a catalytic surface where oxidation 
+i.e. combustion takes place. The combustion causes a 
+rise in temperature of the surface which is measured by a 
+decrease inits electrical resistance. The instruments are 
+calibrated by considering pentane or heptane as reference 
+gas. The readings are displayed in terms of percentage of 
+lower explosive limit. 
+Control panel for fire alarm system 
+The control panel is the heart ofthe systemthrough which 
+the fire alarmsystem is monitored and alarmis   initiated if 
+any indication/signal is conveyed to the panel. 
+Theworking of thefire alarmsystemshould be 
+checked once in a month regularly. 
+The features of the control panel are the power supply, 
+battery charging unit and control card. 
+Communication wiring 
+It is type of wiring which is used to transmit the voice, 
+data, images and video etc to the desired places. 
+Some of examples are 
+*   Telephone wiring 
+*   Internet   /LAN network wiring 
+*   Cable TV and other entertainment wiring 
+*   Data and security services wiring 
+¢   Telex/ Fax machines wiring 
+Faster and more reliable than ordinary phone wiring, low- 
+cost, high-tech copper wiring should serve every room in 
+the modern home. Its is required to carry voice, data and 
+other services from where they enter the house to every 
+room, and from any one room te any other. 
+Necessity of communication wiring 
+Unshielded twisted pair (UTP) copper information wiring 
+often called structured wiring is used today for offices, 
+schools and factories to   provide local   area   networks 
+(LANs), which allow computers to talk to one another and 
+to receive and send Internet and high-speed computer data 
+outside the facility. 
+Educated homebuyers-and homebuilders realize it is better 
+to use the most advanced wiring technology upfront, when 
+installation is economical. 
+It''s better to anticipate the homeowner''s future needs by 
+wiring the house with a state-of-the-art system while it is 
+being built, and at the same time equip yourself with a 
+powerful marketing tool. 
+The phone wiring of the past, often referred to as quad 
+wiring because it has four copper wires, is now obsolete. 
+Cat5 or higher speed wiring has four twisted wire pairs, or 
+eight wires. 
+Copper UTP Wiring 
+Copper UTP wiring contains eight color-coded conductors 
+(four twisted   pairs of copper wires).   It offers greatly 
+increased bandwidth compared with old-fashioned quad 
+wiring. 
+The   cable   is small   (roughly 3/16   inch   in   diameter}, 
+inexpensive and easy to pull, although it must be handled 
+ with care. 
+ Advantages 
+Modern copper UTP wiring offers the following advantages: 
+Diversity 
+The Internet and computer communications, as well as 
+ordinary phone signals, can be carried throughout the home 
+on modern,   inexpensive,   high-speed,   UTP cables.   (To 
+service a large number of T¥ channels, it is recommended 
+to also   run   high-quality coaxial cable,   such   as quad- 
+ shielded RG-6. ) 
+ More phone numbers 
+Several phone numbers can be made available throughout 
+the   house.   Actually,   voice   service requires very   little 
+bandwidth, and the addition of separate numbers is almost 
+trivial. 
+Fig 1 isasimplified plan of a small, two-bedroom, single- 
+story house. Note that all the wiring radiates froma   single 
+distribution device the star pattern and there are multiple 
+outlets in each major room, including the kitchen and the 
+porch. 
+Entertainment wiring 
+Itis a type of wiring which is mainly used for entertainment 
+or relaxation purpose.Example Home theatre wiring. 
+The nature and quality of wiring will not only determine the 
+level of safety in home theatre room, but equally important, 
+will have a noticeable impact on the video and sound 
+quality of your system components. 
+Home   Theatre Wiring   Basics:   Safety,   planning, 
+budgeting 
+VWWhen it comes to home theatre wiring, the guiding principle 
+ is... 
+ *   Do it safe 
+*   Doit once 
+*   Doit right 
+ 164   Power : Electrician (NSQF Revised - 2022) - Related Theory for Exercise 1.7.64&65', NULL, '[-0.014169914,0.06003282,0.09137017,0.04955288,0.03460904,-0.013460909,0.10771913,0.017729355,-0.028246671,-0.03718948,0.006766514,-0.053622648,-0.041423008,0.07750541,0.010686519,0.0009650493,0.05410736,0.012299102,0.013993232,0.012363566,0.10922262,-0.0015526843,-0.0547003,0.009292356,0.072060525,0.023230588,0.014864691,-0.017749125,-0.07717914,-0.12538303,0.041556068,-0.0029197782,0.025075633,-0.049214315,-0.04557081,-0.08308387,-0.046089906,-0.0005136236,-0.10359825,0.039760705,0.036232665,0.021870827,-0.011931062,-0.080300935,-0.011884129,-0.06883673,-0.023789445,0.022448895,0.0120277,-0.081922665,0.053097457,-0.007605416,0.03074445,0.043852404,0.02758428,0.015193787,0.006100493,0.03374601,0.03036636,-0.0065867687,0.0069232895,0.07242106,-0.22822897,0.030199248,0.04742092,0.017172024,0.018511448,-0.109518,0.14457917,0.0059289047,-0.030660849,0.037665814,-0.026183203,0.032394845,-0.02180383,0.014951787,-0.018564707,-0.056759987,-0.06908776,0.014196391,0.030194147,0.025556363,-0.013596216,0.0019896328,-0.04327586,-0.036332384,-0.005616888,-0.056547336,0.04836393,-0.013799381,-0.042920724,-0.012720034,-0.058260497,0.008038109,0.03210454,-0.054923102,0.096649714,-0.004272229,0.015100879,0.08428871,-0.03609175,-0.0199463,-0.028120523,-0.018681744,0.09691214,0.0020518233,-0.006057106,-0.04245413,-0.11548093,0.002179817,0.04313365,-0.013553907,-0.053795055,-0.05659355,0.045269933,-0.019322677,0.019299326,0.069037065,0.042313483,0.03348135,-0.049851,-0.027962783,0.10496791,-0.06790169,0.051094495,-0.06447989,0.005596581,0.04868387,0.025019055,0.11136547,0.030246416,0.0050460906,0.0048326855,-0.010545626,-0.031150496,0.06649331,0.051379047,0.08800233,-0.004658316,0.014046828,-0.004455128,-0.0074938894,0.08487863,-0.1081996,0.024612721,0.043392513,-0.10482243,0.06533245,-0.07824733,-0.023634974,-0.002760714,0.056138914,-0.026121723,-0.0058038672,0.013659065,0.017798996,-0.0023133697,0.048525568,-0.03939509,0.0072404975,-0.0038139205,-0.008257336,-0.05592345,0.052897118,0.03646638,-0.087533556,-0.0024633743,0.0021686843,-0.041656613,-0.062610924,0.030451665,0.018503454,-0.02260904,-0.07954779,-0.022485118,-0.015258357,-0.109079346,0.027322888,-0.027379446,0.035097916,0.003949986,-0.04592961,-0.014232232,-0.008665044,0.09396024,-0.053696398,-0.03674372,-0.063414685,-0.013921263,0.091725305,-0.06336823,-0.002299636,-0.012524368,0.018258901,0.0019277241,0.017518826,0.027988028,0.013103741,-0.018026706,0.018511351,0.04285533,-0.094989456,-0.029323509,0.027264051,-0.0364832,0.05705789,0.006538741,-0.050524585,-0.021139558,-0.011878055,-0.005588195,0.021530714,0.045123283,-0.0025959888,-0.035467055,-0.06591557,0.02229134,0.030347763,-0.0055856407,-0.0012740629,0.07962221,0.032497503,-0.03527152,-0.20795254,-0.044324163,0.050412048,0.009616343,0.03702543,-0.0044897934,0.018995794,-0.02357194,0.006730586,0.010555658,0.052479357,0.0073884935,0.010723832,-0.014305178,0.0013896954,0.050604075,-0.012490273,-0.03323189,-0.07661798,0.05159538,-0.019017069,0.050166085,-0.047571596,-0.084557295,0.017695494,-0.0073629576,0.11326458,-0.06653909,0.058434382,0.013654977,0.076341346,-0.047980096,-0.052631438,-0.024462529,0.034222327,0.08025636,-0.023925107,0.046079732,-0.05434921,-0.016576579,-0.0670122,0.027609833,0.016554818,-0.007153286,-0.008022185,-0.022300687,-0.04621446,-0.011734815,-0.02536141,0.0032377357,0.065664224,0.028026827,0.0092362575,0.010514883,0.022382913,-0.019343693,-0.07540665,0.056133647,-0.07712662,-0.0138633475,-0.011224086,0.03723972,0.03273557,0.04595644,0.08567502,-0.015257066,-0.0035888872,0.028766258,0.022662513,-0.007957055,0.017382955,0.15997554,-0.007052736,-0.04569936,0.019922446,0.012176812,0.02270434,-0.059262346,-0.020519886,-0.03509884,0.08096816,0.04659609,0.0043281466,0.048649743,-0.033264205,0.0039124163,0.02980952,0.024695987,0.029534994,0.036549486,-0.014932093,0.020194052,0.039782494,-0.043203413,0.04117613,-0.008071181,-0.24834439,-0.05604168,0.021212652,0.022542702,-0.086837955,-0.03192515,-0.012346307,-0.0038708465,-0.009246721,0.0035774058,-0.0693925,0.003245029,-0.04355162,0.03484985,-0.0014441907,0.039832722,-0.03693708,-0.02164048,-0.035217553,0.023109026,0.003483293,0.048937403,0.18262282,-0.05052586,0.055825077,0.026658803,0.018281318,-0.008766809,0.029275872,-0.0198425,0.0563145,-0.030240286,0.0056127645,-0.051802255,0.09538216,0.062470187,0.03772059,0.013527958,-0.03991849,-0.030044932,-0.013205211,0.015968062,-0.020254917,-0.11433069,0.08945215,-0.043474697,-0.08855382,0.007073646,-0.056508612,-0.0020933922,-0.005413896,-0.035720542,-0.0350215,0.008950556,0.02584592,0.060276967,-0.037976466,0.009272292,-0.00855155,0.021330763,0.004762777,0.017256545,0.039149452,0.09578851,0.049488153]', NULL, '{}'::jsonb, '2026-03-01T19:26:39.388Z', '2026-03-01T21:39:32.481Z', 'trade_theory', 'AC Circuits and Motors');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1421, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-6', NULL, 181, 165, '[ Fig 4 
+ ! 
+ ———— — ———— 
+layal | BATH 
+ OO 
+ poles ee r is MASTER BEDROOM 
+ [> gare 
+ A 
+ ll   [ 
+ LIVING ROOM 
+_ 
+ —— 
+ aa 
+ CLOSET 
+BEDROOM   DEN 
+ Y 
+oY 
+ ELN227251  —SS—EEEE 
+Safety: This is a most important aspect in any installation. 
+Do not save on the wiring by using sub-standard cables. 
+With in-wall   installations,   Specially certified wires 
+(UL-rated CL3 wires) should be used that comply with 
+ national   standards for   resistance to fire,   chemicals, 
+ abrasion, and temperature extremes. 
+Planning: Planning is the key to future proofing the 
+installation while avoiding costly  alterations later on. 
+AV (Audio  Video) equipment and speaker placement the 
+ room lighting requirements,  networking,  possible future 
+additions, etc. are to be taken  care of these will determine 
+ the quantity and placement of the  various audio/video points 
+inthe room as well as the electrical needs for home theatre 
+ installation. 
+Finally, when it comes to estimating the required cable 
+ lengths, do not just calculate the linear lengths to complete 
+your cable runs: allow for at least 20% extra to cover for 
+ possible errors and slack for terminations. 
+ Home Theatre Speaker Wiring 
+Many fail to  realize that home theatre  wiring can  have a 
+ noticeable impact on speaker performance. The greatest 
+ speakers will not sound their best with the use of 
+inappropriate speaker wires or an incorrect  wiring 
+installation. In particular, selecting  the correct speaker  wire 
+thickness is essential for the best speaker performance. 
+At  the same time, keep in mind that some speaker 
+ manufacturers use  non-standard connectors with their 
+speakers; in these  circumstances,  use of optional third- 
+ part speaker wire and connectors may not always be  an 
+option  unless you take the extreme route  of splice your 
+ wiring. 
+Speaker Wire Size 
+ Selecting the correct thickness for your home theater wiring 
+is important as it affects the speakers’ performance; it will 
+Power : Electrician (NSQF  Revised - 2022) - Related  Theory  for  Exercise 1.7.64&65 
+impact the speakers’ ability to deliver the explosive effecis 
+in home theatre sound. 
+Single Room Installation 
+ The thicker wire will help bring out fine musical detail in 
+quality music systems,  as well as deliver the  explosive 
+ effects  of surround  sound. 
+In those situations where long speaker wire runs cannot 
+ be avoided, thicker wire helps reduce the overall resistance, 
+ and therefore amplifier load - leading to lower  operating 
+temperatures. This will result in improved sound quality 
+and long-term stability. 
+After setting up a modestly priced home-theatre-in-a-box 
+package, do not go for the more expensive thicker wire 
+ unless you plan an upgrade sometime in the future; using 
+ of gauge 16 speaker wire should suffice in this case. 
+ Connection Basics 
+ Speakers and amplifiers/receivers normally come equipped 
+with one of two types of connectors - spring terminals or 
+binding post connectors. 
+Each speaker connection have two such terminals marked 
+(+) and (-) to help you distinguish the two leads. Maintaining 
+correct polarity all along your home theater wiring is 
+ important.   For this reason, speaker wire and terminals 
+ are normally color coded black for the -ve terminal and red 
+for +ve side. 
+Spring  terminals will only accept pin connectors or tinned 
+base wire  ends. Instead, binding  posts  accept many types 
+of connection,  including pin, banana plug  or spade. 
+Guidelines for Home theatre wiring & installation 
+*   Donot run home theatre cables in close proximity or 
+parallel to other electrical lines, nor run your wiring 
+around power supplies as these can lead to interference 
+issues with both your audio and video system 
+components. 
+165', NULL, '[-0.00096969324,-0.014784734,0.05051034,-0.03019985,-0.010673987,0.02068498,-0.009003998,0.038803454,0.015729595,0.016288389,-0.028418992,-0.02494821,0.047207255,0.04128142,0.045502197,0.032304768,0.010709156,0.123752646,-0.068892874,0.03415084,0.08175883,0.007557592,0.082242414,-0.020329844,0.03390253,-0.028654456,0.0126615,-0.0703166,-0.050290797,-0.2078912,-0.048656225,0.029922985,0.028993472,-0.007434278,-0.05952161,-0.08660631,-0.043794394,0.01772575,-0.0059474623,0.0050573037,0.0062070657,-0.014611438,0.02951023,-0.06900098,-0.003486917,-0.04667694,0.0119376285,-0.06285917,-0.0003798652,0.08124643,0.032657843,-0.02158522,0.0038347142,0.011257752,-0.0051063313,0.049010076,0.038899265,0.023305526,0.023963794,0.043181386,0.0039354498,0.028663618,-0.23037732,0.037147947,0.08827703,0.0129388785,0.009952494,0.013654649,0.058535226,0.027102219,-0.08034068,-0.033218056,0.07349319,0.06303504,0.045305673,-0.017537452,0.037324075,-0.09308792,0.036601573,0.0073498096,0.061291818,-0.016978698,-0.06637003,1.8769082e-06,-0.054222316,-0.039782625,0.03980175,-0.018765468,-0.024108687,-0.06517617,-0.0004039201,-0.0016317951,-0.04816932,0.011525067,-0.010786952,-0.071607076,0.00042057788,-0.057021428,-0.051045403,0.10090732,0.012410092,0.0026461566,-0.010176531,0.04046044,0.01597761,0.030054934,-0.026153049,0.07650757,0.008722292,0.0040340526,0.044025064,-0.009878437,-0.06441063,0.0021254765,-0.0017782674,0.062490832,0.042109765,0.02819205,0.053110704,0.004902497,-0.03439732,0.008876383,0.09124899,-0.0078377705,0.016891321,-0.118137226,0.032260157,0.025071653,0.023062006,0.10991962,-0.026620977,-0.07455524,-0.010558932,0.017765775,-0.078522876,0.05657236,0.052977588,0.041655354,0.035154503,0.008244228,-0.013690903,-0.028989645,-0.016181812,-0.05028143,0.0048447186,0.049522076,-0.12209632,0.091844775,-0.09665268,-0.015690614,-0.01375686,0.05336121,-0.03303898,-0.0180829,-0.009420244,-0.015375726,-0.018998351,-0.004697403,-0.02718497,-0.026032966,-0.016224355,0.014357473,-0.03384547,0.030883368,-0.035648514,-0.072465986,-0.053373408,0.0081766965,0.07646831,-0.014657204,0.044594236,0.026725395,-0.03049574,-0.003048643,-0.0030289732,-0.008378674,-0.081410475,0.033225313,-0.02869724,0.031368036,-0.004375583,0.010008618,-0.02951377,-0.10334966,0.040010527,-0.059657168,0.0013433209,0.023093797,0.050024662,0.07144716,-0.1287427,-0.0057307216,-0.074659415,0.021912761,-0.0027621668,0.026411293,-0.05887651,-0.01653231,0.041064087,0.026948145,-0.006339968,-0.030787008,-0.016330695,0.010947638,-0.028649919,0.04217597,0.021818431,-0.07900616,0.08564404,0.060592894,-0.08859948,0.003964697,0.11208211,-0.04017283,-0.033387087,-0.07988278,-0.016354637,0.08141995,0.061751343,0.054117512,0.03434098,0.0009780197,-0.015944296,-0.21161109,0.059164695,0.023216173,0.032750282,0.028992806,-0.068787575,0.020953191,-0.071516275,-0.08819777,0.003206196,0.044346806,0.021818655,0.02240565,-0.02960634,-0.02996277,0.06996422,-0.046410702,-0.033773307,-0.07446961,0.0573111,-0.018276056,0.06583099,-0.03552385,-0.04102674,-0.013443737,-0.028464846,0.14802746,-0.07228741,0.052132867,0.005470781,0.04026674,-0.013731369,-0.017281111,-0.07720681,0.03551117,0.09201973,-0.00017208402,0.017958162,-0.02140789,-0.050405934,-0.081297286,0.046623617,-0.0026348485,-0.008323247,-0.028528718,-0.061445016,-0.032170188,0.039510883,-0.08801556,-0.022805735,0.08721957,0.035693683,-0.00069998426,0.034973692,0.016811872,0.0035583633,-0.05106522,0.021240255,-0.04794687,0.004332938,0.005259486,0.00045328477,0.058788557,-0.073545806,-0.060829215,0.018405905,0.040462818,0.04353893,0.021847334,0.022880265,-0.00059400464,0.07774571,-0.012253976,-0.02706381,0.03281996,-0.01684483,-0.011057562,-0.038157027,0.028547108,0.0025486292,0.05451719,-0.03557334,0.06817467,-0.010799361,0.027013253,0.045111276,-0.026613237,0.018153349,0.021812726,0.021012822,-0.012369668,-0.03876743,-0.008603711,0.010513208,0.034504842,-0.0065891175,-0.20592225,0.003818563,0.03488146,-0.023269651,-0.08098585,-0.06824382,0.0139053,-0.014392814,0.00021004361,-0.01040087,-0.03259089,0.07425676,-0.026181476,0.04616253,0.016805325,0.017784199,0.07768573,0.014230589,-0.02386207,0.017907862,0.06334728,-0.018801322,0.15175137,0.058315247,0.032149162,0.022005314,0.01623917,0.060086444,0.048538446,-0.04440728,0.025747497,0.03931687,0.045423087,-0.046736933,0.112687,0.0074857315,-0.0514804,-0.04610025,0.028521575,-0.018667554,-0.010867673,-0.027830748,-0.047657706,0.04360044,0.11457693,-0.08915504,-0.0018973822,-0.042002894,-0.0037491142,-0.055092208,-0.02762757,0.05665074,0.06408262,-0.0038170677,-0.053109866,0.06365592,-0.014797285,0.016174104,-0.022764863,0.00981412,-0.03331629,-0.012888222,-0.010283035,-0.012682395,0.06838653]', NULL, '{}'::jsonb, '2026-03-01T19:26:39.732Z', '2026-03-01T21:39:32.481Z', 'trade_theory', 'AC Circuits and Motors');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1422, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-6', NULL, 182, 166, 'Power 
+Electrician - Basic Wiring   Practice 
+Related Theory for Exercise 1.7.66 - 68 
+Special wiring circuits - Tunnel, corridor, godown and   hostel wiring 
+ Objectives: At the end of this lesson you shall be able to 
+¢ state the difference between godown, tunnel and corridor, bank/hostel wirings 
+¢ draw the tunnel lighting / corridor / bank / hostel circuits 
+¢   prepare the mode chart for the above   circuits. 
+Staircase wiring: In wiring one lamp controlled with one 
+switchina simple wiring circuit to begin with. However,one 
+lamp controlled withtwo switches from two   different places, 
+known an staircase wiring in the very basic wiring. Fig 1 
+shows such a wiring where two double pole switches are 
+used to control one lamp individually. 
+ 7 ai | LAMP-HOLDER 
+? ©   WITH LAMP 
+ Fig 1 
+ TWO-WAY SWITCH 
+STAIRCASE—WIRING DIAGRAM 
+TWO-WAY SWITCH 
+ ELN227441 
+ In the case of godown wiring we have seen that as you 
+move inside the godown, youcan switch on alampahead 
+of you while the light behind you Is put off. The same 
+process inthe reverse order takes place while moving out 
+ofthe godown. 
+But one light willnot be sufficient to give enough illumination 
+inthe case of tunnels where darkness is more. Hence, the 
+wiring circuit for a tunnel neecs at least two   lights to be ‘ON’ 
+at a time while a person moves inside a tunnel and goes 
+out. 
+Whereas inthe case of corridor wiring the corridor may 
+have a number of rooms occupied by different persons. 
+VWhenone moves toward his room, he needs a forward light 
+to do so. The moment he finds the room and opens it, he 
+may not need the corridor light. Then there should be an 
+arrangement to switch off the light left behind the forward 
+moving person and at the same time there should be a 
+provision to switch off the lightin front of his room. Suchan 
+arrangementis incorporated in corridor wiring. 
+Tunnel lighting circuit (Fig 2) 
+In tunnel wiring a person walking along the tunnel can 
+successively light behind two lamps ahead and put off a 
+lamp behind with one switch. 
+All switches are two-way switches. 
+ 166 
+ Caution: This circuit is not in accordance with 
+IE rules as the phase and neutral come   in the 
+same switch. So care should be taken while 
+connecting the wires. 
+ Fig 2   gol   wie   «she   267i 
+ aN   cat   oN 
+ Oe ee te 
+51   52   5a   Sa 
+TUNNEL WIRING - SCHEMATIC DIAGRAM 
+ ELN227412 
+ The mode of operation ofthe switches andthe consequent 
+lighting position are shown below. 
+Mode   chart for tunnel wiring 
+ SWITCHES |   LIGHTS 
+51 | S| Se} 4} Li | Le} La| La 
+CARSESESRARALSEAS 
+NARALASESI EAA LAS 
+ RAKARARAIEARAI RAR 
+ SARARARALAS EASES eA 
+MODE CHART FOR TUNNEL WIRING 
+ Corridor wiring (Fig 3) 
+In this circuit, operating the first switch in one set makes 
+the first light to switch on while operating the 2nd switch in 
+the first set switchesoff the first light. This sequence goes 
+on as explained in the mode chart. 
+ Fig3 
+ Ly   |_____oN 
+ a]   L 
+ Sa2   Say   3Sa2   Saq   Si2   S14   3 
+SCHEMATIC DIAGRAM OF CORRIDOR WIRING   5', NULL, '[-0.004106193,0.022321811,0.04064739,-0.013349783,-0.065712675,0.06142863,0.022431994,0.0034207087,-0.012073814,0.009128827,-0.031087289,-0.040977634,-0.0018030214,0.054349437,0.04598939,0.044928666,-0.022637011,0.043425,-0.06727018,0.037274867,0.13522537,-0.04330223,-0.006909964,-0.031346582,0.027514772,-0.018267665,0.07540381,-0.027910993,-0.0050264443,-0.21405898,0.012608586,-0.0161609,-0.028785614,-0.039030723,-0.03799663,-0.060865033,-0.06007194,0.022566874,-0.03382366,-0.042877156,0.0037577185,0.021097308,0.030677473,-0.049830355,0.0033601762,0.039844714,-0.0034009186,-0.0066386755,0.027569728,-0.060208138,0.037448063,0.011545838,0.006120283,-0.039670095,0.047748905,-0.0077930447,0.002953033,0.03507115,0.022554174,0.07553491,0.007580993,0.0712643,-0.19966823,0.029258545,0.060597792,-0.026508471,-0.006479965,-0.05390836,0.06262508,0.05183045,-0.064292595,-0.10629112,-0.04994304,-0.009696282,0.022553395,-0.0737659,0.023925513,-0.021025196,-0.043532368,0.02815765,-0.032269128,0.00075681234,-0.007251221,0.029787943,0.010478181,0.047689535,-0.048098035,-0.046480052,-0.034956045,-0.02925556,0.02230283,-0.006240911,-0.06148792,0.013917866,0.023494769,-0.03934972,0.007359105,0.032005806,0.01081579,0.11572466,-0.015264546,0.04214121,0.040524006,0.09006704,0.037304875,-0.04421638,0.011910256,-0.054274663,0.0042583817,0.02285467,0.009081568,-0.005850485,0.026398031,-0.06412852,0.026602304,0.015250553,0.0052797855,0.056837108,0.04252255,0.041189827,-0.048605014,-0.012003553,0.036849458,-0.07049927,-0.0011601876,-0.08634528,0.016012195,0.0038337072,0.026373893,0.072992556,0.0645838,0.0047640395,0.04775072,0.026845139,-0.05601144,0.037096772,0.055519164,0.018722992,-0.027335169,-0.05776386,-0.009199125,-0.0070867306,-0.01866299,-0.080937035,0.0475039,0.02631811,-0.0958412,-0.013957902,-0.027762556,-0.029089555,0.0090617845,0.0307913,-0.014600135,-0.07183718,-0.014353955,0.03688118,0.048218973,0.052825216,-0.013139454,0.0057666367,-0.022671297,0.005041693,-0.052570548,0.058519408,0.08595253,-0.11499378,-0.037126303,-0.034977153,-0.008142326,-0.052720275,0.010685821,0.10483115,-0.016498871,0.0019146851,0.042311482,-0.06399574,-0.027919432,-0.006821192,-0.05190776,0.03018269,0.008979341,-0.0875415,-0.02314502,-0.0015386252,0.030414497,-0.014685014,-0.06578956,-0.01764654,-0.008343327,0.09571293,-0.052886702,0.04241408,-0.023923242,0.042309586,-0.0010003739,0.012396461,-0.068647616,-0.06813606,-0.013211242,-0.007609812,0.024427034,-0.03647107,-0.02092919,-0.008339025,-0.06897127,0.03383518,0.062450785,-0.005331061,0.038562328,0.014617246,-0.09617653,-0.052795652,0.017046306,-0.05561848,-0.007538521,-0.02935254,0.0058985464,0.07033835,0.025815904,0.089378305,0.04275109,-0.030163983,-0.06243497,-0.166456,0.026054816,-0.0006598518,0.006727282,0.02207548,-0.018494828,0.0012914095,-0.038581956,-0.063379444,-0.010892188,0.1151485,0.05094119,-0.011591819,0.06986589,-0.063556954,0.09602414,0.020508913,0.018226422,-0.048297357,-0.01911956,0.0074278093,0.07003381,0.06350742,-0.09448826,-0.029120538,-0.026038945,0.13093309,-0.010104981,0.13838047,-0.017394908,-0.0097489,-0.0069443258,-0.0019189238,-0.014653014,0.0418637,0.050384223,0.052497253,-0.033207137,0.053196434,-0.03555609,-0.06522289,0.11021826,-0.028483497,-0.06175488,-0.009536666,-0.0019482123,-0.016194664,-0.013203328,-0.021210494,0.019043598,0.058386035,-0.04320914,0.0032851973,0.008291354,0.046500184,-0.04429505,-0.03017816,0.033235066,-0.04889782,0.011158687,0.043983687,0.050706197,0.037421525,-0.0042305356,0.017513908,0.054753732,-0.016851185,-0.012531909,0.030290257,-0.005070272,0.024296086,0.12131769,0.035110738,0.038394958,-0.014181889,0.006662362,-0.021784762,-0.0017851762,-0.022728458,-0.013305408,0.032419473,-0.035083085,-0.007450612,0.05492276,-0.020974379,0.036673643,0.050923463,-0.03748525,0.058430314,-0.0048823757,-0.051123764,0.023396567,0.041993603,-0.03308614,-0.04210437,0.03483527,-0.25663224,0.032483537,0.007205581,-0.025417345,-0.10351529,0.052122872,0.023943445,0.020518359,0.002626145,-0.061618514,0.018109305,0.036270432,0.08078776,0.034332182,0.0014637555,0.0019363451,0.051551744,-0.021068987,-0.022241376,-0.0059088976,0.034179762,0.06255174,0.17521887,0.004782602,0.09605415,-0.0060160994,0.006868941,0.027559673,0.03678438,-0.030346671,0.047128897,0.040292088,0.0948053,-0.10623618,0.10500513,-0.01888335,-0.034610428,-0.032268897,-0.024232686,-0.070584066,-0.06893446,0.016679766,-0.09788652,-0.012317553,0.1166566,-0.010906996,-0.01454512,-0.030317832,0.0066273287,-0.02970701,-0.0734831,0.025849478,-0.039964147,0.07387719,0.012645881,0.03363662,-0.071057074,-0.059457466,-0.034304388,-0.043321975,-0.030878117,-0.012815599,0.07624875,0.003161448,0.03392949]', NULL, '{}'::jsonb, '2026-03-01T19:26:40.050Z', '2026-03-01T21:39:32.481Z', 'trade_theory', 'AC Circuits and Motors');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1423, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-6', NULL, 183, 167, 'Switch   lamps   chart 
+ SWITCHES 
+ Ist SET2nd SET8rd SET#th SET 
+ 514] S14) So] Sq Sey] Sag Sy] Sao 
+ ON)   PTT   Py 
+ONOFR   } 7]   7) 
+ONDFRON)   7}   7] |   | 
+ONOFRONOFR   {|   | 
+ONOFRONOFRON   ~ |   |   — 
+ONDFRONDFFONDFF ~   | 
+ ONDFHONDFRONDFFON| — 
+ ONDFF ONDOFF ONDFF ONDFF 
+MODE CHART FOR CORRIDOR WIRING 
+ : 
+ LF 
+ |X| 
+XK] 
+KKK] 
+Pd 
+ESRI 
+RS 
+CSS 
+a 
+|X| 
+SLR 
+|< 
+|X| 
+Ke] 
+KK 
+KK] 
+OO 
+ Godown lighting circuit 
+ Letus consider a gocown lighting circuit (Fig 4) having four 
+ lamps L,,L,,L,andL, which are to be controlled such that 
+if one moves ina godown in either direction he can switch 
+ON one light afterthe other in the forward direction while the 
+lamp which was lighted earlier gets switched OFF.   Inan 
+arrangement. S, isa one way switch, S,,S,andS, aretwo- 
+way switches. 
+While coming back from the godown when the person 
+switches off the   light 4, then the light 3 will be on and give 
+light for his return movement. When he leaves the godown 
+allthe lights could be switched ‘off by operating switch S,. 
+ Fig 4 
+ :   Lk 
+ 5,   S   8   8, 
+ CIRCUIT DIAGRAM  ELN227414 
+ The following chart gives the mode of operation of the 
+switches and lights.   Trainees are advised to make the 
+return mode chart. 
+Mode chart for godown wiring 
+Switches   Lights 
+ 5,   S,   S,   L,   La   L,   te, 
+ON   OFF   OFF   OFF   CN   F-   Z   s 
+ON   ON   OFF   OFF   -   ON   -   - 
+ON   ON   ON   OFF   -   -   ON   - 
+ON   CN   ON   ON   -   -   -   ON 
+ Intermediate switch - Application in lighting circuit 
+ Objectives: At the end of this lesson you shall be able to 
+¢   draw diagrams of a lighting circuit using intermediate switches. 
+An intermediate switch is a special type of switch having 
+four terminals for connection. This switch is commonly 
+usedto control a lamp orload fromthree or more positions 
+as encountered in the lighting of staircases,   corridors, 
+ bedrooms. 
+ The schematic diagram (Fig 1) is for controlling one lamp 
+from five locations using two two-way switches and three 
+intermediate switches is given below. 
+ Fig 1 
+ :   ras 
+ v—_ 
+ Te   ox   Ke   Sx   =   a 
+ Si   82   S3   S4   Ss   9 pa tu 
+ Inthe schematic diagram (Fig 2) isfor controllingone lamp 
+from3 positions with a master control as asecurity control 
+switch. The lamp is controlled independently from three 
+ places by switches S,,S,andS,. Whenthe master switch 
+ ‘M’ is ‘ON’ the lamp is permanently ‘ON’and cannot be 
+controlled by switches S,, S, and S.,,. 
+ Fig 2 
+ ras 
+N 
+240V 
+ L | TWOWAY = INT.SWITCH =  TWO  WAY 
+ 1 a 
+ ny Se   S3 
+ MASTER SWITCH 
+ELN227426 
+ Asintermediate switches are costly two numbers of two- 
+way switches can be linked througha common bar and can 
+be used as an intermediate switch. This circuit controls 
+one lamp from   3 places. 
+ Power : Electrician (NSQF Revised - 2022) - Related Theory for Exercise 1.7.66-68   167', NULL, '[0.016683653,-0.029528877,0.01715418,-0.003487647,-0.03298165,0.081710845,0.024319809,0.03673637,-0.005283736,0.04460925,-0.049167324,-0.039630026,0.041578468,0.045570657,-0.04011009,0.043702044,-0.012749745,0.06828494,-0.036782008,-0.012579058,0.11355587,-0.035614334,0.017871292,-0.038919073,0.085830554,0.054769363,0.049345266,-0.08843252,-0.04769254,-0.1731771,-0.026017446,-0.006248689,-0.03376238,-0.015357742,-0.07320872,-0.062186927,-0.03812605,0.032780193,0.020711778,-0.0027249926,0.031117408,-0.014619084,-0.018000586,-0.07539692,-0.009732603,0.0070669358,-0.04435973,-0.030524893,-0.0034471564,-0.008146945,-0.048628252,-0.049626835,-0.015491522,0.032135293,0.061676245,0.051405855,0.014817613,0.043185405,0.03629565,0.03942432,0.046484206,0.09434336,-0.20290624,0.021016555,-0.035714276,-0.016654596,-0.004657426,-0.037702557,0.0041432376,0.040385302,-0.08615407,-0.070466354,-0.023464125,-0.01586047,0.012445262,-0.08565751,-0.02268225,-0.057384472,-0.06142113,-0.003491506,-0.023174021,-0.035335824,-0.040363833,0.020864049,-0.012176543,-0.0128916595,-0.04197372,-0.08103998,-0.024158614,0.022812298,0.009070659,-0.0110356705,-0.04131493,0.011750701,-0.018220447,-0.058187783,0.04575607,0.019060059,0.037745472,0.12618503,-0.013452216,0.044586927,0.0026510295,0.04680752,0.045832954,-0.012856596,0.028556505,-0.010065094,-0.025419654,0.00091206626,-0.004338048,-0.079306595,0.011166327,-0.065622166,0.02851626,0.032012325,-0.03872893,0.033726133,0.053733613,-0.0020564366,0.017120354,0.054928094,0.04831582,-0.020686604,0.047276214,-0.047127653,0.0047148657,-0.0046781856,0.0057712477,-0.032468755,0.06390457,0.031098574,0.04508956,0.030347938,-0.041679025,0.014853232,0.008848884,-0.011455005,0.007682648,-0.003665567,0.013589389,-0.015526555,0.030892348,-0.08990163,0.0375272,0.048222225,-0.09590409,0.042461038,-0.010878548,-0.010257665,-0.021604048,0.055768844,-0.009724477,-0.024056403,-0.07423523,0.10118607,0.034969375,0.108759455,-0.040994186,0.04183042,-0.040520962,-0.038327184,-0.05426204,0.0083029,0.006071164,-0.08368282,-0.021851115,0.041192498,-0.03718164,-0.04406298,0.018794948,0.098055184,0.007963036,-0.03289436,0.057839915,-0.019303314,-0.045486886,-0.048573133,-0.0012501847,0.04601276,-0.02066739,-0.09300558,-0.07410868,0.0134302,-0.025460942,-0.022609856,-0.0037374091,0.010781069,-0.029831601,0.081505775,-0.047824595,0.045236263,-0.05198135,0.0356097,-0.012400181,-0.038408026,-0.12106065,-0.047912873,0.048194587,-0.030900678,0.09150904,-0.049039446,0.0040921634,0.0024454768,-0.072646774,0.046509314,0.041120496,0.03488828,0.06601013,0.012085597,-0.103996,-0.017214132,0.042221285,-0.019549964,-0.03198251,-0.02418239,-0.0023997244,0.040359657,-0.024839273,0.063011825,0.05927593,-0.016104368,-0.05985452,-0.21563011,0.041295785,-0.004415129,-0.007912195,0.024577564,-0.013175302,0.019098518,-0.014213183,0.009687692,-0.0072355764,0.10438709,0.11303096,-0.029797642,-0.010694916,-0.043200683,0.04950326,0.05413217,-0.001742463,-0.047786716,-0.016560186,-0.018209977,0.059732117,-0.012123998,-0.09259852,-0.00040278005,-0.01715783,0.14197397,-0.044516675,0.11422677,-0.06283553,0.00037845213,0.019051852,-0.022067724,0.045216165,0.06770267,0.038545355,0.03490287,-0.050160136,0.04659232,0.00072780583,0.0014043201,0.027149983,-0.04775269,-0.04378297,0.036105342,-0.010177551,0.01621,-0.013378993,0.004542615,0.038175542,0.07292312,-0.038322803,-0.0007806904,0.014439778,0.050343957,-0.07401926,-0.100014366,0.010784083,-0.017307837,0.0018432898,-0.02142308,0.08735759,0.015116489,-0.022234602,0.0070309397,0.03271578,-0.023133552,-0.011127045,0.05087887,-0.0012137817,0.017885517,0.096201375,-0.008358804,0.10797395,-0.004438824,0.043037165,-0.068172134,0.029291034,-0.031311736,0.029726656,0.056856893,-0.029534852,-0.019789299,0.06471379,0.015067123,0.0057267197,0.054887727,-0.059245527,0.086789794,0.011641922,0.0363643,0.023822328,-0.009302616,-0.050626516,0.031638727,0.022014285,-0.24633345,0.02232758,0.010045353,0.04752252,-0.06952579,0.043092404,0.00868687,0.028698685,-0.0061106603,-0.012697154,-0.039115436,0.025393462,-0.006528211,-0.053199753,0.0035341578,0.024838258,0.08061865,0.0025283739,-0.0007945465,0.005110977,0.051454134,0.03053972,0.19040264,-0.030106347,0.0669595,0.044829316,0.028082725,-0.0040170923,0.029840535,0.02455256,0.06087711,0.028673666,0.091456994,-0.05121328,0.08124341,-0.054255646,-0.008472977,-0.019642267,-0.018703468,-0.071781605,-0.069765754,0.019613694,-0.10718233,0.006208742,0.1312705,-0.029202458,-0.017608471,-0.07084699,0.028511371,-0.01545356,-0.05459142,0.017608192,-0.04359619,0.024787907,-0.008098266,0.021688214,-0.015984334,-0.032343432,-0.00021402226,-0.02217156,-0.008644318,-0.012488602,0.04306782,0.029846305,0.047197223]', NULL, '{}'::jsonb, '2026-03-01T19:26:40.361Z', '2026-03-01T21:39:32.481Z', 'trade_theory', 'AC Circuits and Motors');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1424, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-6', NULL, 184, 168, 'Power   Related Theory for Exercise 1.8.69 
+Electrician - Wiring   Installation and   Earthing 
+ Main   board with   MCB DB Switch and fuse box 
+ Objectives: At the end of this lesson you will be able to 
+*   state the | E regulations/   B |S   recommendations/ NE Code of practice with regard to the main board and 
+ distribution fuse box. 
+ Reception and distribution of main supply 
+There shall be a circuit breaker ora linked switch with fuse 
+in each live conductor of the supply mains at the point of 
+entry. 
+The neutral wire should not have any break inthe form of 
+switchor fuse unit. Inthe main switch, the neutral conductor 
+should be marked clearly. 
+The mainswitchgear shall be located ina place where itis 
+accessible and should be near to the terminating point of 
+the service line. 
+Main switches and switchboards 
+ Reference BIS 732-1963 and NE code. 
+ All main switches shall be either of metal-clad enclosed 
+pattern or ofany insulated enclosed pattern which shall be 
+fixed at close proximity to the point of entry of supply. 
+ Location 
+ Switchboards shall not be erected above gas stoves or 
+sinks, or within 2.5 m of any washing unit in the washing 
+rooms or laundries, orinbathrooms, lavatories, toilets, or 
+kitchens. 
+In   the case of switchboards unavoidably fixed in places 
+likely to be exposed to atmospheric weather, the outer 
+casing shall be weatherproof and shall be provided with 
+glands or bushings oradapted to receive screwedconduit, 
+according to the manner in which the cables are run. 
+ Metal-clad switchgears shall preferably be mounted onany 
+ of the following types of boards. 
+Hinged type metal boards 
+These shall consist of a box made of sheet metal not less 
+than 2 mmthick and shall be provided with a hinged cover 
+to enable the board to swing open for examination of the 
+wiring at the back. 
+The joints shall be welded. The board shall be securely 
+fixed to the wall by means of rag bolts, plugs,   or wooden 
+gutties and shall be provided with a locking arrangement 
+and an earthing stud. All wires passing through the metal 
+board shall be bushed. Alternatively, hinged type metal 
+boards shall   be   made of sheet covering   mounted on 
+channel or angle iron frames. 
+Such types of boards are particularly suitable 
+for small   switchboards for mounting   metal- 
+clad switchgears connected to supply at low 
+voltages. 
+ 168 
+ Fixed type metal boards 
+These shall consist ofanangle or channel iron frame fixed 
+onthe wall or on the floor and supported onthe wall atthe 
+top, if necessary. There shall be a clear distance of one 
+metre in front of the switchboard. 
+Such types of boards are particularly suitable 
+for   large   switchboards   for   mounting   large 
+number of switchgears or highercapacity metal- 
+clad switchgear or both. 
+ Teak wood boards 
+ For small installations connected to a single phase 240 
+volts supply, teak wood boards may be used as main 
+boards or sub-boards. These shall be of seasoned teak or 
+other durable wood with solid   back impregnated with 
+varnish of approved quality with all joints dovetailed. 
+Thoroughly protected both inside and outside with good 
+insulating varnish conforming to 1S:347-1952 and of not 
+less than6.5 mmthickness, shall be provided atthe back 
+for attachment of incoming and outgoing cables. There 
+shall be a clear distance of not less than 2.5 cm between 
+the teak wood board and the cover, 
+Recessing of boards 
+Where so specified, the switchboards shall berecessedin 
+the wall.   The front shall be fitted with a hinged panel of teak 
+wood or other suitable materials, suchas Bakelite, orwith 
+unbreakable glass doors inteak woodframeswith locking 
+arrangement, the other surface of the doors beingflushwith 
+the walls. Ample room shall be provided at the back for 
+connection   and   at the   front   between   the   switchgear 
+mountings. 
+Arrangement of apparatus 
+Equipment which   is on the front of a switchboard shall be 
+so arranged that inadvertent personal contact with live 
+parts   is   unlikely   during   the   manipulation of switches, 
+changing of fuses or like operation. 
+No apparatus shall project beyond any edge ofthe panel. 
+No fuse body shall be mounted into 2.5 cmof any edge of 
+the panel and no hole other than the holes by means of 
+which the panel is fixed shall be drilled closer than 1.3 cm 
+from any edge of the panel. 
+Inevery case in which switches and fuses are fitted onthe 
+same pole, these fuses shall be so arranged thatthe fuses 
+are not live when their respective switches are inthe ‘off’ 
+position.', NULL, '[-0.07282366,0.046695616,0.06257361,-0.058840077,-0.017373344,0.0047693583,0.03231172,0.03098444,-0.0574679,0.061197817,-0.018787242,-0.023386046,0.014092921,0.058427274,0.02732362,0.04784156,-0.070912994,0.06766591,0.0441298,0.02551825,0.14503692,0.0030918536,-0.01116687,0.0067294124,0.054072727,0.013877301,0.010850353,-0.019345103,-0.031597592,-0.1936577,0.005190764,0.032239415,-0.021190805,0.0061408617,-0.018790916,-0.08383208,-0.018577939,0.010260625,-0.08690284,0.01817831,0.016055143,-0.060236145,0.07662675,-0.075157486,0.006409,-0.04134829,0.024010604,-0.04870472,0.048553534,-0.014690466,0.055273313,0.032675315,-0.00933651,0.0037141286,0.066495255,0.05014501,0.044046335,0.044334553,0.023774583,0.025473746,-0.032288656,0.072194986,-0.24256182,0.0020284117,0.13510005,0.030311117,-0.007769993,-0.04730105,0.07331152,0.0015656622,-0.019931553,-0.010679703,0.019296844,0.05585496,-0.03803786,0.0081581,0.02966061,-0.05754344,-0.076418035,-0.024770325,-0.031500224,-0.031051518,-0.010169843,-0.051050104,-0.049306322,0.023926968,0.0052845906,-0.041594423,0.009057004,0.039847992,0.046875093,0.0026243522,0.029315816,-0.01814827,0.025793996,-0.0520738,-0.015109677,-0.03130945,-0.018386133,0.10308675,0.035359558,0.0038822156,0.022066753,0.032690693,0.013322937,-0.047291383,0.027205752,0.000595916,-0.04642781,-0.00063526613,0.03962934,-0.044292044,-0.0031054555,-0.059925232,0.045986187,-0.008402731,-0.0057626655,0.007338508,-0.0017047087,0.008147551,-0.05195561,0.04884814,0.018386645,0.04047046,-0.022126988,-0.047491394,-0.03196118,0.038019005,-0.002067014,-0.0041072876,0.00897643,-0.049233757,-0.00038159871,0.011090125,-0.037411653,0.061299942,0.025842499,0.09542476,0.03468228,-0.014562379,-0.0023374925,-0.047589492,0.012696965,-0.052949566,0.0031967165,-0.049348112,-0.11540533,-0.033630013,-0.05433968,0.014157344,-0.003065225,0.05446088,-0.054066252,-0.028373638,-0.0061383722,0.0224245,-0.01183603,0.064483166,-0.028826129,-0.0611673,0.029104408,0.010013975,-0.04060121,0.06911289,0.018758014,-0.09768618,-0.009603774,0.0038206836,0.027246676,-0.030452363,0.0027743275,0.09355506,0.009054181,0.011077457,0.06768015,0.021173947,-0.005630751,0.0030167527,0.00072171504,0.0315802,0.012518547,0.034432486,-0.038587224,-0.013303852,-0.013411073,-0.04343727,-0.018158093,-0.055626698,-0.043426234,0.097092025,-0.085811995,0.0734548,-0.04281936,0.092329435,-0.03549157,-0.04483075,-0.03967401,-0.055535477,0.019228436,-0.037033964,0.044012077,0.005150167,-0.0260396,0.020026732,-0.018499749,0.05727015,-0.025292058,-0.056666404,0.06914171,-0.02094976,0.00016511272,-0.0139748575,0.08333705,0.011361811,0.00965672,0.0057088574,0.05945077,0.060805622,0.03277646,0.049777064,0.08472764,-0.030709486,-0.018844252,-0.17366858,-0.020596037,-0.014182163,0.0009543433,0.041923486,-0.04006021,0.024946313,-0.021352084,-0.058932014,-0.02059825,0.15663792,0.0066783773,-0.028316855,-0.031654652,-0.009703272,0.062854744,-0.021254294,-0.029276757,0.022768522,-0.0007494355,0.037012774,0.05512863,0.011203537,-0.02980276,0.048721194,-0.00990478,0.10133521,-0.10147537,0.11410883,-0.05370772,0.038099896,-0.029015888,0.028091121,-0.054524668,0.028706498,-0.023726778,-0.016560571,-0.0040778336,-0.016123187,0.019584145,-0.042461544,0.02998067,0.047016002,-0.08307119,0.06696882,-0.069450416,-0.053904954,-0.035189766,-0.009289063,-0.030206703,0.013966147,-0.043422926,-0.0009322603,0.029576896,0.056887265,-0.061668795,-0.02530629,-0.035282753,-0.087215066,0.057697393,0.04127887,0.03153595,0.012675164,-0.022978904,-0.044969387,0.010888023,0.06277534,0.04939312,0.0052300035,-0.018708961,0.030725466,0.08517407,0.03660119,-0.00039920452,-0.03712879,0.021892631,0.0064238952,-0.012319439,-0.00077395345,-0.08016051,0.057355702,-0.08304591,0.068769716,0.041574556,0.07124761,0.018722631,-0.0055774874,0.034836926,0.036357764,0.05932504,-0.004624066,0.017403908,-0.07714879,0.008905548,0.021449056,-0.016564317,-0.28105187,-0.0024659063,0.0074752355,-0.038933683,-0.080867305,0.045388497,0.05933579,0.0068475665,-0.07033764,-0.060560435,-0.05052539,-0.012553496,0.0292503,-0.011734936,0.0023997624,0.0012560901,0.0712101,-0.052990843,0.008907422,-0.008159539,0.037965782,0.03925045,0.16526257,0.011084269,0.062266223,-0.025870694,0.0187071,0.006558717,-0.014752909,-0.05207822,0.08692954,-0.0042730584,0.025535366,0.020696523,0.0469826,0.057764526,-0.0073115923,-0.028190037,0.026090866,-0.06165495,-0.08210716,0.045336835,-0.09176843,0.009692336,0.08927037,-0.06270089,-0.08528862,-0.069073945,-0.00844777,-0.03882298,-0.030450609,0.059575368,0.012457367,-0.010030592,-0.04119573,-0.0053206515,-0.030231705,0.015051316,-0.06026671,-0.003469917,0.04415307,-0.013009359,0.039483074,0.0010102408,0.10754139]', NULL, '{}'::jsonb, '2026-03-01T19:26:40.668Z', '2026-03-01T21:39:32.481Z', 'trade_theory', 'AC Circuits and Motors');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1425, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-6', NULL, 185, 169, 'Nofuses other thanthe fuses inthe instrument circuitshall 
+be fixed on the back of or behind a switchboard panel or 
+frame. 
+Marking of apparatus 
+Where a board is connected to a voltage higher than 250 
+volts, allthe apparatus mountedon it snallbe marked inthe 
+following colours to indicate the different poles or phases 
+to which the apparatus or its different terminals may have 
+beenconnected. 
+Alternating current 
+Three phases   -—red, yellow and   blue. 
+ Neutral   — black. 
+ Where three-phase, 4-wire wiring is done, the neutral shall 
+be inone colourand the other three wires in another colour. 
+Where a board has more than one switch,   each such 
+switch shall be marked to indicate which section of the 
+installation itcontrols. The main switch shall be markedas 
+such and where there is more than one main switch inthe 
+building, each such switch shall be marked to indicate 
+which section of the installation it controls. 
+ Main and branch distribution boards 
+ The main and branch distribution boards shall be of any 
+type mentioned here. 
+The main distribution board shall be provided witha switch 
+or circuit-breaker oneach pole of each circuit, afuse onthe 
+phase or live conductor anda   link onthe neutral or earthed 
+conductor of each circuit. The switches shall always be 
+ linked. 
+ Branch distribution boards shall be provided with a fuse on 
+the live conductor of each circuit and the earthed neutral 
+conductor shall be connected to a common link and be 
+capable of being disconnected   individually for testing 
+purposes. One spare circuit ofthe same capacity shall be 
+provided oneach branch distribution board. Lights and fans 
+ may be wired onacommon circuit. Such sub-circuit shall 
+ not have more than a   total of ten points of lights, fans and 
+socket outlets. The load of such circuit shall be restricted 
+to 800 watts.   If   a separate fan circuit is adopted, the 
+number of fans in the circuit shall not exceed ten. 
+ Power sub-circuits 
+ The outlet shall be provided accordingtothe load designfor 
+these circuits but inno case shall there be more than two 
+outlets oneach circuit. The load oneach power sub-circuit 
+should be restricted to 3000 watts. 
+ Installation of distribution boards 
+ «   Thedistributionfuse-boards shall be located as near as 
+possible to the centre of the load they are intended to 
+control. 
+¢   Distribution boards shall be fixed at a height not more 
+than 2 metres from the floor level. 
+*   These shall be fixed on suitable stanchion or wall and 
+shall be accessible for replacement of fuses. 
+*   These shall be of either metal-clad type orall-insulated 
+type. But, if exposed to weather or damp situations, 
+they shall be of   weatherproof type and,   if installed 
+where exposed to explosive dust, vapour or gas, they 
+shall be of flame proof type. 
+«   Vvhere there are two or more distribution fuse-boards in 
+feeding low voltage circuits and fed from a supply at 
+medium voltage, these distribution boards shall be: 
+-   fixed not less than 2 m apart; or 
+-   arranged so that it is not possible to open two ata 
+time, namely, they are interlocked and the metal 
+case is marked ‘Danger 415   Volts’: or 
+-   installed in a room or enclosure accessible to only 
+authorized persons. 
+*   Alldistribution boards shall be marked ‘Lighting’ or'' Power’ 
+ asthe case may be andalso marked with the voltage and 
+ number of phases of the supply. Each shall be provided 
+witha circuitlist giving details ofeach circuitwith controls, 
+the current rating and its size of fuse-element. 
+Wiring of distribution boards 
+In wiring branch distribution board, the total load of the 
+consuming devices shall be divided, as far as possible 
+evenly between branchcircuits. 
+Cables shall be connected to a terminal only by soldered 
+or welded or crimped lugs using suitable sleeve or lugs or 
+ferrules unless the terminal is of such a form that it is 
+possible to securely clamp them without cutting away 
+cable strands. 
+ Fuses 
+ a   Afuse carrier shall not be fitted with a fuse element of 
+higher rating than thatfor which the carrier is designed. 
+b   Thecurrent rating of afuse shall not exceed the current 
+rating of the smallest cable in the circuit protected by 
+the fuse. 
+c   Every fuse shall have inits own case or cover, orinan 
+adjacent conspicuous position, an indelible indication 
+of its appropriate currentrating forthe protection ofthe 
+circuit which it controls. 
+ Selection of size of conductor 
+ The size of conductors ofcircuits shall be so selected that 
+the drop in voltage from the consumer''s terminals in a 
+public supply (orfromthe bus-bars of the main switchboard 
+controlling the various circuits ina private generation plant) 
+to any point onthe installation does not exceed 3 per cent 
+of the voltage at the consumer''s terminals. 
+In each circuit or sub-circuit the fuse shall be selected to 
+match the cable rating to ensure the desired production. 
+All conductors   shall   be   of copper or aluminium.   The 
+conductorforfinal sub-circuit for fan and light wiring shall 
+have a nominal cross-sectional area of not less than 1.00 
+mim? copper and 1.50 mm? aluminium. The cross-sectional 
+areas of conductors for power wiring shall be notlessthan 
+ 2.5 mm? copper, 4.00 mm? aluminium. The minimum 
+ Power : Electrician (NSQF Revised - 2022)   - Related Theory for Exercise 1.8.69   169', NULL, '[-0.02766742,-0.015503401,0.073962785,-0.05066162,-0.045390833,0.01001606,0.0351855,-0.018660376,0.042101484,0.013730505,-0.017048975,-0.061725605,0.014728358,0.010526178,0.0153588215,0.05707202,-0.025410403,0.038822617,-0.039446604,0.01933722,0.12890613,-0.008581854,0.024032993,0.02336946,0.07666267,-0.02009907,0.013153635,-0.062458698,-0.03540245,-0.19882277,0.019198172,0.0015566968,-0.010089974,-0.005077899,-0.026642546,-0.09144225,-0.047048442,-0.017040612,-0.062499728,0.007661008,0.020658562,-0.027414974,0.010512871,-0.03463442,-0.03272769,-0.033819344,-0.0035264634,-0.04865709,0.06052903,-0.041781045,0.08616475,-0.022008352,-0.011817307,-0.010221489,-0.008655146,-0.0066189435,0.040450286,0.044872098,0.013262138,0.003458265,0.06474532,0.07823655,-0.22207953,0.045267377,0.09022365,0.042169977,-0.013356027,-0.0020243512,0.06457669,0.058398537,-0.025310297,-0.061786514,0.040285848,0.021073433,0.0039235284,0.0001578273,0.015167499,-0.02727823,-0.09178949,-0.038385365,-0.044560827,-0.08123819,-0.021334067,0.009403399,-0.058259554,0.03849804,-0.022310693,-0.05329789,-0.045414146,0.019329488,0.012899196,-0.049184646,0.05326914,0.008891014,0.038836874,-0.043954022,-0.017113168,-0.09408513,0.011456462,0.09342235,-0.0110099325,-0.012192101,0.07538345,0.03405421,0.05189443,-0.057539277,-0.0033385174,-0.031372912,-0.035574686,-0.030818772,0.036255132,-0.048197825,0.06558948,-0.06539588,0.027567003,0.025648152,-0.026638066,0.0075694937,-0.019548927,0.0052722027,-0.11635372,0.058129936,0.052533004,-0.04862237,0.013653771,0.0033574256,0.0017456596,0.028384343,0.018851463,0.041168213,0.019269487,-0.022849761,0.04989708,0.026705535,-0.03914233,0.041399244,0.07090858,0.042919118,0.058608636,0.015073626,-0.006862614,-0.055334948,0.02516433,-0.08734899,0.04582935,-0.07030636,-0.04845168,0.035528842,-0.018459132,0.023060748,-0.020888107,0.06362968,-0.08413313,-0.019638047,-0.027020972,0.011248292,-0.012977347,0.0683522,-0.035169326,-0.010080686,0.0039464994,-0.017261298,0.021607906,0.08309681,0.006730366,-0.082447976,0.06627956,-0.01393857,0.020955317,-0.04531946,0.028250402,0.06698498,-0.010737215,0.023028443,0.06110836,0.035646535,0.021745186,-0.020388301,-0.008676652,0.07132791,-0.00015019144,0.02082459,0.010115592,-0.04431884,0.050604086,-0.02035199,0.03765136,-0.043579113,-0.033815976,0.08395452,-0.09960709,0.07968274,-0.062305782,0.053642843,-0.038233843,-0.02050529,-0.07641201,-0.034201343,-0.010421313,-0.015289499,-0.0009293526,0.009077121,-0.02353304,0.05284805,-0.009117004,0.08565487,0.017048882,-0.07015509,0.05375985,-0.008330157,-0.0012727052,0.00010913328,0.03614533,0.023952408,-0.011046939,0.021976186,0.06942356,0.051934075,0.076048926,0.050861925,0.035966996,-0.06266106,-0.009115182,-0.16838522,-0.009194817,0.007460552,-0.0019936224,0.05920497,-0.025626415,0.0022401025,0.009479665,-0.08383319,0.014121972,0.08519317,-0.0039330563,-0.00024385187,0.03602443,0.04716368,0.068680085,0.055161167,0.023941662,-0.0013176342,-0.006265901,-0.010413177,0.07280291,0.04828027,-0.012508464,0.014991341,-0.060968168,0.12384013,-0.075541,0.117922865,-0.029873863,0.014245448,-0.043784693,-0.017914375,-0.004344906,0.032310896,0.05298018,-0.078590706,-0.023678064,-0.015944917,0.02080422,-0.010810442,0.01934197,-0.01628495,-0.07610016,0.012486178,-0.09790557,0.0029950384,-0.078505374,-0.012075498,-0.010661211,0.008407104,-0.08906267,-0.020932551,0.05951415,0.10180321,-0.084009,-0.050483055,-0.01144126,-0.0827876,0.093183964,0.015616239,0.009867518,-0.0014421105,-0.06931541,0.014587303,0.04233653,-0.029804362,0.047126416,0.034876697,0.003525344,0.016792366,0.049910493,0.022559626,-0.012837277,-0.030633783,0.017063266,-0.010425047,-0.036302358,-0.004672684,-0.0019190026,-0.027765043,-0.039945047,0.03939685,0.07852621,0.022512453,0.03181165,-0.0133893965,0.014579114,0.06593493,0.028295444,-0.010642146,0.025702827,-0.00773644,0.019441368,0.010578981,-0.0043826466,-0.26523164,-0.027077422,0.022694156,-0.029345755,-0.08805825,0.03477597,0.030340714,0.019278273,-0.076830894,0.004436913,-0.037027564,-0.0037207298,-0.013728385,0.014465899,-0.0213339,-0.008163251,0.06707467,-0.1055968,0.02295053,-0.018968957,0.060538966,0.03471618,0.18857414,-0.0011328973,0.0054816506,0.013923372,-0.035827905,0.042772435,-0.12049244,-0.0451531,0.040037304,-0.011137741,0.037566233,-0.058661446,0.06154686,0.071485795,-0.0070516677,0.015230687,0.0454671,-0.04532101,-0.05574276,0.011833836,-0.08835611,0.032005716,0.13658248,0.02517493,-0.09217099,-0.025993034,0.007959695,-0.024332821,-0.036240324,0.055013254,-0.017187515,0.00785129,-0.0078024743,0.00018471631,-0.0526388,-0.02845596,0.022577284,-0.008198813,0.010852289,-0.0036110866,-0.0124287475,0.024384523,0.08904775]', NULL, '{}'::jsonb, '2026-03-01T19:26:40.982Z', '2026-03-01T21:39:32.481Z', 'trade_theory', 'AC Circuits and Motors');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1426, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-6', NULL, 186, 170, 'cross-sectional area of conductors offlexible cords shall 
+ be 0.50 mm? copper. 
+ Branch switches 
+ Where the supply is derived froma three-wire or four-wire 
+source and distribution is done on the two wire system, all 
+the branch switches shall be placed in the outer or live 
+conductor of the circuit and no single phase switch orfuse 
+shall be inserted inthe middle wire, earth crearthed neutral 
+conductor of the circuit. 
+Passing through walls and floors 
+Vvhere conductors pass through walls the conductor shall 
+be carried either in a rigid steel conduit or a rigid non- 
+metallic conduit or in a porcelaintube of such a size which 
+permits easy drawing in. The end of the conduit shall be 
+neatly   bushed with   porcelain,   wood   or other   suitable 
+material. This steel conduit shall be earthed andsecurely 
+ bushed. 
+ Vvhere a wall tube passes outside a building so as to be 
+exposed   to the   weather,   the   outer end   shall   be   bell 
+mouthed and turned downwards and properly bushed on 
+the openend. 
+Fixing to walls and ceilings 
+Plugs   for   ordinary   walls   or ceilings   shall   be   of well 
+seasoned teak or other suitable hardwood not less than 
+Scm long and 2.5 cm square on the inner end and 2cm 
+square on the outer end. They shall be cemented into 
+walls to within 6.5 cmofthe surface,   the remainder being 
+finished   according to   the   nature   of the   surface   with 
+plaster. 
+Inthe case of new buildings, wherever possible, teak wood 
+plugs shall be fixed in the walls before they are plastered. 
+Toachieve neatness, plugging of walls or ceilings may be 
+done by a suitable type of asbestos, metallic or   fibre fixing 
+ plug. 
+170   Power : Electrician (NSQF Revised - 2022) - Related Theory for Exercise 1.8.69', NULL, '[0.008905743,-0.061945785,0.06694274,-0.03607945,-0.002988018,-0.008595065,0.05448319,0.01668803,-0.0069222725,0.052489545,-0.011417793,-0.09776405,0.006796181,0.034707136,0.021696238,0.0678033,-0.011076447,0.061579786,-0.0642479,0.06872559,0.11079509,-0.03459955,0.012650708,-0.03873506,0.07814065,-0.021787059,0.02004805,0.016355015,-0.02811628,-0.17638192,-0.030692622,0.036618322,-0.046380777,0.056719176,-0.06259064,-0.07366947,0.04180597,0.015841555,-0.037068754,0.032573387,0.013467512,-0.010742728,0.022173798,-0.018517291,-0.03831204,-0.033583518,-0.012531449,-0.057114493,0.024812944,0.017685024,0.0517715,0.012147306,0.04311017,0.05303455,0.038107574,0.050218128,0.016331682,0.038450237,0.034643196,-0.02961411,0.038993485,0.06841302,-0.19882226,0.023592142,0.093793765,0.030911194,0.023972284,-0.013028889,0.08313682,0.07201198,-0.043625586,-0.019346442,-0.042911537,0.024166197,0.061830726,0.008137435,-0.051057745,0.013110542,-0.06882473,-0.026980462,-0.02045962,0.04660247,-0.06369403,0.023003032,-0.04654715,0.053733077,0.049386762,-0.035809208,-0.04268296,0.08567544,-0.0027123583,0.0028882485,-0.088231705,-0.014215587,-0.013807293,-0.08991467,-0.020154819,0.025883995,-0.0030121026,0.057286542,0.011677011,-0.026463142,0.029947976,0.024264218,0.039226416,0.01329562,-0.06308542,0.021143258,-0.024048544,-0.0045345738,0.0017004326,-0.02556973,-0.044884216,-0.015325209,0.061954986,-0.011784119,0.039954852,0.035851188,-0.04745663,-0.015493482,-0.019464856,0.07055267,0.033649392,-0.0068411473,0.0069770855,-0.04984858,0.011403235,-0.00080393685,-0.024481297,-0.016839074,0.033996224,0.045797136,-0.0026370154,0.026006581,-0.024275161,0.007582099,0.040331632,0.060549922,0.04865465,-0.019324431,-0.03306644,-0.052041184,-0.02606324,-0.06261277,0.023197472,-0.046014894,-0.037165564,0.0067000194,-0.008738894,-0.08019119,0.024291737,0.00393266,-0.030156303,-0.07102574,0.010683916,-0.005316891,-0.04628298,0.076553285,0.0065328437,0.02818754,-0.006936477,-0.028398044,-0.044418685,0.13360867,-0.010323974,-0.09799036,0.023641365,-0.014499162,0.03730959,-0.010394152,0.06460319,0.05329651,-0.032243557,0.008024745,0.05873348,0.024874598,-0.057215516,-0.07645108,0.0032307387,0.004036535,0.062490374,0.01936045,-0.019285765,-0.020157967,0.07059249,-0.008439735,-0.009610129,-0.0291046,0.0067262165,0.09551856,-0.07707984,0.06131184,-0.10612651,0.03256809,-0.008149347,-0.062233277,-0.06789764,-0.096599735,0.012309787,0.08155101,0.027589686,-0.021655317,-0.022445451,0.018216679,-0.0134724965,0.028846733,0.065175466,-0.025958555,0.08807455,0.06467819,-0.015806084,-0.036006235,0.12373957,-0.06595035,-0.023063108,-0.0093558105,0.07878424,0.019547945,0.0645956,0.04347613,0.005602917,-0.07451686,0.0053223907,-0.18888189,-0.058711022,0.016286561,0.0072472556,0.07920967,-0.0037331919,0.00042284463,0.00088868523,-0.063267544,-0.026764655,0.10664891,0.035080083,-0.039399084,0.03637826,0.0048509464,0.0656269,-1.769785e-05,-0.0046495674,-0.09436523,-0.0012730483,0.018711526,0.1050091,-0.10630351,-0.005619467,-0.018437838,-0.04523132,0.13706295,-0.0716325,0.025527935,0.0039499565,0.035992645,0.03432537,0.029555669,-0.01186925,0.022047145,0.0944593,-0.03898712,-0.018407432,0.022673434,0.02421204,-0.010048937,0.04146201,-0.022146333,-0.0581188,0.033110134,-0.055448014,-0.046470698,-0.032993272,-0.02699057,-0.024270792,0.020920709,-0.05701885,0.01922231,0.06441801,0.028743727,-0.058077715,-0.051053848,0.026878264,-0.019588163,-0.00055917416,-0.02492164,0.07803931,0.03163134,-0.06286391,-0.06084889,0.07407974,0.049711145,0.012884184,-0.003970322,-0.023939703,0.033136964,0.07613954,0.018840088,-0.075973615,-0.01149966,-0.032265607,0.027714925,0.055899575,0.02118471,0.025654517,-0.004548551,-0.060848128,0.009972561,-0.0064836917,0.0030378476,0.024760343,-0.05439252,-0.04604793,0.07248814,0.009106546,-0.008315831,0.025000619,-0.05369407,0.020651361,-0.004207672,-0.037765592,-0.23754722,-0.024814343,0.07172311,-0.09713386,-0.092022896,0.01170521,-0.004100444,-0.0049874154,-0.013043271,-0.010152812,-0.040725786,0.0028311377,0.011553545,-0.0075235767,0.011171304,-0.01459724,0.08101049,-0.04853249,0.007840511,0.0048631323,0.057703905,0.02226439,0.16841035,0.017126543,0.031211358,0.01062583,-0.02079262,0.05857832,0.014696045,-0.03435704,0.051777486,0.045771394,0.056750733,0.00271686,0.1006119,0.060131136,-0.003627056,0.057900473,-0.024281511,-0.07265428,-0.08267655,0.013410079,-0.067568,-0.07072785,0.03889436,-0.051098533,-0.040884644,-0.051218584,0.05131123,-0.06625604,0.0030725515,0.058328822,-0.04688365,-0.01617955,-0.022381032,0.017908668,-0.06740073,-0.028842133,-0.008521501,-0.014969639,-0.02896903,-0.109191045,0.030416017,0.021909716,0.07959602]', NULL, '{}'::jsonb, '2026-03-01T19:26:41.216Z', '2026-03-01T21:39:32.481Z', 'trade_theory', 'AC Circuits and Motors');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1427, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-6', NULL, 187, 171, 'Power   Related Theory for Exercise 1.8.70 
+Electrician - Wiring Installation and Earthing 
+NE code of practice and IE Rules for mounting energy meter board 
+ Objectives: At the end of the lesson you shall be able to 
+*   state the BIS recommendations pertaining to the mounting of the energy meters. 
+The BIS symbols for energy meters are given in Figs 
+ Jaand ib 
+ Fig 1a   Fig 1b 
+ g 
+ SINGLE PHASE   THREE PHASE   i 
+ENERGY METER   ENERGY METER   2 
+ Internal circuit diagrams of single phase and three phase 
+ meters are   Fig 2 and 3 respectively. 
+ Fig2 
+ ELN2a7d22 
+ Fig3 
+ LINE   [¢   2   | LOAD 
+ Lyo   |   |   aU 
+ Lao   al 
+ La   Ww 
+ INTERNAL CONNECTIONS OF THREE PHASE ENERGY METER 
+ Pig.42   (Fig 4b 
+Lit 
+mn 
+aa = J] 
+ AM 
+ i 
+ LINE   [¢   ¢   7   | LOAD 
+ Ly   |   ol 
+ Loe   oY 
+Lye   o WW 
+ ELN237a24 
+ INTERNAL CONNECTIONS OF THREE PHASE ENERGY METER 
+ELN237624 
+ In earlier domestic installations the service mains were 
+brought inside the consumer premises andfirst connected 
+to the IC cutouts, then to the energy meter and   to the 
+consumer main switch ( Fig 4a and 4b) 
+However, to avoid pilferage of electricity, certain electricity 
+boards insist that the service connections should first be 
+connected to the energy meter, thento the! C cutout and 
+then to the consumer main switch.   In all the cases the 
+neutral should be directly connected from the outgoing 
+terminals of the   energy   meter to the consumer main 
+switch. (Fig 4b) 
+Precautions while installing energy meters 
+«   Energy meters which are tested and approved by the 
+local electricity board authorities only should be used. 
+«   Energy meters should be used in vertical positiononly. 
+*   Connections for incoming and outgoing supply should 
+be made according tothe manufacturer''s instructions/ 
+connection diagram which will be available onthe inner 
+side of the terminal plate of the energy meters. 
+NE code of practice and IE rules for energy meter 
+installation 
+Energy meters shall be installed at such a place whichis 
+readily accessible to both the owner ofthe buildingandthe 
+authorised representatives of the supply authority. 
+It should be installed at a height where   it is convenient to 
+note the meter reading; itshould preferably be notinstalled 
+below 1   m fromthe ground.   The energy meters should 
+either be provided with a protective covering,   enclosing 
+ them completely, except the glass window through which 
+ the readings are noted or should be mounted inside a 
+completely enclosed panel provided with hinged or sliding 
+doors with arrangement for locking it. 
+Any meter placed uponthe consumer''s premises shall be 
+of appropriate capacity and shall be deemed to be correct 
+if its limits of error do not exceed 3% above or below 
+absolute accuracy at allloads inexcess of one tenth of full 
+loads and up to full load. 
+No meter shall register at no load. 
+General instructions : The body of the energy meter 
+should be earthed to the general mass of earth using a 
+proper size of earth continuity conductor depending upon 
+the current capacity of the installation. 
+For multi-storeyed buildings which consist ofanumber of 
+offices or commercial centres or flats occupying various 
+areas, the electrical load for each of them is metered 
+separately.   In   such   cases,   all   the   energy meters are 
+located ina meter room whichis normally situated on the 
+groundfleor. 
+ 171', NULL, '[-0.0505704,0.006804764,0.028122159,-0.039501183,-0.0740964,-0.0085915495,0.01047051,0.017876687,0.035567503,0.008284255,0.015219865,-0.10341507,0.040409535,0.04843427,0.015368493,-0.008595998,0.004016867,0.08083279,0.025273006,0.0848519,0.16077377,-0.06711827,-0.0035160403,0.006594841,0.07840993,0.018341405,0.00844807,-0.03555476,0.0033765691,-0.17764413,-0.012500456,-0.009488848,0.05522886,-0.008349588,-0.08538556,-0.018685298,-0.014800083,0.0255511,-0.0667363,0.0013733488,0.044984877,0.0005641846,0.046832565,-0.08284177,0.037720248,-0.054866057,0.049623642,-0.025369814,-0.010502971,0.0048723887,0.05650904,0.016716575,-0.0293339,0.08168636,0.03315262,0.057779618,0.0038554145,0.011473736,0.03340134,-0.017417701,-0.0076015005,0.030744653,-0.2608945,0.10065581,0.1052985,-0.0021562865,0.038362972,-0.014674669,-0.009856346,0.053718694,-0.048216496,-0.032787487,-0.04171136,0.025617195,-0.035698753,0.045519803,-0.0067662434,0.0144006815,-0.052552454,-0.09200858,-0.06469541,0.041636422,-0.03743126,-0.014913769,-0.033541795,0.023920733,0.021987712,-0.012988954,0.047053665,0.04862471,-0.039265346,-0.07818394,-0.04615292,0.015650352,0.036701847,-0.03754423,-0.010135342,0.0035792189,-0.04596599,0.122362636,-0.04568217,0.036016054,-0.027805496,0.03890348,0.0028611734,-0.03257248,-0.016845036,-0.052773777,-0.03926352,-0.05277699,-0.011387667,-0.012200831,0.028781386,-0.05197496,0.043929573,0.062104605,-0.009076723,0.020279873,0.0507232,0.021665113,-0.06858844,0.081314705,0.057290204,0.006831576,0.04181126,-0.03010778,-0.011612399,-0.0061650258,0.041520935,0.033159778,-0.016244147,-0.044905026,-0.0076168827,0.04218414,-0.02271979,0.03705493,0.028469017,0.06003407,0.025859417,0.0462835,0.031303253,-0.020558609,0.040879916,-0.107103445,0.077633634,0.0076683313,-0.07295536,0.02029387,-0.070546895,-0.049159147,0.02617281,0.06380171,-0.027532108,0.013788979,-0.0015785536,0.05275413,0.029866913,0.07322151,-0.07706004,0.027107365,0.04344343,0.006483821,-0.036473945,0.05466448,0.043282818,-0.043685015,-0.00015283543,-0.029029753,-0.0061269146,-0.054661587,0.050429314,0.083809726,-0.035944324,-0.016944116,0.07242886,0.020845609,0.013276373,-0.021296823,-0.028449332,0.058977347,-0.058069266,0.0065862737,-0.049685366,0.015622777,0.06136344,0.0029968873,-0.09089607,-0.046656977,-0.05646679,0.06617543,-0.08080187,0.078057826,-0.038282152,0.046062063,0.0041113505,-0.032114357,-0.04067927,-0.046888616,-0.018954428,-0.05794857,0.06038694,0.026026957,0.039976664,0.027732536,0.013051421,0.01096957,-0.0075274743,-0.035114493,0.05673973,-0.004611646,0.014937357,-0.0012222007,0.057519693,-0.030386332,-0.024559157,-0.06071396,0.08766376,0.043090302,0.00036846238,0.073913656,-0.0006721149,0.038537536,-0.033210766,-0.21631627,0.010351761,0.015923796,0.027478356,0.03193877,-0.04478956,0.07191644,-0.017667424,-0.057007108,-0.028738122,0.106114365,0.009319467,-0.04306676,-0.016800076,-0.040936355,0.018863386,0.048980217,-0.03877601,-0.02095388,0.030306228,-0.015384678,0.06389931,0.00018436876,-0.0010561271,0.024555365,0.019388987,0.08835521,-0.016266298,0.046122495,-0.021266734,-0.0037726702,-0.03796876,-0.007925334,-0.06008092,0.0009794844,0.0035060681,0.039544202,0.026277674,0.025806407,-0.030254012,-0.065490074,0.034735266,0.02777703,0.005405132,0.03919536,-0.06246176,-0.03697607,-0.0063979025,-0.052946147,-0.04796675,0.03281152,-0.09241806,-0.013029126,-0.000816987,0.050539266,-0.07760279,-0.040453967,0.038932726,-0.08618605,-0.008929784,0.015510154,0.04392797,0.048253912,-0.040073425,-0.017432552,0.028675526,-0.015984695,0.049788732,0.035036553,0.0057055075,-0.031000359,0.075358845,0.004808458,-0.058713745,0.037790332,0.009855923,-0.007199953,-0.055359155,0.06584019,-0.044227697,-0.0131736165,-0.105911165,0.05114601,0.041557487,0.016619172,0.05410397,-0.090751916,0.016268808,0.0147554595,0.045530446,0.007230446,0.054278173,-0.027758947,0.031039257,0.024557034,-0.02887428,-0.2624996,0.003911596,0.016524239,0.011603343,-0.05115404,0.018161584,0.05180186,-0.051981967,-0.06058259,-0.026766226,-0.07354002,-0.028593145,-0.01853295,-0.017880348,-0.012995747,0.012743564,0.04287706,-0.038907725,0.021324728,-0.06026874,0.050873574,0.04389438,0.20460404,0.040196132,0.03469234,0.07218086,0.00572222,0.044784557,-0.0035600439,-0.007412295,0.061897606,-0.02341124,0.06293495,-0.024407623,0.08399718,0.066075526,0.0034601113,-0.091955595,0.06233281,-0.04219399,-0.014284649,0.05266444,-0.037053037,-0.034074437,0.058978233,-0.017883098,-0.016677784,-0.041510355,0.017400218,-0.001364058,-0.038752202,-0.028776057,-0.029868012,0.0041377833,-0.016870953,0.0053145722,-0.017141737,-0.05990416,-0.049522337,-0.017484292,0.0033421433,-0.0013783327,-0.025217107,-0.04618205,0.006365774]', NULL, '{}'::jsonb, '2026-03-01T19:26:41.524Z', '2026-03-01T21:39:32.481Z', 'trade_theory', 'AC Circuits and Motors');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1428, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-6', NULL, 188, 172, 'Power   Related Theory for Exercise 1.8.71-73 
+Electrician - Wiring   Installation and   Earthing 
+ Estimation of load, cable size, bill of material and cost for a wiring installation 
+ Objectives: At the end of this lesson, you will be able to 
+*   calculate the load(s) and select the number of sub(branch) circuits 
+ *   estimate the load   in a circuit 
+ *   select proper cable size for branch main circuits and the supply system 
+*   estimate and list out the accessories for given wiring installation. 
+Aminimumof   two lighting sub-circuits shall be providedin 
+each house so that in case of fault in one sub-circuit, the 
+whole house is not plunged in total darkness. 
+The load on power circuits should be restricted to 3000 
+watts having not more than two socket outlets. 
+Estimation of load requirements 
+Electrical installation in domestic dwellings is basically 
+designed to cater to light and fan loads and for electrical 
+appliances and gadgets. In estimating the current   to be 
+carried by any branch circuit,   unless the actual values are 
+known, these shall be calculated based on the following 
+recommendedratings. 
+Item   Recommended 
+rating ( in watts) 
+Incandescent lamps   60 
+Ceiling fans   60 
+Table fans   60 
+6 A, 3-pin socket-outlet points   100 
+Fluorescent tube   40 
+Power socket outlets (16 A)   1000 
+Example 
+Estimate the cost of materialforwiring PVC channel foran 
+office room having 2 lamps 1 fan one 6A socket outlet. 
+To estimate the cost of   material the electrician has to 
+follow these steps: 
+Type of wiring to be decided- PVC channel (casing and 
+capping - given). 
+Position of the electrical points/Loads hasto be decidedas 
+per the requirment. 
+Layout of the office has to be prepared (Fig 1). 
+Total load to be calculated, Inthe given example 
+i   Tube2nosx40W   =   80W 
+ii   Fanino x 60 VW   =   60W 
+iii   SA socket 1 no   = 100 W 
+ 240 W 
+ circuit/connection diagram forthe roomhaste be developed. 
+ 172 
+ Fig 4   
+6m 
+ a 
+ —   — 
+ rH 
+ a Pia 
+ 5 
+5  ae 
+ va Dee 
+ ——S   
+2 
+LAYOUT DIAGRAM OF AN OFFICE ROOM   g 
+ Based on the layout and circuit diagram calculate the 
+length of PVC channel required. 
+1) Length of PVC channel 
+ in Roof   =5+4+3=8m 
+ 2) Vertical drops   =0.540.542.0= 3.0m 
+Total   =8+3.0   =11.0m 
+3) Add 10% tolerance   =1.1m 
+ 12.1m 
+ Calculate the length of wire and size of wire based on 
+layout, circuit diagram and load. Inthe given example,the 
+total load is   240W the current taken by the total load are 
+ P   240 
+ i=   = 
+ VxCos@   2400.8  
+=1.25A 
+ Hence PVC copper flexible   1sqmm wire is enough to this 
+circuit/room.   However since this wiring come inthe catagory 
+of commercial wiring, for safe-side, we can choose 1.5sq 
+mm PVC insulated copper flexible wire. 
+Assume vertical drop is 0.5 m for tube lights and 2m for 
+switch board then the length of wire required is 
+ From Ato Band 
+ vertical drop   =(254+2)mx5   =225m 
+From B to C and 
+vertical drop   =(2.5405)mx3=9m', NULL, '[-0.0026192316,0.0070165168,0.08664211,-0.060257524,-0.03375682,0.07534059,-0.007828946,0.016296145,0.059284598,0.02257784,0.02443162,-0.08069609,0.027075605,0.033128805,0.02642274,-0.02203297,-0.0236499,0.051583193,0.0027614257,0.08078939,0.14381945,-0.05182757,-0.019368045,-0.03360433,0.057952724,-0.0028643343,0.008584775,-0.004647501,0.014637514,-0.19682983,-0.042838253,0.023534706,0.052779775,0.018057121,0.009655459,-0.05203644,-0.0631417,0.012002774,-0.061721753,0.006340149,-0.047607183,-0.03890223,0.030495154,-0.051227085,-0.016583113,0.02730184,0.0016728009,-0.02585385,-0.00199808,0.072864905,0.059807234,0.039700657,0.022286456,0.011592333,-0.0056422595,0.001674531,0.026550062,0.035871256,0.10392043,0.037179355,-0.008791592,0.061506864,-0.21623376,0.02483761,0.06537042,-0.006881888,-0.04697337,0.04621343,0.0646105,0.06912718,-0.0620542,0.0051925825,0.017233562,0.044331647,0.021647226,0.030004373,-0.002175983,0.018641653,0.021841014,-0.05898921,0.03740389,0.020880913,-0.07717759,0.05285217,-0.07384061,0.029692737,0.0035181649,-0.02078228,0.033397533,0.04895446,0.029148588,0.046744812,-0.09179831,-0.010394198,-0.05142958,-0.06813324,-0.017273607,-0.02274087,-0.02767838,0.09870054,0.007092514,0.037687868,0.04564122,-0.0014494188,0.010966047,-0.0066791247,-0.038052768,0.049539458,-0.036687545,-0.043955524,-0.030220475,0.0051780865,-0.08299215,-0.024425298,0.07151749,-0.0043760412,-0.0042602466,-0.010332384,-0.060973514,0.032451667,-0.07658251,-0.027365284,0.090635374,0.012113509,0.02826151,-0.088600986,0.007738377,0.05877947,-0.026001876,0.09717121,0.010302906,-0.049958803,-0.039432406,0.028546719,0.001677584,0.042867273,0.10280354,0.04420515,0.0048454017,0.015923325,0.002546459,-0.047090806,0.01044609,-0.048083372,-0.059486415,0.037302133,-0.046406694,0.05580101,-0.053136885,-0.092230216,0.0318756,0.022150334,-0.061668012,-0.018804986,0.07109797,0.043058984,0.035930373,0.031474188,-0.05541542,-0.021597583,0.016421475,0.0033177247,-0.057889067,0.050142247,0.0035281128,-0.080435686,6.937839e-05,-0.000874571,0.0053257747,-0.038223866,0.078458704,0.10985971,-0.03509974,0.020837123,0.039118107,0.026725793,-0.041062042,0.022179918,-0.019653797,0.056383375,0.02819691,0.01958821,-0.01092558,-0.08384016,0.033265047,-0.013932305,-0.041120667,-0.0038499995,-0.042481247,0.047519997,-0.051957164,0.001790188,-0.024158714,0.03763102,-0.0054219784,-0.019678045,-0.008502147,-0.045933597,0.040492237,-0.01429311,0.03636458,-0.03935735,0.0043331543,0.0093553625,-0.039722815,0.02787668,0.040733095,-0.02635065,0.006717406,0.02785249,0.0026740371,-0.02784376,0.11864857,0.008867163,-0.055588547,0.01968838,0.056819692,0.03106401,0.05891881,0.043096453,0.012427069,-0.057310082,0.027573643,-0.19985539,0.02127117,0.0714998,0.0041828477,0.053421814,-0.039456673,0.049358398,-0.044009387,-0.113645546,0.011982522,0.054233167,0.045246877,0.0066097463,-0.037539516,-0.021109855,0.036587887,0.0041994564,-0.019465448,-0.09819315,0.0012384865,0.008597514,0.04178534,-0.044039782,-0.007133795,0.01595759,0.009527348,0.098753445,-0.09239925,0.022649346,0.045056943,0.015172352,-0.0149480915,-0.006024251,-0.06834169,-0.015856588,0.07271975,0.0071015093,0.015197309,0.0059811664,-0.007887587,-0.11143624,0.08282422,0.01032251,-0.02268348,0.027155614,-0.008044109,0.043112382,-0.027678106,-0.07386269,-0.059255764,0.08710129,0.0053183683,0.050330643,-0.03269444,0.027952908,-0.0794448,-0.078278825,0.042181876,-0.05049537,0.0117847435,0.013477966,-0.0499918,0.02230593,-0.021371901,0.029798787,0.033894375,0.03657356,0.0024368914,-0.026354562,0.0127136465,-0.018211821,0.056402266,0.007309401,-0.0066035353,0.003523826,-0.042800285,-0.0019702835,-0.035866186,0.04419288,-0.04804851,-0.0331603,-0.07878289,0.0058437055,0.025133492,-0.003864122,0.029228283,-0.019882001,0.034187388,0.031758595,0.029772647,-0.001556046,-0.0046517905,-0.065717414,0.024799023,0.014752888,-0.016094903,-0.27627695,0.018897472,0.020854332,0.017325127,-0.07904702,-0.031142466,0.05846569,-0.010230009,0.027359836,-0.104035705,-0.09111306,0.021909554,-0.005183347,0.02243922,0.0015154599,-0.014098711,0.04312453,-0.007849568,0.022736793,-0.01976062,0.044454638,0.002902211,0.19065037,-0.07066706,0.00082656206,0.0068891905,-0.05884491,0.015786435,0.013355272,-0.102951445,-0.007265598,0.03046417,0.06308628,-0.059228953,0.096395716,0.03628214,0.0055660983,-0.0032944574,-0.008825308,-0.025935354,-0.00097542803,-0.00093392236,-0.07391716,0.028211853,0.12832734,0.017434336,-0.058643516,-0.043033678,-0.056784328,-0.049276303,-0.07592998,0.053099018,0.014789792,0.046489738,0.013824934,0.061494395,-0.052682757,-0.0053604865,-0.019975908,-0.015014178,-0.037281554,-0.045656323,0.017982543,-0.028340155,0.062403318]', NULL, '{}'::jsonb, '2026-03-01T19:26:41.930Z', '2026-03-01T21:39:32.481Z', 'trade_theory', 'AC Circuits and Motors');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1429, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-6', NULL, 189, 173, 'From B ta D   The maximum number of wire runs ina PVC channelis5 
+vertical drap   =(340.5)mx3   =10.5m   hence 19 mmx 10mm PVC channel may be used. 
+total length   =225+9+4105   =42m   List   of   electrical   accessories   required   with   complete 
+SI No   Accessories   Length   unit price   price 
+4   PYC channel 19 mm x10mm   12m 
+z   1.5 sq mm PVC insulated copper flexible 650V   46m 
+3   Flusn type SPT switch 6 A 250 V   4No 
+4   Flush type socket 6 A 250V   No 
+5   Wooden switch board 250mm x 150mm   No 
+6   Tube light fitting complete set 250V 4 feet 40VW   2No 
+ra   Ceiling fan 250V, 1200 mm sweep   1No 
+8   electrcial fan regulator 250V , SOW   No 
+i]   Wood screws 15 x 4mm, 25 x Smm, 30 x6mm   25 Nos each 
+10   PY¥C insulation tape 19mm width 9m length   No 
+11   Ceiling rose 3 plate 250 V,6A   3No 
+Total   Cost of the material required 
+ Estimation   for 3 phase domestic and   commercial wiring 
+ Objectives: At the end of this lesson you shall be able to 
+*   state specific rules related to 3-phase wiring installations 
+*   estimate the wiring by load calculation, load distribution, layout diagram, wiring diagram, selection of 
+cables, selection of conduit, calculation of conduit length, cable length, accessories required and the cost 
+of wiring. 
+Estimation of wiring 
+Fig   1   shows the vertical   and down   drops and switch 
+position measurement from the ground level. 
+ Fig 1   
+ROOF RUN 
+ 5   VERTICAL RUN 
+ B 
+ 5 
+|   DOWNDROPS 
+SWITCH POSITION 
+ 130em 
+FLOOR LEVEL 
+7 
+VERTICAL RUN AND DOWN DROPS  ELN237921 
+ Study the consumer’s requirement of light, fanand power 
+points in each room (Fig 2). 
+Required conduit length has to be calculated as per given 
+method. 
+NE code recommends the horizontal run of cables should 
+be ata height of 2.5m (250cm) andthe height of switches 
+fromfloor level should be   130cm. The example taken here 
+for the roof height is 3m (800cm) from floor level.   In all 
+cases the dimension of the rooms should be available for 
+estimating. 
+Vertical run: As suchall vertical runs can be calculated 
+as under (Refer Fig 4) for L , phase. 
+Length of selected conduit = 
+Roof height - (down drop + switch height) x No. of 
+vertical runs 
+= 3m-(1.20m+1.30m) x No. of vertical heights 
+(38m- 2.5m) x No. of vertical heights 
+0.5m x No. of vertical heights (Eqn. 1) 
+The value 0.5m will change   if there is difference in roof 
+height and height of horizontal run of conduit changes. 
+Power : Electrician (NSQF Revised - 2022)   - Related Theory for Exercise 1.8.71-73   173', NULL, '[-0.024838686,0.0115772225,0.030364921,-0.027702145,-0.014232254,0.042791225,-0.035662733,0.07762918,0.07845166,0.025067315,0.06859023,-0.098484136,-0.022208236,-0.05032276,0.033273637,0.024712838,0.017438896,0.052593116,-0.028909056,0.115256,0.13126707,-0.053958874,-0.027578745,-0.053365238,0.097044505,-0.028604016,0.008979234,0.0020928702,-0.044334784,-0.20029517,-0.019701624,0.006902058,0.040581193,0.050702628,0.009168931,-0.07786009,-0.062148828,-0.011887007,-0.021178948,0.034461364,-0.01781762,-0.023702186,-0.004532297,-0.031645905,-0.030626781,-0.005219025,-0.06049924,-0.07002593,0.037218407,0.03791451,0.026743565,0.013222161,-0.02527853,0.01541723,-0.04289307,0.023708483,-8.710408e-05,0.008378867,0.06274195,-0.035784874,0.037475407,0.047177594,-0.23148715,0.008419626,0.039651565,-0.010004361,-0.0490409,0.011535517,0.04101067,0.082025684,-0.101220354,0.02179916,0.029205991,0.011592708,-0.003080602,-0.030941887,-0.063648365,-0.00796081,0.031857166,-0.015152404,0.040537357,0.0010900837,-0.0658532,-0.007036158,-0.016082771,0.030424625,-0.012756431,0.02268861,-0.018676667,0.079217166,0.021353735,-0.021876967,-0.119683206,-0.024100922,-0.07780631,-0.044900216,0.0109013,0.010396758,-0.05532303,0.07863677,0.024131533,0.04894094,0.0133907525,-0.026306989,0.025928084,0.044876426,-0.024236718,0.0029475098,0.03106264,-0.009206098,-0.026295971,0.05989519,-0.0049911644,-0.047612727,0.040149577,0.037900437,-0.031037053,-0.024431888,-0.08383036,-0.037717592,-0.042273156,0.021570798,0.10567504,-0.0053625484,-0.0023722402,-0.06286384,0.053771965,0.033676483,-0.019334875,0.068036705,0.04142611,0.017497906,-0.0138734905,-0.054508373,-0.033679884,0.017367058,0.07536009,0.057696253,-0.019608483,-0.04360222,-0.026682686,-0.027069476,0.043506794,0.009231744,0.0047406913,0.012498052,-0.08456,0.0066587725,-0.016279217,-0.05015847,0.028774414,0.008811599,-0.011119632,-0.057818826,0.034002554,-0.010289304,0.018826593,0.074787766,-0.0966865,-0.01656808,0.043943923,0.012171685,-0.016868623,0.0788531,-0.0021970929,-0.194538,-0.012812846,0.04048076,-0.04660959,-0.061761662,0.029344691,0.059645165,-0.011464774,-0.04090547,0.019281315,0.016296633,-0.07792278,0.031729233,0.009770026,0.082762375,0.0017389305,-0.034537,-0.00010834568,-0.0017414206,0.05361534,-0.054297756,0.009234409,0.029818727,0.025508812,0.06758325,-0.085655555,0.032959837,-0.065501034,0.030068288,-0.006060211,-0.0036276982,-0.049160987,-0.0027306045,0.06542477,0.034927987,0.04272869,-0.02048737,0.029191421,0.05490181,0.010706829,-0.019917281,-0.034740552,-0.043499187,0.0530694,0.01745995,-0.022414122,-0.034397624,0.077551596,-0.009272687,-0.0327041,-0.000741972,0.024935182,0.04308131,0.020705916,0.071183376,0.046475526,-0.041107353,0.02509176,-0.17926593,0.059722725,0.053342152,-0.0030225662,0.041309163,-0.040546115,0.0012677029,-0.03514488,-0.04843232,-0.03603968,0.1301024,0.028200272,0.019626124,-0.051066253,0.044757724,0.07461321,-0.01743239,-0.018259382,-0.053049378,0.04021838,-0.019646985,0.048710626,-0.02589533,0.018289452,-0.027420452,-0.0016424233,0.11177635,-0.072841994,0.00022903502,0.018279172,-0.003596495,-0.015018782,0.0034386558,-0.018560626,0.016113687,0.038842887,0.008037634,0.050192248,-0.032768212,-0.04881636,-0.05831649,0.06870641,-0.0116911195,-0.058169823,0.036937807,-0.006586287,-0.016728582,-0.028813131,-0.0749829,-0.00892924,0.022135438,-0.03777182,0.06435255,0.010847709,0.0492315,-0.05267569,-0.11353193,0.05743868,-0.015696991,0.055101447,0.009260317,0.07580995,0.01556599,-0.01600284,-0.03464037,0.044357173,0.04804481,0.05567034,0.012646918,-0.0126327155,0.004040365,0.06721423,0.0053160903,0.016880795,0.02638533,-0.085546814,-0.010778973,0.011827028,0.0048723593,0.048933316,-0.024678804,-0.019721374,-0.034547303,0.094146416,-0.01048292,-0.012467701,-0.0064667393,0.022931129,0.08294475,-0.008303735,-0.008550355,-0.009385419,-3.8787064e-05,0.053679142,0.05668801,-0.01900959,-0.24542186,-0.016997116,-0.018363547,-0.048760757,-0.05859485,-0.004639926,0.109097466,0.019249063,0.01061134,0.017159186,-0.07680025,0.045572583,-0.023271764,-0.031052116,0.005840736,0.044966806,0.035976775,-0.0055662175,0.01138731,0.035821915,0.034411445,0.006738175,0.14576827,0.0015771842,-0.03199175,-0.033138875,-0.04392124,0.04177885,0.021394314,-0.07561182,0.017527066,-0.032862607,0.0911313,-0.059012767,0.11518053,0.054320484,-0.01577956,0.027757445,0.021213805,-0.005809218,-0.004165606,0.004617758,-0.058456495,0.0010464924,0.111661576,-0.035838887,-0.02901463,-0.028361397,-0.027254045,-0.011729963,-0.07594004,-0.003890801,0.026361195,-0.0059048985,-0.028201416,0.08180693,-0.066209935,-0.06853793,0.024948798,-0.031154513,0.0031956693,-0.10602229,-0.044563677,-0.023024268,0.081642635]', NULL, '{}'::jsonb, '2026-03-01T19:26:42.288Z', '2026-03-01T21:39:32.481Z', 'trade_theory', 'AC Circuits and Motors');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1430, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-6', NULL, 190, 174, 'Fig   2 
+ 2   2.9m   18m   3.6m   ; 
+ x   x   wo 
+ 5   wo   §   wllS 
+ “|   ||/seRvice Room &   Pals   x 
+ 4   [EES   Riis 
+ ail   S|[&   BED ROOM2   ~ 
+ G   S wi]   |[@   kitcHeEN   = S   rel 
+x   :   x 
+ Vy   |   es |   — 
+ —   s|\[   we 
+ S|   TOILET & BATH   =)   E 
+ x 
+x   
+oo   we   OX   
+= 
+G   iS <   ment   TOILET & BATH   =i]   = 
+ —i 
+ x   — AIT 
+ oo 
+ a re 
+ A   3 ee   titiiin-&   rd   x  +4   1   3   co   & 
+ —   yw   1   BEDROOM!   * 
+ §   x   SITOUT   co   ll   gq   lis 
+DB 
+ i   WaTtttTOL   =   Xl   x 
+ 4.7m   3.6m   uu 
+ Fd 
+ACCESSORIES POSITION DIAGRAM   2 
+ iar} 
+ Fig 3 
+ i, 
+ (2.5m - 1.3m) x No. of down drops for switches 
+1.2m x No. of down drops to switches 
+ Fig 4 
+ cas   ented 
+ SERVICE ROOM   Ae 
+ |   BED ROOM2Z 
+ KITCHEN 
+ Fee he ng Stn 
+  ey 
+  es 
+ —.f 
+ TOILET & BATH  HALL 
+ _———_— rs 
+Ln 
+  oe oy ct me 
+  
+es 
+  ee 
+  ee 
+  
+ted: 
+ jet lipped 
+eel lhe 
+4  1 1 1 {= 
+ BED ROOM 1 
+ ELN2a7o24 LAYOUT DIAGRAM OF PHASEL   2 
+ ELN237923 LAYOUT DIAGRAM OF PHASEL   , 
+ Length of conduit required for down drops 
+This could be calculated as under: 
+Length of selected conduit= Height of conduit in horizontal 
+run - Switch   position   height x   No.   of down drops for 
+ switches 
+ Length of conduit required for roof runs 
+This could be calculated as under 
+Length of selected conduit = Sum   of   the actual length of 
+roof run taken in each case. 
+For each size the total requirement is to be calculated. 
+Length of conduit required for horizontal run 
+Length of selected conduit = sum of the actual length of 
+horizontal run taken in each case. 
+Length of conduit requiredforthe distance between main 
+switch and DB is to be calculated.   In most of the cases 
+wall is thickness has to be taken into account. 
+Example :   (Refer the   layout and wiring diagram with 
+respect to phase L.) In all cases except for main switch 
+and   DB the   cable   used   is   1/1.12   copper   cable   and 
+maximumnumber of cable it canaccommodate in 19mm 
+conduit is 7 cables.   Hence PVC conduit of 19mm is 
+chosen. 
+1   Length of conduit required for vertical run 
+Length for vertical run = 0.5m x No. of vertical height 
+Acareful study of layout indicates there are 8 vertical 
+height runs 
+=   0.5mx8= 4mof 19mm PVC conduit 
+2   Lengthofconduit required for down drops 
+Length of down drops =   1.2m x No. of down drops 
+A careful study of layout indicates there are 9 down 
+drops = 1.2mx9=10.8m 
+ 174   Power : Electrician (NSQF Revised - 2022) - Related Theory for Exercise 1.8.71-73', NULL, '[-0.024278145,-0.018999241,0.04344077,-0.035545025,-0.07129443,0.029688276,0.013432494,0.07090926,0.089124754,-0.0392182,-0.022544976,-0.11619376,0.027584756,-0.017679654,-0.0005358857,-0.014661696,0.013989604,0.09146239,-0.04430993,0.054005407,0.18139814,-0.06205183,-0.0166907,-0.07191569,0.053760327,0.008885288,0.021580515,-0.027821543,-0.06135608,-0.17943011,-0.038096856,-0.009162218,-0.015417441,0.01969156,-0.016454125,-0.029951943,-0.0065537863,0.0048975046,0.026896762,0.030547999,0.02919521,0.027525779,0.012453858,-0.018608022,-0.0026440537,-0.020128889,-0.06055599,0.0022447375,-0.0098886015,0.015731912,0.0353869,-0.006427041,-0.009658178,0.05445757,0.05679512,0.015655164,0.040067475,-0.03724169,0.06614255,0.024823744,0.01999187,0.044112585,-0.23581444,0.06808641,0.035098396,-0.03686887,-0.02664211,-0.02116661,0.07368257,0.098338984,-0.09697717,-0.009023952,0.030556768,0.041428328,0.030321768,-0.05846552,0.010898153,0.017898757,-0.0027144004,-0.0037677414,0.026049592,0.005599134,-0.10693137,0.048959065,-0.048794918,0.0053648455,-0.0141267935,-0.018532353,-0.04330648,0.01265843,0.0033838658,-0.032429837,-0.11621201,-0.037998714,-0.03251373,-0.059433874,-0.017890308,0.00083509757,-0.05994683,0.04350676,-0.01040791,0.006682042,0.0064901304,0.008135832,0.042312995,0.058493163,-0.041410882,-0.02953995,0.0011123107,0.0060503506,-0.04034482,0.049045864,-0.020275705,-0.045178402,0.02061021,0.05498744,-0.0070511564,0.021403983,-0.008953864,-0.018881619,0.0015812581,0.071262605,0.01855655,0.022359941,0.018424278,-0.09391299,0.045379523,0.029362515,-0.055024013,0.05897285,0.015811598,0.020019546,0.02117045,-0.016545184,-0.009666232,0.047646765,0.050393824,0.04975125,-0.034788206,-0.031079754,-0.048489153,-0.0464445,0.005764932,-0.037222933,0.009215384,0.090258196,-0.08343801,-0.0073422133,0.0045137485,-0.07988787,0.03737262,0.07328166,-0.01262465,-0.089173324,0.03141007,-0.013962587,-0.01103126,0.05186912,-0.05512157,-0.022179658,0.03446249,-0.031070134,0.008280531,0.051217504,-0.04296864,-0.1377536,-0.016891176,0.0692452,0.014341257,-0.008827143,-0.017404294,0.0404192,-0.059697665,0.015825797,0.04149432,0.0021384489,-0.025885073,0.032528263,0.009982478,0.049856707,0.018627921,-2.9458979e-05,-0.034480844,-0.007971811,0.0588919,-0.05736605,0.053745724,0.00010141509,0.00769786,0.11421713,-0.062921904,0.05744468,-0.07645375,0.020077147,-0.012207888,-0.029006356,-0.026409343,0.009131122,0.033666663,0.05046545,0.06563369,-0.051074147,0.02235067,-0.024328044,0.02060681,0.007483804,0.031724196,-0.015586323,0.047072235,0.017706426,-0.027852552,-0.04164863,0.01800098,-0.032392792,0.007495145,0.007625363,0.068942316,-0.004411989,0.06690659,0.030232664,0.028478988,-0.017279694,0.010391707,-0.21120557,0.06339028,0.035623316,0.020931588,0.032111526,-0.058354944,-0.037087232,-0.0033353358,-0.06726228,-0.031095436,0.12477328,0.044924486,-0.0009820226,-0.026033286,-0.019820431,0.03263756,-0.028578503,0.049965587,-0.10495845,0.014662209,0.03161712,0.035204545,-0.031233173,0.008955567,0.024447894,-0.013344076,0.14639768,-0.06013406,0.032740194,0.0075181476,0.013347058,-0.019405326,0.018072542,-0.04922431,-0.010277405,0.043052673,0.014828488,0.060614057,0.020869834,-0.029889764,-0.124022864,0.088434316,0.021119352,-0.022294302,0.036972553,0.025295332,-0.0030535099,-0.017499313,-0.09462451,0.003051366,0.036609,-0.036806073,0.043092754,0.017903358,-0.007824696,-0.031170733,-0.053565953,-0.0010098659,-0.05177604,0.017527547,-0.044712257,0.032175247,0.01056727,-0.011095142,-0.024527436,0.007547869,-0.00055152806,0.041027844,-0.024141919,-0.025270713,0.025495283,0.050919227,0.01936138,0.0026220821,0.061368756,-0.10209004,-0.01784261,-0.024727615,-0.0006670282,0.037079204,0.023711616,-0.07221517,0.054487694,0.0039716256,0.038000893,0.012185152,-0.013209896,0.019194957,0.06688838,-0.004052517,-0.019975187,-0.036711913,-0.03703745,0.053337526,0.0136812795,-0.0018877581,-0.29558402,0.045689832,0.0036444992,0.011971697,-0.05179901,0.003299688,0.03051129,0.013893802,0.07517846,-0.02664389,-0.056523424,0.033470202,-0.01170972,-0.060968526,-0.0017830902,-0.010257029,0.06280005,-0.042799346,-0.0133175235,0.046936926,0.05038039,0.0096530225,0.1792881,-0.032827936,0.04445637,0.04436137,0.02716851,0.019576507,0.05133305,-0.027663166,7.781187e-05,0.008162704,0.07399452,-0.109081194,0.05563469,0.03464362,-0.022977632,0.036913548,0.03007313,-0.045193873,-0.0060034194,0.0038085433,-0.014967248,-0.022532407,0.14866394,-0.040271305,-0.019977545,-0.052446913,0.016539034,-0.042511713,-0.06616871,0.028437665,-0.027802661,-0.013040101,-0.010642793,0.045695264,-0.054582775,-0.005480532,0.019177942,-0.008407102,-0.01615505,-0.07178637,0.017483214,-0.04582934,0.073859826]', NULL, '{}'::jsonb, '2026-03-01T19:26:42.768Z', '2026-03-01T21:39:32.481Z', 'trade_theory', 'AC Circuits and Motors');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1431, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-6', NULL, 191, 175, '3   Lengthof conduit required for roof runs 
+Length of conduit = 2.35m + 2.35m+ 2.35m +2.35m 
+ + 1.45m+ 0.9m =9.75m 
+ 4   Length of conduit required for horizontal runs 
+Length of conduit = 4.7m+3.6m+1m+i1m+1.2m+ 
+47m+2.4m+1.35m+1.2mM+2m+2.35mM+5.7m+ 
+2.9mM+2.9m+1.35m+2./m+2.5m+1.45m+ 1.8m 
++ 1.45m = 48.25m 
+5   Length of conduit required for main switch and DB 
+If individual phase line is to be drawn through 19mm PVC 
+conduitwill be sufficientonthe other hand if all three phase 
+cables to be drawn through single pipe, the requirementto 
+be calculated separately. 
+Assuming individual phases will be drawnthrough individual 
+conduits the   19mm PVC conduit will be sufficient to draw 
+ two cables of sizes upto 1/2.8 or 7/1.06 aluminium and 
+ copper cables respectively. 
+Length of conduit required for the distance between 
+main switch and DB : Lengthof conduit = wall thickness 
++ allowance for connection   =0.36m+05m+05m   = 
+ 1.36m 
+ Total length of PVC conduit   19mm for wiring phase L, as 
+per layout and wiring diagram 
+= Vertical run + down drops + roof runs + horizontal runs 
++ switch DB 
+=4m+10.8m+ 9.75m + 48.25m+1.36m   = 7416 m 
+Assuming   10% wastage,   the total   required   length   of 
+19mm PVC conduit willbe 73.81m+7.3m=81.11m   or 
+say 80m 
+Calculation   of length of cable required for wiring 
+phase L,: For calculating the length of cable accurately 
+the layout and wiring diagrams should be referred. Selected 
+cable in this case is   1 sq.mm copper cable. 
+ Cable required   = For outside runs ((L,   +L,+L,+L,) 
+ down drop + Horizontal run + switch 
+board to outside wall (thickness of wall) 
++   DB to switch board (DD + HR + DD) 
++   Switch board to L, + (DD + HR) 
+ +   L.toF, (VR +RR) 
++ Lie, Le (HR   AiR} 
++   DB to SB, (DD + HR + DD) 
+SB, to L, (DD + HR) 
+L, toF, (VR + RR) 
+SB, to S,, S, (DD + HR + DD) 
+L.te L,. (ri) 
+ L,, junction to F, (VR + RR) 
+ L,,junction to L,, (HR) 
+S,, S, to S, (DD + HR + DD) 
+ From DB to S, (DD + HR +DD) 
+ From &, to L,,(DD + HR) 
+L,, to F. (HR) 
+S, to F, (DD + HR + DD) 
+S, to L,, (BD + HR) 
+, to S, (DD + HR + DD) 
+S106, (0D +R + DD) 
+S, toF, (DD + RR) t+eteeterertetete 
+est 
+ + F,toL,. 
++ F.toL,, 
+ =   +   (3.6m+ 1Im)2+ (4.7m+1m)j3   26.3M 
++   (0.36M+0.5m)x 5+ 
+(1.2m+3m+1.2m)2   15.1m 
++   (1.2mM+3m+1.2m)2   10.8m 
++   (1.2m+4m+1.2m)5   32.0m 
++   (0.5m+2.35m)2   5.7m 
++   (1.2m+ 2.35m)3 + 2.35mx 2   15.35m 
++   (1.2m+m2+1.2m)j2   8.8m 
++   (1.2m+ 4m-+2m)6   43.2m 
+ +   (05m+2.35m)2   5.7m 
+ +   (1.2m+1.5m)2   5.4m 
++   (1.2m+4m+ 2m + 1.2m)2   148m 
++   2mx4   8.0m 
++   (0.5m+2.35m)2   5.7m 
++   (2m+2.5m)2   9.0m 
+ +   (1.2m+5m+1.2m)2   148m 
+ +   (1.2m+4m+5./m+2.9m 
++ 2m-+1.2m)2   34.0m 
++   (1.2m+1.4m+1.5m)3   12.3m 
++   (1.5m+1.35m)2   3.7m 
++   {(1.35m x 3m) + (1.85m x 2m)   6.75mM 
+ +   (1.35m+ 1.45m + 1.2m)2   8.00m 
+ +   (1.2m+ 1.4m + 0.9m + 1.2m)2   9.4m 
++   (1.2m+1.45m+ 1.2m)2   7.4m 
+ +   (1.2m+1.45m)3   7.95m 
+ +   0.9mx 2m   1.8m 
++   0.9mx 2m   1.8m 
+ 325.95m 
+Add 10%   32.59m 
+ Say 360m of 1 sq.mm copper   358.54m 
+The length of the cable requiredfor power circuitin phase 
+L,. The cable chosenis 4sq.mm copper cable which can 
+carry 24 amps 
+Total length of cable   =(1.2m+0.36m+ 2.4m+3.6m 
++ 2.4m + 1.2m)2 
+= 11.16m x 2 
+= 22 32m 
+2.2m 
+24.52m 
+Add 10%   for wastage 
+Say 25m of   4sq.mm copper cable is required. 
+Inthe same way forthe circuits inL, and L, phases should 
+becalculated.   Afterthe list of accessories for entire wiring 
+is preparedthe cost of the accessories could be obtained 
+from any local electrical dealer. 
+Instructor is requested to discuss with the trainees about 
+the mandays required to complete the job alongwith the 
+cost of labour. 
+Total cost of wiring comprisis of following components. 
+Total cost   of wiring = cost of the accessories 
++ cost of cable 
++ cost of conduit 
++ cost of hardware items 
+ + labour cost 
+ Power : Electrician (NSQF Revised - 2022)   - Related Theory for Exercise 1.8.71-73   175', NULL, '[-0.018184017,0.01378579,0.02702927,-0.04016974,-0.055561144,0.037378397,-0.03867083,0.047716387,0.0351181,-0.011277303,0.031131646,-0.137643,-0.012052594,-0.036451664,0.030896628,-0.028872505,0.015365036,0.1199494,-0.0041051074,0.11177131,0.10023593,-0.04048354,-0.032476325,-0.0334076,0.045157705,0.031579327,0.033483792,-0.018756885,-0.05201311,-0.18898886,-0.04055748,-0.04569834,0.010465614,0.057821885,0.01285129,-0.033075728,-0.04446066,-0.012443794,0.0062653497,0.047327086,0.0100827655,0.045797795,0.0024826857,-0.031186406,-0.06309824,-0.0083916895,-0.04706453,-0.019394489,0.021264885,0.021796823,-0.007361726,-0.006981893,-0.013040229,0.017197793,0.013360285,0.020825587,0.010507842,-0.008006219,0.04366403,-0.0053803828,0.015698124,0.040970873,-0.19199497,0.031474408,0.07927517,-0.02934978,-0.026138019,0.015201704,0.05109626,0.13359474,-0.07679956,0.037827745,0.025421858,0.016153416,0.01645674,-0.01814607,-0.10166443,0.029535713,-0.030301651,-0.011631741,-0.022571903,0.0025629508,-0.03804149,0.014095362,-0.03988411,0.0011905736,-0.023443535,-0.0120603675,-0.026483139,0.030121714,0.03728724,-0.03701696,-0.082192704,-0.021725241,-0.061431453,-0.054971606,-0.005648008,0.018569177,-0.08338411,0.08633288,0.024860121,0.017241186,-0.0130554475,0.035827912,0.027288876,0.06192952,-0.043837745,0.008729257,0.031143934,0.0022355008,0.013528321,0.0035489209,-0.01688112,-0.060832586,0.0432063,0.034192722,-0.042466097,-0.0038107757,-0.033214636,0.029385265,-0.023367412,0.038369257,0.05543968,0.0035397005,0.035472613,-0.07468582,0.023403456,0.0150134135,-0.005456408,0.08534876,0.019040482,-0.0030908063,-0.0063899406,-0.03235288,-0.021393884,0.03463783,0.0479554,0.052780773,-0.031068597,-0.066931486,-0.02854567,0.004381327,0.019413583,-0.023637699,0.020475533,0.00074697885,-0.06490997,0.0011478604,-0.012576393,-0.06955977,0.04670311,0.026200568,-0.029277338,-0.09056983,0.050427314,-0.056397367,-0.004517735,0.015651789,-0.08060198,-0.046936113,0.06294389,-0.019381348,-0.013444464,0.09713045,-0.026552988,-0.13404214,0.035730667,0.07319445,0.0030397873,-0.024484329,0.018096428,0.020006703,-0.011388167,-0.030682752,0.02905664,-0.0063921227,-0.100825235,0.037941378,-0.0032354018,0.07918111,0.042230505,0.024466762,-0.022615189,-0.024517845,0.04835014,-0.058445875,0.023369787,0.01903445,-0.0049943635,0.064915776,-0.10532968,0.025406208,-0.07680994,0.040661067,-0.003034242,-0.0077078254,-0.024823453,-0.004249476,0.03634565,0.0029025264,0.07834956,-0.028399866,0.043460764,0.036470823,-0.020464707,-0.010338628,0.027824685,-0.06116747,0.04226142,0.039834987,-0.031523123,-0.072112694,0.041074622,-0.046824247,0.0057752943,0.009239767,0.086184375,0.038201302,0.05462353,0.0771187,0.019171426,-0.07960221,0.0574042,-0.17725743,0.04289963,0.033745147,0.0012929582,0.030447787,-0.059833378,0.0148116285,-0.0009216097,-0.10398192,-0.06951383,0.109571844,0.05454569,0.0057880897,-0.05247055,0.0030538177,0.039875012,-0.01852557,0.047601372,-0.03836956,0.037587922,-0.012489895,0.060068093,-0.022361206,0.008728425,0.011437153,-0.045681868,0.14492941,-0.06487069,-0.0026554458,0.019267831,-0.011439129,-0.030287296,0.00093379925,-0.06253094,0.011268535,0.016905796,-0.013355972,0.05596696,-0.019655062,0.009082606,-0.06526806,0.068358295,0.028543808,0.014127802,0.016232297,0.023896547,0.0057220915,0.0077242875,-0.07299599,-0.014691587,0.011697677,-0.06033751,0.050253596,0.031962987,0.03619715,-0.040530995,-0.13324878,0.041635152,-0.037256107,0.067480884,-0.0075741448,0.07455379,0.008322914,-0.047091573,-0.056048624,0.0783028,0.034595232,0.06010638,-0.002178101,0.007807444,0.035529915,0.065704435,0.0046070344,-0.032306142,0.028721275,-0.11883649,-0.019026915,-0.006605356,0.049887083,0.03883619,0.024595406,-0.043202795,0.029164776,0.0439153,0.04641478,0.027883684,-0.013363758,0.054441985,0.057103485,-0.00010901948,0.0155846095,-0.037715495,-0.00710357,0.02315475,0.068304434,-0.04290614,-0.28447807,0.02344816,0.010724524,-0.0299958,-0.057120312,0.017548257,0.07041311,0.030182943,0.032458313,-0.016941534,-0.06420768,0.059057932,-0.01698005,-0.06399945,0.017455371,-0.0017897922,0.0044064983,-0.042392403,-0.022367887,0.02061046,0.076990224,-0.017869858,0.15209754,-0.038324375,0.029833127,0.0001444797,-0.023581974,0.030669691,0.06700347,-0.0524252,0.018651301,-0.011448477,0.08859282,-0.09693821,0.0876506,0.053796817,-0.047740754,0.047782797,0.04289258,-0.0038401226,0.002201645,0.028280132,0.005607056,-0.035539545,0.07503536,-0.05357773,-0.023558427,-0.06054334,-0.026427452,-0.017559294,-0.076451585,0.021321794,-0.013128532,-0.018089823,-0.043101963,0.066881225,-0.024947837,-0.06697781,0.00867732,-0.010938444,0.014256421,-0.09856405,-0.01240034,-0.028899325,0.08952949]', NULL, '{}'::jsonb, '2026-03-01T19:26:43.140Z', '2026-03-01T21:39:32.481Z', 'trade_theory', 'AC Circuits and Motors');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1432, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-6', NULL, 192, 176, 'Estimation of cost for workshop wiring 
+ Objectives: At the end of this lesson you shall be able to 
+*   calculate the full load current and size of cables 
+*   estimate the cost for workshop wiring 
+* tabulate the material required. 
+The trainees can be instructed to estimate the 
+cost of materials for the workshop wiring. 
+Some of the guidance are given below for the 
+trainees and instructor referance. 
+A sample requirement is given below for trainee''s 
+reference 
+1   One SHP, 415¥V 3 phase motor 
+2   One 3HP, 415¥V 3 phase motor 
+3   One % HP, 240V 1 phase motor 
+4   One 1HP, 415¥V 3 phase motor 
+The motors are to be arranged in row (Fig 1). 
+The main switch, motor switch and starters are 
+to be mounted at a height   of not more than 
+1.5m from the ground level and the height of 
+horizontal run from ground level will be 2.5m. 
+ Calculation for the size of cable: 
+ Assuming the motor efficiency to be 85% and the power 
+factorto be 0.8 forallthe motors andthe supply voltage is 
+ 400¥. 
+ 5x 735.5 
+ FL current of SHP motor= J3x400x0.85x08 =7.8A 
+ eC   oe 
+ FL current of 3HP motor= J3x400x0.85x0.8 
+ 0.5x735.5 
+ FL current of % HP motor = Sa0x0s8x0g   - = A 
+=1.56 A 
+1 x735.5 
+ FLeurrentof1HP motor=   3x 400 x0.85x0.8 
+ The mainswitch andthe cable from meter to main switch 
+ Fig 1   Pee   ee,   should be capable of handling starting current of one motor 
+ eee   eee {   of high rating plus full load current of the all other motors. 
+ !   er   ee   Le, 15.6+4,68+2.35+1.56 = 24.194 
+ 2   HP   SHP   yup   1HP   l 
+ os   Assuming the starting current of each motor   will be two 
+tal   times of their full load current Table 1 gives cable size of 
+ $   &   each motors to be installed for guidance. 
+ R 
+ FLOOR PLAN   : 
+ Table - 1 
+SI. No.|   Motor   FL current   Starting   Recommended cable size 
+|_ in Amp   current 
+I= 21, in Amp 
+4   SHP motor   ies)   15.6   2.0mm? coppere conductor cable (17A) or 
+2.5mn¥   aluminitim conductor cable (16A) 
+2   3HP motor   468   9.36   2.0mm? copper conductor cable (17A) 
+3   1/2 HP motor   229   45   1.0mm? copper conducter cable (117A) minimum 
+recommendedcable 
+4   HP motor   1.56   3.12   1.0mm?’ copper conducter cable (117A) minimum 
+recommended cable 
+The type and gauge of cable shall be selected 
+by referring the table - 1 
+Some   guidance   are   given   bleow   to   select   the 
+suitableswitches   and   distribution   board   for   trainees 
+reference. 
+*   A32A, 415V ICTP switch with fuses can be used as 
+main switch. 
+*   16A, 415V, ICTP switches with fuses can be used for 
+SHP, 3HP,   & 1HP motors. 
+ 176   Power : Electrician (NSQF Revised - 2022) - Related Theory for Exercise 1.8.71-73', NULL, '[-0.029192159,0.008831766,0.09708578,-0.03302627,-0.046777416,-0.0045974986,-0.0031166433,0.038749047,0.017700767,0.015776267,0.041474786,-0.07132172,0.036356263,0.0475979,-0.034073163,0.044591296,-0.0120115075,0.054689415,0.024003552,0.025935337,0.093675345,-0.042173363,-0.035711713,-0.015328023,-0.011532108,0.009007797,-0.03976145,-0.02203228,-0.010476234,-0.16215327,-0.008505217,-0.020272544,0.031026626,-0.023061091,0.011509068,-0.015002239,-0.020170247,-0.0048235664,0.0062007345,0.03464665,-0.026101775,-0.01110896,-0.04299607,-0.053098843,-0.009060634,-0.0674808,0.021725021,-0.022332532,-0.004598413,0.050383884,0.013374781,0.0021814865,0.043480374,-0.05957798,0.003669655,0.032376792,0.00079412106,0.053973876,0.06442849,0.03600295,-0.06380251,0.053272918,-0.2264473,0.03452286,0.07545753,-0.013812654,-0.051624686,-0.021366365,0.08171474,0.030483715,-0.03494638,0.009114944,0.05138067,-0.009167335,0.008161148,-0.026961336,-0.043933883,0.04214778,0.041713662,-0.059174385,-0.051012218,0.056076404,0.0016673567,0.039093934,-0.0354004,-0.010020272,0.07985831,0.01822166,0.008978683,-0.021723771,0.043473426,0.017453011,-0.10050171,-0.055444885,-0.06798598,0.0396811,-0.041102108,0.03323456,-0.049255244,0.1376652,-0.014888426,-0.05634729,0.033509064,-0.024867186,-0.041075747,0.019967122,-0.06308687,0.0563136,-0.017387435,0.0045784535,-0.014800773,0.025942499,-0.102683514,-0.03306965,0.02730911,0.020231877,0.03313531,-0.023959333,-0.020463144,0.070027076,-0.006687666,0.025847336,0.08445731,0.065189876,0.0039155474,-0.094238155,-0.0012107794,0.10634777,0.022121357,0.046621747,0.045669384,-0.0109974155,-0.041503906,0.0564341,0.020138318,-0.009016615,0.084269255,0.012585287,-0.0017480024,-0.016047655,-0.007907378,-0.059998814,-0.046110827,-0.028271252,-0.0729987,0.066085316,-0.028964294,0.035061393,-0.028493915,-0.049635943,-0.0080957925,0.024964374,-0.022438554,-0.032191534,0.023199001,-0.0069080256,-0.006051124,0.034673776,-0.010972984,-0.05194949,-0.016530905,0.045146964,-0.030553553,0.06850681,0.049461924,-0.092905134,-0.018328201,-0.00036003123,0.03861248,-0.031865064,-0.02825783,0.10158052,-0.008007035,-0.017466765,0.09815408,-0.011319467,-0.06559014,0.056478444,-0.026760668,0.026443541,0.06760589,0.02129129,-0.045124087,-0.039541647,-0.03021561,-0.052120794,-0.004357044,-0.010510404,-0.0015611484,0.08867585,-0.0014144244,-0.0074298284,-0.03568708,0.032501515,-0.009159147,-0.02783693,-0.022836287,-0.030670054,0.026573343,-0.025948666,0.07579314,0.0030366685,-0.03450763,0.047224846,-0.047590673,0.036499348,0.014985281,0.019865168,0.0072676013,0.08071405,-0.06329115,-0.04639361,0.12035238,-0.054862376,-0.08526654,0.0012634945,0.017601198,0.110155575,0.012208442,0.04502764,-0.0030074862,-0.039374407,0.04748415,-0.18218805,0.099747896,0.053666167,0.0044483426,0.067964345,-0.057378024,0.03187778,-0.018551089,-0.06120885,0.026632413,0.14644797,0.01611594,0.037069567,-0.006196621,-0.022852322,0.032055225,0.0051714107,0.0011542811,-0.045036193,0.023005717,-0.0049841134,0.04928749,-0.043051194,-0.05385841,0.0019248453,-0.013439897,0.12561613,-0.103577524,0.0021939455,-0.020091185,0.051223543,-0.0026727798,-0.007837421,-0.03544003,-0.0059111738,0.051268138,-0.020045346,0.04418477,0.032480676,0.023419395,-0.092369355,-0.039910723,-0.0006945971,-0.05617846,-0.009603557,-0.023668393,-0.047214188,0.0032121183,-0.066854164,-0.010739155,0.058380224,-0.045290075,0.07444351,-0.026458947,0.0007085563,-0.011810141,-0.070209764,-0.0026567786,-0.0612021,-0.0028362041,0.056019973,0.035457615,-0.02234827,-0.026835056,0.010826874,0.005514098,0.046240285,0.028572649,-0.009449467,-0.02011338,-0.013656814,0.06319337,0.10852402,0.008982663,-0.009221891,-0.043078862,-0.007492181,0.02278828,0.063481,-0.025875125,-0.008694243,-0.0116902515,0.015636735,0.081960045,0.05258139,0.04875917,0.021692902,0.05921377,0.045068197,0.027321724,0.015119385,-0.009465298,-0.08560928,0.047783792,0.046798952,0.00069744297,-0.26145732,0.054741625,0.014081147,0.032343537,-0.06754288,-0.030307239,0.007295045,-0.04349452,0.051820766,-0.04947696,-0.018913506,0.0053720647,-0.031099299,0.033259407,0.027374644,-0.023203995,0.013485417,-0.012237245,0.0349054,-0.070225425,0.048053183,-0.016655779,0.14763135,-0.036680944,0.07037049,-0.008483765,-0.10565793,-0.015496811,0.072943434,-0.10554346,-0.01692109,-0.011932963,0.057425518,-0.048071545,0.054726694,0.013687035,-0.010065159,-0.09439013,-0.027162239,-0.007984808,-0.0016276361,0.042277906,-0.089512,0.03971188,0.10738006,0.024243772,-0.07593307,-0.10148573,-0.060665313,-0.048843384,-0.022882102,0.11392002,0.022160972,0.02666555,-0.0018600381,0.03368594,-0.036519367,-0.037734747,-0.0065338584,-0.03824841,-0.027809145,-0.04740141,-0.0054747066,0.023789028,0.025371445]', NULL, '{}'::jsonb, '2026-03-01T19:26:43.502Z', '2026-03-01T21:39:32.481Z', 'trade_theory', 'AC Circuits and Motors');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1433, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-6', NULL, 193, 177, '+   16A, 240V, ICDP switch with fuses can be used for % 
+HP motor. 
+*   415V, 4 way, 16A per way IC distribution board with 
+neutral link can be used for power distribution. 
+The single typical line diagram of power   wirings   ( Fig.2) 
+ SHP 
+ 34, 
+Fig2   He 
+ cam 
+ Pa 
+ {   od   —   a   |   |   4   |   |   #   |   |   #   | 
+IG-4 WAY   l   l   I   |   l   |   I   l 
+ ENERGY   Shad   TEA   YIA   wee   YA   aga || BOL   aga   || DOL 
+TION   STAR   STAR   STAR   STAR METER   BOARD   ICTP || TER   ICTP || TER   [COP || "rer   ICTP |I "rer 
+ I   I   I   I 
+ SWITCH 
+ 3HP   1f2HP   HP 
+ 3-6,   1-4,   3-4 
+ SINGLE LINE DIAGRAM OF POWER WIRING   IN WORKSHOP  ELN237832 
+ Calculation for the sizes and length of conduit: 
+19mm heavy gauge conduit should be used for 3 cable 
+runs and 24. 4mm heavy gauge conduits should be used 
+for 6 cable runs. 
+*   19mmheavy gauge conduit 
+Length from main board to SHP motor starter = 1+1+3+1 
+ = 6.0m 
+ Length from main boardto SHP moter starter = 1+14+5.5+1 
+=68.5m 
+Length   from   main   board   to   %   HP   motor   base 
+441484+141.541.5=14.0m 
+Length   from   main   board   to   1HP   motor   base 
+141410.5414+1.54+1.5 = 16.5m 
+Total = 45.0 m 
+10% wastages   = 4.5m 
+Total length = 49.5m, say 50.0m 
+*   25.4mmheavy gauge conduit. 
+Length from meter te main switch = 0.75 m 
+Length from SHP motor starter to SHP motor base (1.5 
+ +1.5) 3.0m 
+ Length from 3HP motor starter to motor base = 3.0 m 
+ Total = 6.75 m 
+ 10% wastage = 0.67 m 
+Total = 7.42m, Say 8.0m 
+ «   25.4   mm   flexible   conduit   for   5HP   &   3   HP   motor 
+ (0.75+0.75) = 1.5, Say 2.0m 
+ *   19mm   flexible   conduit   for   1/2   HP   &   1   HP   motor 
+ (0.75+0.7) = 1.5, Say 2.0m 
+Calculation for the length of cables: 
+2.0mm? copperconductor fram main board to SHP motor 
+terminals = 3(1+14+3+1) + 6(1.5+1.5+0.75) = 40.5m 
+15% wastages & end connections = 7.2 m 
+Total = 47.7m , Say = 48.0m 
+1.0mm? copper conducter from main board to 1/2 HP 
+motor terminals   = 2(14+1+84+14+1.5+1.5+0,75) = 29.5 m 
+15% wastages & end connections = 7.76m 
+Total = 37.26m, Say 338m 
+Trainees may be instructed to tabulate the list of materials. 
+Power : Electrician (NSQF Revised - 2022)   - Related Theory for Exercise 1.8.71-73   177', NULL, '[-0.054910325,0.03169791,0.026784098,-0.07834033,-0.14262712,0.013204001,0.038067736,0.0545599,0.025609886,0.021097176,0.097539194,-0.097729795,-0.025854735,-0.017479196,0.009992311,0.055443402,-0.025852645,0.01636425,0.008675257,0.0936285,0.16191663,-0.046918515,-0.030429933,-0.006177511,0.059520088,0.044111118,0.017747577,-0.01387149,-0.034300055,-0.19747972,-0.019263824,-0.05197973,-0.002637762,-0.0035802308,-0.088653624,-0.03903398,-0.0015043663,0.08730967,-0.01615494,0.029240435,0.035430726,0.0021475572,-0.02187998,0.0006626397,-0.026963318,-0.01349134,-0.023306977,-0.022943983,0.08685439,0.030505579,0.016699476,0.015956275,0.01197157,-0.020756021,0.068136476,-0.01440118,0.06614986,-0.006200355,0.07511845,0.014201823,-0.017414305,0.13861927,-0.23060505,0.0338448,0.07314294,-0.008136188,-0.053217635,-0.04039383,0.07894935,0.046724193,-0.04774327,0.01287318,0.022932876,0.0257219,-0.065373085,-0.016625924,-0.048667707,-0.0016749868,-0.07115749,-0.05835404,-0.019234981,0.03683133,-0.036948416,-0.03023814,-0.009386945,-0.0017075806,0.04938952,-0.009581703,-0.009798503,-0.025038676,0.01655631,0.008067229,-0.037272345,-0.022032462,-0.040340636,-0.027714971,0.011604769,0.0011930356,-0.040951286,0.04687601,-0.0287862,0.006398845,0.021885408,0.0037785955,-0.024620518,0.029464772,-0.018556077,0.031059619,0.026497297,0.017241696,-0.014999367,-0.00074678776,-0.01739861,-0.05918022,0.02505447,-0.048569884,0.006560856,-0.014613773,0.017430237,0.01097574,0.00748995,0.099570274,0.04060318,0.05111568,0.026941273,-0.055127244,0.00563535,0.014231523,0.044695858,0.025380218,0.042274635,-0.032876477,0.03123924,0.002926948,-0.016135652,0.005316062,0.09780224,0.06905105,0.013626033,-0.03347735,0.019355845,-0.0022320917,0.014183963,-0.08927565,0.024141433,-0.009133395,-0.06226726,-0.022655074,0.007176621,-0.015732499,0.044101708,0.045020215,-0.023197098,-0.044507947,0.025909603,0.029307427,0.007619824,0.021786753,-0.027338242,0.018018913,0.005113768,0.02642507,-0.0051856297,0.0626438,0.03317103,-0.11932639,0.021467794,0.02653181,-0.014257152,-0.041458655,-0.005600347,0.04120115,0.023602376,-0.033764593,0.05020321,-0.027693946,-0.0047295485,0.029177396,0.0019522125,0.08082381,0.031675495,0.037195336,-0.06359753,-0.022240791,0.014977932,-0.0076882294,0.024766559,-0.008226076,-0.08029065,0.10936799,-0.04827305,0.042202126,-0.096274726,0.046977833,-0.013889322,-0.009929362,-0.08165284,0.049019095,0.06116555,-0.04522727,0.064714566,-0.050737668,-0.005204458,0.04170619,-0.051405326,-0.025425075,-0.0108970385,-0.08283064,0.030248987,0.077544436,-0.06775812,-0.04582929,0.059112225,-0.016426329,-0.03695146,-0.009551791,0.05398733,0.05928481,0.032421246,0.053921573,0.07922429,-0.07348094,0.018165616,-0.16802227,-0.0043775267,0.036522835,0.0068192906,0.0694431,-0.100592636,-0.017295029,-0.044629466,-0.044468388,-0.02822896,0.10483608,0.008886654,-0.03432572,-0.021149194,-0.005849807,0.07328383,-0.026714386,0.008126574,-0.022603832,0.04256454,0.02034229,0.022686346,-0.011567786,-0.034376502,0.045475055,-0.01453392,0.113629594,-0.061684474,0.009628866,-0.008206413,-0.005845525,0.034434758,-0.026506823,-0.021084514,0.04050661,-0.023336397,-0.007993234,0.008138318,0.043961845,-0.017053172,-0.0570203,0.043288566,-0.024429122,-0.02286856,-0.0031302725,-0.051640093,-0.012147617,-0.025734503,-0.023663312,0.029039253,-0.007926412,-0.07408949,0.006084527,0.056551524,0.07053282,-0.02578281,-0.063660175,0.026336515,-0.030113995,0.022203377,-0.040807955,0.07644877,-0.037031166,-0.089019,-0.053410374,-0.0070325937,-0.010324992,0.014204382,-0.0014817497,-0.012977368,-0.0017706617,0.11491796,0.053439587,0.03979547,-0.0066940873,-0.08851212,-0.033198524,-0.032614008,0.03293496,-0.027947936,0.031642348,0.002346343,0.06303896,0.0684533,0.013871161,0.0015028823,0.0031012988,0.027903264,0.096179046,0.0018779599,-0.011912499,-0.0071169124,-0.011662122,0.07063488,0.019037597,0.018506497,-0.26722655,0.079248674,-0.036198415,0.05345798,-0.0859727,0.04457231,-0.009170364,-0.032253243,0.022591956,-0.032963336,-0.026127769,-0.023051174,0.0063499743,-0.01830746,0.034585346,-0.03029861,0.016531136,-0.034388434,0.045419183,0.0034869956,0.021539435,-0.0070696785,0.17913334,-0.054930285,0.07574674,-0.017672373,0.02463207,0.0030008005,0.035003934,-0.07208442,-0.011873735,-0.08155394,0.09685774,-0.07785213,0.08816792,0.038027022,-0.0427616,-0.012526699,0.049149457,-0.018066024,-0.039274327,0.07760189,-0.08443148,-0.024442252,0.09632415,-0.018412571,-0.0318336,-0.07028996,-0.03719401,-0.04626869,-0.06655499,0.06116887,0.00083305594,0.015255517,-0.014708274,0.044389892,-0.013753546,-0.049882945,-0.0068683,-0.023038942,-0.0011312941,-0.03703404,-0.021381464,0.022444088,0.057331298]', NULL, '{}'::jsonb, '2026-03-01T19:26:43.882Z', '2026-03-01T21:39:32.481Z', 'trade_theory', 'AC Circuits and Motors');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1434, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-6', NULL, 194, 178, 'Power   Related   Theory for Exercise 1.8.74 
+ Electrician   - Wiring   Installation   and   Earthing 
+ Testing a domestic wiring installation - location of 
+ faults   - Remedies 
+ Objectives: A the end ofthis lesson you shall be able to 
+»   state the type of test to be canied ont in wining installations and explain the 
+procedure of conducting them 
+ Scan the OR Code to view 
+ the vdeo for this emerdse 
+ »   detennine the condition of installation and the method of improving the condition. 
+General requirement of inspection and tests (Ret. 
+BIS   73 24P artllh19e2 
+Before   a   completed   installatian   or   an addition to the 
+existing   installation   is put   into   service, inspection and 
+testing shall be carried out in accordance with the Indian 
+Electicty Rules   1956. Inthe eventofdetects= being found, 
+these shall be rectified at soon as practicable, and the 
+installationre-tested . 
+tems to be inspected in a lighting circuit 
+Lighting circus   The lighting drcuts shall be checked 
+for ensuring the folla sing. 
+=   Meutral links are provided in double pole svitch-tuses 
+which   are   Wsed   for lighting   control, and no fuse is 
+provided inthe neutral. 
+®   The plug points inthe lighting circuit are all of3-pintyoe, 
+thethird pin being suitably earthed. 
+»   Aseparate earth wire isrun inthelightinginatallatianta 
+provide earthing tor plug points, iztures andequipment. 
+=   Proper connectors and junction boxesare used wherever 
+jointsare tobe made in conductors or “whencros-over 
+ofconductors takes place. 
+»   Clea and pennanentidentificationmarks are paintedin 
+distribution boards. 
+*   Thepolarityheaving been checked all tisesand single pole 
+Switches are connected onthe phase conductor oantyancd 
+witing is correctly connected ta the socketoulets. 
+»   The endsotthe condutzenclosing the wiring leads are 
+provided vith ebonite or other suitable bushes. 
+"   Properterminal connectorsare used forte minatianot 
+wires Coonductors and earth leads) and all strands are 
+inserted in the tenn inals. 
+=   The   number of res in   a   conduit conforms to the 
+provisions ofP artl|   of BIS 732, 
+Testing of installation:   After inspection, the following 
+tests shall   be carried out, before   an   installation   or an 
+addition to the eating installation is put into service. 
+Continuity or open circuit test 
+Polarity test 
+Earth and ground test 
+Insulation and leakage test: 
+*   between conductors 
+ = 
+Bem 
+bh 
+ ®   between conductors ande arth. 
+ Continuity oropencircumt test Thistest is carned outta 
+che ck the continuity of cables inthe individual sub-circuits. 
+ 176 
+ Before conductingthistest, the mainandallthe distribution 
+cirouit ses should be rem avec, 
+The phase andthe neutral ottheindividual circuits should 
+be identified from the distribution board and segregate d. 
+Place all   bulbs in postion, connect fans to respective 
+ceiling roses, regulators and switches, short all socket 
+outlets by linking the phase and neutral. 
+Connect the Meqger terminals E and L to the individual 
+circuit phase and neutral (Fig 1and rotatethe Meqqer. 
+ al 
+ |   L 
+GORTRATT OF OPER GHG LAT TEST   i 
+ By switching the switches OM and OFF one by one, the 
+Megger should show zeroreading andininity aternat vel. 
+Thetwo-way svuiichesmayhave tobe operated atematively 
+to ensure the correct test results. 
+lithe Megqger shows no continuity inthe “OM cond itian of 
+the switch thenthe particular crcuitis   deemedtobe apen. 
+Onthe otherhand, ifthe Meqgqer shows continuly in both 
+the “OM and “OF F’ positions atthe saitch, this indicates 
+shartin the particular circurt. 
+Rememiker to rem e   all the shorting links at 
+socket points andto connect the phase to the 
+fuse, and neutral tothe link, before switching 
+“OH "the supply. 
+Polanty test: This test is conducted to check whether 
+swutches are connected in phaseJive cable or not.', NULL, '[-0.027922628,0.029690614,0.07692863,0.0027157455,-0.004155859,0.020742716,0.06163772,0.021004291,-0.025114387,-0.025206096,0.00069664925,-0.0545618,0.03283086,0.10372471,-0.009094918,-0.015535954,-0.025153575,0.09015904,0.0037108492,0.008909375,0.12697703,-0.0026136544,-0.042428263,-0.03313192,0.06470029,0.012567597,0.08146069,-0.059151817,-0.0029674936,-0.1854701,-0.037647843,0.03154452,-0.031262904,0.042614367,-0.04506569,-0.05541726,-0.06546632,-0.031384863,-0.047745265,-0.022760572,0.025921756,-0.07040478,0.04490439,-0.09136774,-0.02264902,0.006627082,0.010446542,-0.04566217,-0.02170709,0.0049619228,0.03729534,0.0053723836,-0.0016729111,-0.0064713205,0.043028194,0.047061525,0.073920526,0.049470376,0.07478601,0.036744583,0.005972576,0.057561744,-0.26373106,-0.02565486,0.048128057,0.0022482576,-0.029520934,-0.0007943437,0.07652065,0.029079143,-0.007941324,0.00033539924,-0.011275637,0.035808485,-0.059503213,0.038194258,-0.041628547,-0.02876022,-0.045226064,-0.021384424,0.01746666,0.05641636,-0.00038875302,0.05074944,-0.07371992,0.03216891,0.013919211,0.002620129,0.043659016,0.079470776,0.025628023,0.0042677657,-0.04494507,0.03536612,0.02065849,-0.058858506,0.0066384193,-0.016928209,-0.015199738,0.07867567,-0.056221038,0.043644823,-0.003794136,0.024612335,0.011629806,-0.020498792,-0.043025374,0.006600951,0.0043755006,-0.047944285,0.03401162,-0.010472576,-0.0049243183,-0.019460155,0.044472855,0.04031136,-0.00059287465,0.021017632,0.0020613691,0.032668937,-0.026943604,0.07941186,0.11965653,-0.05390853,0.033236984,-0.088336885,0.031780817,0.026697915,0.026763415,0.05338507,-0.030415922,-0.046606485,-0.059700474,0.0100069735,0.012226875,0.037714347,0.044188157,0.056425102,0.04470286,-0.042601112,-0.013228113,-0.046897493,-0.0018048025,-0.07623835,-0.035316885,-0.051140606,-0.09912123,0.06299995,-0.10062116,-0.07196964,0.020987324,0.024651939,-0.043088675,-0.054692786,0.022257198,0.012467732,0.02073774,0.017904466,-0.019662889,0.00300578,0.02984901,0.0155476015,-0.09792479,0.08504121,-0.01643368,-0.097692505,-0.035544537,-0.033171184,-0.017426495,-0.0073466306,0.102904595,0.07896759,-0.039936706,0.01005184,-0.020722771,-0.0018455603,-0.009497073,0.02890383,-0.01861497,0.030795136,0.022084685,0.0015831114,-0.022479532,0.025753045,0.04644831,0.0053250478,-0.01860915,0.014989701,-0.03227526,0.04146842,-0.025795646,0.02251426,-0.088257246,0.060730517,0.04023547,-0.0144795645,-0.055400215,-0.0877118,0.06860063,-0.03537497,0.0498445,-0.048596524,0.045184843,-0.043330684,-0.022726385,0.049655046,0.006274897,-0.06950114,0.04072776,0.07737642,-0.022302525,-0.010846475,0.11116523,0.014668249,0.035367712,-0.031314354,0.017620193,0.012862043,0.06709871,0.07483698,-0.017857198,-0.007635831,-0.0020255158,-0.18244044,-0.02037468,0.03287015,0.0010076906,0.077802755,-0.044053733,0.023393719,0.015446699,-0.013638065,-0.023494793,0.041111194,0.012224746,0.033402592,0.018405544,0.030621435,0.018173303,-0.018533846,-0.023700515,-0.029883368,0.0072229533,0.021376688,0.07849532,-0.027459312,-0.038696133,0.05265184,-0.051562916,0.123305835,-0.03680185,0.043138135,-0.026770951,0.017654164,0.034324966,-0.0036273175,-0.13897642,0.06601259,0.026483772,0.017757902,0.03482062,-0.01598962,-0.07059665,-0.027385801,0.015671995,-0.0030448388,-0.0057101725,0.047304966,-0.052490484,-0.0067413007,0.010438492,-0.05116837,-0.014463891,0.032911967,-0.028132858,0.011079403,0.06314452,0.028300928,-0.057805523,-0.10756636,-0.026300441,-0.055613708,-0.00016000452,0.043998275,0.018421032,0.010244193,-0.06904487,0.04204883,0.05818603,-0.0059467424,-0.0027636744,0.065243684,0.0010350189,0.0035060593,0.0522607,-0.00083256117,-0.011063828,-0.036329772,-0.025843894,0.0009568332,-0.05437608,0.053162966,-0.055024836,-0.02655417,-0.041380905,0.008220607,0.035117432,-0.0022499308,-0.028162872,-0.026029762,0.0037838134,0.06250976,0.014759376,-0.033478964,0.035406917,-0.07848502,0.0009330701,0.012565706,0.013160921,-0.26701054,-0.030960085,0.010562619,-0.0050118743,-0.12404302,0.010040655,0.017210525,0.05269273,-0.0031044986,-0.06675483,-0.06419379,0.02905571,0.021140762,-0.019880768,0.025978956,0.006307241,0.040774614,0.04299206,0.02828696,-0.08797819,0.0033231003,0.042915136,0.21380468,-0.012951447,-0.0070239543,0.026407486,0.04156706,0.02050325,0.03379857,-0.053670686,0.055418685,0.043162033,0.0019478748,-0.005177873,0.07494702,0.030216826,0.042945735,-0.029361732,-0.015748305,-0.030135207,-0.04783702,0.03236589,-0.0909048,0.02223006,0.0715845,-0.044863705,-0.05514734,-0.052925594,-0.021483516,-0.03690311,0.008168388,-0.050195325,0.03465035,-0.013756047,-0.03666209,0.034440074,-0.0056946017,0.010294222,-0.05931995,-0.014370916,-0.024134412,-0.07237565,0.06964804,0.048645843,0.09725066]', NULL, '{}'::jsonb, '2026-03-01T19:26:44.222Z', '2026-03-01T21:39:32.481Z', 'trade_theory', 'AC Circuits and Motors');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1435, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-6', NULL, 195, 179, 'Forconductingthis test, thelampsare removedfromthelamp- 
+holders, thefan regulatorsare keptinthe OFF’ positionandthe 
+fuses inserted inthe main and distribution boards. 
+Remove the switch covers and switch “ON'' the supply. 
+Connect one end of the test lamp to the earth continuity 
+conductor and the other end of the test lampto the switch 
+terminals alternatively ( Fig 2). 
+ Fig2   
+GIRGUIT FUSES “IN 
+ me) 
+ REMOVED 
+———|   __| 
+ i   C7¥   iA 
+ LAMP 
+REMOVED 
+ I ae l 5 
+ | |   | 
+L_——4 FUSESIN , Lot i 
+FOR 2-WAY SWITCHES   SWITCH ‘OFF [, 
+OPERATE THE  SWITCH 
+PAIRS ALTERNATIVELY   
+é 
+MAIN SWITCH ''ON''   [f 
+y 
+ =   TEST   LANP § 
+ POLARITY TEST   2 =I  Wi 
+ Lighting of the test lamp indicates that the phase or live 
+cable is controlled by the switch. 
+A further polarity test should be done on the sockets to 
+verify whether 
+*   Thephasewireisconnectedto the rightside hole of the 
+socket (Fig 3a). 
+*   The switch controls the phase wire. 
+For this test,   a neontester could be inserted inthe rghtside 
+hole ofthe socket as shown in Fig 3b andthe control switch 
+isswitchec   ON". Lightingofthe neontesterwhenthe switch 
+is ON'' and ne light whenthe switch is “OFF indicate correct 
+polarity.   This test is a   must,   in all old or new wiring 
+installations as a safety measure. 
+ Fig 3 
+ SOCKET 
+ or  GL.  {a)   I? 
+ {b) 
+ Cr] 
+ fy POLARITY TEST ON SOCKETS   = iu 
+ Insulation tests in wiring installation (BIS 732 (Part Il) 
+ - 1982.) 
+ The following tests shall be done: 
+Insulation resistance between conductors and earth: 
+For this test, put “OFF'' the main switch and remove the 
+mainfuse-carrier. Alldistributionfuses should be “|IN'': the 
+lamps should be in their holders and all switches for fans 
+and lights should be in the “IN'' position.   Unplug all the 
+appliances from the sockets,   and short the phase and 
+neutral of the sockets with a jumper wire. 
+Connect the phase and neutral cables at the outgoing 
+terminals ofthe mainswitch together, and connectthe lead 
+of the   Megger terminal   to the   shorted   cables.   (Fig   4) 
+Connectthe other leadofthe Meggertothe earthconnection 
+and rotate the Megger at its rated speed. 
+The reading thus obtained should not be lower than the 
+lowest of the values obtained in these three metheds. 
+Method 1   -   Standard value as per B.I.S. 
+ Standard value   of insulation resistance 
+ _   50 
+ No.of points in the circuit   
+Mega ohms 
+ Fig 4   
+DISTRIBUTION FUSE BOX 
+{ALL FUSES IN) 
+ MALL LAMPS 
+ (5) IN HOLDERS 
+ CONSUMER''S MAIN SWITCH 
+PHASE AND   OPEN FUSES OUT 
+NEUTRAL 
+ | 
+ih   \ 
+ i}   st 
+ SHORTED   INSULATION 
+RESISTANCE MAIN   e—   —_| 
+ SUPPLY   ee SET 
+ =   EARTH 
+ INSULATION RESISTANCE TEST BETWEEN CONDUCTORS AND EARTH ELN23a214 
+ wherethe switch, the lamp-holder andthe socket are taken 
+as individual points. 
+In case, the wiring is dane in PVC insulated cables, 50 
+should be replaced by 12.5. 
+Method 2   -   |.E. rules state that the leakage currentin an 
+installation should not exceed 1/5000th part 
+of the full load current of the installation. 
+Applying this, the value of insulation resistance 
+ _ Supply voltagein volts , 
+Leakage current 
+Supply voltagein volts x 5000 
+~ Fullload currentof the insatallation 
+hms 
+ Where leakage current 
+_   F   :   4 =Full load current of the installation x 5000 
+Hence the insulation resistance 
+_  Supply  voltage in volts x 5000 x 10-© 
+ ~~ Fullload current  of  the installation Megenhims 
+Power : Electrician (NSQF Revised - 2022)   - Related Theory for Exercise 1.8.74   179', NULL, '[-0.06755122,0.080808856,0.07321549,0.023227226,0.022035426,0.017105179,0.07980049,0.017711034,-0.06352026,0.017036572,-0.0010776389,-0.033743557,-0.01597914,0.01599417,-0.010031163,0.016737847,-0.065444544,0.040838424,-0.004612498,0.024368813,0.11576032,-0.08038341,-0.025161413,-0.0068913484,0.086594194,0.0034331775,0.013014909,-0.023567708,-0.03755697,-0.2339949,0.027717212,-0.05865975,-0.04352868,-0.024399027,-0.06863383,-0.044381786,-0.035369255,-0.06990121,-0.085486546,-0.007028888,0.07464166,-0.06663398,-0.017756037,-0.06893035,-0.0034857485,0.02946253,0.05759528,-0.054776337,0.072670795,-0.01634172,0.0063049356,-0.04741044,0.051055092,-0.050278448,0.02741521,0.047078814,0.06209045,0.06531924,0.0394437,0.021294944,-0.032870967,0.042671535,-0.21889572,0.030109745,0.08030673,0.02292628,-0.0148271425,-0.045884423,0.050535403,0.06779421,-0.050137192,0.04323767,-0.04600017,0.025183003,-0.030987162,0.023418846,-0.036665447,-0.012671168,-0.009151439,-0.0019274228,0.0064771664,0.027677214,0.026434744,0.04652726,-0.0055065164,0.08240341,0.021042429,-0.032167923,-0.0056685866,0.036651496,0.01989713,-0.036128838,-0.01599256,0.010817726,0.0146526275,-0.013602547,0.029828278,0.038147096,0.026789762,0.10551084,-0.008125857,0.04602977,-0.011769321,0.00619285,0.054294758,-0.056032438,-0.010844083,-0.0030237366,-0.050136272,-0.015866907,0.036249235,-0.01562518,0.019333879,-0.009359994,0.005478477,0.058750708,-0.016575847,0.04881419,-0.046320755,0.036131315,-0.0046060085,0.064929806,0.09037739,-0.029408157,0.058198806,-0.04422587,0.02553057,0.043823715,-0.021118084,-0.01699437,-0.006530641,-0.044072077,0.0072300485,-0.017849462,-0.031315994,0.060915988,0.051371273,0.050046418,0.031494483,0.015320906,0.012588542,-0.028895132,0.0067514307,-0.06060487,0.0079533,0.0018356012,-0.11110483,0.008882605,-0.036424514,0.019018602,0.008161527,0.055986755,-0.037777167,-0.05163227,-0.031387523,0.015599897,0.009401808,0.12015908,0.0008913683,0.018659348,-0.05094868,0.03056959,-0.042651106,0.06258328,-0.006927265,-0.063866094,-0.008178422,0.009534755,0.01587681,-0.0090483995,0.0020641992,0.11722945,-0.029685577,-0.05736782,0.014302258,-0.03966956,0.026525013,0.0017847155,-0.04026073,0.029613476,-0.037659973,-0.03039497,-0.013597878,0.04629491,0.014774239,-0.053579673,-0.013913651,-0.06287275,-0.058596186,0.07132053,-0.03139921,0.018642768,-0.06514291,0.08101792,-0.024256058,-0.051527094,-0.10350831,-0.07815677,0.0385062,-0.03314987,0.0868503,-0.040975552,0.020474447,-0.0038334231,-0.0044091735,0.10383575,0.06633806,-0.06082055,0.061680254,0.061404184,0.019053606,-0.05684361,0.05943884,0.013499778,-0.008984723,-0.04624976,0.046199434,0.022515593,0.038565036,0.09353136,0.024261694,0.011793688,-0.05653049,-0.20300591,0.0041494244,-0.027782524,0.013857132,0.086783655,-0.06201936,-0.03277576,0.02281097,0.009685085,-0.041615892,0.067593254,0.05625509,0.019972838,-0.027585516,0.0080706505,-0.005062373,0.0009039761,-0.005384928,-0.023430487,-0.0021057643,-0.027159829,0.070864186,-0.011043374,0.022107832,0.045765746,-0.0818703,0.12786126,-0.010810051,0.05450902,-0.013379414,0.0048637665,0.060450435,0.03362435,-0.06231472,0.048092198,0.028002853,-0.03739003,-0.008943862,-0.00063418655,-0.012501832,-0.035333116,0.06047854,0.0068318387,-0.0626044,0.035992146,-0.057416838,-0.052977905,0.04238064,-0.07211671,0.00919381,0.02922247,-0.06864645,-0.0016161059,0.0008916354,0.0833211,-0.08396954,-0.11819685,-0.067470916,-0.04931834,0.03401911,-0.0031428055,0.114397064,0.017166954,-0.06488538,0.027773233,0.03739273,-0.046224132,0.01901653,0.09269056,-0.012980604,-0.00021011251,0.05651711,-0.0023263139,0.043554023,-0.04187837,0.015249072,-0.005037624,-0.05219534,0.03483191,-0.010121069,0.0035970272,-0.019375617,0.019735042,0.031915158,0.005734879,0.043654714,0.010362124,-0.020360962,0.08223023,0.004295822,-0.025701461,0.01001394,-0.026231963,-0.012837338,0.010248786,0.018706825,-0.20549102,0.018218566,-0.018906517,-0.028129626,-0.10958917,0.049212433,-0.0013688293,-0.016730126,-0.05265621,-0.012283678,-0.071306184,0.06798091,0.057043213,0.015005903,0.0062896046,0.033439953,0.013270311,0.00055428076,0.006615855,-0.0011876404,0.03307569,0.005173743,0.19339746,0.029580181,0.036841333,-0.00936963,0.015692325,0.033082176,0.006875701,-0.021887029,0.038098935,-0.029359814,-0.04504158,-0.034728855,0.056842923,-0.0021800625,-0.01823904,-0.052068565,0.032699067,-0.04219648,-0.0045067314,0.037748706,-0.07637626,-0.0965044,0.10091188,-0.04585486,-0.055013116,0.024236923,-0.030753935,-0.048788246,-0.04083969,-0.052742228,0.058078114,-0.019183595,-0.06153103,-0.01908818,0.012634126,-0.014302308,0.007007134,-0.052427005,-0.011011849,-0.07302141,0.0791792,0.0048298156,0.08696239]', NULL, '{}'::jsonb, '2026-03-01T19:26:44.589Z', '2026-03-01T21:39:32.481Z', 'trade_theory', 'AC Circuits and Motors');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1436, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-7', NULL, 196, 180, 'Method 3 - Thumb rule 
+ The   measured   insulation   resistance of an   installation 
+should not be less than one megohm. 
+Insulation resistance between conductors: For this 
+test, switch off the mains and remove the fuse-carriers. 
+Remove   all   lamps   from   their   holders,   disconnect   all 
+appliances and keep all switches in the ON position. 
+Keep all the distribution fuses in position. 
+Connect onetest prod of the Meggerto the phase cable and 
+the other to the neutral (Fig 5). 
+Rotate the   Megger and measure the insulation resistance 
+inmegohms. 
+The reading inmegohms should not be less thanthe lowest 
+of the readings obtained in any one of the three methods, 
+stated under “Insulation resistance between conductors 
+and earth. 
+Inspection, testing and improving the condition of 
+wiring installations 
+ Fig 5   
+DISTRIBUTION FUSE BOX 
+sé   {ALL FUSES IN) 
+2) SWITCH 
+ CONSUMER''S MAIN SWITCH 
+OPEN & FUSES OUT 
+INSULATION 
+RESISTANCE 
+TEST SET 
+MAIN 
+ SUPPLY ——   E 
+ INSULATION RESISTANCE TEST BETWEEN CONDUCTORS  ELN288215 
+ The table given below shows the test results, and the 
+ methods   to   improve   the   conditions   of   the   wiring 
+ installations. 
+Test Results and Methods for Improving the conditions 
+ S. No,   TestConducted   Testresults   Method of Improvement 
+4   Continuity or 
+open circuit test 
+2   Polarity test 
+4   Insulation test 
+between 
+conductors and 
+earth (or) between 
+the phase and 
+neutral 
+a) Zero reading 
+b) Higher reading 
+in terms of kiloohms 
+ormegohms 
+a) Polarity was found 
+wrong throughout 
+the installation. 
+b) Polarity found wrong 
+ in one or two sockets. 
+ a)   1 megohm or above 
+b) Less than 1 megohm 
+ a) Ok. 
+ b) Operate each individual   switch inthe circuit. Where the 
+reading jumps   te a higher value, there will be an open 
+circuit, either by fused bulbs or loose connections at the 
+terminals or break in the wire. 
+After identifying the subcircuit, check the continuity of 
+cables in the smaller zones till the defect is detected 
+and rectified. 
+Where 2-way switches are encountered, operate the 
+switches one by one to detect the fault. 
+a) Switch off the mains. Removethe fuse-carrier. Interchange 
+the output terminals at ICDP switch or at DB. 
+b) See that the phase is connected to the right side terminal 
+of the socket. 
+a) OK.   Check the value of the insulation resistance by the 
+formula 
+ 50 
+ Megohms =   \o.of outlets 
+ For PVC wired installation replace 50 by 12.5. Incase the 
+measured value of insulation resistance is equal to or 
+more than the calculated value, the insulation is OK. 
+b) Otherwise locate the fault by sectionalising the zone and 
+replacing the defective cable with a good one. If, however, 
+the values obtained are not sufficiently high, withdraw all 
+the fuses ofthe distribution fuse-board and test again. 
+This test will include only that portion of the installation 
+between the main switch and the distribution fuse-boarad. 
+lf the fault does not lie in this section, proceed to the dis- 
+tribution fuse-board, and test each branch circuit in turn 
+till the faulty circuit or circuits are discovered. 
+ 180   Power : Electrician (NSQF Revised - 2022)   - Related Theory for Exercise 1.8.74', NULL, '[-0.042418156,0.065524906,0.046095375,0.0050696046,0.034246847,0.020388871,0.057277862,0.01676096,-0.022519574,-0.01946828,-0.013092877,-0.08785916,-0.007727358,-0.029039668,0.03169829,0.0009878492,-0.058043458,0.074245974,0.005621422,0.01854978,0.15290384,-0.071633026,-0.03402831,0.04291149,0.08901396,0.003085745,0.058620557,-0.02244725,-0.06426273,-0.24155898,0.03893909,-0.06438562,-0.015729552,-0.030530378,-0.02725353,-0.04618359,-0.03946973,0.004189877,-0.052896548,0.029352453,-0.011608755,-0.008565104,0.04806627,-0.04390406,-0.021849096,-0.026213033,0.009155081,-0.07626758,0.088827826,-0.04807352,0.012420998,-0.041368887,0.05710249,-0.029771328,0.0025420175,0.033332083,0.03637322,0.038267825,0.068749174,0.0013961733,-0.003933753,0.07799829,-0.19692846,0.019106025,0.10357113,0.013643334,-0.03129725,-0.0018941028,0.06399142,0.046004098,-0.013186759,-0.010357282,-0.072284676,0.015926462,-0.015267087,0.028165909,-0.0696201,0.0142410165,-0.020982195,-0.018432159,-0.03449333,-0.034997262,0.013880483,-0.019504372,-0.030796792,0.025169695,0.034326676,-0.025242958,0.0028342623,0.024139574,0.017864784,0.010609159,-0.052403428,0.020396926,-0.028263422,-0.014265206,0.040439263,0.008814893,-0.004964217,0.12368929,-0.015271203,0.03096003,-0.014396097,0.009135753,0.002248396,-0.07450245,0.013010381,-0.022878924,-0.0052739712,-0.021076769,0.036036216,-0.0656197,-0.022915741,-0.0579562,0.055266365,0.036478236,0.014540596,-0.008907291,-0.015202889,0.013555189,-0.016223082,0.0288224,0.049681928,-0.06847775,0.050100125,-0.05622133,-0.011347461,0.05711541,0.013684546,-0.01186963,-0.011355865,-0.026298575,-0.06501667,-0.03932796,-0.0011547016,0.06451303,0.027922336,0.04805873,0.06537598,0.016518677,0.024689747,-0.037468664,0.049151644,-0.078020744,-0.0017488343,0.035889477,-0.091287054,0.03496907,-0.033783652,-0.058450516,0.046801087,0.030963078,-0.057400633,-0.08952966,-0.0011690933,0.00641154,0.038874086,0.046398576,0.046143882,0.039541055,-0.039667234,-0.0048492923,-0.03499941,0.11123059,-0.005488158,-0.043601576,-0.016316961,0.030804219,0.022210848,-0.076777495,0.05668811,0.10212825,-0.01734736,-0.0387594,0.033234365,-0.012089857,0.040525418,-0.06203746,-0.049853697,0.054424733,-0.007128501,0.019581746,-0.048334062,0.046290055,0.035849176,-0.024427274,-0.022803785,-0.045102913,-0.05207882,0.10682157,-0.042266957,-0.01168158,-0.06774693,0.08867191,-0.011256482,-0.03980921,-0.06002044,-0.03385535,0.022411799,0.0010958608,0.048765752,-0.030258333,0.02116697,0.0016519569,-0.0233922,0.11217021,0.0757291,-0.072243944,0.10683975,0.1335233,-0.020003192,-0.038049743,0.10715328,0.014435335,0.017324138,-0.00056318403,0.039807644,0.046427283,0.05991204,0.07191725,-0.014275382,-0.0012062169,-0.029114379,-0.18917294,0.008265113,-0.0033132674,0.034165453,0.05001298,-0.03018213,0.038007032,-0.04461215,-0.005211822,-0.03532759,0.06536894,0.036216456,0.033936825,0.0073132413,0.0323336,-0.0069306386,0.0013578662,0.055158623,-0.012840033,0.009960998,-0.018686,0.046640452,0.025550494,-0.011559615,0.039436262,-0.07408271,0.083158046,-0.035712224,0.034994584,-0.039659247,-0.007884247,-0.0146167865,0.0063213888,-0.07854268,0.019236553,0.012546879,-0.048355557,0.0035386882,-0.039432433,-0.0340161,-0.044328652,0.05218731,0.043812677,-0.023367597,-0.040047918,-0.07700382,-0.034467414,-0.00844466,-0.12049241,0.012179879,-0.0009422076,0.0005636659,0.02914748,-0.020749759,0.070707045,-0.022626547,-0.11390415,-0.0225342,-0.022607177,-0.039116137,0.010043178,0.064911604,0.056661244,-0.048245605,-0.0055126776,0.0608972,0.00076663186,0.02250263,0.06862717,0.0028182864,-0.007296859,0.055902388,-0.03507888,-0.041012477,-0.06430868,0.03867933,0.014377105,-0.05758775,-0.022888074,-0.05759961,0.0010160251,-0.0054244166,0.017325649,-0.0023392802,-0.0017429616,0.026232993,0.020112313,0.022972677,0.048010137,0.02493125,0.005282882,-0.007357688,-7.820685e-05,-0.022511829,0.010488324,-0.0247601,-0.21433973,0.01943575,-0.005004449,0.01308228,-0.08177544,0.016963385,0.026750313,-0.0071525513,-0.032448594,-0.009323411,-0.08145658,0.07417016,0.008420394,0.056344256,0.04520268,0.017939346,0.0105530005,0.0012270502,-0.010278196,-0.03083722,0.046743844,0.011548794,0.21658957,-0.02770897,0.008953331,-0.015518879,0.02603737,-0.0014494742,0.01956443,-0.08533816,0.014825074,-0.04312302,-0.022343257,-0.023293613,0.12580632,0.035657156,-0.03682114,-0.033687968,0.05891728,-0.049982607,0.024859766,0.026641319,-0.086325884,-0.06552029,0.11887357,-0.024840478,-0.018385641,0.020656873,-0.045033082,-0.042788778,-0.07237332,-0.005876868,0.057370264,-0.034963436,-0.0024091988,0.031042937,-0.001183006,-0.025421303,0.0063163703,-0.00075821386,0.01971292,-0.057734028,0.035733234,0.00052873645,0.1390478]', NULL, '{}'::jsonb, '2026-03-01T19:26:44.962Z', '2026-03-01T21:39:32.565Z', 'trade_theory', 'Transformers and Distribution');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1437, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-7', NULL, 197, 181, 'Power   Related Theory for Exercise 1.8.75-77 
+Electrician - Wiring Installation and Earthing 
+Earthing - Types - Terms - Megger - Earth   resistance Tester 
+ Objectives: At the end of this lesson you shall be able to 
+* explain the reasons for system and equipment earthing 
+® define the terminalogy related to earthing 
+® state and explain the methods of preparing pipe earthing and plate earthing, according to B.I.S. 
+ recommendations 
+ ¢ explain the procedure for reducing the resistance of   earth electrodes to an acceptable value. 
+Earthing 
+Connecting the non-condutive metal   body/parts of an 
+electrical equipment and systemtothe earth through alow 
+resistance condutor is called as earthing. 
+Earthing of an electrical installation can be brought under 
+two major categories. 
+*   System earthing 
+*   Equipmentearthing 
+System earthing: Earthingassociated with current-carrying 
+conductors is normally essential to the security of the 
+system, and Is generally known as system earthing. 
+System   earthing   is   done   at   generating   stations   and 
+substations. 
+The purpose of system earthing is to: 
+*   maintainthe ground atzero reference potential, thereby 
+ensuring that the voltage on each live conductor is 
+restricted to such a value with respect to the potential 
+of the general mass ofthe earth asis consistent withthe 
+level of the insulation applied 
+*   protectthe system when any fault occurs againstwhich 
+earthing is designed to give protection, by making the 
+protective gear to operate and make the faulty portion 
+of the plant harmless. 
+Equipment earthing: Earthing of non-current carrying 
+metalwork and conductor which is essential for the safety 
+of human life, animals and property is generally known as 
+equipment earthing. 
+Terminology 
+Earth-continuity conductor (ECC): Theconductor which 
+connectthe non-conductive metal part/body of anelectrical 
+system/equipment tothe earth electrode iscalledasearth 
+contained conductor. 
+Earth electrode:   A metal plate, pipe or other conductor 
+electrically connected to the general mass of the earth. 
+Earth fault:   Live portion of an electrical system getting 
+accidentally connected to earth. 
+Leakage current:   A   current of relatively small value, 
+which passes through the insulation of conductive parts/ 
+wire. 
+Fig 1 shows the magnitude of current and its effect 
+ Fig 1   
+1000 mA 
+ {1A)  CURRENT IN A 100 W 
+LAMP CAN ELECTROCUTE 
+20 ADULTS AT ONE TIME 
+CURRENT 
+HEART CONVULSIONS 
+USUALLY FATAL   50 mA 
+PAINFUL SHOCK- 
+INABILITY TOLETGQ   «920 mA 
+MUSCLES CONTRACT 
+ SAFE CURRENT   |   ce 1mA   a VALUES   NO SENSATION {   * 
+ < TT} 
+ Trainees   can   be   instructed   to   refer   the 
+international electrotechnical commission (IEC 
+60364-5-54) website for the standard safetyrules 
+related with earthing installation for the further 
+details. 
+Dead:   Dead''   means   at or about earth   potential   and 
+disconnected from any live system. 
+Earth: Aconnection to the general mass of earth by means 
+ofanearthelectrode. Anobjectis said to be “earthed'' when 
+it is electrically connected to an earth electrode; and a 
+conductor is said to be “solidly earthed! whenitis electrically 
+connected to an earth electrode. 
+Reasons for earthing: The basicreasonfor earthing isto 
+prevent or minimize the riskof shockto human beings and 
+livestock. The reason for having a properly earthed metal 
+partinan electrical installationis   to provide alow resistance 
+discharge path for earth leakage currents which would 
+otherwise prove injurious or fatal to a person or animal 
+touching the metal part 
+Table 1 snows the body resistance at specified areas of 
+ contact. 
+ Table 1 
+Skin conditon or area   | Resistance value 
+Dry skin   100,000 to 600,000 chms 
+Wet skin   71,000 ohms 
+Internal body-hand   400 to 600 ohms to foot 
+Ear to ear   about 100 ohms 
+ 181', NULL, '[-0.028283117,0.036471378,0.006742616,0.04071982,0.015680997,-0.050682068,0.061817024,-0.008617517,-0.048702408,0.049156494,-0.054924343,-0.046408277,0.04015654,0.05639311,0.01457344,0.010951444,-0.01853082,0.10641929,0.03285168,0.011730855,0.13709852,-0.039148882,-0.059877634,-0.0010283368,0.019379996,-2.6775855e-05,0.033399798,-0.044780657,-0.017880047,-0.19233447,-0.03377588,0.0106556825,-0.032895252,0.057642307,-0.06945503,-0.05061894,-0.03252128,-0.008090686,-0.083422296,0.009831894,0.013012255,-0.039389674,0.074705794,-0.033652123,0.008555485,0.0022290656,-0.03077044,-0.07321563,0.039940972,-0.035056192,0.10725701,-0.03223715,-0.034319337,0.029939136,-0.014756065,0.046291906,0.06211908,0.05906499,0.07204602,-0.022241827,0.003999762,0.006202851,-0.20591141,0.0017586297,0.04460231,0.0100274235,-0.01640728,0.032823626,0.09001008,-0.02214224,0.01714525,0.04892863,-0.07001673,0.07514847,-0.003124872,0.031760156,-0.043276485,-0.005884572,-0.064608976,-0.041833084,0.034705617,0.042801324,-0.02941824,0.0016439668,-0.033358764,0.011298358,0.026572047,-0.053662118,0.054898206,0.027448835,-0.051751178,0.044962384,0.02165226,0.06949069,-0.02716171,-0.05991807,0.02763057,0.013588888,-0.047283772,0.098023936,-0.024056766,0.031180479,0.059217617,0.021128487,0.07481591,-0.020019135,-0.035767525,-0.03160622,-0.043295465,0.004236071,0.057725504,-0.012020538,-0.10358906,-0.027535835,0.013964374,-0.04170259,-0.007339066,0.029746464,-0.01898382,0.016761743,-0.06865407,0.045038104,0.027604934,0.026518743,0.054023128,-0.07516647,0.051487207,0.026242962,0.050718445,0.010116542,-0.001795115,-0.039995734,-0.059886716,0.008689636,-0.0015858926,0.05342314,0.014164529,0.003816534,0.04333962,-0.007170622,-0.027171563,-0.018607078,-0.0089539755,-0.09360264,-0.06366849,-0.04818872,-0.07101143,0.03822714,-0.0626352,-0.0035089764,-0.03187691,-0.006986373,-0.025595905,-0.08624823,0.049968053,0.030030323,0.019972675,-0.009943262,-0.0036575634,-0.0074857417,0.0001743143,0.024267426,-0.07162777,0.15811357,0.06439662,-0.10706025,-0.032083675,-0.024728559,0.04207006,-0.08749187,0.07353781,0.094113186,-0.0618551,-0.053322975,0.060883734,0.031183721,-0.045098532,-0.06434423,-0.008211858,0.038236905,0.061749775,0.048348155,-0.03405698,-0.006051111,0.05633469,0.008904967,-0.081422925,-0.004467824,-0.01766947,0.07013613,-0.011175507,0.033264134,-0.058412313,0.02040343,-0.009247916,-0.015916945,-0.015850374,-0.0644264,0.04669154,0.008185432,0.024358125,0.018960332,0.05897674,-0.02478255,-0.023060111,0.08657472,0.021239005,-0.047685154,0.023151781,0.14628667,-0.043437887,0.0066185435,0.038087685,0.002318545,0.028941393,0.018676898,0.006762578,0.0044496967,0.08858797,0.03426335,0.034613162,-0.011713628,-0.010702403,-0.19229093,-0.05379126,0.0050989413,-0.007972603,0.09570255,-0.014000874,0.0072753197,-0.0049169976,-0.033845805,-0.00097652007,0.06582689,-0.010958068,0.0050503947,-0.019279428,0.020649869,0.02465062,0.0003511091,-0.07027797,-0.011215058,0.028296376,0.050161045,0.06226934,-0.019834407,-0.061392404,-0.048857912,-0.062061697,0.13690248,-0.04843418,0.06673093,-0.00090901594,0.042796027,0.035732366,0.02798924,-0.060978297,0.047020055,-0.032702096,-0.017758202,-0.038338926,0.0077054515,-0.06528476,-0.07877862,0.053451564,0.022814628,-0.018528854,0.010768611,-0.0736999,-0.00983946,-0.026606875,-0.04772613,-0.024342112,0.045320455,0.023361616,0.0125642875,0.022632457,0.053522523,-0.023341205,-0.060630668,0.029379217,-0.05650885,-0.031705607,0.0027206829,-0.015329843,0.04735108,-0.034092784,0.025973855,0.04583123,-0.030991517,0.052713662,-0.012140447,-0.06971862,-0.0063198484,0.13360462,0.009439742,6.234762e-05,-0.009624638,-0.017923264,-0.019389942,-0.0071100327,-0.003032807,-0.0077341394,-0.017535534,-0.026238948,0.021690745,0.019494561,-0.0016584428,0.00814628,0.016031217,-0.008638621,0.0447639,0.04546682,-0.07671443,-0.00026600235,-0.09055511,0.019706095,0.027963772,-0.028663049,-0.27714497,0.008115751,0.029385693,-0.01358345,-0.08661706,-0.011396537,-0.0040924842,0.053401694,-0.0061003314,0.00093296927,-0.07962627,0.019380508,0.038067624,0.04364347,-0.017749801,0.07507558,0.06276772,-0.01141847,0.0036230832,-0.04789992,-0.01804479,0.040250875,0.16187981,0.025829196,0.038036138,0.016790943,-0.03278239,0.019291166,0.006659093,-0.10118393,0.036337923,0.02142797,0.017625764,-0.03613806,0.059774462,0.059929706,0.054333564,0.003287389,0.017377717,-0.023714231,-0.055742297,0.03012033,-0.02103709,0.0089632515,0.08675259,-0.051528737,-0.037150413,-0.085853286,0.019691478,-0.01368016,-0.014362326,0.01545961,0.012615275,-0.010781528,-0.0083546415,0.05812299,-0.005544779,0.048250068,-0.022838823,0.0014494665,0.02485936,-0.07694808,-0.03935761,0.008415638,0.08435106]', NULL, '{}'::jsonb, '2026-03-01T19:26:45.331Z', '2026-03-01T21:39:32.565Z', 'trade_theory', 'Transformers and Distribution');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1438, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-7', NULL, 198, 182, 'CASE1:   Metal   body   of   apparatus   when   it   is   not 
+earthed 
+Let   us   consider   a   240V   AC   circuit   connected   to   an 
+apparatus having a load resistance of 60 ohms. Assume 
+thatthe defective insulation of cable makesthe metal body 
+live and the metal body is not earthed. 
+When a person,   whose body resistance is 1000 ohms, 
+comes in contact with the metal body of the   apparatus 
+whichis at 240V, aleakage current may pass through the 
+body of the person (Fig 2). 
+ Fig 2 
+ oA   FAULT HERE SHORT 
+—   BETWEEN LIVE WIRE 
+AND METAL BODY 
+ METALBODYOF   = --1—, 
+THE APPARATUS =}   (1/4 
+ 240¥   ll   ! 
+R.=60 2   Hf   H 
+ BODY 
+RESISTANCE 
+1000 0 
+ ELN235312 
+ Thisleakage currentis   4. 8 times higherthanthe fuse rating, and, 
+hence, the fuse will blow and disconnect the supply from the 
+mains. The personwillnot geta shockduetotwo reasons. Before 
+thefuse operates, the metal bocy andearthare inthe same zero 
+potential, and across the person, there is no difference of 
+potential.   Vvithin a short   (milli-seconds)   time the fuse 
+blows to open the defective circuit,   provided the earth 
+circuit resistance is sufficiently low. 
+By studying the above two cases, itis clear thata properly 
+earthed   metal   body   eliminates tne shock hazards to 
+persons and also avoids fire hazards in the system by 
+blowing the fuse quickly in case of ground faults. 
+Types of earth electrodes 
+Rodand pipe electrodes (Fig 4): These electrodes shall 
+be made of metal red or pipe having a clean surface not 
+covered   by   paint,   enamel   or other   poorly conducting 
+material. 
+Rod electrodes of steel or galvanised iron shall be at least 
+16 mm in diameter, and those of copper shall be at least 
+ 12.5 mm in diameter. 
+Vv 
+The value of current through the body = Reoay 
+ody 
+ =   ——   =0.24 amps   or 240 milliamps. 
+ 4000   :   . 
+ This current, as can be judged from Table 1,   is highly 
+dangerous, and might prove to be fatal. Onthe other hand, 
+the   Sampsfuse inthe circuitwill not blow for this additional 
+leakage current of 240 milliamperes. As such the metal 
+body will   have 240V supply and   may eléctrocute any 
+person touching it. 
+CASE 2:   Metal body of apparatus when earthed. 
+Incase the metal body of the apparatus is earthed ( Fig 3), 
+the   moment the metal body comes in contact with the live 
+ wire, a higher amount of leakage current will flow through 
+ the metal body to earth. 
+ Fig3   
+5A   SHORT BETWEEN 
+—   LIVE WIRE AND THE 
+METAL BODY 
+METAL BODY OF   he 
+ eae   THE APPARATUS   | | 
+ I   — 
+ EARTH   L+— 
+CONTINUTY   BODY RESISTANCE CONDUCTOR   eal 
+ +   @ 
+ i   EARTH ELECTRODE —=>]   GENERAL MASS 
+ =   OF EARTH   8 
+ uw 
+ Assuming that the sum of the resistace of the maincable, 
+metal body, earth continuity conductor and the general 
+mass of earth is to the tune of 10 ohms 
+ Vv 
+ the leakage current   =   R,,.. = 240/10 = 24 amps. 
+ Fig 4 
+CEMENT   QI COVER HINGED 
+ 86.3 mm MS ROD 
+ CONCRETE   7 
+ {1:4:8)   1   |. 
+—   "|   eer 
+1250 min. 
+800 (Minimum) 
+G.LWASHER 
+| 919 mm G.LPIPE 
+38X19 mm REDUCING 
+SOCKET 
+612.7 mm GLPIPE 
+CHARCOAL 
+LAYER 
+7——   238 mm G.LPIPE 
+[7 BALT LAYER 
+ : : 3 
+E   ye 
+: 4 
+ ‘|   OF CHARCOAL OR| 
+COKE AND SALT 
+ 4   HOLE, 212 mm 
+ SECTION "Xx! 
+2500 (Minimum) 
+ NOTE: DIMENSIONS ARE IN mm UNLESS OTHERWISE SPECIFIED. 
+ PIPE EARTHING  ELN238314 
+ Pipe electrodes shall not be smaller than 38 mm internal 
+diameter, if made of galvanised iron or steel, and 100 mm 
+internal diameter if made of cast iron. 
+Electrodes shall, as far as practicable, be embedded in 
+earth below the permanent moisture level. 
+ 182   Power : Electrician (NSQF Revised - 2022) - Related Theory for Exercise 1.8.75-77', NULL, '[-0.08020002,0.033503983,0.08535186,0.029146047,-0.023622341,-0.08415908,0.066192344,0.030983323,-0.04944004,0.02559844,0.004014644,-0.04334551,0.026447833,0.066985235,0.016377918,0.0068392097,-0.005154068,0.06727066,-0.0056983796,0.035018872,0.10670902,-0.014306623,0.0233805,0.021393228,0.026578592,0.014070084,0.018524561,0.014262094,-0.016229216,-0.21810791,-0.012597946,-0.051308963,-0.060208917,0.037389938,-0.0639647,-0.0661769,-0.038989846,-0.006876696,-0.046100337,0.059377078,0.022299068,0.031514052,0.029357681,-0.04843531,0.032625373,-0.012296832,0.022689357,-0.013378174,0.119423516,-0.008226162,0.06725341,-0.015527839,0.0652387,0.04424047,0.03152823,-0.0024226902,0.0573325,0.060494654,0.07863726,0.004359236,-0.028077265,0.036719266,-0.119749896,0.020609705,0.09574231,0.023427846,0.0030239297,-0.025767053,0.08406409,-0.046117842,0.029421097,-0.009442363,0.032285538,0.04001988,-0.042564575,0.013283504,0.044318594,-0.024589878,-0.034450226,-0.022193603,-0.012807077,0.008740815,-0.05142812,-0.035856035,-0.05875333,0.019991146,0.021035664,-0.026675416,-0.025998348,0.033860732,-0.06031257,-0.008398955,-0.007840059,0.012369763,0.006412685,-0.033583295,0.034895323,0.017043624,-0.059565023,0.09734817,-0.048541296,0.07726775,0.046452418,0.05219088,0.04675001,-0.014044232,-0.0019131843,0.011456637,-0.02127215,0.009560466,0.052761532,0.02327958,-0.07367002,-0.0638413,0.054109134,0.018189097,-0.020018676,-0.006639107,-0.0679039,-0.03629593,-0.083849825,-0.0051885787,0.07413484,0.01990196,0.024704754,-0.102137886,0.06240532,0.05459866,-0.0048732227,0.018066198,0.030835008,-0.10606968,-0.042861436,-0.050980195,-0.026903724,0.048645787,0.052743874,0.06957862,0.05007462,-0.034411125,0.003474364,-0.07478466,-0.06427281,-0.114730276,-0.043697797,-0.024829274,-0.054830566,0.03070022,-0.049758088,-0.04831833,-0.018419191,0.0035167749,-0.04487885,-0.053645957,-0.02356099,0.04651346,-0.058725107,0.0502432,0.014429535,-0.022864914,0.03489797,0.03806992,-0.041487142,0.16200152,0.003628807,-0.060141202,0.0005121912,-0.048301022,0.096487574,-0.06506943,0.06491968,0.08584067,-0.01716638,-0.082320236,0.06881449,0.061674464,-0.03514054,-0.031387262,-0.029924616,0.035051063,-0.0133296065,0.091342196,-0.024803264,0.052214067,-0.0037780828,-0.0008378868,-0.038101874,-0.026921691,0.006670303,0.12811373,0.031639997,0.036468066,-0.112773515,0.033702657,-0.003282266,-0.043429736,-0.0036840634,-0.013403748,0.015104903,0.0092324335,0.03877562,-0.0072683115,-0.016649202,0.034417227,-0.018494273,0.019467948,0.015475117,-0.035418227,0.015733847,0.1245182,-0.021801064,-0.046563663,-0.01992425,-0.0027565795,-0.0016056938,-0.022868408,0.028453032,-0.009600676,0.07705776,0.003318749,0.015605051,-0.03715013,-0.0011794809,-0.20703496,-0.0219008,-0.01931457,0.0063056927,0.054815866,-0.023797605,-0.012904549,-0.033418167,0.012506922,-0.0229209,0.06431809,-0.008900966,-0.01034035,-0.034578364,0.0045896936,0.07069911,-0.034746964,-0.009823651,-0.025470344,0.0063907825,-0.026434518,0.05149106,0.031913903,-0.01243697,0.007530265,-0.027196588,0.15009496,-0.05517885,0.013272177,-0.04410384,0.019982021,0.035168648,-0.011789593,-0.064203836,-8.7309045e-06,-0.030143712,-0.017888185,0.0014758123,-0.04499561,-0.022925671,-0.0864444,0.021984292,0.019717077,-0.00024617647,-0.03489346,-0.07291244,-0.016075598,-0.033146247,-0.04022042,-0.011378515,0.072870776,-0.025204109,0.024410956,0.08924572,0.06792078,-0.053154975,-0.088674866,0.028096452,-0.07015764,-0.019872295,-0.048733745,-0.0057835765,0.013407148,-0.04789913,0.053312503,0.032781515,0.00014233569,0.0336062,0.049004454,-0.04160518,0.04510236,0.13962997,-0.0106534315,-0.0318589,-0.012027394,0.020576345,-0.044699926,-0.017004153,0.008247614,0.0106864525,-0.01451131,0.054364607,0.01448052,0.02093806,0.015938053,0.012366538,0.028431019,-0.016994955,-0.004113491,-0.0068557234,-0.008709268,-0.031863187,-0.06448952,0.016979747,-0.035168827,0.008484251,-0.25922057,-0.007175112,0.027182896,0.054780833,-0.09265534,-0.014453787,0.0022337087,-0.001332519,-0.062449608,0.04280956,-0.073618,0.0059469123,0.07121179,0.076924585,0.024305556,0.04716875,0.024571717,-0.052361894,-0.0037663293,-0.03037054,-0.0037280319,0.10292605,0.16721721,-0.020184327,0.030352216,0.056162503,0.022332795,0.03989576,0.015816137,-0.07459912,0.040328562,-0.026819272,-0.014017167,-0.01420142,0.052206818,0.017139573,0.010042891,0.015337091,0.006142194,-0.06832526,-0.04696795,0.03819736,-0.034054942,-0.05264619,0.09657354,-0.010647403,-0.08683203,-0.07662825,0.03130714,-0.052400857,0.0027894455,-0.0021992195,-0.009813505,-0.0069137868,-0.046893634,0.0077412245,-0.024775257,0.06018012,0.023716744,-0.029780805,0.036425658,0.0013079817,-0.014123548,0.0111604715,0.08846067]', NULL, '{}'::jsonb, '2026-03-01T19:26:45.711Z', '2026-03-01T21:39:32.565Z', 'trade_theory', 'Transformers and Distribution');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1439, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-7', NULL, 199, 183, 'The length of the rod and pipe electrodes shall not be less 
+than 2.5 m. 
+Except where rockis encountered, pipes androds shall be 
+driven to   a   depth of atleast 25   m.   The length   of the 
+electrodes shall be atleast 2.5 m, and the inclination not 
+more than 30°fromthe vertical. 
+Plate electrodes (Fig 5): Plate electrodes,   when made of 
+galvanised iron or steel,shall not be less than 6.3 mmin 
+thickness. Plate electrodes of copper shall be notlessthan 
+3.15 mm inthickness. Plate electrodes shall be of a size, 
+at least 60 cm by 60 cm. 
+ Figs   
+GI COVER HINGED 
+TO GI FRAME 
+ae   al   =   Agcy   sTefaTeraret 
+ WIRE MESH 
+60  i 
+ 204   CEMENT   CONCRETE 
+ty   {1:4:8) 
+[~— FUNNEL 
+leer mm Gi PIPE 
+150 {MIN} SOXG00nX6.3mm Gl 
+PLATE OR 60X60emxX3.15mm   219mm GI PIPE COPPER PLATE 
+CHARCOAL 
+NOTE: 
+DIMENSIONS ARE IN cm 
+UNLESS OTHERWISE SPECIFIED. . 
+ al a  A 15 
+ 212.7mmGl 
+PIPE 
+COPPER 
+OR GI WIRE 
+ er bd 
+ BOLT,NUT,CHECK 
+NUT AND WASHER 
+TO BE OF COPPER 
+FOR COPPER PLATE 
+AND GI FOR GI PLATE 
+ENLARGED DETAIL “A'' 
+PLATE EARTHING  ELN238315 
+ Insulation   resistance tester (Megger) 
+ Plate electrodes shall be buried such that the top edge is at 
+a depth not less than 1.5 mfromthe surface of the ground. 
+Where the resistance of one plate electrode is higher than 
+the required value, two or more plates shall be used in 
+parallel. In sucha case, the two plates shall be separated 
+from each other by not less than 8.0 m. 
+Plates shall preferably be set vertically. 
+Plate electrodes is recommended in generating stations 
+and substations. 
+Ifnecessary, plate electrodes shallhave a galvanizediron 
+water pipe buried vertically and adjacent to the electrode. 
+One end of the pipe shall be atleast 5 cm above the surface 
+of the ground, and it need not be more than 10 cm. The 
+internal diameter ofthe pipe shall be atleast 5 cm and need 
+not be more than 10 cm. The length of pipe, if   under the 
+earth''s surface, shall be such thatitshould be able toreach 
+the centre ofthe plate. Innocase, however, shall itbe more 
+than the depth of the bottom edge of   the plate. 
+Methods   of   reducing   the   resistance   of   an   earth 
+electrode to an acceptable value: 
+The earth electrode resistance is found higher in rocky or 
+sandy areas where moisture is very low. 
+The following methods are suggested to bring down the 
+earth electrode resistance to an acceptable value. 
+1   Afterinstallingthe rodor pipe or plate inearth, the earth 
+pit   (the area surrounding the rod / pipe / plate) should 
+be treated with layers of coke and commen salt to get 
+a lower   value of earth resistance. 
+2   Pouring water in the earth pit at repeated intervals 
+lowers the earth electrode resistance. 
+3   Connecting a number of earth electrodes in parallel 
+reduces the earth electrode resistance. 
+4   Soldering the earth connections or using non-ferrous 
+clamps lowers the earth electrode resistance. 
+5   Avoidingrustinthe earth electrode connections lowers 
+the earth electrode resistance. 
+Objectives: At the end of this lesson you shall be able to 
+* state the working principle of an insulation tester (Megger) 
+* explain the construction and working of megger 
+* state the uses of an insulation tester like insulation test, continuity test etc. 
+* state the safety precautions to be observed while using an insulation tester. 
+Megger 
+Itis an electrical measuring instrument generally used 
+to measure the insulation resistance of an installation/ 
+equipment etc in terms of Megaohms. 
+Necessity of megohmmeter 
+Ordinary ohmmeters   and   resistance   bridges   are   not 
+generally designed to measure extremely high values of 
+resistance. The   instrument designed for this purpose is 
+the megohmmeter. (Fig 1)   A megohmmeter is commonly 
+ known as MEGGER. 
+ Power : Electrician (NSQF Revised - 2022)   - Related Theory for Exercise 1.8.75-77   183', NULL, '[-0.046657708,0.008225358,0.020613693,0.04399692,-0.044733644,0.006406473,0.003018421,0.03547717,-0.04035412,-0.003622532,-0.052906115,-0.039679762,0.09657114,0.058646563,-0.0010191373,0.033834364,0.032506898,0.10373299,-0.04650261,-0.01820072,0.16944273,-0.01658201,-0.01905234,0.024905717,-0.00071460544,0.024023918,0.026258647,0.0010266964,-0.008040281,-0.14230731,0.033055484,-0.017045252,0.0048383516,0.0031737832,-0.056836843,-0.025945097,-0.013680768,-0.036447927,0.010660805,0.079951264,-0.0073201773,0.0069898795,0.024646567,-0.036969114,0.01756559,-0.033853237,-0.051794887,-0.034756545,0.029809114,-0.0024205716,0.03158262,0.008238289,-0.016504647,0.016692389,-0.05163887,0.02421609,0.0047984407,-0.05404171,0.07590078,-0.042381983,0.021990249,0.059355598,-0.23187026,0.03220206,0.046550993,0.020701459,-0.06823542,-0.05130869,0.013503889,0.0019246711,0.0044372343,-0.005780221,0.018903702,0.01986447,-0.06351539,-0.026142418,-0.023928335,-0.010026977,-0.006950514,0.0063704825,-0.030558549,0.030280929,-0.033151664,-0.019502144,-0.031404722,-0.013210641,0.024181874,0.0051336386,-0.011842345,0.03843269,0.030751606,-0.045938153,-0.02846244,0.017584452,-0.035667576,-0.06366739,0.013235846,0.047876623,-0.10971329,0.092305504,-0.00540629,0.06549652,-0.026605956,0.032003623,0.11604559,0.07857213,-0.086432286,-0.03627424,-0.014486838,0.02255079,0.03921685,-0.021086238,-0.069710985,-0.02683918,-0.012143096,-0.027668545,0.004224783,0.045447122,-0.0801344,-0.008781688,-0.08703698,-0.0025903047,0.0040415414,0.024465911,0.049166244,-0.0427328,0.036396053,0.017245384,-0.03102914,0.05117618,-0.022557208,-0.015841277,-0.049668398,0.029338658,0.010782003,0.011899675,0.06913782,-0.038994014,0.0039022516,-0.024766158,-0.045794316,-0.086690694,-0.056404807,-0.040866032,0.045987204,0.04160988,-0.0048684333,0.05238594,-0.046090238,-0.07214199,-0.07290173,0.05792274,-0.020594457,-0.02386639,0.04903336,-0.0014518886,-0.053187016,0.06915594,-0.0592816,0.037297655,-0.019451972,-0.00011266715,-0.014830774,0.090460174,0.07058296,-0.10236711,-0.055324443,-0.0051833154,0.08518409,-0.04397665,0.0032855126,0.03774544,0.012578992,-0.019199012,0.03511342,-0.011568404,-0.0314511,0.0021070885,-0.009798113,0.050380934,0.042031445,0.053803608,-0.008601373,-0.043073982,0.0011482295,-0.004899913,-0.0015463593,-0.051265713,-0.030698095,0.10747701,-0.05029499,0.049996488,0.007931308,0.057525523,0.038298395,-0.06528945,0.0028206967,-0.07383559,-0.026423061,0.029205302,0.08124069,-0.038860258,0.0051067052,0.07360766,0.0056477147,-0.005056963,0.060563084,-0.03556996,0.023436874,0.09921855,-0.008703898,-0.05827547,0.00701896,-0.020430459,-0.040473156,0.014718992,-0.012494868,0.0515259,0.020827202,-0.0025259224,-0.014604475,-0.032953277,-0.053160634,-0.20274705,-0.0009793264,0.017721925,0.034532268,0.08930894,-0.02461291,0.067183904,-0.013735377,-0.073168896,-0.03943944,0.07891337,0.0011458384,-0.033737574,-0.06808451,-0.0017603111,0.05803036,-0.026098965,0.0018017958,0.044159755,0.016440757,0.009542781,0.06903665,-0.029008292,-0.026318625,0.023171121,-0.027076446,0.16430776,-0.050184403,-0.03228955,-0.043262627,0.031194087,0.01628881,0.0858757,-0.04397699,0.077782966,0.03561873,-0.058768924,-0.01105812,-0.0504343,-0.045903824,-0.073620915,0.00873662,0.029505009,-0.07196343,0.0041797794,-0.033222076,-0.04440498,0.0038457883,-5.5738215e-05,-0.045226533,0.07349305,0.011746544,0.069793314,-0.026745567,0.09620013,-0.028805422,-0.09828533,0.02497158,-0.044644114,-0.06364638,-0.027311653,-0.058041595,-0.014536905,-0.048866685,-0.030544965,0.09234727,-0.006392979,0.08581013,0.017072272,0.01200796,0.09275456,0.07695097,0.0014759104,0.039753336,0.055573784,-0.021334818,-0.020324811,0.028839963,0.022725048,0.045705058,-0.022121113,-0.010932718,0.04348895,0.023199288,0.053328197,0.05741489,-0.030360756,-0.033737905,0.10471964,0.044915058,0.025149755,-0.039395217,-0.11636357,0.018940689,0.022246081,-0.028888334,-0.24615481,0.022540933,0.07543163,-0.03252879,-0.06714763,-0.02027678,0.09912078,0.019333214,-0.0380392,0.039985713,-0.05043591,0.006076671,-0.0065686204,0.042373296,-0.07178612,0.073469654,0.05187159,-0.06450021,0.029567493,-0.00774242,0.038011428,0.070378885,0.1279635,-0.06315198,-0.00926346,-0.023803698,-0.010616282,-0.0027109543,-0.008596795,-0.0138233,-0.0007918276,-0.005758681,0.070501015,-0.025577646,0.059499983,0.102612175,-0.0042578354,-0.052860856,0.023654206,0.015584122,-0.05545773,0.010232358,-0.04669437,0.010130413,0.084445894,-0.052558627,-0.044316947,-0.07138442,0.04409817,0.0005538459,0.0025210269,0.049086653,-0.006225369,0.030934202,0.02014981,0.052596655,-0.0053703412,-0.038388267,0.040256962,-0.04738915,0.037897687,-0.052046634,-0.01853161,0.015172104,0.0250194]', NULL, '{}'::jsonb, '2026-03-01T19:26:46.062Z', '2026-03-01T21:39:32.565Z', 'trade_theory', 'Transformers and Distribution');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1440, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-7', NULL, 200, 184, 'Fig 1 
+Construction 
+ The megonmmeter consists of (1) a small DC generator, 
+(2) a meter calibrated to measure high resistance, and (3) 
+a cranking system. (Fig 2) 
+ Fig 2   
+— INDICATING   INSTRUMENT 
+ INF   c~ 
+=   | 
+ o 
+i   M 
+GENERATOR 
+ ELNZSez2 
+ A generator commonly called a magneto is often designed 
+to produce various voltages. The output may be as low as 
+500 volts or as high as 1 megavolt. The current supplied 
+by the megahmmeter is in the order of 5 to 10 milliamperes. 
+The   meter scale   is   calibrated:   kilo-chms   (K ©)   and 
+ megohms(MQ). 
+ Working   principle 
+The   permanent   magnets supply the flux for both the 
+generator and the metering device. The voltage coils are 
+connected in series across the generator terminals. The 
+current coil is arranged so that it will be in series with the 
+resistance to be measured. The unknown resistance is 
+connected between the terminals L and E. 
+When the armature of the magnet is rotated, an emf is 
+produced. This causes the current to flow through the 
+current coil   and the   resistance being   measured.   The 
+amount of current   is determined   by the value of the 
+resistance and the output voltage of the generator. 
+The torque exerted on the meter movement is proportional 
+to the value of current flowing through the current coil. 
+The current through the current coil, which is under the 
+influence of the permanent magnet, develops a clockwise 
+torque. The flux produced by the voltage coils reacts with 
+the main field flux, and the voltage coils develop a counter- 
+clockwise torque. 
+Fora given armature speed, the current through the voltage 
+coils is constant, andthe strength of the current coil varies 
+inversely with the value of resistance being measured. As 
+the voltage coils rotate counter-clockwise, they move away 
+from the iron core and produce less torque. 
+A point is reached for each value of resistance at which 
+the torques of the current and voltage coils   balance, 
+providing an accurate measurement of the resistance. 
+Since the instrument does not have a controlling torque to 
+ bring the pointer to zero, when the meter is notin use, the 
+ position of the pointer may be anywhere on the scale. 
+The speed at which the armature rotates does not affect 
+the accuracy of the meter, because the current through 
+both the circuits changes to the same extent for a given 
+change in voltage. However, it is recommended to rotate 
+the handle   at   the   slip speed   to obtain steady voltage. 
+Because megohmmeters are designed to measure very 
+high values of resistance, they are frequently used for 
+insulation tests. 
+ Connection for measurement 
+ Vvhen conducting insulation resistance test between line 
+and earth, the terminal ‘E’ of the insulation tester should 
+be connected to the earth conductor. 
+Precautions 
+*   Amegohmmeter should not be used on alive system. 
+*   Thehandle ofthe   megohmmeter should be rotated only 
+ina clockwise direction or as specified.. 
+ «   Rotate the handle at slip speed. 
+ Uses   of   a megohmmeter 
+*   Checking the insulation resistance 
+«   Checking the continuity. 
+Specification of Megger - 
+Nowadays electronically operated, Meggers are available, 
+called as push button type for general application and for 
+industrial application motorised megger are also available. 
+Hence a megger is basically specified based on the voltage 
+generated by it . 
+ Example: 250 V, 500V, 1KV, 2.5KV, 5KV, 
+ 184   Power : Electrician (NSQF Revised - 2022) - Related Theory for Exercise 1.8.75-77', NULL, '[-0.07232851,0.057502702,-0.0007993521,-0.018150397,-0.06596948,0.010909507,0.023289206,-0.023718083,-0.028494783,-0.020669246,-0.0037632002,-0.08262406,0.022874175,-0.0045109685,0.036415815,-0.010881123,-0.051549196,0.067458324,0.00023645746,0.042666506,0.07759341,-0.05075364,-0.0147049455,0.037237737,0.0143964505,0.021593546,-0.003246751,0.09224301,-0.042096034,-0.22471108,-0.009524936,-0.097372934,0.049268734,-0.0011336135,-0.037657738,0.0017769276,-0.005386407,-0.022456104,-0.016456021,0.060719643,-0.02231612,0.041854177,0.04958783,-0.015261914,-0.0011785583,-0.015690096,0.0037082192,-0.054515153,0.049540523,-0.02344158,0.04616175,-0.060949154,0.057872977,0.040411457,0.016610434,0.088217914,0.01670005,3.2126132e-05,-0.0018275036,0.023500593,-0.015594085,0.03286735,-0.2136177,0.059543878,0.039146785,0.00094892515,-0.022314295,-0.06414151,0.031084921,0.03574618,0.0078369165,-0.010263278,-0.03854816,-0.014248648,0.020515917,-0.020697255,-0.045431606,-0.0047853678,-0.032374278,0.036391836,-0.06990997,-0.0042626276,-0.03519986,-0.036705755,0.06549784,0.044872783,0.06684661,0.003368587,0.041741714,0.09111424,-0.10961915,-0.006548842,-0.06687437,0.04539475,-0.023677675,-0.020725306,-0.022716695,0.11057059,-0.04134492,0.11594021,-0.0048993737,0.040104263,0.039176,0.012491974,0.02946531,-0.014070941,-0.021185316,0.021715498,0.0127073685,0.0018158769,-0.04163681,-0.034190122,-0.040220127,-0.080369934,0.054768655,-0.030178746,-0.009033245,0.019246897,-0.040807977,0.064742245,-0.0064013023,0.04414131,0.011388204,0.014856154,0.089629546,-0.0317354,-0.028625255,0.0860276,0.020325014,-0.03432395,-0.016952148,-0.01999036,-0.116062135,-0.05277296,-0.031202417,0.014931214,-0.004580872,-0.045422807,0.080331594,0.042398382,-0.01926382,-0.044262063,-0.03994471,-0.07192648,-0.022218978,0.005951794,-0.028133707,0.04588108,-0.037366204,0.005146788,-0.05542936,0.027437268,-0.015028731,-0.082458146,0.01467233,0.08308129,-0.06527489,0.017751735,0.0063645793,-0.03376625,-0.035197277,0.002156346,-0.05760185,0.08656605,0.0025848798,-0.077069424,-0.04456425,0.043606516,-0.00021398619,-0.05356895,0.029370988,0.07076657,-0.013552787,-0.07173306,0.07751101,-0.030424286,-0.0012717912,-0.00872606,-0.035754956,0.046464685,0.04186626,-0.019848226,0.0039013424,0.039658085,0.037994657,-0.034551747,-0.012832412,-0.035393674,-0.039350726,0.052827712,0.061485153,0.084083155,0.028039249,-0.026949603,-0.032984752,-0.10662048,-0.004054916,0.024366567,0.039300732,-0.017445281,-0.01791686,0.025629783,0.06627666,0.07716962,-0.023665784,0.064742565,0.037101567,0.013026717,0.05481874,0.12797442,-0.013436356,-0.029651737,0.060211334,0.0026995598,-0.047810934,0.015508985,0.0053790896,0.00020440145,0.043145344,0.0036118464,-0.025969695,0.008548537,-0.06605534,-0.21809521,-0.0059396946,-0.045612816,0.018009547,0.040062357,-0.011930981,0.033738475,-0.007589381,0.024237514,-0.06936103,0.08739609,-0.023816893,-0.0447087,-0.027977558,-0.018053932,0.051616173,-0.012334235,0.003743038,-0.019956285,-0.00017298204,0.02726312,0.06735371,-0.015904842,-0.0066534844,0.010024107,-0.026582325,0.06632977,0.020559877,0.0020957086,-0.054873638,0.06902898,0.014065716,0.0495646,0.045912106,0.0154178105,-0.043376964,-0.049078576,0.024824202,-0.007455472,-0.008711173,-0.060284548,0.04913969,0.044460077,0.03806046,-0.03863099,-0.027266605,-0.051232833,0.049617846,-0.065564126,0.048019532,0.022115849,-0.023934498,0.024746371,-0.07547581,0.04730793,-0.056323264,-0.075871855,-0.025678407,-0.040605724,-0.00032035523,0.016201364,0.006010864,0.014579778,-0.060745284,-0.06205242,0.020961909,-0.0066737975,0.038277633,0.08591142,-0.013953608,0.011129895,0.1461244,0.014836091,0.016528394,0.06431028,-0.0161999,0.025919883,-0.032406047,-0.014193808,0.016521351,0.00045417028,0.11401172,0.011190303,0.0056658126,-0.011985228,-0.027681539,0.042674854,-0.0028870255,-0.022268081,-0.06621598,-0.009655894,0.015750887,0.051041916,0.038187373,-0.056811683,0.036593083,-0.26575983,0.045584355,0.020736663,-0.012074378,-0.013435689,0.004783793,0.015619316,-0.031836934,-0.013997313,0.025707185,-0.042839523,0.072291166,0.028599935,0.034520663,0.06770909,0.05307546,-0.027143592,-0.042395636,0.04738967,-0.08508684,-0.000117375435,-0.019879296,0.20464207,-0.004659805,-0.045819823,0.020667125,-0.03857209,-0.008033006,0.06642091,-0.08378106,0.036022045,-0.006922854,0.029243045,-0.035745256,0.07463122,0.04223352,-0.024925288,-0.040982895,0.04639199,-0.0019147407,-0.014998398,0.021398121,-0.04320324,-0.056971777,0.15702166,-0.06472502,-0.04560663,-0.064663894,-0.033296995,-0.025973454,-0.049330816,0.0037156371,0.049191657,0.0064408183,0.04706988,0.027474603,-0.028653832,0.013021603,-0.0013336267,0.019043984,0.006883653,-0.013044239,0.02334556,0.00024900696,0.03398728]', NULL, '{}'::jsonb, '2026-03-01T19:26:46.380Z', '2026-03-01T21:39:32.565Z', 'trade_theory', 'Transformers and Distribution');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1441, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-7', NULL, 201, 185, 'Earth   resistance   tester 
+ Objectives: At the end of this lesson you shall be able to 
+* state the precautions to be followed while selecting a site for the earth electrode 
+ ¢ define earth resistance tester 
+ * explain the principle constructon and working of an earth resistance tester 
+* explain the method of measuring the earth resistance 
+* state the IE rules pertaining to earthing. 
+Precautions to be followed while selecting the site 
+for earth electrode: However, even the earth electrode, 
+either rod or plate type, implanted properly in the earth 
+according to the specified recommendations   is found to 
+have high resistance resulting in failure of safety. The earth 
+electrode resistance could be kept at a reasonable level. 
+Necessity of measuring of earth electrode resistance: 
+The only way to ensure the acceptable value of earth 
+electrode resistance is to measure the resistance with the 
+use of an earth resistance tester. 
+Earth   resistance tester:   It is an electrical   measuring 
+instrument used to measure the resistance between any 
+two points of the earth. It is also called as earth tester. 
+Principle: The earth tester works onthe principle of the fall 
+of potential method. 
+In this method the two auxiliary electrodes B and C are 
+placed at a straight line (Fig 1). 
+ Fig 1 
+ 6331 
+ FALL OF POTENTIAL METHOD ELN23 
+ Analternating currentof I... magnitude is passed through 
+the electrode A to the electrode C via the earth and the 
+potential across electrodes A and B is measured. 
+The resistance of electrodes BandC does notinfluence the 
+ measurement result. 
+ This is achieved by placing the electrode C   at a sufficient 
+distance from A so that the resistance areas of Aand C 
+are quite independent. A distance of above 15 metres 
+between   electrode A and C   is regarded as sufficient 
+distance. 
+Construction and working of earth tester : The earth 
+tester essentially consists of a hand drive generator which 
+supplies the testing currentanda direct reading ohmmeter 
+ (Fig 2). 
+ The ohmmeter section of this instrument consists of two 
+coils (potential and current coils) kept at 90° to each other 
+and mounted on the same spindle. The pointer is attached 
+tothe spindle. The current coil carries a current proportional 
+to the current in the test circuit whereas the potential coil 
+carries a current proportional to the potential across the 
+resistance under test. 
+ Fig2 
+ N   N s HAND DRIVEN 
+CURRENT   \   DC GENERATOR 
+ REVERSER   N 
+ i ia   SYNCHRONOUS 
+ |   Ne aL,   |“-ROTARY RECTIFIER 
+te   Fi 
+—s   a 
+era 
+PRESSURE   Ld 
+ cot | 
+ CURRENT 
+COIL   
+i 
+ Z 
+ PLATE ELEGTRODE 
+UNDER TEST 
+ ELN2aBa32  EARTH TESTER 
+ Thus the current coil ofthe instrument acts as anammeter 
+inthe fall of potential method andthe pressure coilacts as 
+the voltmeter. Since the deflection of the onmmeter needle 
+is proportionalto the ratio of the currentin the two coils, the 
+meter gives resistance readings directly. 
+When DC is used in electrode resistance measurement 
+ the effectof electrolyticemf interferes with the measurement 
+ andthe reading may go wrong. Toavoidthis, the supply to 
+the electrodes should be AC. 
+To facilitate this   the DC produced by the the hand generator 
+is changed to AC through a current reverser.   After the 
+alternating current passes through the electrodes, the 
+measurement should   be done by an ohmmeter which 
+requires DC supply. 
+Tochangethe alternating voltage drop outside the instrument 
+to direct voltage drop inside, a synchronous rotary rectifier 
+is used (Fig 2) 
+Sometimes the meter needle vibrates during measurement 
+due to the fact that strong alternating currents of the same 
+frequency   as   the   generated   frequency   enters the 
+measuring circuit. 
+In such cases the handle rotating speed of the instrument 
+may be either increased or decreased. In general these 
+instruments are designed such that the readings are not 
+affected by strong currents or by electrolytic emfs. 
+Power : Electrician (NSQF Revised - 2022)   - Related Theory for Exercise 1.8.75-77   185', NULL, '[-0.05807858,0.014516795,-0.011279127,0.07192717,-0.014958446,-0.04626395,0.082492046,0.0040737605,-0.047237106,0.049315583,-0.018794145,-0.06391623,0.013822085,0.035887692,-0.028150912,-0.037025087,-0.0806403,0.062267717,0.02161386,0.02833014,0.10153636,-0.0057362067,-0.009405208,0.001323966,0.025922498,0.048866842,-0.00567529,-0.0060825087,-0.059617553,-0.2118557,0.0058668014,-0.05343784,-0.009198034,0.010094361,-0.12834306,-0.03068333,-0.0074503664,-0.04146729,-0.05451972,0.044359855,0.021371407,-0.00038260882,0.09337924,0.015573772,0.013232757,-0.005592481,-0.0060755243,-0.025328489,0.01780739,-0.009598709,0.11194595,-0.057861302,0.039334644,-0.023276515,0.03017506,0.030376794,0.0153756505,0.060149595,0.09505759,-0.00012563408,0.010554722,-0.0013893519,-0.21042527,0.02065742,0.00789387,0.019385492,-0.04558151,-0.022718506,0.078835174,-0.023556685,0.05955976,0.021198293,-0.023609087,0.0745515,-0.02172998,-0.004559497,-0.06654424,-0.04673581,-0.030628957,-0.051482018,0.004715228,0.048789963,-0.021227963,0.024362978,-0.023207624,-0.0136846835,0.047641333,-0.016060311,0.083909854,0.056412913,0.018302318,-0.0078188535,-0.04132744,0.026547154,0.020793486,-0.04452905,0.006215521,0.04544949,-0.0854143,0.12944241,-0.07882378,0.058573503,0.034032453,0.048935667,0.022457208,-0.06952164,-0.008180943,-0.03358194,-0.020086013,0.045355625,0.021783276,-0.058590934,-0.09559085,-0.06898127,-0.012195983,-0.043937,-0.036474954,0.019565478,-0.030712614,0.019992772,-0.064983495,0.022176815,0.015909342,-0.03594251,0.06954936,-0.057579447,0.0697697,0.018446485,0.0088486355,0.0121441465,0.012837552,-0.04806081,-0.11973628,0.026294297,0.0057984656,0.020640846,0.01671024,0.03549734,0.019618534,-0.0028694763,-0.011590989,-0.051486347,-0.03740611,-0.069927834,-0.027402015,-0.008067404,0.008933075,0.00013834878,-0.03722773,-0.062216528,-0.014228019,-0.0011522586,-0.02663884,-0.07138051,0.055698205,0.112577155,-0.027176667,-0.029161332,-0.0010729755,0.019725775,-0.011811111,0.027069902,-0.04762815,0.117686115,0.026072355,-0.084395595,-0.0538041,0.0006147055,0.026135124,-0.022218771,0.07289482,0.07405068,-0.03718284,-0.07269259,0.055635992,0.00940879,0.007807081,-0.013184396,0.013437896,0.05794513,0.010188343,-0.011914409,-0.035081666,0.06066073,0.025249641,0.02195304,-0.070179686,-0.04682064,-0.0147740785,0.09784787,-0.0033213382,0.03750196,-0.05675227,0.06847733,0.014312558,0.0025980351,-0.0024059021,-0.015836583,0.038473517,0.0041089263,0.072752275,0.016168825,0.04576229,0.049687866,0.0060789753,0.0776966,0.09849365,-0.04928928,0.04594858,0.0979152,-0.032357395,-0.014817415,0.008155628,-0.005776716,-0.03217254,-0.0003680544,0.025426352,-0.03341412,0.05592198,0.016117856,0.009337736,-0.06104368,-0.016538016,-0.20415026,-0.026144631,-0.015734984,0.030631438,0.08272194,0.0039800806,0.05954975,-0.021596922,0.025683837,-0.05902889,0.114736445,-0.032653965,-0.0006635974,-0.019373298,-0.0069864434,0.012356835,-0.030054782,0.01940522,-0.0031615642,0.04168185,0.04668704,0.050190672,0.005485767,0.014140543,0.031924345,-0.054420933,0.10862095,-0.0009181747,0.04808167,-0.01811901,0.047580943,0.02530196,0.04151279,-0.06971468,0.010459599,-0.035445962,-0.04090199,0.0126304645,-0.017675124,-0.069738485,-0.021530632,0.037054867,-0.005038334,-0.042746834,-0.03794059,-0.009457783,-0.0036316975,0.0024071431,-0.04063429,-0.0015968643,0.09857304,-0.019262936,-0.0067697046,0.008065631,0.04149808,-0.040845186,-0.06702923,0.026254682,-0.033194225,-0.06513819,-0.021443874,0.023968177,0.012346359,-0.023532677,0.024152879,0.082605585,0.013495329,0.039542798,0.037387148,-0.028874915,0.08979165,0.083276354,-0.032079414,0.04962594,-0.00740675,-0.0023102574,0.018234905,-0.033893816,-0.00088506064,-0.013121034,-0.019802809,-0.013924284,0.015546578,-0.04396273,0.030345794,-0.005686263,0.038265783,0.014229158,0.04199448,-0.001416384,0.0001897466,-0.015937231,-0.062111687,-0.051028255,0.016563969,-0.004214856,-0.24730001,-0.002539241,0.00034130475,0.090224884,-0.085603535,0.008581478,0.032330398,0.0005756398,0.008851481,-0.010464562,-0.07687256,0.0459403,0.037490048,0.04831345,-0.009221462,0.066331185,0.010943221,-0.019610258,0.019358575,-0.08021662,-0.0026216933,0.06023473,0.18484206,-0.03448436,0.03513713,0.003841175,0.04077703,-0.01530474,0.072063535,-0.11189121,0.009950857,-0.04336423,0.0047999574,-0.06085561,0.03824201,0.050983664,0.0057767625,-0.042223327,0.044136446,-0.0491703,0.03931186,-0.011057891,-0.00763773,-0.07415907,0.1182065,-0.022678223,-0.054332346,-0.08165039,-0.025154084,-0.058414336,0.0045424323,-0.05823405,-0.001999659,-0.03997392,-0.054251168,0.033788696,-0.0181045,0.045285378,-0.031686757,-0.060017608,0.05673024,-0.035810746,0.041624475,-0.0054460107,0.082433105]', NULL, '{}'::jsonb, '2026-03-01T19:26:46.713Z', '2026-03-01T21:39:32.565Z', 'trade_theory', 'Transformers and Distribution');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1442, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-7', NULL, 202, 186, 'Method of earth resistance measurement:To measure 
+the   earth   electrode   resistance,   the   earth   electrode   is 
+preferably disconnected from the installation. Then two 
+spikes (the current and pressure spikes) are to be driven 
+into the ground ata   straight line at a distance of 25 metres 
+and 12.5   metres respectively from the main electrode 
+under test. The pressure and current spikes andthe main 
+electrode need to be connected to the instrument ( Fig 1} 
+The earth tester has to be placed horizontally andis rotated 
+at a rated speed (normally 160 r.p.m.). The resistance of 
+the electrode under test is directly read on the calibrated 
+dial.   To ensure correct measurement,   the   spikes are 
+placed at a different position around the electrode under 
+test, keeping the distance the same as inthe first reading. 
+The average of these readings isthe earthresistance ofthe 
+electrode. 
+.E. Rules pertaining to earthing 
+Earthing shall generally be carried out in accordance with 
+the   requirements of   Indian   Electricity Rules   1956,   as 
+amended fromtime totime, andthe relevant regulations of 
+the electricity supply authority concerned. The following 
+Indian Electricity Rules are particularly applicable to both 
+systemand equipmentearthing: 32,51 ,61,62,67,69 88(2) 
+and 90. 
+Extracts from Indian Electricity Rules,   1956 
+Rule no. 32:   Identification   of   earthed   and   earthed 
+neutral   conductors   and   position   of 
+switches and cut-outs therein. 
+Where the conductors include an earthed conductor ofa 
+two-wire systemor an earthed neutral conductor ofa multi- 
+wire system or a conductor which   is to   be connected 
+thereto, the following conditions shall be compiled with. 
+1   Anindication of a permanent nature shall be provided by 
+the owner of the earthed or earthed neutral conductor, 
+or the conductor which is to be connected thereto, to 
+enable such a conductor to be distinguished from any 
+live conductor. Such indication shall be provided: 
+a   where the earthed or earthed neutral conductor is 
+the property of the supplier, at or near the point of 
+commencement of supply 
+b   where a conductor forming part of a consumer''s 
+system isto be connected tothe supplier''s earthed 
+or earthed neutral conductor at the point   where 
+such connection is to be made. 
+2   No cut-out, link or switch other than a linked-switch 
+arranged to operate simultaneously on the earthed or 
+earthed neutral conductor and   live conductors shall be 
+inserted or remain inserted in any earthed or earthed 
+neutral conductor of atwo-wire system or inany earthed 
+or earthed neutral conductor of a multi-wire system or 
+in any conductor connected thereto with the following 
+exceptions: 
+a   alink for testing purposes or 
+b   aswitchforuse in controlling a generator or trans 
+former. 
+Ruleno.51:   Provisions applicable to medium, high 
+or extra high voltage installations 
+All metal work enclosing, supporting or associated withthe 
+installation, otherthanthatcesignedto serve asta conductor, 
+shall,   if   considered   necessary   by   the   Inspector,   be 
+connected with earth. 
+ Rule no.61: Connection with earth 
+ 1   The following provisions shall apply to the connection 
+with earthofsystems at low voltage in cases where the 
+voltage between phases or outers normally exceeds 
+125 volts and of systems at medium voltage. 
+a   The neutral conductor of a three-phase four-wire 
+system, and the middle conductor of a two-phase 
+three-wire system shall be earthed by notless than 
+two separate and distinct connections with earth 
+both atthe generating station and atthe substation. 
+ It may also be earthed at one or more points along 
+ the distribution system or service line in addition to 
+any connection with earth which   may be at the 
+consumer''s premises. 
+b   Inthe case of a system comprising electric sypply 
+lines having concentric cables, the external conductor 
+of suchcables shall be earthed by two separate and 
+distinct connections with earth. 
+c¢   The connection with earth may include a link by 
+means of which the connection may be temporarily 
+interrupted for the purpose of testing or for locating 
+a fault. 
+d   Inthe case of analternating current system, there 
+shall not be inserted inthe connection with earth any 
+impedance (other than that required solely for the 
+operation of switchgear or instrumets), cut-out or 
+circuit-breaker,   and the result of a test made to 
+ascertainwhetherthe current (ifany) passingthrough 
+the connection with earth is normal, shall be duly 
+recorded by the supplier. 
+e   Noperson shall make connection with earth by the 
+aid of, nor shall keep it in contact with, any water 
+main not belonging to him except with the consent 
+of the owner thereof and of the inspector. 
+f   Alternating current systems which are connected 
+with   earth   as   aforesaid   may   be   electrically 
+interconnected. Providedthat eachconnection with 
+earthis bonded to the metal sheathing and metallic 
+armouring   (if   any)   of   the   electric   supply   lines 
+concerned. 
+2   Theframeofevery generator, stationary motor, andso 
+far as is practicable, portable motor, and the metallic 
+parts (not intended as conductors) of all transformers 
+and any otherapparatus used for regulationor controlling 
+energy and all   medium voltage energy consuming 
+apparatus shall be earthed by the owner by two separate 
+and distinct connections with earth. 
+ 186   Power : Electrician (NSQF Revised - 2022) - Related Theory for Exercise 1.8.75-77', NULL, '[-0.044976696,0.012710762,0.004431939,0.013981004,-0.00050160947,-0.023412831,0.0747416,-0.00044920275,-0.0076718833,0.019860728,-0.023462527,-0.11217456,0.027879175,0.035666715,-0.018056136,0.014829139,-0.03878311,0.06399069,0.015890464,0.04170709,0.11831462,-0.020161968,0.009743547,-0.0252046,0.05305323,0.007008906,-0.0012919281,-0.040621333,-0.05697401,-0.2046313,0.027934479,-0.038779628,0.013293056,0.0046750195,-0.07544572,-0.0009023566,-0.025665615,-0.008680836,-0.041217353,0.04486363,-0.034008466,0.008544818,0.075807475,-0.051698156,-0.00083629345,-0.036739144,-0.046100095,-0.020937104,0.009743926,0.0022399807,0.092327185,-0.00026036694,0.03759535,-0.053477973,0.054381654,0.051322896,0.037979063,0.038708605,0.14332406,-0.016126238,-0.018307552,0.061392933,-0.22225839,-0.025465222,0.05009775,-0.03159583,-0.009055078,0.017058777,0.05606387,0.0011321212,0.029023856,0.03150379,-0.034480263,0.03920443,-0.019877786,0.015894087,-0.053439043,0.013135487,-0.03529709,-0.048882246,0.0035097788,0.04344402,-0.015371928,0.0070776963,-0.00916104,0.046601433,0.082571454,-0.0195336,0.06696699,0.051220484,0.022305526,0.015927624,-0.029180035,0.023253066,-0.055044446,-0.0715758,-0.033906296,-0.005635867,-0.035873484,0.13044082,-0.06285106,0.0500449,0.0019346487,0.083678275,0.008110419,-0.058211334,-0.013959528,-0.044001143,-0.0002863542,0.025730263,0.03928489,-0.055049267,-0.037698988,-0.059240468,-0.009021013,-0.022912076,-0.015053949,0.033869173,-0.0053858142,-0.0140460245,-0.07305799,0.027253473,0.018114865,-0.03201517,0.059453707,-0.019205326,0.058618583,0.008214591,0.013019671,0.051484823,0.021783782,-0.0740785,-0.1212501,0.0013686205,0.015503146,0.019261453,0.07501396,0.035474278,0.0730909,0.006350913,0.006074729,-0.07375661,0.017432882,-0.051726293,0.007378208,-0.008692737,-0.05405413,-0.01603374,-0.03763916,-0.09588657,0.020724263,-0.020265868,-0.040829647,-0.11119867,0.05246439,0.037799455,-0.018084887,-0.0030046736,-0.008106574,0.05263057,-0.0034359442,0.047365773,-0.043309215,0.12329208,0.08670962,-0.050130032,-0.03085801,-0.008018924,0.02594494,-0.04309077,0.087459505,0.061192807,-0.029584287,-0.04712191,0.0646792,-0.005903157,-0.014713654,-0.071581386,-0.025862254,0.038831413,0.019737404,0.033675183,-0.027875565,0.06379004,0.02060605,0.00045977565,-0.026438879,-0.037773404,-0.02347792,0.119173706,-0.038222264,-0.0088416,-0.09054313,0.04914936,0.002553132,-0.027555324,-4.2529307e-05,-0.07569918,0.047436357,-0.013707005,0.05073485,0.0045948084,-0.002707794,0.0047438266,0.029979277,0.08377732,0.07603607,-0.048626423,0.051578067,0.12064922,-0.029865384,-0.034944095,0.06632801,-0.008447838,-0.005497631,-0.012774806,0.030226827,0.009669442,0.04071495,0.06778251,-0.02848346,-0.055974197,0.01239781,-0.18880285,-0.04000531,-0.033570632,-0.02585688,0.115833126,-0.014173887,0.043301355,-0.05814816,0.019104045,-0.007878987,0.119826436,0.022988478,0.03255497,0.010928733,0.03541501,0.050328918,-0.017954694,0.056626067,0.0026864402,0.031233013,0.04659424,0.0611268,-0.0002475009,0.0013489461,0.013560039,-0.039655454,0.12570468,-0.056130808,0.029063812,-0.053274326,-0.026529636,0.050603915,0.005620063,-0.09890647,0.026394632,-0.02068746,-0.050662067,-0.0003990918,-0.015477663,-0.054288384,-0.04038238,0.020226657,0.06492686,-0.03709888,-0.03548139,-0.031019889,-0.00985382,-0.07279862,-0.0447505,-0.022469148,0.03715822,-0.06269658,-0.026471384,0.023050899,0.060058225,-0.041532688,-0.0825652,0.035553176,-0.030372767,-0.045357253,-0.043184627,0.03770186,0.0069377213,-0.0628373,0.008820122,0.0651872,0.031431705,0.04009149,0.03640217,-0.0031325384,0.054170642,0.06854754,-0.024125524,0.011661466,-0.045433275,-0.0001945909,0.010953974,-0.0026201424,0.033080675,0.0049106586,-0.03620951,-0.0049409717,0.022818862,-0.002567594,-0.036185324,0.001913099,0.052268896,-0.014830295,0.054427743,0.005039647,-0.01028315,-0.04097458,-0.054891746,-0.059105325,0.014105333,-0.012702895,-0.23047432,0.013696246,-0.01547419,0.05839288,-0.09619786,0.0037448502,0.071916655,0.0017232808,-0.029780796,-0.020374533,-0.10405692,0.04512201,0.06014869,0.0137820365,0.048629586,0.073775455,-0.015162422,-0.009572577,0.033613894,-0.06364895,0.03840004,0.0672177,0.1618799,0.021842232,0.011729383,0.027046874,0.024243502,-0.023533266,0.08129903,-0.11971766,0.01628782,-0.0389624,0.003785833,-0.015360885,0.050161406,0.05451582,0.029261457,-0.014959062,-0.0025527673,-0.01793061,-0.0016948902,0.032329656,-0.037846345,-0.060181785,0.106911354,-0.010750354,-0.031231727,-0.06051996,-0.024935659,-0.0374164,-0.013039093,0.0016469212,0.024892427,-0.022724519,-0.0294435,0.010583536,-0.0057972306,-0.009660941,-0.049340904,-0.023174075,0.0046424433,-0.07480959,-0.019238483,-0.046936788,0.06334431]', NULL, '{}'::jsonb, '2026-03-01T19:26:47.030Z', '2026-03-01T21:39:32.565Z', 'trade_theory', 'Transformers and Distribution');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1443, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-7', NULL, 203, 187, '3   All metal casings or metallic coverings contained or 
+protecting any electric supply-line or apparatus shall be 
+connected   with   earth   and   shall   be   so joined   and 
+connected across   all junction-boxes and other openings 
+astomake good mechanical and electrical connection 
+throughout their whole length: 
+Provided that where the supply is at low voltage, this 
+sub-rule shall not apply to isolated wall tubes or to 
+brackets, electroliers, switches, ceiling fans or other 
+fittings (other than portable hand lamps and portable 
+and transportable apparatus) unless provided with earth 
+terminal. 
+Provided further thatwhere the supply is at low voltage 
+andwhere the installations are either new or renovated, 
+all plug sockets shall be of the three-pintype andthe 
+third pin shall be permanently and efficiently earthed. 
+ 4   Allearthingsystems shall, before electric supply lines 
+ or apparatus are energised,   be tested for electrical 
+resistance to ensure efficient earthing. 
+5   Allearthing systems belonging to the supplier shall, in 
+addition, be testedfor resistance onadry day duringthe 
+dry season not less than once every two years. 
+6   Arecordofevery earth test mace andthe resultthereof 
+shall be kept by the supplierfora period ofnotlessthan 
+two years after the day of testing and shall be available 
+to the Inspector when required. 
+Rule no.62: Systems at medium voltage 
+Where a medium voltage supply system is employed, the 
+voltage between earth and any conductor forming part of 
+the   same system   shall   not,   under   normal   conditions, 
+exceed lowvoltage. 
+ Rule no.67: Connection with earth 
+ 1   The following provisions shall apply to the connection 
+with earth of three-phase systems for use at high or 
+extra-highvoltages:- 
+Inthe case of star-connected with earthed neutrals ordelta- 
+connected systems with earthed artificial neutral point 
+a   The neutral point shall be earthed by not less than 
+two separate and distinct connections with earth, 
+each having its own electrode at the generating 
+station and at the sub-station and may be earthed 
+at any other point, provided that no interference of 
+any description is caused by such earthing; 
+b   In the event of an appreciable harmonic current 
+flowing in the neutral connections so as to cause 
+interference   with   communication   circuits,   the 
+generator or transformer neutral shall be earthed 
+through a suitable impedance. 
+2   Inthe case of a system comprising electric supply 
+lines having concentric cables, the external conductor 
+shall be the one to be connected with earth. 
+3   VVhere the earthing leadand earth connection are used 
+only in connection with earthing guards erected under 
+high or extra-high voltage overhead lines where they 
+cross a telecommunication line or a railway line, and 
+where such lines are equipped with earth   leakage 
+relays of atype and setting approved by the Inspector, 
+the resistance shall not exceed 25 ohms. 
+Rule no.69: Pole type substations 
+ 1   Where platform type constructionis usedfor a pole type 
+ substation and sufficientspace for a personto standon 
+the platformis provided, a substantial hand rail shall be 
+built around the said platform, and ifthe hand rail is of 
+metal, it shall be connected with earth: 
+Provided that in the case of pole type substation on 
+wooden support and wooden platform the metal hand- 
+rail shall not be connected with earth. 
+Rule no.88: Guarding 
+1   Every guard-wire shall be connected with earthat each 
+point at which its electrical continuity is broken. 
+Rule no. 90: Earthing 
+1   All metal support of overhead line and metallic fittings 
+attached thereto, shall be permanently and efficiently 
+earthed. Forthis purpose a continuous earth wire shall 
+be provided and securely fastened to each pole and 
+connected ordinarily atfour points inevery mile or 1.601 
+km, the spacing between the points being as nearly 
+equidistant as possible.   Alternatively, each support 
+and metallic fitting attached thereto shall be efficiently 
+earthed. 
+2   Each stay-wire shall be similarly earthed unless an 
+insulator has been placedinata height not lessthan10 
+ft. from the ground. 
+The   details   of   ELCB   and   relay   are   already 
+discussed in the lession 1.7.62 
+Power : Electrician (NSQF Revised - 2022)   - Related Theory for Exercise 1.8.75-77   187', NULL, '[-0.080342844,0.015435444,-0.0020779807,0.0075965505,0.014356235,-0.066210955,0.013891255,0.014384913,0.001640075,0.050831437,-0.017478228,-0.06640738,0.071554996,0.042100567,-0.0140757,-0.017659718,-0.00050804357,0.06151524,-0.03964295,0.04113909,0.09525507,-0.033398658,-0.03688486,-0.029573698,0.06546387,0.017741337,0.025287384,-0.02241146,-0.011658988,-0.20326015,-0.057965446,-0.009554073,-0.039264843,0.061758384,-0.055499025,-0.061217207,-0.0071397685,-0.03320996,-0.07726729,-0.0007348497,0.011514402,-0.00408786,0.10893664,-0.060012557,-0.03973004,0.0036784294,0.020949712,-0.070206486,0.028617306,-0.025170892,0.05563756,-0.016341329,-0.0048520006,0.03937816,-0.020465868,0.07311896,0.039291788,0.043335814,0.088244766,0.020145515,-0.015204817,0.031968568,-0.21685447,-0.015870353,0.06940112,-0.03372891,-0.034391582,0.012226205,0.00517939,-0.012349701,0.029826976,0.010080232,-0.012747485,0.040842015,-0.0014937137,0.0478233,0.000971216,-0.018722245,-0.053699028,-0.03218112,0.051347602,0.02217021,-0.021478701,0.050927926,-0.03878035,0.049612466,0.01757847,-0.058857895,-0.026579194,0.063463144,-0.0940311,-0.008088175,-0.017600408,0.0061875647,-0.010908154,-0.07407423,-0.021005364,-0.039119307,-0.010341863,0.09831683,-0.06258118,0.04957658,0.06762083,0.06261436,0.0496357,-0.022105377,-0.0033647255,-0.037474938,-0.015465122,-0.009532658,0.016550515,-0.042150714,-0.047740865,-0.095978804,-0.01358639,0.00628213,-0.008610536,0.033008162,-0.014329436,-0.06048719,-0.0825948,0.08047286,0.048485864,0.026555786,0.049672622,-0.044620454,0.030430917,0.045542527,0.027201252,0.017873826,-0.012878953,-0.045019984,-0.03840902,-0.003738466,-0.033289902,0.036317818,-0.017868552,0.08652815,0.077174954,-0.0130501725,-0.07173649,-0.09816199,-0.06530363,-0.10299676,0.058331147,0.008092506,-0.044213224,0.045999534,-0.075656034,-0.055491656,-0.0098432135,0.021200065,0.017739005,-0.078576595,-0.007249626,0.043191925,0.034518562,0.020801166,-0.027727993,0.05259257,0.013590188,0.040526014,-0.015556168,0.11758197,-0.005432726,-0.07603916,-0.028192574,-0.021592047,0.049303345,-0.004284274,0.063819356,0.10197367,-0.006375787,-0.03872772,0.11665397,0.029931322,-0.056215193,-0.029931087,-0.058527503,0.085984506,-0.013886342,0.028811878,-0.021897832,-0.0016355338,0.032592457,0.015994748,-0.10059788,0.015657356,-0.024087,0.07818432,-0.018650005,0.07493647,-0.030090824,0.06521904,-0.06518831,-0.032359727,-0.041198913,-0.070983,0.015664749,-0.01388585,0.024250835,-0.010671425,-0.011993538,-0.008918213,-0.015536068,0.06520506,0.030049529,-0.036895532,0.009301844,0.050676174,-0.0015751275,0.020638747,0.06495408,-0.025902638,0.04294763,0.019486582,0.06575477,-0.0147980945,0.012123651,0.055004016,0.07072814,-0.07246558,0.020550082,-0.19114408,-0.01508774,-0.03731194,-0.00841828,0.1311794,-0.021149913,0.010751801,-0.022289753,-0.048654173,-0.009059038,0.13153744,0.02868565,0.027825039,0.009103886,-0.011546087,0.033523057,0.019079275,0.031830907,-0.04780516,0.05486648,0.012349048,0.09289421,-0.028849283,0.012960778,0.026798671,0.013440995,0.15148228,-0.060501236,0.009250254,-0.061999522,0.018439088,0.03783757,0.009266978,-0.0913493,0.029414538,0.02985978,-0.05123355,-0.0050888816,-0.031684656,-0.02279947,-0.08133131,0.068960056,0.0074258046,-0.0034594443,0.034350112,-0.10348513,-0.02038784,-0.044993196,-0.010627073,-0.019812176,0.07651214,-0.033151843,0.004173707,0.053311426,0.058283634,0.014865893,-0.0869661,0.019992355,-0.042313047,0.032335702,-0.0071883267,0.037568092,0.007867208,-0.016966075,0.00038845927,0.04153637,0.016537335,0.043496594,0.014346137,0.0025726436,0.022141634,0.064068526,-0.00823508,0.008130476,-0.0130475,-0.006558271,-0.057334814,0.024723437,-0.02798821,0.019476995,0.086266026,-0.047382392,0.06551004,0.030219438,-0.031654127,0.016116222,-0.0035099958,0.04465017,0.067206904,-0.00096947927,-0.045216497,0.00033014547,-0.052093726,0.020902436,0.065579526,-0.017960483,-0.27356037,0.021825152,0.022185039,-0.022237744,-0.07567875,0.011660617,0.01854427,0.0067396425,-0.0038981573,-0.010157994,-0.02571722,0.030347912,0.020311385,-0.010382516,0.019308677,0.043207232,0.017295992,-0.052824315,0.004187241,-0.051915564,0.00025804507,0.053545296,0.1775637,0.050755065,0.051472444,0.03776871,-0.012698415,0.035345495,-0.013320879,-0.023623146,0.05591299,0.029513141,0.041876614,-0.027328085,0.025930004,0.054710533,-0.013266263,-0.020424038,-0.011129049,-0.023861852,-0.07950347,0.022699028,-0.029277349,-0.051383562,0.05691428,-0.06880529,-0.024726097,-0.05324021,0.0029622933,-0.024541441,-0.03946124,-0.012588132,0.028879123,-0.048506618,-0.069706686,0.0020900734,0.017775306,0.0036218772,-0.04624094,-0.024333132,-0.004786927,-0.05658003,-0.008740585,0.026961956,0.06637514]', NULL, '{}'::jsonb, '2026-03-01T19:26:47.356Z', '2026-03-01T21:39:32.565Z', 'trade_theory', 'Transformers and Distribution');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1444, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-7', NULL, 204, 188, 'Power 
+Electrician   -   Illumination 
+ Related Theory for Exercise 1.9.78 
+ Illumination   terms   -   Laws 
+ Objectives: At the end of this lesson you shall be able to 
+*   state and explain different terms used in illumination 
+*   state properties and advantages of good illumination 
+*   state and explain laws of illumination. 
+ Definitions 
+ A few principle terms in connection with illumination are 
+defined below. 
+Luminous flux (F or F): The flux of light emitted froma 
+luminous body is the energy radiated per second in the 
+form oflightwaves. The unit of luminous   flux is “lumen''(lm). 
+Luminous intensity(I}: The luminous intensity of a light 
+source ina given direction isthe luminous flux givenout by 
+the light source per unit solid angle. The angle subtended 
+by an area r on the surface of sphere of radius   r, at the 
+centre   of sphere   is unit solid angle.   In SI,   the   unit of 
+luminous intensity is the candela. 
+Candela: This is the amount of light emitted in a given 
+direction by a source of one candle power. SI base unitis 
+candela (cd).   1 candela = 0.982 international candles. 
+Lumen (Im): It is the unit of luminous flux. This is defined 
+as the amount of light contained in one steradian froma 
+source of one candela at its focus. (Fig 1) 
+ \ 
+ Ifthe shaded area =r? anda source of one candelais atthe 
+centre C, the light contained within the solid angle is one 
+lumen. 
+ Fig 1 
+ ELN248811 
+ The light output of electric lamp is measuredin lumens and 
+their luminous efficiency is expressed in lumens per watt 
+(ImAw). 
+luminance or Illumination (E): |lluminance of asurface 
+is defined as the luminous flux reaching it perpendicularly 
+per unit area. The metric unit is the lumen / m? or lux (Lx). 
+Lux: This is the total output of light. Lumen per square 
+meter (1m/m?) orluxis the intensity of illumination produced 
+inthe inner surface of a hollow sphere of radius one meter 
+by a standard candle atthe centre. Sometimes this is also 
+knownas metre-candle. 
+Lighting engineers use a pocket-size instrument calleda 
+‘lightmeter'' to measure illuminance; and the reading inlux 
+is read off the scale (Fig 2). 
+Factors to be viewed for correct illumination: The 
+following   are   the   important   factors   which   should   be 
+considered while planning correct and a gocd   Illumination: 
+ 188 
+Fig 2   
+LHGHT-SENSITIVE CELL 
+INDICATING DIAL 
+ELN248812  TYPICAL POCKET-3IZE LISHT-METER FOR MEASURING ILLUMINANCE. 
+ Nature of work : Consideringthe nature of work, sufficient 
+and suitable lighting sould be maintained. For example, a 
+delicate work like racdioand TV assembling, etc. requires 
+good illumination to increase the production of work where 
+as for rough work like storage, garages, etc needs very 
+small illumination. 
+Design of Apartment : The design of apartment must be 
+kept in view while planning scheme fer illumination.   It 
+means that the light emitted by the illumination source 
+should not strike the eyes of the occupants or workers. 
+Cost:   Itis animportantfactor which should be considered 
+while   designing   an   illumination   scheme   for   particular 
+ purpose. 
+ Maintenance   Factor   :   VVhile   planning   illumination,   it 
+should also be kept in viewthe amount of reduction of light 
+due to accumulation of dust or smoke onthe source of light 
+ and after how much period cleanliness isrequired. VWWhere 
+ there   is a   possibility of heavy loss of light due to the 
+adherence of smoke, arrangement for the extra light is to 
+be made fromthe very beginning. 
+Properties of good illumination 
+Anillumination source should, have the following properties. 
+i   Itshould have sufficient light. 
+ii   It should not strike the eyes. 
+ili   It should not produce glareness in the eyes. 
+WV   Itshould be installed atsuch   a place   thatit gives uniform 
+ light. 
+ v_   It should be of correct type as needed. 
+ uM   Itshould have suitable shades and refelectors. 
+ Advantages of good illumination 
+i   Itincreases production inthe workshop. 
+ ii   Itreduces the chances of accidents.', NULL, '[-0.026061952,-0.020378057,0.03434437,0.04731225,0.037221648,-0.020602131,0.052132476,-0.028857745,0.020316478,0.06312191,0.004619254,-0.0840721,-0.05870431,0.05320757,-0.044681013,-0.026601719,0.0062091686,0.04492806,-0.07955001,-0.04097779,0.22158356,-0.020170145,-0.01511627,-0.054096147,0.06106261,0.03743653,-0.013444208,-0.010291212,-0.0085882675,-0.19399501,-0.068630375,-0.04416759,-0.03293955,0.031077221,-0.087181635,-0.031217342,-0.03433992,-0.038509775,-0.08517218,0.029649321,0.0706979,0.026661554,0.001539747,-0.010967821,-0.004952853,-0.02156122,-0.060180053,0.038804896,-0.08069212,-0.049402904,0.08959059,-0.037175845,0.030227628,0.017832408,-0.009155542,0.016989158,0.037723523,0.0050428673,0.0064860824,-0.022284666,0.042530045,0.08623329,-0.23626627,0.018449873,0.030184451,-0.083066314,-0.004008479,-0.0667147,0.03374604,-0.02645214,-0.07290808,-0.025106518,-0.009108324,0.030367741,-0.00720076,-0.04388184,0.017595012,-0.03112439,-0.04291631,9.313092e-05,-0.0022329842,0.038959913,-0.09533415,0.0066757295,0.008706073,0.09212168,0.01065391,-0.08120704,0.01706977,0.046975076,-0.043766752,-0.04726111,-0.06969626,0.026544271,0.028404789,-0.074608065,0.031311862,0.046434376,0.0371611,0.10273223,-0.031127235,0.03242486,0.039187293,-0.02035425,0.05691811,-0.00046428066,-0.004047616,0.030229723,-0.06489706,0.032323707,0.046603195,0.015607585,-0.10776844,-0.04319058,0.012924677,-0.037242107,0.03589846,0.03010488,-0.045825172,-0.04255588,0.022833541,0.051702492,0.022557126,-0.002931705,0.06532153,-0.05868232,0.07448509,0.06751277,0.04987935,-0.006844797,0.047988024,0.008611683,0.00043105098,-0.018382866,0.014030426,0.043479167,0.012260793,-0.030462904,-0.019324897,0.07864722,0.03350013,-0.057942774,0.026738714,-0.05550084,0.0036699676,0.07477871,-0.038652964,0.017004706,-0.0732247,0.014350866,-0.0035638968,0.023601884,-0.009927311,-0.052379064,0.068233386,0.03454681,0.023032142,0.09044456,0.01017633,0.023108343,-0.0031580112,0.03761737,-0.001272542,0.04898074,-0.03451676,-0.04012421,-0.005124401,0.031025074,0.000844787,-0.04351903,0.026514886,0.05076374,-0.018490596,-0.041527696,0.065092206,0.013464773,0.02696703,0.00784574,-0.068579495,0.047042537,0.015668591,-0.08220945,-0.004273155,0.031228485,0.053055596,0.0065150564,-0.030767372,0.031754073,-0.028919358,0.14564411,-0.022095162,0.084912375,-0.041435827,0.022968315,-0.0647651,0.041546255,-0.08610894,-0.053374585,-0.013604458,-0.0467894,0.06488724,-0.0039400067,0.009234114,-0.027852245,0.04738977,0.026076615,-0.04036072,0.031278823,-0.009247618,0.07639834,-0.09927529,-0.04648299,0.009197232,-0.014795587,-0.041511104,0.024434943,-0.027998427,0.009466206,0.00046307436,0.014651527,0.03303497,-0.08933319,-0.113021135,-0.1485682,0.02528412,0.003584053,-0.061930075,0.07754264,-0.06616838,0.037633765,0.018552901,-0.021991577,0.026248895,0.078986384,0.02233216,-0.04689125,-0.06227231,-0.008987473,-0.013823871,-0.033057097,-0.0064344676,-0.011084753,-0.0068158344,-0.0065900055,-0.0046082004,0.040859353,-0.043308742,-0.027540473,0.010539325,0.106790386,0.019095698,0.013535549,-0.025786692,-0.0055459584,-0.035841543,-0.049280867,0.0265662,0.04287871,-0.05401552,0.002400587,-0.03500646,0.051078413,0.0078235585,-0.0046612415,0.04890798,-0.039624985,0.014471939,0.02752912,0.010763949,0.031035362,0.004649946,0.0065631424,0.018797394,0.08357648,-0.01683681,0.040889397,0.024422595,-0.009931496,-0.021792574,-0.084589645,0.018386805,-0.04275499,0.022416033,-0.04361443,0.051418655,0.016979957,-0.07436881,0.052565634,0.002161863,-0.04233779,0.0012147815,-0.0007295971,-0.07382872,0.0039662756,0.14906266,-0.06283051,-0.021862501,0.083966784,-0.026396267,0.06359486,0.011495587,-0.06635871,0.014799531,0.03982912,-0.04732731,-0.0010606145,0.047753744,0.01691587,0.022098549,-0.03640933,-0.028563965,0.0074453675,0.002932443,-0.07041786,0.059112262,-0.005180247,0.0013327419,-0.053475782,0.035613593,-0.23543234,0.019504093,0.024289466,0.047945675,-0.025615115,-0.002179583,0.03169743,-0.022015287,-0.06338554,-0.026578818,-0.052136865,0.008813759,0.002822764,0.0023417321,0.08448088,-0.0069435397,0.040200405,-0.016379558,0.015615867,-0.055630915,0.008275603,0.041293755,0.18303713,-0.07271117,-0.025016334,0.008856151,0.0064281747,0.055368613,0.012484259,-0.035821456,0.009614673,0.043714862,0.1243262,-0.018747069,0.033963025,-0.014609471,0.03285085,0.015363799,0.028038263,-0.019241154,0.051353518,-0.00901391,-0.016323188,0.033105325,0.08119022,0.013981198,-0.0010468407,-0.054763597,-0.0008098925,0.05154114,-0.03351486,0.028231082,-0.0056961067,0.06562457,0.010249101,-0.026644409,-0.07331199,-0.001686872,0.0876286,-0.06703697,0.0088236,0.023754954,0.020437496,-0.031004231,0.076517895]', NULL, '{}'::jsonb, '2026-03-01T19:26:47.682Z', '2026-03-01T21:39:32.565Z', 'trade_theory', 'Transformers and Distribution');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1445, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-7', NULL, 205, 189, 'iii   It does not strain the eyes. 
+WV   It reduces the wastage or loss of material. 
+v   Itincreases the interior decoration of   the building. 
+wu   It gives smoothing effect to mind. 
+Laws of   illumination 
+Inverse square law: If the internal radius of a sphere is 
+increased from 1 metre tor metres, the surface area of it 
+is increased from 4to 4znr* square metres. With a uniform 
+ Types of lamps 
+ point source of light of oné candela at the centre, the 
+number of lumen per square metre onthe sphere of radius 
+r metres. 
+ An   _   A 
+ Ant*   r 
+Hence the   illuminationofa surfaceis inversely proportional 
+tothe square of its distance fromthe source. This is called 
+the Inverse Square Law of Illumination. 
+Objectives : At the end of this lesson you shall be able to 
+*   list out the types of lamps 
+*   explain the different types of lamps 
+*   explain the construction and working of tungsten filament lamp. 
+ Types of lamps 
+ There are many   types   of electric lamps now available. They 
+differ in construction and inthe principle of   operation. 
+They give lightas a result of heating the filament toa very 
+high temperature. The lamps can be grouped as follows. 
+Electric lamps 
+ |   |   | 
+ Filamentlamps   = Arc lamps   Discharge lamps 
+ Cold   Hot 
+cathode   cathode 
+Carbon   Metal 
+ Filament lamp: A lamp in which a metal, carbon or other 
+filament   is   rendered   incandescent   by the   passage of 
+electric current. 
+Vacuum lamp:   A filament lamp in which the filament 
+operates ina vacuum. 
+Gas-filled lamp: A   filament lamp in which the filament 
+operates in an inert gas. 
+Halogen lamp: A tungsten filament lamp in which the 
+tungsten filament operates ina relatively small space filled 
+with an inert gas and halogen of iodine or bromine. 
+Arc lamp: An electric lamp in which the light is emitted by 
+ an arc. 
+ Discharge lamp: An eléctric lamp in which the light is 
+obtainecby   a discharge of electricity betweentwo electrodes 
+in gas or vapour. 
+Tungsten filament lamp: This lamp consists essentially 
+ofafine wire ofthe metal, tungsten (thefilament) supported 
+ Direct and   indirect lighting 
+ ina glass envelope and the air evacuated from the glass 
+ bulb - hence called   a vacuum lamp. 
+Fig 1 shows the parts of tungsten filament lamp 
+ Fig 1   
+BAYONET GAP 
+FUSE 
+GLASS STEM 
+SPIDER FOR 
+HOLDING 
+FILAMENT   TUNGSTEN 
+FILAMENT 
+ ELN248621 
+ The two types of filaments (Fig 2) are 
+*   single coil filament 
+ *   coiled coil filament. 
+ Fig 2 
+ SINGLE COIL FILAMENT   COILED COIL FILAMENT  ELN24aa22 
+ The main advantage of a coiled coil lampis the higher light 
+output. 
+Objectives: At the end of this lesson you shall be able to 
+*   explain direct and indirect lighting. 
+Direct lighting type has largest efficiency from energy 
+utilization point of view but glare is always present.   Such 
+systems are used for flood and Industrial lighting. 
+Indirect   lighting   type   designed   to   avoid   glare   and 
+recommended for specific purposes. 
+Semidirecttypecdesignedto avoid glare and recommended 
+for offices and other specific purposes. 
+Semi   indirect   type   designed   to   avoid   glare   and 
+recommendedfor specific purposes. 
+ Power : Electrician (NSQF Revised - 2022) - Related Theory for Exercise 1.3.78   189', NULL, '[-0.021290263,-0.019161949,0.023677109,0.06925327,0.071485475,0.04861715,0.028764393,-0.0074422774,-0.057625946,0.06370856,-0.0018519555,-0.04600939,-0.04288149,0.017758768,-0.0051806583,-0.054803386,0.039756835,0.0339352,-0.13092375,-0.032176457,0.19291161,-0.07279589,-0.010000965,-0.071203195,0.02819748,0.015961451,-0.001730167,-0.016251838,0.006570439,-0.2148227,-0.05085234,0.032858003,-0.0034064434,0.025293695,-0.022486363,-0.08568451,-0.029252324,-0.00030292224,-0.060154345,0.038976584,0.09440859,0.008882573,0.019100359,-0.024290595,-0.026936304,-0.015993288,0.017042931,0.001079766,-0.044352747,-0.050373033,0.045731835,-0.04927421,0.05183481,-0.005575973,0.022091571,-0.0048554814,-0.015595558,0.06478343,0.019497402,0.002941645,0.014403705,0.042532418,-0.20246017,0.05857827,0.009811039,-0.0585648,-0.002617983,-0.06462502,0.002112252,-0.004675841,-0.04376671,0.040058997,0.0052254326,0.011317238,-0.0034957777,-0.071290046,0.03980246,-0.06028504,-0.0071551595,0.02257095,-0.028011233,-0.0054092705,-0.077509865,0.022812452,-0.023134312,0.07282079,0.046435907,-0.09653835,-0.008270684,0.0075452756,-0.0684322,-0.02283782,-0.052864615,-0.024125183,0.035804946,-0.07318209,-0.0033012345,0.047923654,0.050539233,0.09909487,0.0025933615,0.069392554,0.053773828,-0.0136477845,0.07774274,-0.0044599557,0.0005707411,-0.012711685,-0.011789085,0.03643096,0.043299485,0.0013546821,-0.060092114,-0.026461113,-0.05411594,0.0072709145,0.042305887,0.076401114,-0.026573902,-0.046235863,0.012804946,0.028692514,0.061672274,-0.05418907,0.06171331,-0.05227365,0.025398593,0.043901436,0.0105290525,-0.011033987,-0.017526735,-0.044044685,-0.0046029384,-0.035853382,-0.04398027,0.04062956,0.051021338,-0.064300135,-0.0019313253,0.021959253,0.046480946,-0.08058058,0.027860966,-0.028328404,0.015493843,0.02427364,-0.061158117,0.06341438,-0.04105338,0.0044451803,-0.0038224633,0.11889501,-0.06232641,-0.033430118,0.07384748,0.014851695,0.019597718,0.11276792,-0.01969634,0.07536365,-0.006416011,0.065465234,-0.0573838,0.08977182,-0.041690968,-0.07630422,-0.00040915734,0.061133135,-0.02509662,-0.025366787,0.031180365,0.086150184,-0.021010047,-0.0039172093,0.10588946,0.012801886,-0.023189522,-0.01313252,0.0064996267,0.05235765,-0.011593512,-0.060689703,0.006012229,0.02927219,0.016050795,0.026984693,-0.072427414,0.056999158,0.006845039,0.11039452,-0.03234381,0.032281846,-0.056316316,-0.0013718024,0.0057712165,-0.029190546,-0.025499895,-0.01295117,-0.0040175524,-0.03746949,0.023074387,-0.044936363,-0.026649218,0.005073958,0.035900146,0.027442144,0.00848318,0.0006606254,0.057526544,0.031913374,-0.0958221,-0.047305334,-0.026729025,-0.039725494,-0.071711555,-0.0015308653,-0.017517775,-0.025832163,0.02817105,0.013396968,-0.00092850265,-0.104006715,-0.1095075,-0.14865822,-0.0002307548,-0.04915114,-0.0490476,0.08933381,-0.06525665,0.046647854,-0.02505336,-0.03647,-0.05077516,0.07137481,0.070006885,-0.026495881,-0.044113297,0.027302831,0.013778502,0.018848218,-0.014939011,-0.03794491,-0.018403599,-0.010694716,0.06693091,-0.007702783,-0.027073214,0.016497057,0.0033821238,0.13572489,0.003397012,0.017300611,0.020736532,0.011143862,-0.07156275,-0.03398869,-0.06019742,0.011643948,0.05496227,0.0013636419,-0.05127589,-0.01933251,0.067296185,0.009992433,0.03336541,-0.033506665,0.017386211,0.0006224658,0.0029841478,0.0025117323,0.04377031,-0.021099133,0.042975232,0.016501162,-0.01916123,0.027858099,0.036475062,0.031115564,-0.04942005,-0.117498204,0.025639292,-0.018390467,0.010814616,-0.042681128,-0.010677066,0.050736703,-0.007786095,0.024546547,0.053110845,-0.0380119,-0.0276951,0.03830369,-0.045660395,0.0030758898,0.15574543,0.022724243,0.014508591,0.0049240766,0.031120246,0.061858762,0.054241512,-0.05117076,-0.020519322,0.022361342,-0.028878277,0.04129643,0.050371066,-0.015731538,0.028349418,-0.017297857,-0.088067465,-0.010010056,-0.0221059,-0.04602596,-0.012347711,-0.024288945,-0.01970384,-0.0010781708,0.062630124,-0.23304817,-0.02537297,0.02061351,0.018567383,-0.054800782,-0.0099178,0.042565245,0.006558829,0.055546105,-0.04544179,-0.09663688,0.006832761,-0.008842721,0.07049255,0.04797746,-0.018686088,0.0075103506,-0.060505785,0.02107512,-0.0038444195,0.00060360925,0.06581165,0.21076947,-0.019847764,0.05203208,-0.03015566,0.03809032,-0.0119109275,-0.035898693,0.014146371,-0.015787076,0.01730633,0.11707388,-0.033413947,0.07026147,-0.04778559,0.015465304,0.021084301,0.01182835,-0.021343337,-0.028886477,-0.023263978,-0.044239063,-0.02611844,0.101799004,0.004077442,0.019064467,-0.040265366,-0.026985457,0.032906204,-0.0068945643,-0.0074384087,0.0137415435,0.04483347,-0.036631495,-0.048394904,-0.013246645,0.015043122,0.06425221,0.007742203,0.017858826,0.018639363,0.03861094,0.019468287,0.09000121]', NULL, '{}'::jsonb, '2026-03-01T19:26:48.004Z', '2026-03-01T21:39:32.565Z', 'trade_theory', 'Transformers and Distribution');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1446, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-7', NULL, 206, 190, 'Power 
+Electrician   - Illumination 
+ Related Theory for Exercise 1.9.79 
+Low voltage lamps - different wattage lamps in series 
+ Objectives: Atthe end of this lesson you shall be able to 
+* state the purpose of   differtent voltage lamps 
+* calculate and compare the hot resistance of the s ame voltage but of different wattage/current lamps 
+*   describe the method of measuring and calculating the   ‘hot resistance’ 
+* state the effects of different wattage lamps in series. 
+Purpose: In quite afew placeswe uselowvaltage supply 
+ i.e.   BY   TZ or 24¥)   such   as in   automobile vehicles. 
+ Automobile vehicles are equipped with many lights to 
+provide an efficient lighting system for both day and night 
+driving conditions. The various lights require the use of 
+different wattage andtypes of light lamps to provide the 
+amount of illumination desired. 
+Glow conditions of low wattage lamps with current 
+flow through   it: An   electric lamp   changes   electrical 
+anergy into heat and light, when current flaws through its 
+filament and   causes it to   become   incandescent.   The 
+filamentis made oftungsten wire. The low voltage lamps 
+are generally oflowwattage because ata low voltage the 
+currenttaken bythe filamentfor a given wattage is much 
+more as compared ta the domestic light. 
+Different wattage lamps in series: If the two lamps of 
+different wattage in parallelacrossin A. circuit, t should 
+be   same voltage for proper operation.   But, if they are 
+connected in series they should have the sare current 
+rating s. 
+Allithe bulbs in house are probably connected in parallel 
+andthe ywilldraw the current itrequires, and allthelarnps 
+will glow bright. 
+ftwo lamps with unequal wattages and same voltage 
+ratings   are connected in series they will divide up the 
+av allable voltage between therm, 
+Low wattage lamp will glow bright,   due to high 
+resistance and highvoltage drop. High wattage 
+lamp will glow dim, due to low resistance and 
+low voltage drop. 
+Example 
+ Ina circuttthetwolampsrated as 200VW250¥ and 100 VM 
+ 250 are connected in series across240 voltA.C. supply. 
+ (Fig 1) 
+ 200   thigher wattage) larmpowill glow dim and 
+1OOVY flow wattage} lamp will glow bright. 
+190 
+ Fig 
+Soe   {OEE 
+ a   as, 
+ a   a 
+%   Ld 
+ : 
+ He cau se , 
+The resistance of 200VW 250 lamp, 
+ VO   250% 250 _ 
+ =   31250 
+PW   200 
+ Fi 
+ The resistance of 1O0VW250''¥ lamp, 
+ _ 250 x 250 
+WwW,   100   
+= 62502 
+Total resistance Ry   =312.5   +625 = 9375 a 
+V   -   240 
+eH   Ry   937.5   = 0.2564 
+Voltage dropin200Wlamp =n, - 0.258   «3125   - ov 
+Voltage dropin 100"““lamp =IR ,   - 0.256   = 626   -   160V 
+ Power? ® |= 240% 0.256 = 61.4 vy 
+Hence, 
+ The 100°*VW lamp having   high voltage drop due to high 
+resistance itwillglow brghtthan high wattqe lamp 200 
+which is having low voltage drop andlow resistance.', NULL, '[-0.0088522695,0.052618105,0.03776477,0.03915653,0.022687068,0.036459588,0.018979264,0.046312828,0.06445612,-0.010586986,-0.002457969,-0.047019318,-0.034153197,0.0433525,-0.0009947265,-0.028578084,-0.047882125,-0.007988614,-0.07806231,0.0067428546,0.12601991,-0.041830614,-0.0071530663,0.007878824,0.056490444,-0.009392438,0.04016206,0.039377924,-0.052072972,-0.23736063,-0.031671043,0.04160398,0.0023831457,0.012751031,-0.022641487,-0.080560744,-0.081411205,-0.0037913283,-0.11645231,0.032767396,0.06426272,-0.04482101,0.021773383,-0.034850888,-0.053064194,-0.046427794,-0.035058293,0.0040613483,-0.012602933,-0.046972062,0.041398022,-0.051822554,0.009202484,-0.016802678,0.055939637,-0.021475093,0.05791553,0.043142714,0.05055114,-0.0012852204,-0.0019083398,0.04242857,-0.23370625,0.034367107,-0.009231836,-0.07012366,-0.045696724,-0.061967522,0.06441263,-0.03537765,-0.04473594,-0.039595712,-0.03689543,0.008625015,0.008890902,0.016165579,0.012265367,-0.014018962,-0.06894761,-0.037277784,0.038066268,-0.050876427,-0.058687102,0.018958572,0.04833287,0.05042957,0.0065443474,-0.08920322,0.01821497,-0.019765655,-0.027409839,0.0060037198,-0.042243943,-0.030079085,0.032763306,-0.06373949,0.030231224,-0.025140062,0.014586799,0.11208766,-0.031665057,0.05497356,0.053458277,0.0019792127,0.04881953,0.042844385,-0.011411307,-0.027033351,-0.05486394,0.045445323,-0.00667511,-0.035536293,-0.029104589,-0.025618482,-0.012145554,-0.016333863,-0.00937476,0.04550944,-0.014256804,0.0048230737,-0.036309112,0.06231646,0.08845741,-0.064422384,0.0904787,-0.03931734,0.03837153,0.065070175,0.022347564,-0.026508873,-0.011958311,-0.034034003,-0.0047648456,-0.016556928,0.0239633,-0.0059476825,0.0069697667,-0.05486799,0.045798123,0.0341381,0.05228395,-0.022568801,0.0076408978,-0.06924825,0.02368709,0.029330695,-0.05828995,0.038397644,-0.036049448,0.018356455,0.0019949514,0.04287986,-0.06815721,-0.048210245,0.03379645,-0.0011890839,-0.008700534,0.018163916,-0.014232169,0.058298737,0.008822955,0.028683264,-0.018888015,0.062898934,-0.004735084,-0.028689247,0.019744514,-0.009742628,-7.09139e-05,-0.025837354,0.02621798,0.11114467,-0.01743565,-0.005597261,0.07923213,0.03154617,0.016946536,0.029607885,-0.05394652,0.05669906,-0.004365622,0.010969034,-0.014716808,0.062758386,0.021371424,-0.004987294,-0.10038292,0.020111673,-0.013937761,0.11002668,0.0039169136,0.0089960005,-0.04152633,0.08305106,0.002628587,-0.023700118,-0.09797419,-0.08153997,0.03377825,0.040388957,0.011655507,-0.027875662,0.023681791,0.0036756145,-0.040771674,0.04756729,0.022861682,-0.06147172,0.08262616,0.033701364,-0.07270742,-0.06996793,0.0063203285,0.0070704482,-0.059648156,0.010884665,-0.026760824,0.06407152,0.042536207,-0.047083575,0.042126633,-0.07735602,-0.03601036,-0.18997556,-0.008262809,0.018031636,-0.031389456,0.119810745,-0.03159074,0.013042728,-0.04159825,-0.057314593,-0.013193501,0.098521724,0.032177743,0.009988747,-0.09480383,0.026467811,0.049061146,-0.004440518,-0.02757629,0.022154856,0.014892558,-0.0031087943,0.007830946,0.11130596,-0.07885962,0.012436639,0.020697314,0.08067773,-0.025730746,0.057501934,-0.04761085,-0.030297745,-0.044621907,0.03499443,0.021915121,0.039467514,-0.0005678923,-0.011731917,-0.013760787,0.024716213,-0.039378624,-0.06431823,0.081360064,-0.045566168,-0.03008622,-0.009919866,-0.048417404,0.03244966,-0.030012937,-0.045161556,0.08125724,0.05184314,-0.03999424,0.011835066,0.025448158,0.06576499,-0.06037031,-0.15574273,0.090729974,-0.010906587,-0.05588792,-0.025216095,0.0017289224,0.044593997,-0.006910919,0.063551694,0.028551722,-0.012601061,-0.001970848,0.028984247,0.0063087833,-0.05442037,0.08579064,-0.024131881,0.0856761,-0.047040768,0.036245078,0.031480838,0.008441548,-0.014968157,0.028837772,0.01241584,-0.05534635,0.05259189,0.03853173,0.0051371935,0.04816418,-0.03531692,-0.020039577,0.05910939,0.028751735,-0.027914222,0.016731301,0.020984042,-0.015058236,-0.046129204,0.06185752,-0.20491236,0.01609891,0.005249619,0.02751177,-0.07795814,0.009828455,0.010502441,-0.07286758,0.0045586657,0.037598033,-0.05170601,0.021363605,0.06416052,0.08998181,0.0110480655,0.016793389,0.0059476187,-0.009050504,-0.03392218,0.042685226,0.024291536,0.06079373,0.20076331,-0.057489794,0.0076598213,0.038502242,0.058599543,-0.03554053,-0.024893433,0.0044646696,-0.028163854,0.0005453843,0.0985099,-0.04072485,0.062079594,0.021685136,-0.04783567,-0.05979049,0.05382802,-0.035805196,0.028265506,0.07409422,-0.07804655,0.0017614093,0.11123664,0.009719241,-0.05019516,0.007976019,-0.06250315,-0.03243639,-0.015124928,-0.019180274,-0.024343958,0.0368461,-0.007097788,0.02616551,-0.055731248,0.0225395,0.054412406,-0.010814477,-0.021970749,-0.013700825,-0.020253286,0.011455333,0.061931077]', NULL, '{}'::jsonb, '2026-03-01T19:26:48.336Z', '2026-03-01T21:39:32.565Z', 'trade_theory', 'Transformers and Distribution');
+INSERT INTO knowledge_chunks (id, course, pdf_source, module, section, page_number, chunk_index, content, content_preview, embedding, token_count, metadata, created_at, updated_at, trade_type, module_name) VALUES (1447, 'electrician', 'Electrician - 1st year - TT (NSQF 2022).pdf', 'module-7', NULL, 207, 191, 'Power 
+Electrician   -   II|umination 
+ Related Theory for Exercise 1.9.80 
+Construction details of various   lamps 
+ Objectives: At the end of this lesson you shall be able to 
+* explain the construction and working of neon sign tubes 
+* explain the colour mechanism of neon signs. 
+Neon sign lamp 
+Gas discharge lamp 
+A gas discharge lamp is one in which some inert gas is 
+filledina glass tube having two electrodes sealed intoeach 
+end, which on heating allows the flow of electronthrough it. 
+Toobtaina continuous flow of electron, gasis first charged 
+but as the supply is disconnected from the bulb, the gasis 
+discharged. Sucha lampis knownas electric Gas Discharge 
+Lamp. Electric gas discharge lamps are of two maintypes: 
+(i)   Cold cathode lamp 
+(il)   Hot cathode lamp 
+Cold CathodeLamps   (i) Neonlamp, (ii) neonsigntubes, 
+(iii) sodium vapour lamp. 
+Hot Cathode Lamps   (i) mercury vapour lamp (medium 
+pressure), and (il) fluroscent tube (low pressure mercury 
+vapourlamp) 
+Types of gas discharge lamps 
+Neon Lamp   This is a cold cathode lamp as shown in 
+Fig 1   Neon gas at low pressure is used in it. 
+ Fig 1 
+ ELN248821 
+ Construction 
+ In this lamp, two flat or spiral electrodes are kept close 
+together ina glass bulb so that the lamp can be operated 
+at low voltage such as 150 V de or 110 V ac. On giving 
+supply to the electrodes, the gas becomes ionised and 
+emits light which is reddish in colour. In usual practice a 
+2000W resistance is also connected in series with the 
+electrodes which is placed in the cap of the lamp. This 
+minimizes the fluctuation of current dueto   large variation of 
+potential difference. 
+ Uses 
+ A neon lamp is generally used as an indicator lamp to 
+indicate the presence of supply. It gives a small quantity of 
+light and can also be used as a night lamp. A neon lamp 
+of this type is also used inthe testing pencil which is of 0.5 
+ Ww. 
+ Neon sign tube 
+Construction of neon sign tube: Neon sign tube lamps 
+are used mostly for advertising purposes. Fig 2shows the 
+construction details ofa neon signtube.   Aneonsigntube 
+is mace of glass. 
+ Fig2   
+GLASS TUBE 
+ ELECTRODE 
+ LEAD   SN 
+y   GAS FILLING HOLE 
+ ELECTRODE 
+ ELN248822 
+ The length ofthe tube varies from 1 metre to 5 metres, and 
+the diameter varies from 10 mmto 20 mm. The tubes are 
+joined with electrodes which are operated at high voltage. 
+The electrodes are connected with nickel wires for more 
+length or to different letters. (Fig 3) 
+ Fig 3 
+ ELN248823 
+ The shape of the electrode is cylindrical. The electrodes are 
+made of nickel, iron or copper.   The electrode consists of: 
+*   aglass shell 
+*   alead in wires 
+*   aglass jacket seal 
+*   aceramic collar. (heat resisting material) 
+The electrodes are fitted at the end of the tubes and fused. 
+Avacuumis created inthe tube before filling itup with an inert 
+gas, suchas neonor helium. After that it willbe sealed. The 
+neonsigntube will operate at 2000V to 15000V depend upon 
+the length of the tube. 
+ 191', NULL, '[-0.061536804,-0.0068678786,0.0050736945,0.059496593,0.019803304,0.029550718,0.02061381,0.010134172,-0.007794712,0.02116952,-0.04266906,-0.064616665,-0.072842665,0.06584087,0.0158673,-0.043911558,-0.015501599,-0.006444722,-0.046107054,-0.02486686,0.11500721,-0.024494728,0.049720224,-0.048444275,0.06820696,0.05141135,0.035167873,0.0037127323,0.009516344,-0.19065538,-0.043922916,0.049381547,-0.0394435,-0.044692203,-0.0042447494,-0.06798601,-0.023571337,0.039405044,-0.056042206,-0.014479855,0.048498742,-0.0526205,0.0064415587,-0.04052818,-0.041658796,-0.025835194,-0.014977575,-0.012407849,0.020736696,-0.08072293,0.062340315,-0.049975324,0.008522509,-0.040829316,-0.009246821,-0.028773809,0.048364826,0.0656015,0.061823696,0.033347167,0.036444347,0.038256936,-0.21868755,0.039433856,-0.023737965,-0.04334784,0.0074084923,-0.06804237,0.026197273,-0.013394479,0.039837312,-0.07900459,-0.06951322,-0.032482713,-0.024284909,0.006833416,0.024813805,-0.08873771,-0.067338996,-0.011807934,-0.035179168,0.004774555,-0.01670038,-0.010728021,-0.016139092,0.05084033,0.07773168,-0.06679354,0.028402213,0.050210185,-0.02832136,-0.07432389,-0.061133515,0.002030746,-0.009664232,-0.010959943,0.062304385,-0.0059524355,0.061414625,0.13087653,-0.014806019,0.0027772004,0.032164495,0.0021574688,0.04265725,0.019998625,-0.0039483462,-0.055828642,-0.09530169,-0.003729607,-0.0034603337,0.01171224,-0.029129108,-0.054444715,-0.046525728,-0.021087712,-0.052384946,0.017531538,-0.009627923,0.00690869,0.006924998,-0.030856192,0.05481664,-0.018792395,0.053140987,-0.03434382,-0.008156067,-0.0023885132,-0.053137533,0.005605152,-0.008461179,-0.02518473,-0.0021366398,-0.0013084465,-0.0126145715,0.03320159,0.048723597,-0.030040182,-0.01680542,-0.001212365,0.007124832,0.005075886,-0.010494132,-0.04999075,-0.025422147,0.03212001,-0.10817079,0.041179422,-0.009724204,0.07203848,-0.034301598,0.07225267,-0.0318826,-0.03343984,0.06537151,0.005182543,0.035610087,0.14736168,-0.039838914,0.08969921,0.018173443,-0.0134433275,-0.056311622,0.01634986,0.028976537,-0.082633615,0.0140512185,-0.028945066,0.02843545,-0.08655644,-0.024929387,0.09614013,-0.014577503,-0.08242245,0.08855608,0.053560074,0.012609974,0.008109075,0.013082799,0.056820855,-0.057885446,-0.016459065,0.027600631,0.071864724,-0.0027330325,0.030026363,-0.043303143,-0.015789477,0.02622222,0.11478431,-0.034592453,0.06727041,-0.0017880125,0.006654248,0.00035929665,-0.03355812,-0.0313367,-0.07248528,0.009245087,0.053114407,0.064498,-0.072376326,0.022922006,0.0069525726,0.045775488,0.067384414,0.04828659,-0.030666657,0.01577287,0.038393337,-0.0362546,-0.03620635,-0.024156677,0.0032848585,-0.07193693,-0.038478963,-0.006916521,-0.007212332,0.04122016,0.019264905,-0.007354677,-0.050399274,-0.115443915,-0.16698255,-0.028627524,-0.0019524329,-0.025189348,0.06414667,-0.02429717,0.06039609,-0.0014891125,-0.020358942,-0.033947673,0.10602201,0.011294394,0.012292526,-0.03264297,-0.04490794,0.070206985,-0.00077854923,-0.020096846,0.024000622,0.026780993,0.019800004,0.040400915,0.06398932,-0.036904164,-0.028360235,-0.010935152,0.12360975,-0.022926785,0.027843652,-0.062055074,0.006360432,-0.023201805,-0.0052608643,-0.049031105,0.032643024,0.039351556,-0.05283101,-0.0049534417,-0.013301942,0.05973005,-0.03684158,0.05973545,-0.03560636,-0.027872967,0.015808264,-0.044345174,-0.017221281,-0.024593147,-0.05696294,0.04139263,0.05641733,0.012851138,0.024051396,0.01956883,0.059552036,-0.020112522,-0.055607423,0.07170209,-0.039873365,0.024603764,-0.013153534,-0.04106775,0.0062489584,0.0027697391,0.035378948,0.06097596,-0.020526547,0.031711236,0.057736177,-0.0081608845,0.04822728,0.1960261,-0.073343925,0.02249005,0.09156282,-0.027239207,0.023376761,-0.013204452,0.0035912907,0.044409312,-0.041391227,-0.1027111,0.061051287,0.024012253,-0.03885029,0.08758001,0.01716782,-0.06468315,0.0668533,0.011209569,-0.015709413,0.021845309,0.06117731,-0.025259567,-0.013276018,0.035963718,-0.22396672,0.05244822,-0.04913934,-0.00294726,-0.050724443,0.060890496,-0.004248069,-0.031396482,0.016953105,0.0409891,-0.09517677,-0.03473717,-0.0040700245,0.05294964,0.019453723,0.012038435,0.038138118,-0.06199306,-0.07283737,-0.009331773,-0.002750609,-0.027171923,0.18061662,-0.016683044,0.0351334,-0.050518546,-0.03016783,0.019608459,-0.0040577278,0.053860933,-0.039216366,0.073678575,0.09403293,0.032037273,0.09388615,0.031919885,-0.06096766,-0.04247803,0.03877154,-0.043310698,0.0030592592,0.07339882,-0.030605871,-0.01708521,0.08121694,-0.012975894,-0.024595015,-0.030851299,0.03224955,-0.025594203,-0.03133371,-0.012386025,0.00961345,0.06898486,0.029615514,-0.0037328713,0.057172596,-0.050011992,0.022004006,-0.008068615,-0.029483957,0.046212748,0.025836011,0.053092264,0.07279495]', NULL, '{}'::jsonb, '2026-03-01T19:26:48.662Z', '2026-03-01T21:39:32.565Z', 'trade_theory', 'Transformers and Distribution');

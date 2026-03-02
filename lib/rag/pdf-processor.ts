@@ -1,7 +1,27 @@
-import pdf from 'pdf-parse'
 import fs from 'fs/promises'
 import path from 'path'
 import { moduleDetector, ModuleInfo, ModuleDetectionResult } from './module-detector'
+import { OCRService } from './ocr-service'
+
+// Lazy load pdf-parse (uses new PDFParse class API)
+let PDFParseClass: any = null
+async function getPDFParseClass() {
+  if (!PDFParseClass) {
+    try {
+      // Import pdf-parse - it now exports a PDFParse class
+      const module = await import('pdf-parse')
+      PDFParseClass = module.PDFParse
+      
+      if (!PDFParseClass || typeof PDFParseClass !== 'function') {
+        throw new Error(`pdf-parse import failed: PDFParse class not found`)
+      }
+    } catch (error) {
+      console.error('Failed to import pdf-parse:', error)
+      throw error
+    }
+  }
+  return PDFParseClass
+}
 
 export interface PDFProcessorConfig {
   chunkSize: number // Target tokens per chunk
@@ -64,68 +84,94 @@ export class PDFProcessor {
     this.config = {
       chunkSize: config?.chunkSize || 750,
       chunkOverlap: config?.chunkOverlap || 100,
-      excludePatterns: config?.excludePatterns || DEFAULT_EXCLUDE_PATTERNS,
+      excludePatterns: (config?.excludePatterns || DEFAULT_EXCLUDE_PATTERNS) as any,
     }
   }
 
   /**
    * Extract text and metadata from a PDF file
+   * Automatically uses OCR if PDF is image-based
    */
   async extractText(pdfPath: string): Promise<ExtractedContent> {
     try {
-      // Read PDF file
+      // First, try normal text extraction
+      const PDFParseClass = await getPDFParseClass()
       const dataBuffer = await fs.readFile(pdfPath)
+      const uint8Array = new Uint8Array(dataBuffer)
+      const parser = new PDFParseClass(uint8Array)
+      const result = await parser.getText()
       
-      // Parse PDF
-      const data = await pdf(dataBuffer, {
-        // Extract text with page breaks
-        pagerender: (pageData: any) => {
-          return pageData.getTextContent().then((textContent: any) => {
-            let lastY: number | null = null
-            let text = ''
-            
-            for (const item of textContent.items) {
-              // Add line break if Y position changed significantly
-              if (lastY !== null && Math.abs(lastY - item.transform[5]) > 5) {
-                text += '\n'
-              }
-              text += item.str
-              lastY = item.transform[5]
-            }
-            
-            return text
-          })
-        },
-      })
-
-      // Extract page-by-page text
+      const fullText = result.text || ''
+      const numPages = result.total || 0
+      
+      // Extract page texts from the pages array
       const pageTexts: string[] = []
-      const dataBufferForPages = await fs.readFile(pdfPath)
-      const pdfData = await pdf(dataBufferForPages)
-      
-      // Get individual page texts
-      for (let i = 1; i <= data.numpages; i++) {
-        try {
-          const pageBuffer = await fs.readFile(pdfPath)
-          const pageData = await pdf(pageBuffer, {
-            max: i,
-            pagerender: (pageData: any) => {
-              return pageData.getTextContent().then((textContent: any) => {
-                return textContent.items.map((item: any) => item.str).join(' ')
-              })
-            },
-          })
-          pageTexts.push(pageData.text)
-        } catch (error) {
-          console.warn(`Failed to extract text from page ${i}:`, error)
-          pageTexts.push('')
+      if (result.pages && Array.isArray(result.pages)) {
+        for (const page of result.pages) {
+          pageTexts.push(page.text || '')
         }
+      }
+      
+      // Check if PDF needs OCR (has no meaningful text)
+      const avgCharsPerPage = fullText.length / (numPages || 1)
+      const needsOCR = avgCharsPerPage < 50 // Less than 50 chars per page
+      
+      if (needsOCR) {
+        console.log('  ⚠️  PDF appears to be image-based, using OCR...')
+        
+        // Use OCR to extract text
+        const ocrService = new OCRService({
+          language: 'eng',
+          maxConcurrentPages: 3,
+          preprocessImage: true
+        })
+        
+        try {
+          const ocrResult = await ocrService.processPDF(pdfPath)
+          
+          // Get document info
+          let metadata: PDFMetadata = {}
+          try {
+            const info = await parser.getInfo()
+            metadata = this.extractMetadata(info)
+          } catch (error) {
+            console.warn('Could not extract PDF metadata:', error)
+          }
+          
+          // Clean up OCR worker
+          await ocrService.terminate()
+          
+          return {
+            text: ocrResult.fullText,
+            numPages: ocrResult.numPages,
+            metadata: {
+              ...metadata,
+              ocrProcessed: true,
+              ocrConfidence: ocrResult.averageConfidence
+            } as any,
+            pageTexts: ocrResult.pageTexts
+          }
+        } catch (ocrError) {
+          console.error('  ❌ OCR failed, falling back to extracted text:', ocrError)
+          // Fall back to whatever text was extracted
+        } finally {
+          await ocrService.terminate()
+        }
+      }
+      
+      // Get document info
+      let metadata: PDFMetadata = {}
+      try {
+        const info = await parser.getInfo()
+        metadata = this.extractMetadata(info)
+      } catch (error) {
+        console.warn('Could not extract PDF metadata:', error)
       }
 
       return {
-        text: data.text,
-        numPages: data.numpages,
-        metadata: this.extractMetadata(data.info),
+        text: fullText,
+        numPages,
+        metadata,
         pageTexts,
       }
     } catch (error: any) {
@@ -207,7 +253,7 @@ export class PDFProcessor {
    * Check if a line indicates a section to exclude
    */
   private shouldExcludeSection(line: string): boolean {
-    return this.config.excludePatterns.some(pattern => pattern.test(line))
+    return this.config.excludePatterns.some((pattern: any) => pattern.test(line))
   }
 
   /**
@@ -429,7 +475,7 @@ export class PDFProcessor {
     console.log(`  📋 Detected syllabus: ${syllabusInfo.course} - ${syllabusInfo.syllabusType} (confidence: ${(syllabusInfo.confidence * 100).toFixed(1)}%)`)
     
     // Then detect modules based on syllabus type
-    const moduleDetection = moduleDetector.detectModules(text, course, syllabusInfo.syllabusType)
+    const moduleDetection = moduleDetector.detectModules(text, course, syllabusInfo.syllabusType as any)
     
     console.log(`  ✅ Detected ${moduleDetection.detectedModules.length} modules`)
     moduleDetection.detectedModules.forEach(module => {
@@ -450,6 +496,10 @@ export class PDFProcessor {
   ): Promise<ProcessedChunk[]> {
     console.log(`  🔄 Assigning ${syllabusType} modules to ${chunks.length} chunks...`)
     
+    // Get all modules for this course and syllabus type to look up names
+    const allModules = moduleDetector.getModulesForCourse(course, syllabusType)
+    const moduleNameMap = new Map(allModules.map(m => [m.module_id, m.module_name]))
+    
     let assignedCount = 0
     
     const updatedChunks = chunks.map(chunk => {
@@ -462,11 +512,13 @@ export class PDFProcessor {
       
       if (assignment) {
         assignedCount++
+        const moduleName = moduleNameMap.get(assignment.moduleId) || 'General Content'
         return {
           ...chunk,
           module: assignment.moduleId,
           metadata: {
             ...chunk.metadata,
+            moduleName: moduleName,
             moduleConfidence: assignment.confidence,
             syllabusType: syllabusType
           }
@@ -475,8 +527,10 @@ export class PDFProcessor {
       
       return {
         ...chunk,
+        module: 'general-content',
         metadata: {
           ...chunk.metadata,
+          moduleName: 'General Content',
           syllabusType: syllabusType
         }
       }

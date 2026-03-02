@@ -18,19 +18,25 @@ interface ModuleInfo {
  * 
  * Query parameters:
  * - search?: string (keyword or semantic search)
+ * - tradeType?: 'trade_theory' | 'trade_practical' (filter by trade type)
  * 
  * Response:
  * {
  *   success: boolean,
  *   course: string,
+ *   tradeType?: string,
  *   modules: ModuleInfo[]
  * }
  */
 export async function GET(
   request: NextRequest,
-  { params }: { params: { course: string } }
+  context: { params: Promise<{ course: string }> }
 ) {
   try {
+    // Await params in Next.js 15+
+    const resolvedParams = await context.params
+    const { course } = resolvedParams
+    
     // Verify authentication
     const token = request.cookies.get('auth-token')?.value
     if (!token) {
@@ -48,9 +54,9 @@ export async function GET(
       )
     }
 
-    const { course } = params
     const { searchParams } = new URL(request.url)
     const searchQuery = searchParams.get('search')
+    const tradeType = searchParams.get('tradeType')
 
     // Validate course
     if (!['fitter', 'electrician'].includes(course)) {
@@ -60,10 +66,69 @@ export async function GET(
       )
     }
 
-    console.log(`📚 Fetching syllabus for course: ${course}${searchQuery ? `, search: "${searchQuery}"` : ''}`)
+    // Validate tradeType if provided
+    if (tradeType && !['trade_theory', 'trade_practical'].includes(tradeType)) {
+      return NextResponse.json(
+        { error: 'Invalid tradeType. Must be "trade_theory" or "trade_practical"' },
+        { status: 400 }
+      )
+    }
+
+    console.log(`📚 Fetching syllabus for course: ${course}${tradeType ? `, tradeType: ${tradeType}` : ''}${searchQuery ? `, search: "${searchQuery}"` : ''}`)
 
     let modules: ModuleInfo[] = []
 
+    // First, try to get clean syllabus structure from module_syllabus table
+    try {
+      let syllabusSql = `
+        SELECT 
+          module_id,
+          module_name,
+          module_number,
+          topics,
+          extracted_from
+        FROM module_syllabus
+        WHERE course = $1`
+      
+      const syllabusParams: any[] = [course]
+      
+      if (tradeType) {
+        syllabusSql += ` AND trade_type = $2`
+        syllabusParams.push(tradeType)
+      }
+      
+      syllabusSql += ` ORDER BY module_number NULLS LAST, module_name`
+
+      const syllabusResult = await query(syllabusSql, syllabusParams)
+
+      if (syllabusResult.rows.length > 0) {
+        // Use clean syllabus structure
+        console.log(`✅ Using clean syllabus structure (${syllabusResult.rows.length} modules)`)
+        
+        modules = syllabusResult.rows.map((row: any) => ({
+          id: row.module_id,
+          name: row.module_name,
+          moduleNumber: row.module_number,
+          topics: row.topics || [],
+          chunkCount: (row.topics || []).length,
+          pageRange: 'N/A',
+          source: 'syllabus'
+        }))
+
+        return NextResponse.json({
+          success: true,
+          course,
+          tradeType,
+          modules,
+          totalModules: modules.length,
+          source: 'clean_syllabus'
+        })
+      }
+    } catch (error) {
+      console.warn('Could not fetch from module_syllabus, falling back to chunks:', error)
+    }
+
+    // Fallback: Use knowledge_chunks if syllabus not available
     if (searchQuery && searchQuery.trim().length > 0) {
       // Perform semantic search within the course
       const vectorSearchService = new VectorSearchService()
@@ -115,22 +180,35 @@ export async function GET(
       })
     } else {
       // Get all modules for the course
-      const result = await query(`
+      let sql = `
         SELECT 
           module,
+          module_name,
           COUNT(*) as chunk_count,
           MIN(page_number) as min_page,
           MAX(page_number) as max_page,
           array_agg(DISTINCT section) FILTER (WHERE section IS NOT NULL) as sections
         FROM knowledge_chunks
-        WHERE course = $1 AND module IS NOT NULL
-        GROUP BY module
+        WHERE course = $1 AND module IS NOT NULL`
+      
+      const params: any[] = [course]
+      
+      // Add trade_type filter if provided
+      if (tradeType) {
+        sql += ` AND trade_type = $2`
+        params.push(tradeType)
+      }
+      
+      sql += `
+        GROUP BY module, module_name
         ORDER BY MIN(page_number) NULLS LAST, module
-      `, [course])
+      `
+
+      const result = await query(sql, params)
 
       modules = result.rows.map((row: any) => ({
-        id: row.module.toLowerCase().replace(/\s+/g, '-'),
-        name: row.module,
+        id: row.module,
+        name: row.module_name || row.module,
         topics: row.sections || [],
         chunkCount: parseInt(row.chunk_count),
         pageRange: row.min_page && row.max_page 
@@ -157,7 +235,7 @@ export async function GET(
 
       // Enrich modules with mapping data
       modules = modules.map(module => {
-        const mapping = mappingMap.get(module.id)
+        const mapping = mappingMap.get(module.id) as any
         if (mapping) {
           return {
             ...module,
@@ -172,11 +250,12 @@ export async function GET(
       // Continue without enrichment
     }
 
-    console.log(`✅ Found ${modules.length} modules for ${course}`)
+    console.log(`✅ Found ${modules.length} modules for ${course}${tradeType ? ` (${tradeType})` : ''}`)
 
     return NextResponse.json({
       success: true,
       course,
+      tradeType,
       modules,
       totalModules: modules.length
     })

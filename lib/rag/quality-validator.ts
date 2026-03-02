@@ -135,7 +135,7 @@ export class QualityValidator {
 
     // Calculate repetition as ratio of repeated words
     let repeatedCount = 0
-    for (const count of wordFreq.values()) {
+    for (const count of Array.from(wordFreq.values())) {
       if (count > 1) {
         repeatedCount += count - 1
       }

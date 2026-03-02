@@ -14,7 +14,10 @@ import {
   Wrench,
   Zap,
   FileText,
-  PlayCircle
+  PlayCircle,
+  ChevronRight,
+  ArrowLeft,
+  Loader2
 } from 'lucide-react'
 import { formatDate } from '@/lib/utils'
 
@@ -31,7 +34,9 @@ interface User {
 interface Module {
   id: string
   name: string
-  description: string
+  moduleNumber?: number
+  topics: string[]
+  chunkCount: number
 }
 
 interface QuizHistory {
@@ -49,6 +54,11 @@ export default function DashboardPage() {
   const router = useRouter()
   const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
+  const [modules, setModules] = useState<Module[]>([])
+  const [selectedModule, setSelectedModule] = useState<Module | null>(null)
+  const [selectedTopic, setSelectedTopic] = useState<string | null>(null)
+  const [generatingQuiz, setGeneratingQuiz] = useState(false)
+  const [tradeType, setTradeType] = useState<'trade_theory' | 'trade_practical'>('trade_theory')
   const [quizHistory, setQuizHistory] = useState<QuizHistory[]>([])
   const [stats, setStats] = useState({
     totalQuizzes: 0,
@@ -56,26 +66,6 @@ export default function DashboardPage() {
     totalStudyTime: 0,
     completedModules: 0
   })
-
-  // Course-specific modules
-  const courseModules: Record<string, Module[]> = {
-    fitter: [
-      { id: 'safety-signs', name: 'Safety Signs', description: 'Industrial safety symbols and hazard warnings' },
-      { id: 'ppe', name: 'PPE', description: 'Personal Protective Equipment usage and safety' },
-      { id: 'vernier-calipers', name: 'Vernier Calipers', description: 'Precision measurement techniques' },
-      { id: 'micrometers', name: 'Micrometers', description: 'Micrometer parts and measurement' },
-      { id: 'filing', name: 'Filing', description: 'Filing techniques and surface finishing' },
-      { id: 'drilling', name: 'Drilling', description: 'Drilling operations and safety' },
-      { id: 'marking-tools', name: 'Marking Tools', description: 'Layout and marking techniques' }
-    ],
-    electrician: [
-      { id: 'ohms-law', name: "Ohm's Law", description: 'Voltage, current, and resistance relationships' },
-      { id: 'wiring-circuits', name: 'Wiring Circuits', description: 'Circuit diagrams and house wiring' },
-      { id: 'transformers', name: 'Transformers', description: 'Transformer principles and applications' },
-      { id: 'electrical-safety', name: 'Electrical Safety', description: 'Safety rules and shock prevention' },
-      { id: 'hand-tools', name: 'Hand Tools', description: 'Electrical hand tools and their usage' }
-    ]
-  }
 
   useEffect(() => {
     async function loadData() {
@@ -85,6 +75,10 @@ export default function DashboardPage() {
         if (authResponse.ok) {
           const authData = await authResponse.json()
           setUser(authData.user)
+
+          // Load modules for user's course
+          const userCourse = authData.user.course || 'electrician'
+          await loadModules(userCourse, tradeType)
 
           // Get quiz history
           const historyResponse = await fetch('/api/quiz/history?limit=10')
@@ -103,7 +97,7 @@ export default function DashboardPage() {
                 setStats({
                   totalQuizzes: history.length,
                   averageScore: Math.round(totalScore / history.length),
-                  totalStudyTime: Math.floor(totalTime / 60), // Convert to minutes
+                  totalStudyTime: Math.floor(totalTime / 60),
                   completedModules: uniqueModules.size
                 })
               }
@@ -123,6 +117,55 @@ export default function DashboardPage() {
     loadData()
   }, [router])
 
+  async function loadModules(course: string, type: 'trade_theory' | 'trade_practical') {
+    try {
+      const response = await fetch(`/api/rag/syllabus/${course}?tradeType=${type}`)
+      if (response.ok) {
+        const data = await response.json()
+        if (data.success && data.modules) {
+          setModules(data.modules)
+        }
+      }
+    } catch (error) {
+      console.error('Error loading modules:', error)
+    }
+  }
+
+  async function handleTradeTypeChange(type: 'trade_theory' | 'trade_practical') {
+    setTradeType(type)
+    setSelectedModule(null)
+    setSelectedTopic(null)
+    if (user?.course) {
+      await loadModules(user.course, type)
+    }
+  }
+
+  async function handleGenerateQuiz() {
+    if (!selectedModule || !selectedTopic || !user) return
+
+    setGeneratingQuiz(true)
+    
+    // Store quiz data in sessionStorage to avoid long URLs
+    const quizData = {
+      moduleId: selectedModule.id,
+      moduleName: selectedModule.name,
+      topic: selectedTopic,
+      tradeType: tradeType
+    }
+    sessionStorage.setItem('pendingQuiz', JSON.stringify(quizData))
+    
+    try {
+      // Navigate with clean URL
+      const userCourse = user.course || 'electrician'
+      const quizUrl = `/quiz/${userCourse}`
+      console.log('Navigating to:', quizUrl)
+      router.push(quizUrl)
+    } catch (error) {
+      console.error('Error generating quiz:', error)
+      setGeneratingQuiz(false)
+    }
+  }
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -138,9 +181,7 @@ export default function DashboardPage() {
     return null
   }
 
-  // Get modules for user's course
-  const userCourse = user.course || 'fitter'
-  const modules = courseModules[userCourse] || courseModules.fitter
+  const userCourse = user.course || 'electrician'
   const CourseIcon = userCourse === 'electrician' ? Zap : Wrench
   const courseColor = userCourse === 'electrician' ? 'yellow' : 'blue'
 
@@ -163,13 +204,6 @@ export default function DashboardPage() {
                 {userCourse === 'electrician' ? 'Electrician' : 'Fitter'} Course - Master your skills with AI-powered quizzes
               </p>
             </div>
-          </div>
-          <div className={`p-4 bg-gradient-to-r ${
-            courseColor === 'yellow' ? 'from-yellow-50 to-orange-50 border-yellow-200' : 'from-blue-50 to-green-50 border-blue-200'
-          } border rounded-lg`}>
-            <p className="text-sm text-gray-700">
-              🏭 <strong>Your Learning Path:</strong> Complete quizzes to master each module and track your progress on the leaderboard
-            </p>
           </div>
         </div>
 
@@ -233,57 +267,169 @@ export default function DashboardPage() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Course Modules */}
+          {/* Main Content Area */}
           <div className="lg:col-span-2">
             <Card>
               <CardHeader>
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between mb-4">
                   <div>
                     <div className="flex items-center space-x-2 mb-2">
                       <CourseIcon className={`w-5 h-5 ${courseColor === 'yellow' ? 'text-yellow-600' : 'text-blue-600'}`} />
                       <h2 className="text-xl font-bold text-gray-900">
-                        {userCourse === 'electrician' ? 'Electrician' : 'Fitter'} Modules
+                        {selectedModule ? selectedModule.name : `${userCourse === 'electrician' ? 'Electrician' : 'Fitter'} Modules`}
                       </h2>
                     </div>
                     <p className="text-sm text-gray-600">
-                      Select a module to start your AI-powered quiz (5 questions each)
+                      {selectedModule 
+                        ? 'Select a topic to generate an AI-powered quiz'
+                        : 'Select a module to view topics and start learning'}
                     </p>
                   </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {modules.map((module) => (
+                  {selectedModule && (
                     <button
-                      key={module.id}
-                      type="button"
-                      onClick={() => router.push(`/quiz/${userCourse}/${module.id}`)}
-                      className={`p-4 text-left rounded-lg border-2 transition-all hover:shadow-md ${
-                        courseColor === 'yellow'
-                          ? 'border-yellow-200 hover:border-yellow-400 hover:bg-yellow-50'
-                          : 'border-blue-200 hover:border-blue-400 hover:bg-blue-50'
+                      onClick={() => {
+                        setSelectedModule(null)
+                        setSelectedTopic(null)
+                      }}
+                      className="flex items-center space-x-1 text-sm text-gray-600 hover:text-gray-900"
+                    >
+                      <ArrowLeft className="w-4 h-4" />
+                      <span>Back</span>
+                    </button>
+                  )}
+                </div>
+
+                {/* Trade Type Toggle */}
+                {!selectedModule && (
+                  <div className="flex space-x-2 p-1 bg-gray-100 rounded-lg w-fit">
+                    <button
+                      onClick={() => handleTradeTypeChange('trade_theory')}
+                      className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                        tradeType === 'trade_theory'
+                          ? 'bg-white text-gray-900 shadow-sm'
+                          : 'text-gray-600 hover:text-gray-900'
                       }`}
                     >
-                      <div className="flex items-start space-x-3">
-                        <div className={`p-2 rounded-lg ${
-                          courseColor === 'yellow' ? 'bg-yellow-100' : 'bg-blue-100'
-                        }`}>
-                          <PlayCircle className={`w-5 h-5 ${
-                            courseColor === 'yellow' ? 'text-yellow-600' : 'text-blue-600'
-                          }`} />
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="font-semibold text-gray-900 mb-1">{module.name}</h3>
-                          <p className="text-xs text-gray-600">{module.description}</p>
-                          <div className="mt-2 flex items-center space-x-2 text-xs text-gray-500">
-                            <FileText className="w-3 h-3" />
-                            <span>5 questions • AI-generated</span>
-                          </div>
-                        </div>
-                      </div>
+                      Theory
                     </button>
-                  ))}
-                </div>
+                    <button
+                      onClick={() => handleTradeTypeChange('trade_practical')}
+                      className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                        tradeType === 'trade_practical'
+                          ? 'bg-white text-gray-900 shadow-sm'
+                          : 'text-gray-600 hover:text-gray-900'
+                      }`}
+                    >
+                      Practical
+                    </button>
+                  </div>
+                )}
+              </CardHeader>
+              <CardContent>
+                {!selectedModule ? (
+                  /* Module List */
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {modules.map((module) => (
+                      <button
+                        key={module.id}
+                        type="button"
+                        onClick={() => setSelectedModule(module)}
+                        className={`p-4 text-left rounded-lg border-2 transition-all hover:shadow-md ${
+                          courseColor === 'yellow'
+                            ? 'border-yellow-200 hover:border-yellow-400 hover:bg-yellow-50'
+                            : 'border-blue-200 hover:border-blue-400 hover:bg-blue-50'
+                        }`}
+                      >
+                        <div className="flex items-start justify-between">
+                          <div className="flex-1">
+                            <div className="flex items-center space-x-2 mb-2">
+                              {module.moduleNumber && (
+                                <span className={`px-2 py-1 text-xs font-bold rounded ${
+                                  courseColor === 'yellow' ? 'bg-yellow-100 text-yellow-700' : 'bg-blue-100 text-blue-700'
+                                }`}>
+                                  Module {module.moduleNumber}
+                                </span>
+                              )}
+                            </div>
+                            <h3 className="font-semibold text-gray-900 mb-2">{module.name}</h3>
+                            <div className="flex items-center space-x-2 text-xs text-gray-500">
+                              <FileText className="w-3 h-3" />
+                              <span>{module.topics.length} topics</span>
+                            </div>
+                          </div>
+                          <ChevronRight className="w-5 h-5 text-gray-400" />
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                ) : (
+                  /* Topic List */
+                  <div className="space-y-3">
+                    {selectedModule.topics.map((topic, index) => (
+                      <button
+                        key={index}
+                        type="button"
+                        onClick={() => setSelectedTopic(topic)}
+                        className={`w-full p-4 text-left rounded-lg border-2 transition-all ${
+                          selectedTopic === topic
+                            ? courseColor === 'yellow'
+                              ? 'border-yellow-400 bg-yellow-50'
+                              : 'border-blue-400 bg-blue-50'
+                            : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+                        }`}
+                      >
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-start space-x-3 flex-1">
+                            <div className={`mt-1 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
+                              selectedTopic === topic
+                                ? courseColor === 'yellow'
+                                  ? 'bg-yellow-200 text-yellow-700'
+                                  : 'bg-blue-200 text-blue-700'
+                                : 'bg-gray-200 text-gray-600'
+                            }`}>
+                              {index + 1}
+                            </div>
+                            <p className="text-sm text-gray-900 flex-1">{topic}</p>
+                          </div>
+                          {selectedTopic === topic && (
+                            <PlayCircle className={`w-5 h-5 ${
+                              courseColor === 'yellow' ? 'text-yellow-600' : 'text-blue-600'
+                            }`} />
+                          )}
+                        </div>
+                      </button>
+                    ))}
+
+                    {/* Generate Quiz Button */}
+                    {selectedTopic && (
+                      <div className="pt-4 border-t">
+                        <button
+                          onClick={handleGenerateQuiz}
+                          disabled={generatingQuiz}
+                          className={`w-full py-3 px-4 rounded-lg font-medium text-white transition-all ${
+                            generatingQuiz
+                              ? 'bg-gray-400 cursor-not-allowed'
+                              : courseColor === 'yellow'
+                              ? 'bg-yellow-500 hover:bg-yellow-600'
+                              : 'bg-blue-500 hover:bg-blue-600'
+                          }`}
+                        >
+                          {generatingQuiz ? (
+                            <span className="flex items-center justify-center space-x-2">
+                              <Loader2 className="w-5 h-5 animate-spin" />
+                              <span>Generating Quiz...</span>
+                            </span>
+                          ) : (
+                            <span className="flex items-center justify-center space-x-2">
+                              <Brain className="w-5 h-5" />
+                              <span>Generate AI Quiz on "{selectedTopic}"</span>
+                            </span>
+                          )}
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                )}
               </CardContent>
             </Card>
           </div>
@@ -294,8 +440,8 @@ export default function DashboardPage() {
             <Card>
               <CardHeader>
                 <div className="flex items-center space-x-2">
-                  <BarChart3 className="w-5 h-5" />
-                  <h3 className="font-semibold">Recent Quizzes</h3>
+                  <BarChart3 className="w-5 h-5 text-gray-900" />
+                  <h3 className="font-semibold text-gray-900">Recent Quizzes</h3>
                 </div>
               </CardHeader>
               <CardContent>
@@ -334,12 +480,24 @@ export default function DashboardPage() {
             <Card>
               <CardHeader>
                 <div className="flex items-center space-x-2">
-                  <Brain className="w-5 h-5" />
-                  <h3 className="font-semibold">Resources</h3>
+                  <Brain className="w-5 h-5 text-gray-900" />
+                  <h3 className="font-semibold text-gray-900">Resources</h3>
                 </div>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
+                  <button
+                    type="button"
+                    onClick={() => router.push('/chatbot')}
+                    className="w-full p-3 border border-gray-200 rounded-lg hover:border-blue-300 transition-colors text-left"
+                  >
+                    <div className="flex items-center space-x-2">
+                      <Brain className="w-4 h-4 text-blue-600" />
+                      <span className="text-sm font-medium">AI Chatbot</span>
+                    </div>
+                    <p className="text-xs text-gray-600 mt-1">Ask questions and get instant answers</p>
+                  </button>
+
                   <button
                     type="button"
                     onClick={() => router.push('/syllabus')}
@@ -351,19 +509,6 @@ export default function DashboardPage() {
                     </div>
                     <p className="text-xs text-gray-600 mt-1">Browse course modules and topics</p>
                   </button>
-
-                  <a 
-                    href="https://bharatskills.gov.in/" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="block p-3 border border-gray-200 rounded-lg hover:border-blue-300 transition-colors"
-                  >
-                    <div className="flex items-center space-x-2">
-                      <BookOpen className="w-4 h-4 text-blue-600" />
-                      <span className="text-sm font-medium">Bharat Skills</span>
-                    </div>
-                    <p className="text-xs text-gray-600 mt-1">Official NSQF resources</p>
-                  </a>
                   
                   <button
                     type="button"

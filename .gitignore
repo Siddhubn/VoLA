@@ -1,0 +1,151 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# Dependencies
+/node_modules
+/.pnp
+.pnp.js
+.yarn/install-state.gz
+
+# Testing
+/coverage
+
+# Next.js
+/.next/
+/out/
+
+# Production
+/build
+
+# Misc
+.DS_Store
+*.pem
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local env files (IMPORTANT: Keep these local only!)
+.env*.local
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Vercel
+.vercel
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+Icon
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage
+coverage
+*.lcov
+.nyc_output
+
+# Cache directories
+.cache
+.parcel-cache
+.npm
+.eslintcache
+.stylelintcache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Package files
+*.tgz
+.yarn-integrity
+
+# Database files (local only)
+*.db
+*.sqlite
+*.sqlite3
+
+# Backup files
+*.bak
+*.backup
+*.old
+
+# Certificates (keep these secure!)
+*.pem
+*.key
+*.crt
+*.cert
+
+# Local development
+.local
+.turbo
+
+# Docker volumes (local only)
+pgvector_data/
+
+# OCR cache (generated files)
+.ocr-cache/
+
+# PDF source files (too large for git)
+electrician/
+fitter/
+pdfs-original-backup/
+
+# Local scripts and configs
+docker-compose.yml
+fix-all-errors.ps1
+fix-quality-dashboard.ps1
+run-tests-summary.ps1
+
+# Kiro IDE (keep specs if needed, but exclude cache)
+/.kiro/cache/
+/.kiro/logs/
+
+# Processing reports
+processing-report.json
+processing-report-summary.txt
+
+# Local command files
+/run command/
+docker commands.txt
+
+pdfs-original-backup/

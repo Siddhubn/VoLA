@@ -1,6 +1,7 @@
 import { PDFProcessor, ProcessedChunk, ExtractedContent } from './pdf-processor'
-import { EmbeddingService, BatchEmbeddingResult } from './embedding-service'
+import { LocalEmbeddingService } from './local-embedding-service'
 import { moduleDetector } from './module-detector'
+import { detectTradeTypeFromFilename, TradeType } from './trade-type-detector'
 import { 
   createPDFDocument, 
   updatePDFDocument, 
@@ -64,9 +65,15 @@ export interface ProcessingSummary {
   totalTokens: number
 }
 
+export interface BatchEmbeddingResult {
+  embeddings: number[][]
+  totalTokens: number
+  failedIndices: number[]
+}
+
 export class PDFProcessingPipeline {
   private pdfProcessor: PDFProcessor
-  private embeddingService: EmbeddingService
+  private embeddingService: LocalEmbeddingService
   private config: Required<PipelineConfig>
 
   constructor(config: PipelineConfig = {}) {
@@ -87,10 +94,12 @@ export class PDFProcessingPipeline {
       excludePatterns: []
     })
 
-    this.embeddingService = new EmbeddingService({
-      batchSize: this.config.embeddingBatchSize,
-      retryAttempts: this.config.embeddingRetries
+    // Use local embedding service instead of Gemini
+    this.embeddingService = new LocalEmbeddingService({
+      batchSize: this.config.embeddingBatchSize
     })
+    
+    console.log('✅ PDF Pipeline initialized with LOCAL embedding model')
   }
 
   /**
@@ -103,7 +112,9 @@ export class PDFProcessingPipeline {
     const startTime = Date.now()
     const filename = path.basename(filePath)
     
-    console.log(`🚀 Starting pipeline for ${filename} (${course})`)
+    // Detect trade type from filename
+    const tradeType = detectTradeTypeFromFilename(filename)
+    console.log(`🚀 Starting pipeline for ${filename} (${course}, ${tradeType})`)
 
     try {
       // Initialize document record
@@ -123,10 +134,10 @@ export class PDFProcessingPipeline {
       
       // Stage 4: Store in database
       this.reportProgress('storage', filename, 75, 'Storing chunks in database...')
-      const storedChunks = await this.storeChunks(chunks, embeddings, course, filename, documentId)
+      const storedChunks = await this.storeChunks(chunks, embeddings, course, filename, documentId, tradeType)
       
       // Stage 5: Update document status and generate summary
-      const summary = this.generateSummary(extractedContent, chunks, embeddings, storedChunks)
+      const summary = this.generateSummary(extractedContent, chunks, embeddings, storedChunks, tradeType)
       await this.finalizeDocument(documentId, summary, filename)
       
       const processingTimeMs = Date.now() - startTime
@@ -250,33 +261,31 @@ export class PDFProcessingPipeline {
     course: 'fitter' | 'electrician',
     filename: string
   ): Promise<ProcessedChunk[]> {
-    // Use the enhanced PDF processor with module detection
-    const result = await this.pdfProcessor.processPDFWithModules(content.text, course)
-    
-    // The processPDFWithModules method processes the text directly, but we already have extracted content
-    // So we'll use the individual methods with syllabus type detection
-    
     // Detect syllabus type from filename
     const syllabusInfo = moduleDetector.detectSyllabusType(filename, content.text)
     console.log(`📋 Detected syllabus: ${syllabusInfo.course} - ${syllabusInfo.syllabusType} (confidence: ${(syllabusInfo.confidence * 100).toFixed(1)}%)`)
     
     // Filter the content first
     const filteredText = await this.pdfProcessor.filterContent(content.text)
+    console.log(`✅ Filtered content (${filteredText.length} characters)`)
     
     // Detect modules with syllabus type
-    const moduleDetection = moduleDetector.detectModules(filteredText, course, syllabusInfo.syllabusType)
-    console.log(`✅ Detected ${moduleDetection.detectedModules.length} ${syllabusInfo.syllabusType} modules`)
+    const syllabusTypeValue = syllabusInfo.syllabusType === 'unknown' ? 'TP' : syllabusInfo.syllabusType
+    const moduleDetection = moduleDetector.detectModules(filteredText, course, syllabusTypeValue)
+    console.log(`✅ Detected ${moduleDetection.detectedModules.length} ${syllabusTypeValue} modules`)
     
     // Chunk the filtered content
     const chunks = await this.pdfProcessor.chunkContent(filteredText)
+    console.log(`✅ Created ${chunks.length} chunks`)
     
     // Assign modules to chunks with syllabus type
     const chunksWithModules = await this.pdfProcessor.assignModulesToChunks(
       chunks, 
       course, 
-      syllabusInfo.syllabusType,
+      syllabusTypeValue,
       moduleDetection.detectedModules
     )
+    console.log(`✅ Assigned modules to chunks`)
     
     return chunksWithModules
   }
@@ -353,7 +362,8 @@ export class PDFProcessingPipeline {
     embeddings: BatchEmbeddingResult,
     course: 'fitter' | 'electrician',
     filename: string,
-    documentId: number
+    documentId: number,
+    tradeType: TradeType
   ): Promise<number> {
     let storedCount = 0
     
@@ -368,10 +378,14 @@ export class PDFProcessingPipeline {
       
       const embedding = embeddings.embeddings[i - embeddings.failedIndices.filter(idx => idx < i).length]
       
+      // Extract module_name from metadata or use module as fallback
+      const moduleName = chunk.metadata?.moduleName || chunk.module || 'General Content'
+      
       const knowledgeChunk: KnowledgeChunk = {
         course,
         pdf_source: filename,
-        module: chunk.module || undefined,
+        module: chunk.module || 'general-content',
+        module_name: moduleName,
         section: chunk.section || undefined,
         page_number: chunk.pageNumber,
         chunk_index: chunk.chunkIndex,
@@ -379,6 +393,7 @@ export class PDFProcessingPipeline {
         content_preview: this.config.generatePreview ? this.generatePreview(chunk.content) : undefined,
         embedding: this.config.storeEmbeddings ? embedding : undefined,
         token_count: chunk.tokenCount,
+        trade_type: tradeType,
         metadata: chunk.metadata
       }
       
@@ -400,14 +415,16 @@ export class PDFProcessingPipeline {
     content: ExtractedContent,
     chunks: ProcessedChunk[],
     embeddings: BatchEmbeddingResult,
-    storedChunks: number
+    storedChunks: number,
+    tradeType: TradeType
   ): ProcessingSummary {
     const moduleDistribution: Record<string, number> = {}
     let totalTokens = 0
     
     chunks.forEach(chunk => {
-      const module = chunk.module || 'unassigned'
-      moduleDistribution[module] = (moduleDistribution[module] || 0) + 1
+      const moduleName = chunk.metadata?.moduleName || chunk.module || 'unassigned'
+      const key = `${tradeType}:${moduleName}`
+      moduleDistribution[key] = (moduleDistribution[key] || 0) + 1
       totalTokens += chunk.tokenCount
     })
     
@@ -514,7 +531,7 @@ export class PDFProcessingPipeline {
   getStats() {
     return {
       config: this.config,
-      embeddingStats: this.embeddingService.getStats()
+      embeddingStats: (this.embeddingService as any).getStats?.() || {}
     }
   }
 }

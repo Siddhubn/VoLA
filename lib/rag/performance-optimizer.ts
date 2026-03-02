@@ -180,7 +180,9 @@ export class PerformanceOptimizer {
     if (this.queryCache.size > this.cacheConfig.maxSize) {
       // Remove oldest entry
       const oldestKey = this.queryCache.keys().next().value
-      this.queryCache.delete(oldestKey)
+      if (oldestKey) {
+        this.queryCache.delete(oldestKey)
+      }
     }
 
     return result
