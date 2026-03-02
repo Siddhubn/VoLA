@@ -10,12 +10,19 @@ if (!DATABASE_URL) {
 let pool: Pool | null = null
 
 function createPool(): Pool {
+  // Determine if we need SSL based on the connection string
+  // Local databases (localhost/127.0.0.1) don't need SSL
+  // Cloud databases (Supabase, etc.) need SSL with rejectUnauthorized: false
+  const isLocalDatabase = DATABASE_URL.includes('localhost') || DATABASE_URL.includes('127.0.0.1')
+  
   return new Pool({
     connectionString: DATABASE_URL,
-    ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
+    ssl: isLocalDatabase ? false : {
+      rejectUnauthorized: false // Required for Supabase and other cloud databases with self-signed certificates
+    },
     max: 20, // Maximum number of clients in the pool
     idleTimeoutMillis: 30000, // Close idle clients after 30 seconds
-    connectionTimeoutMillis: 5000, // Return an error after 5 seconds if connection could not be established
+    connectionTimeoutMillis: 10000, // Return an error after 10 seconds if connection could not be established
   })
 }
 
