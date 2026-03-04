@@ -111,7 +111,7 @@ export function AIChatbot({ course, userId, module, sessionId: initialSessionId,
     inputRef.current?.focus()
   }, [])
 
-  // Load chat history on mount
+  // Load chat history on mount and when course changes
   useEffect(() => {
     loadChatHistory()
   }, [userId, selectedCourse])
@@ -156,7 +156,7 @@ export function AIChatbot({ course, userId, module, sessionId: initialSessionId,
     setLoading(true)
 
     try {
-      const response = await fetch('/api/rag/chat', {
+      const response = await fetch('/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -164,9 +164,12 @@ export function AIChatbot({ course, userId, module, sessionId: initialSessionId,
         body: JSON.stringify({
           message: userMessage,
           course: selectedCourse,
-          module,
-          sessionId,
-          userId,
+          context: {
+            currentModule: module,
+            tradeType: 'TT', // Default to Trade Theory
+            userLevel: 'intermediate', // Default level
+            focusArea: undefined // Let the system determine
+          },
           history: messages.slice(-10) // Send last 10 messages for context
         })
       })
@@ -244,9 +247,14 @@ export function AIChatbot({ course, userId, module, sessionId: initialSessionId,
 
   function handleCourseChange(newCourse: 'fitter' | 'electrician') {
     setSelectedCourse(newCourse)
+    setMessages([]) // Clear messages when switching courses
+    setSessionId(null) // Reset session
+    setError(null) // Clear any errors
+    
     if (onCourseChange) {
       onCourseChange(newCourse)
     }
+    
     // Load history for new course
     loadChatHistory()
   }

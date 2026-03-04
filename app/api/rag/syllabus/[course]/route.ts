@@ -1,286 +1,139 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { verifyToken } from '@/lib/simple-auth'
-import { query } from '@/lib/postgresql'
-import { VectorSearchService } from '@/lib/rag/vector-search'
+import { NextRequest, NextResponse } from 'next/server';
+import { query } from '@/lib/postgresql';
 
-interface ModuleInfo {
-  id: string
-  name: string
-  topics: string[]
-  chunkCount: number
-  pageRange: string
-  description?: string
-}
+// Inline curriculum data to avoid import issues
+const CURRICULUM_MODULES = {
+  TT: [
+    { moduleNumber: 1, moduleName: 'Safety Practice and Hand Tools', topics: ['Organization of ITIs and the scope of the electrician trade', 'Safety rules, safety signs, and hazard identification'] },
+    { moduleNumber: 2, moduleName: 'Wires, Joints, Soldering, and U.G.Cables', topics: ['Fundamentals of electricity, conductors, insulators, wire size measurement, and crimping'] },
+    { moduleNumber: 3, moduleName: 'Basic Electrical Practice', topics: ["Ohm's law, simple electrical circuits, and related calculations"] },
+    { moduleNumber: 4, moduleName: 'Magnetism and Capacitors', topics: ['Magnetic terms, magnetic materials, and the properties of magnets'] },
+    { moduleNumber: 5, moduleName: 'AC Circuits', topics: ['Alternating current terms, definitions, and drawing vector diagrams'] },
+    { moduleNumber: 6, moduleName: 'Cells and Batteries', topics: ['Differences and applications of primary cells and secondary cells'] },
+    { moduleNumber: 7, moduleName: 'Basic Wiring Practice', topics: ['Bureau of Indian Standards (B.I.S.) symbols used for electrical accessories'] },
+    { moduleNumber: 8, moduleName: 'Wiring Installation and Earthing', topics: ['Installing main boards equipped with MCB, DB switches, and fuse boxes'] },
+    { moduleNumber: 9, moduleName: 'Illumination', topics: ['Illumination terminology and laws'] },
+    { moduleNumber: 10, moduleName: 'Measuring Instruments', topics: ['Classification of instruments, scales, required forces, and Moving Coil (MC) / Moving Iron (MI) meters'] },
+    { moduleNumber: 11, moduleName: 'Domestic Appliances', topics: ['The concepts of Neutral and Earth applied to cooking ranges'] },
+    { moduleNumber: 12, moduleName: 'Transformers', topics: ['Transformer working principles, classifications, and EMF equations'] }
+  ],
+  TP: [
+    { moduleNumber: 1, moduleName: 'Safety Practice and Hand Tools', topics: ['Visit various sections of the institute and locations of electrical installations'] },
+    { moduleNumber: 2, moduleName: 'Wires, Joints, Soldering - U.G.Cables', topics: ['Prepare cable terminations, practice skinning, twisting, and crimping'] },
+    { moduleNumber: 3, moduleName: 'Basic Electrical Practice', topics: ["Measure parameters in combinational circuits by applying Ohm's Law and analyzing graphs"] },
+    { moduleNumber: 4, moduleName: 'Magnetism and Capacitors', topics: ['Determine the poles and plot the field of a bar magnet'] },
+    { moduleNumber: 5, moduleName: 'AC Circuits', topics: ['Determine the characteristics of R-L, R-C, and R-L-C in AC series and parallel circuits'] },
+    { moduleNumber: 6, moduleName: 'Cells and Batteries / Solar Cells', topics: ['Use and group various types of cells for specified voltages and currents'] },
+    { moduleNumber: 7, moduleName: 'Basic Wiring Practice', topics: ['Identify conduits, electrical accessories, and practice cutting/threading conduits'] },
+    { moduleNumber: 8, moduleName: 'Wiring Installation and Earthing', topics: ['Wire up consumer main boards with MCB, DB, switch, and fuse boxes'] },
+    { moduleNumber: 9, moduleName: 'Illumination', topics: ['Install light fittings with reflectors for direct and indirect lighting'] },
+    { moduleNumber: 10, moduleName: 'Measuring Instruments', topics: ['Practice using analog/digital instruments in single and 3-phase circuits (multimeter, wattmeter, frequency meter, etc.)'] },
+    { moduleNumber: 11, moduleName: 'Domestic Appliances', topics: ['Dismantle and assemble electrical parts of cooking ranges, geysers, washing machines, and pump sets'] },
+    { moduleNumber: 12, moduleName: 'Transformers', topics: ['Verify terminals, identify components, and calculate transformation ratios for single-phase transformers'] }
+  ]
+};
 
-/**
- * GET /api/rag/syllabus/:course
- * Get syllabus structure for a course
- * 
- * Query parameters:
- * - search?: string (keyword or semantic search)
- * - tradeType?: 'trade_theory' | 'trade_practical' (filter by trade type)
- * 
- * Response:
- * {
- *   success: boolean,
- *   course: string,
- *   tradeType?: string,
- *   modules: ModuleInfo[]
- * }
- */
 export async function GET(
   request: NextRequest,
-  context: { params: Promise<{ course: string }> }
+  { params }: { params: Promise<{ course: string }> }
 ) {
   try {
-    // Await params in Next.js 15+
-    const resolvedParams = await context.params
-    const { course } = resolvedParams
-    
-    // Verify authentication
-    const token = request.cookies.get('auth-token')?.value
-    if (!token) {
-      return NextResponse.json(
-        { error: 'Not authenticated' },
-        { status: 401 }
-      )
-    }
+    const { course } = await params;
+    const { searchParams } = new URL(request.url);
+    const tradeType = searchParams.get('tradeType') || 'trade_theory';
 
-    const decoded = verifyToken(token)
-    if (!decoded) {
-      return NextResponse.json(
-        { error: 'Invalid token' },
-        { status: 401 }
-      )
-    }
+    // Convert tradeType to TT/TP format
+    const ttType = tradeType === 'trade_theory' ? 'TT' : 'TP';
 
-    const { searchParams } = new URL(request.url)
-    const searchQuery = searchParams.get('search')
-    const tradeType = searchParams.get('tradeType')
+    console.log(`📚 Fetching syllabus for ${course}, trade type: ${ttType}`);
 
-    // Validate course
-    if (!['fitter', 'electrician'].includes(course)) {
-      return NextResponse.json(
-        { error: 'Invalid course. Must be "fitter" or "electrician"' },
-        { status: 400 }
-      )
-    }
+    // Try to get modules from the knowledge base first
+    const result = await query(`
+      SELECT 
+        module_id,
+        module_name,
+        module_number,
+        array_agg(DISTINCT section_title ORDER BY section_title) FILTER (WHERE section_title IS NOT NULL) as topics,
+        COUNT(*) as chunk_count
+      FROM knowledge_chunks
+      WHERE trade = $1
+        AND trade_type = $2
+      GROUP BY module_id, module_name, module_number
+      ORDER BY module_number ASC
+    `, [course, ttType]);
 
-    // Validate tradeType if provided
-    if (tradeType && !['trade_theory', 'trade_practical'].includes(tradeType)) {
-      return NextResponse.json(
-        { error: 'Invalid tradeType. Must be "trade_theory" or "trade_practical"' },
-        { status: 400 }
-      )
-    }
+    let modules;
+    let source = 'database';
 
-    console.log(`📚 Fetching syllabus for course: ${course}${tradeType ? `, tradeType: ${tradeType}` : ''}${searchQuery ? `, search: "${searchQuery}"` : ''}`)
-
-    let modules: ModuleInfo[] = []
-
-    // First, try to get clean syllabus structure from module_syllabus table
-    try {
-      let syllabusSql = `
-        SELECT 
-          module_id,
-          module_name,
-          module_number,
-          topics,
-          extracted_from
-        FROM module_syllabus
-        WHERE course = $1`
+    if (result.rows.length === 0) {
+      console.log(`⚠️ No modules found in database for ${course} ${ttType}, using curriculum data`);
       
-      const syllabusParams: any[] = [course]
-      
-      if (tradeType) {
-        syllabusSql += ` AND trade_type = $2`
-        syllabusParams.push(tradeType)
-      }
-      
-      syllabusSql += ` ORDER BY module_number NULLS LAST, module_name`
-
-      const syllabusResult = await query(syllabusSql, syllabusParams)
-
-      if (syllabusResult.rows.length > 0) {
-        // Use clean syllabus structure
-        console.log(`✅ Using clean syllabus structure (${syllabusResult.rows.length} modules)`)
-        
-        modules = syllabusResult.rows.map((row: any) => ({
-          id: row.module_id,
-          name: row.module_name,
-          moduleNumber: row.module_number,
-          topics: row.topics || [],
-          chunkCount: (row.topics || []).length,
-          pageRange: 'N/A',
-          source: 'syllabus'
-        }))
-
-        return NextResponse.json({
-          success: true,
-          course,
-          tradeType,
-          modules,
-          totalModules: modules.length,
-          source: 'clean_syllabus'
-        })
-      }
-    } catch (error) {
-      console.warn('Could not fetch from module_syllabus, falling back to chunks:', error)
-    }
-
-    // Fallback: Use knowledge_chunks if syllabus not available
-    if (searchQuery && searchQuery.trim().length > 0) {
-      // Perform semantic search within the course
-      const vectorSearchService = new VectorSearchService()
-      const searchResults = await vectorSearchService.search({
-        query: searchQuery,
-        course: course as 'fitter' | 'electrician',
-        topK: 20,
-        minSimilarity: 0.6
-      })
-
-      // Group results by module
-      const moduleMap = new Map<string, {
-        sections: Set<string>
-        chunkIds: Set<number>
-        pages: Set<number>
-      }>()
-
-      for (const result of searchResults) {
-        const moduleName = result.source.module || 'General'
-        if (!moduleMap.has(moduleName)) {
-          moduleMap.set(moduleName, {
-            sections: new Set(),
-            chunkIds: new Set(),
-            pages: new Set()
-          })
-        }
-        const moduleData = moduleMap.get(moduleName)!
-        if (result.source.section) {
-          moduleData.sections.add(result.source.section)
-        }
-        moduleData.chunkIds.add(result.chunkId)
-        if (result.source.pageNumber) {
-          moduleData.pages.add(result.source.pageNumber)
-        }
-      }
-
-      // Convert to ModuleInfo array
-      modules = Array.from(moduleMap.entries()).map(([name, data]) => {
-        const pages = Array.from(data.pages).sort((a, b) => a - b)
-        return {
-          id: name.toLowerCase().replace(/\s+/g, '-'),
-          name,
-          topics: Array.from(data.sections),
-          chunkCount: data.chunkIds.size,
-          pageRange: pages.length > 0 
-            ? `${pages[0]}-${pages[pages.length - 1]}`
-            : 'N/A'
-        }
-      })
+      // Fallback to inline curriculum data
+      const curriculumModules = CURRICULUM_MODULES[ttType as 'TT' | 'TP'];
+      modules = curriculumModules.map((module) => ({
+        id: `module-${module.moduleNumber}`,
+        name: module.moduleName,
+        moduleNumber: module.moduleNumber,
+        topics: module.topics,
+        chunkCount: 0
+      }));
+      source = 'curriculum';
     } else {
-      // Get all modules for the course
-      let sql = `
-        SELECT 
-          module,
-          module_name,
-          COUNT(*) as chunk_count,
-          MIN(page_number) as min_page,
-          MAX(page_number) as max_page,
-          array_agg(DISTINCT section) FILTER (WHERE section IS NOT NULL) as sections
-        FROM knowledge_chunks
-        WHERE course = $1 AND module IS NOT NULL`
-      
-      const params: any[] = [course]
-      
-      // Add trade_type filter if provided
-      if (tradeType) {
-        sql += ` AND trade_type = $2`
-        params.push(tradeType)
-      }
-      
-      sql += `
-        GROUP BY module, module_name
-        ORDER BY MIN(page_number) NULLS LAST, module
-      `
-
-      const result = await query(sql, params)
-
+      // Format modules from database
       modules = result.rows.map((row: any) => ({
-        id: row.module,
-        name: row.module_name || row.module,
-        topics: row.sections || [],
-        chunkCount: parseInt(row.chunk_count),
-        pageRange: row.min_page && row.max_page 
-          ? `${row.min_page}-${row.max_page}`
-          : 'N/A'
-      }))
+        id: row.module_id,
+        name: row.module_name,
+        moduleNumber: row.module_number,
+        topics: row.topics || [],
+        chunkCount: parseInt(row.chunk_count)
+      }));
     }
 
-    // Try to enrich with module_mapping data
-    try {
-      const mappingResult = await query(`
-        SELECT module_id, module_name, description, display_order
-        FROM module_mapping
-        WHERE course = $1
-        ORDER BY display_order NULLS LAST, module_name
-      `, [course])
-
-      const mappingMap = new Map(
-        mappingResult.rows.map((row: any) => [
-          row.module_id,
-          { name: row.module_name, description: row.description, order: row.display_order }
-        ])
-      )
-
-      // Enrich modules with mapping data
-      modules = modules.map(module => {
-        const mapping = mappingMap.get(module.id) as any
-        if (mapping) {
-          return {
-            ...module,
-            name: mapping.name || module.name,
-            description: mapping.description
-          }
-        }
-        return module
-      })
-    } catch (error) {
-      console.warn('Could not fetch module mapping data:', error)
-      // Continue without enrichment
-    }
-
-    console.log(`✅ Found ${modules.length} modules for ${course}${tradeType ? ` (${tradeType})` : ''}`)
+    console.log(`✅ Found ${modules.length} modules from ${source} with ${modules.reduce((sum: number, m: any) => sum + m.topics.length, 0)} total topics`);
 
     return NextResponse.json({
       success: true,
       course,
-      tradeType,
+      tradeType: ttType,
       modules,
-      totalModules: modules.length
-    })
+      source
+    });
 
-  } catch (error) {
-    console.error('❌ Syllabus fetch error:', error)
+  } catch (error: any) {
+    console.error('❌ Error fetching syllabus:', error);
     
-    if (error instanceof Error) {
-      // Handle database errors
-      if (error.message.includes('database') || error.message.includes('connection')) {
-        return NextResponse.json(
-          { error: 'Database connection error. Please try again later.' },
-          { status: 503 }
-        )
-      }
+    // Last resort fallback to inline curriculum data
+    try {
+      const tradeType = new URL(request.url).searchParams.get('tradeType') || 'trade_theory';
+      const ttType = tradeType === 'trade_theory' ? 'TT' : 'TP';
+      const curriculumModules = CURRICULUM_MODULES[ttType as 'TT' | 'TP'];
+      
+      const modules = curriculumModules.map((module) => ({
+        id: `module-${module.moduleNumber}`,
+        name: module.moduleName,
+        moduleNumber: module.moduleNumber,
+        topics: module.topics,
+        chunkCount: 0
+      }));
 
+      console.log(`✅ Fallback: Using curriculum data with ${modules.length} modules`);
+
+      return NextResponse.json({
+        success: true,
+        course: await params.then(p => p.course),
+        tradeType: ttType,
+        modules,
+        source: 'curriculum-fallback'
+      });
+    } catch (fallbackError) {
       return NextResponse.json(
-        { error: error.message },
+        { 
+          success: false,
+          error: 'Failed to fetch syllabus',
+          details: error.message 
+        },
         { status: 500 }
-      )
+      );
     }
-
-    return NextResponse.json(
-      { error: 'An unexpected error occurred while fetching syllabus' },
-      { status: 500 }
-    )
   }
 }

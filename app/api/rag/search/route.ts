@@ -1,24 +1,42 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { verifyToken } from '@/lib/simple-auth'
-import { VectorSearchService } from '@/lib/rag/vector-search'
+import { 
+  searchKnowledgeBase, 
+  contextAwareSearch, 
+  generateEmbedding,
+  type RAGChunk,
+  type SearchOptions 
+} from '@/lib/rag-helper-optimized'
 
 /**
  * POST /api/rag/search
- * Semantic search endpoint for the RAG knowledge base
+ * Enhanced semantic search endpoint with advanced filtering
  * 
  * Request body:
  * {
  *   query: string,
- *   course?: 'fitter' | 'electrician',
- *   module?: string,
- *   topK?: number
+ *   trade?: string,              // Default: 'electrician'
+ *   tradeType?: 'TT' | 'TP',
+ *   moduleId?: string,
+ *   contentType?: string,
+ *   limit?: number,              // Default: 5
+ *   maxDistance?: number,        // Default: 0.5
+ *   minPriority?: number,        // Default: 1
+ *   context?: {                  // For context-aware search
+ *     userLevel?: 'beginner' | 'intermediate' | 'advanced',
+ *     focusArea?: 'theory' | 'practical' | 'safety' | 'tools'
+ *   }
  * }
  * 
  * Response:
  * {
  *   success: boolean,
- *   results: SearchResult[],
- *   totalFound: number
+ *   results: RAGChunk[],
+ *   totalFound: number,
+ *   metadata: {
+ *     searchTime: number,
+ *     avgSimilarity: number
+ *   }
  * }
  */
 export async function POST(request: NextRequest) {
@@ -42,99 +60,144 @@ export async function POST(request: NextRequest) {
 
     // Parse and validate request body
     const body = await request.json()
-    const { query, course, module, topK, minSimilarity } = body
+    const { 
+      query, 
+      trade = 'electrician',
+      tradeType,
+      moduleId,
+      contentType,
+      limit = 5,
+      maxDistance = 0.5,
+      minPriority = 1,
+      context
+    } = body
 
     // Validate required fields
     if (!query || typeof query !== 'string' || query.trim().length === 0) {
-      if (!query || typeof query !== 'string') {
-        return NextResponse.json(
-          { error: 'Query is required and must be a string' },
-          { status: 400 }
-        )
-      }
       return NextResponse.json(
-        { error: 'Query cannot be empty' },
+        { error: 'Query is required and must be a non-empty string' },
         { status: 400 }
       )
     }
 
-    // Validate course if provided
-    if (course && !['fitter', 'electrician'].includes(course)) {
+    // Validate trade if provided
+    if (trade && !['fitter', 'electrician'].includes(trade)) {
       return NextResponse.json(
-        { error: 'Invalid course. Must be "fitter" or "electrician"' },
+        { error: 'Invalid trade. Must be "fitter" or "electrician"' },
         { status: 400 }
       )
     }
 
-    // Validate topK if provided
-    if (topK !== undefined) {
-      if (typeof topK !== 'number' || topK < 1 || topK > 100) {
-        return NextResponse.json(
-          { error: 'topK must be a number between 1 and 100' },
-          { status: 400 }
-        )
-      }
-    }
-
-    // Validate minSimilarity if provided
-    if (minSimilarity !== undefined) {
-      if (typeof minSimilarity !== 'number' || minSimilarity < 0 || minSimilarity > 1) {
-        return NextResponse.json(
-          { error: 'minSimilarity must be a number between 0 and 1' },
-          { status: 400 }
-        )
-      }
-    }
-
-    // Validate module if provided
-    if (module !== undefined && typeof module !== 'string') {
+    // Validate tradeType if provided
+    if (tradeType && !['TT', 'TP'].includes(tradeType)) {
       return NextResponse.json(
-        { error: 'Module must be a string' },
+        { error: 'Invalid tradeType. Must be "TT" or "TP"' },
         { status: 400 }
       )
     }
 
-    // Perform semantic search
-    const vectorSearchService = new VectorSearchService()
-    
-    console.log(`🔍 Semantic search: query="${query}", course=${course || 'all'}, module=${module || 'all'}, topK=${topK || 5}`)
-    
-    const results = await vectorSearchService.search({
-      query,
-      course,
-      module,
-      topK,
-      minSimilarity
+    // Validate contentType if provided
+    if (contentType && !['theory', 'safety', 'practical', 'tools', 'definition', 'example'].includes(contentType)) {
+      return NextResponse.json(
+        { error: 'Invalid contentType. Must be one of: theory, safety, practical, tools, definition, example' },
+        { status: 400 }
+      )
+    }
+
+    // Validate numeric parameters
+    if (typeof limit !== 'number' || limit < 1 || limit > 50) {
+      return NextResponse.json(
+        { error: 'limit must be a number between 1 and 50' },
+        { status: 400 }
+      )
+    }
+
+    if (typeof maxDistance !== 'number' || maxDistance < 0 || maxDistance > 1) {
+      return NextResponse.json(
+        { error: 'maxDistance must be a number between 0 and 1' },
+        { status: 400 }
+      )
+    }
+
+    if (typeof minPriority !== 'number' || minPriority < 1 || minPriority > 10) {
+      return NextResponse.json(
+        { error: 'minPriority must be a number between 1 and 10' },
+        { status: 400 }
+      )
+    }
+
+    const startTime = Date.now()
+
+    console.log(`🔍 Enhanced search:`, {
+      query: query.substring(0, 50),
+      trade,
+      tradeType,
+      moduleId,
+      contentType,
+      limit,
+      maxDistance,
+      minPriority,
+      hasContext: !!context
     })
 
-    console.log(`✅ Found ${results.length} results`)
+    // Generate embedding for the query
+    const embedding = await generateEmbedding(query)
+
+    let results: RAGChunk[]
+
+    // Use context-aware search if context is provided
+    if (context && (context.userLevel || context.focusArea)) {
+      results = await contextAwareSearch(embedding, {
+        preferredModule: moduleId,
+        preferredContentType: context.focusArea,
+        tradeType,
+        userLevel: context.userLevel
+      }, limit)
+    } else {
+      // Use standard search with filtering
+      const searchOptions: SearchOptions = {
+        trade,
+        tradeType,
+        moduleId,
+        contentType,
+        limit,
+        maxDistance,
+        minPriority
+      }
+
+      results = await searchKnowledgeBase(embedding, searchOptions)
+    }
+
+    const searchTime = Date.now() - startTime
+    const avgSimilarity = results.length > 0 
+      ? results.reduce((sum, r) => sum + (1 - r.distance), 0) / results.length 
+      : 0
+
+    console.log(`✅ Found ${results.length} results in ${searchTime}ms (avg similarity: ${avgSimilarity.toFixed(3)})`)
 
     return NextResponse.json({
       success: true,
       results,
       totalFound: results.length,
       metadata: {
-        query,
-        course: course || null,
-        module: module || null,
-        topK: topK || 5,
-        minSimilarity: minSimilarity || 0.7
+        searchTime,
+        avgSimilarity: parseFloat(avgSimilarity.toFixed(3)),
+        query: query.substring(0, 100),
+        filters: {
+          trade,
+          tradeType,
+          moduleId,
+          contentType,
+          minPriority
+        }
       }
     })
 
   } catch (error) {
-    console.error('❌ Semantic search error:', error)
+    console.error('❌ Enhanced search error:', error)
     
     // Handle specific error types
     if (error instanceof Error) {
-      // Check for pgvector errors
-      if (error.message.includes('pgvector')) {
-        return NextResponse.json(
-          { error: 'Vector search is not available. Please ensure pgvector is installed.' },
-          { status: 503 }
-        )
-      }
-
       // Check for embedding errors
       if (error.message.includes('embedding') || error.message.includes('GEMINI_API_KEY')) {
         return NextResponse.json(

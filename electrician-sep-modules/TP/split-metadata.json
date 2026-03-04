@@ -1,0 +1,166 @@
+{
+  "originalPdf": "Electrician - 1st year - TP (NSQF 2022).pdf",
+  "totalPages": 273,
+  "totalModules": 12,
+  "tradeType": "TP",
+  "modules": [
+    {
+      "moduleNumber": 1,
+      "moduleName": "Safety practice and hand tools",
+      "startPage": 19,
+      "endPage": 54,
+      "pageCount": 36
+    },
+    {
+      "moduleNumber": 2,
+      "moduleName": "Wires, Joints Soldering - U.G. Cables",
+      "startPage": 55,
+      "endPage": 81,
+      "pageCount": 27
+    },
+    {
+      "moduleNumber": 3,
+      "moduleName": "Basic Electrical Practice",
+      "startPage": 82,
+      "endPage": 98,
+      "pageCount": 17
+    },
+    {
+      "moduleNumber": 4,
+      "moduleName": "Magnetism and Capacitors",
+      "startPage": 99,
+      "endPage": 113,
+      "pageCount": 15
+    },
+    {
+      "moduleNumber": 5,
+      "moduleName": "AC Circuits",
+      "startPage": 114,
+      "endPage": 139,
+      "pageCount": 26
+    },
+    {
+      "moduleNumber": 6,
+      "moduleName": "Cells and Batteries",
+      "startPage": 140,
+      "endPage": 150,
+      "pageCount": 11
+    },
+    {
+      "moduleNumber": 7,
+      "moduleName": "Basic Wiring Practice",
+      "startPage": 151,
+      "endPage": 173,
+      "pageCount": 23
+    },
+    {
+      "moduleNumber": 8,
+      "moduleName": "Wiring Installation and earthing",
+      "startPage": 174,
+      "endPage": 197,
+      "pageCount": 24
+    },
+    {
+      "moduleNumber": 9,
+      "moduleName": "Illumination",
+      "startPage": 198,
+      "endPage": 208,
+      "pageCount": 11
+    },
+    {
+      "moduleNumber": 10,
+      "moduleName": "Measuring Instruments",
+      "startPage": 209,
+      "endPage": 230,
+      "pageCount": 22
+    },
+    {
+      "moduleNumber": 11,
+      "moduleName": "Domestic Appliances",
+      "startPage": 231,
+      "endPage": 248,
+      "pageCount": 18
+    },
+    {
+      "moduleNumber": 12,
+      "moduleName": "Transformers",
+      "startPage": 249,
+      "endPage": 273,
+      "pageCount": 25
+    }
+  ],
+  "modulePdfs": [
+    {
+      "moduleNumber": 1,
+      "moduleName": "Safety practice and hand tools",
+      "pdfPath": "module-1-safety-practice-and-hand-tools.pdf",
+      "pageCount": 36
+    },
+    {
+      "moduleNumber": 2,
+      "moduleName": "Wires, Joints Soldering - U.G. Cables",
+      "pdfPath": "module-2-wires-joints-soldering---ug-cables.pdf",
+      "pageCount": 27
+    },
+    {
+      "moduleNumber": 3,
+      "moduleName": "Basic Electrical Practice",
+      "pdfPath": "module-3-basic-electrical-practice.pdf",
+      "pageCount": 17
+    },
+    {
+      "moduleNumber": 4,
+      "moduleName": "Magnetism and Capacitors",
+      "pdfPath": "module-4-magnetism-and-capacitors.pdf",
+      "pageCount": 15
+    },
+    {
+      "moduleNumber": 5,
+      "moduleName": "AC Circuits",
+      "pdfPath": "module-5-ac-circuits.pdf",
+      "pageCount": 26
+    },
+    {
+      "moduleNumber": 6,
+      "moduleName": "Cells and Batteries",
+      "pdfPath": "module-6-cells-and-batteries.pdf",
+      "pageCount": 11
+    },
+    {
+      "moduleNumber": 7,
+      "moduleName": "Basic Wiring Practice",
+      "pdfPath": "module-7-basic-wiring-practice.pdf",
+      "pageCount": 23
+    },
+    {
+      "moduleNumber": 8,
+      "moduleName": "Wiring Installation and earthing",
+      "pdfPath": "module-8-wiring-installation-and-earthing.pdf",
+      "pageCount": 24
+    },
+    {
+      "moduleNumber": 9,
+      "moduleName": "Illumination",
+      "pdfPath": "module-9-illumination.pdf",
+      "pageCount": 11
+    },
+    {
+      "moduleNumber": 10,
+      "moduleName": "Measuring Instruments",
+      "pdfPath": "module-10-measuring-instruments.pdf",
+      "pageCount": 22
+    },
+    {
+      "moduleNumber": 11,
+      "moduleName": "Domestic Appliances",
+      "pdfPath": "module-11-domestic-appliances.pdf",
+      "pageCount": 18
+    },
+    {
+      "moduleNumber": 12,
+      "moduleName": "Transformers",
+      "pdfPath": "module-12-transformers.pdf",
+      "pageCount": 25
+    }
+  ]
+}

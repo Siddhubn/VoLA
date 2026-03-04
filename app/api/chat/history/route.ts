@@ -1,22 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { verifyToken } from '@/lib/simple-auth'
-import { Pool } from 'pg'
-
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL || 'postgresql://postgres:admin@localhost:5433/vola_db',
-  password: 'admin',
-})
+import { getChatHistory } from '@/lib/rag/rag-db'
 
 /**
  * GET /api/chat/history
- * Get chat history for the current user and course
+ * Get chat history for the current user
  */
 export async function GET(request: NextRequest) {
   try {
-    const token = request.cookies.get('auth_token')?.value
+    // Verify authentication
+    const token = request.cookies.get('auth-token')?.value
     if (!token) {
       return NextResponse.json(
-        { error: 'Unauthorized' },
+        { success: false, error: 'Not authenticated' },
         { status: 401 }
       )
     }
@@ -24,72 +20,75 @@ export async function GET(request: NextRequest) {
     const decoded = verifyToken(token)
     if (!decoded) {
       return NextResponse.json(
-        { error: 'Invalid token' },
+        { success: false, error: 'Invalid token' },
         { status: 401 }
       )
     }
 
     const { searchParams } = new URL(request.url)
-    const course = searchParams.get('course') || 'electrician'
-    const limit = parseInt(searchParams.get('limit') || '50')
+    const course = searchParams.get('course') as 'fitter' | 'electrician' | null
+    const sessionId = searchParams.get('sessionId')
+    const userId = decoded.userId || 1 // Default user ID
 
-    // Get the most recent session for this user and course
-    const sessionResult = await pool.query(
-      `SELECT DISTINCT session_id 
-       FROM chat_history 
-       WHERE user_id = $1 AND course = $2 
-       ORDER BY created_at DESC 
-       LIMIT 1`,
-      [decoded.userId, course]
-    )
-
-    let messages: Array<{
-      role: string
-      content: string
-      sources: any
-      timestamp: string
-    }> = []
-    let sessionId: string | null = null
-
-    if (sessionResult.rows.length > 0) {
-      sessionId = sessionResult.rows[0].session_id
-
-      // Get messages for this session
-      const messagesResult = await pool.query(
-        `SELECT role, content, sources, created_at
-         FROM chat_history
-         WHERE user_id = $1 AND session_id = $2
-         ORDER BY created_at ASC
-         LIMIT $3`,
-        [decoded.userId, sessionId, limit]
-      )
-
-      messages = messagesResult.rows.map(row => ({
-        role: row.role,
-        content: row.content,
-        sources: row.sources,
-        timestamp: row.created_at
-      }))
+    // If sessionId provided, get that specific session
+    if (sessionId) {
+      const history = await getChatHistory(sessionId, 100)
+      
+      return NextResponse.json({
+        success: true,
+        messages: history.map(msg => ({
+          role: msg.message_type,
+          content: msg.message,
+          sources: msg.sources,
+          timestamp: msg.created_at
+        })),
+        sessionId
+      })
     }
 
+    // Get the most recent session for this user and course
+    if (course) {
+      const { query } = await import('@/lib/postgresql')
+      const result = await query(`
+        SELECT DISTINCT session_id, MAX(created_at) as last_message
+        FROM chat_history 
+        WHERE user_id = $1 AND course = $2
+        GROUP BY session_id
+        ORDER BY last_message DESC
+        LIMIT 1
+      `, [userId, course])
+
+      if (result.rows.length > 0) {
+        const latestSessionId = result.rows[0].session_id
+        const history = await getChatHistory(latestSessionId, 100)
+        
+        return NextResponse.json({
+          success: true,
+          messages: history.map(msg => ({
+            role: msg.message_type,
+            content: msg.message,
+            sources: msg.sources,
+            timestamp: msg.created_at
+          })),
+          sessionId: latestSessionId
+        })
+      }
+    }
+
+    // Otherwise, return empty (no default session)
     return NextResponse.json({
       success: true,
-      messages,
-      sessionId
+      messages: [],
+      sessionId: null
     })
 
   } catch (error) {
-    console.error('❌ Error loading chat history:', error)
-    
-    if (error instanceof Error) {
-      return NextResponse.json(
-        { error: error.message },
-        { status: 500 }
-      )
-    }
-
+    console.error('Chat history error:', error)
     return NextResponse.json(
-      { error: 'An unexpected error occurred' },
+      {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to load chat history'
+      },
       { status: 500 }
     )
   }
@@ -97,14 +96,15 @@ export async function GET(request: NextRequest) {
 
 /**
  * DELETE /api/chat/history
- * Clear chat history for the current user and course, or delete a specific session
+ * Delete chat history (clear conversation)
  */
 export async function DELETE(request: NextRequest) {
   try {
-    const token = request.cookies.get('auth_token')?.value
+    // Verify authentication
+    const token = request.cookies.get('auth-token')?.value
     if (!token) {
       return NextResponse.json(
-        { error: 'Unauthorized' },
+        { success: false, error: 'Not authenticated' },
         { status: 401 }
       )
     }
@@ -112,57 +112,48 @@ export async function DELETE(request: NextRequest) {
     const decoded = verifyToken(token)
     if (!decoded) {
       return NextResponse.json(
-        { error: 'Invalid token' },
+        { success: false, error: 'Invalid token' },
         { status: 401 }
       )
     }
 
     const body = await request.json()
-    const { course, sessionId } = body
+    const { sessionId, course } = body
+    const userId = decoded.userId || 1 // Default user ID
 
     if (sessionId) {
       // Delete specific session
-      await pool.query(
-        `DELETE FROM chat_history 
-         WHERE user_id = $1 AND session_id = $2`,
-        [decoded.userId, sessionId]
+      const { query } = await import('@/lib/postgresql')
+      await query(
+        'DELETE FROM chat_history WHERE session_id::text = $1',
+        [sessionId]
       )
-
-      return NextResponse.json({
-        success: true,
-        message: 'Session deleted'
-      })
     } else if (course) {
-      // Delete all chat history for this user and course
-      await pool.query(
-        `DELETE FROM chat_history 
-         WHERE user_id = $1 AND course = $2`,
-        [decoded.userId, course]
+      // Delete all sessions for this user and course
+      const { query } = await import('@/lib/postgresql')
+      await query(
+        'DELETE FROM chat_history WHERE user_id = $1 AND course = $2',
+        [userId, course]
       )
-
-      return NextResponse.json({
-        success: true,
-        message: 'Chat history cleared'
-      })
     } else {
       return NextResponse.json(
-        { error: 'Either sessionId or course is required' },
+        { success: false, error: 'Session ID or course is required' },
         { status: 400 }
       )
     }
 
-  } catch (error) {
-    console.error('❌ Error clearing chat history:', error)
-    
-    if (error instanceof Error) {
-      return NextResponse.json(
-        { error: error.message },
-        { status: 500 }
-      )
-    }
+    return NextResponse.json({
+      success: true,
+      message: 'Chat history deleted'
+    })
 
+  } catch (error) {
+    console.error('Delete chat history error:', error)
     return NextResponse.json(
-      { error: 'An unexpected error occurred' },
+      {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to delete chat history'
+      },
       { status: 500 }
     )
   }

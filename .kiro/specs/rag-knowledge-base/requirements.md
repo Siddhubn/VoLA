@@ -77,17 +77,18 @@ This document outlines the requirements for implementing a Retrieval-Augmented G
 4. WHEN filtering by course THEN the system SHALL only search within that course's content
 5. WHEN filtering by module THEN the system SHALL only return chunks from specified modules
 
-### Requirement 6: RAG-Enhanced Quiz Generation
+### Requirement 6: Enhanced Quiz Generation with Content Classification
 
-**User Story:** As a student, I want quizzes generated from actual course content, so that questions are accurate and aligned with the syllabus.
+**User Story:** As a student, I want quizzes generated from classified course content with balanced question types, so that questions test different aspects of learning (theory, safety, practical, tools).
 
 #### Acceptance Criteria
 
-1. WHEN generating a quiz THEN the system SHALL retrieve relevant content chunks from the knowledge base
-2. WHEN creating questions THEN the system SHALL use retrieved content as context for Gemini API
-3. WHEN a module is selected THEN the system SHALL prioritize content from that specific module
-4. WHEN generating questions THEN the system SHALL include source references (page numbers, sections)
-5. WHEN content is insufficient THEN the system SHALL fall back to general knowledge with a warning
+1. WHEN generating a quiz THEN the system SHALL retrieve content chunks classified by type (theory, safety, practical, tools)
+2. WHEN creating questions THEN the system SHALL generate balanced question distribution (40% theory, 30% safety, 20% practical, 10% tools)
+3. WHEN selecting content THEN the system SHALL prioritize high-priority chunks (priority >= 6 for theory, >= 8 for safety)
+4. WHEN generating questions THEN the system SHALL create different question types based on content classification
+5. WHEN calculating difficulty THEN the system SHALL determine quiz difficulty based on content priority and complexity
+6. WHEN estimating time THEN the system SHALL provide realistic completion time based on question types and difficulty
 
 ### Requirement 7: Syllabus Explorer
 
@@ -101,17 +102,18 @@ This document outlines the requirements for implementing a Retrieval-Augmented G
 4. WHEN viewing content THEN the system SHALL show page references to the original PDF
 5. WHEN searching syllabus THEN the system SHALL support keyword and semantic search
 
-### Requirement 8: AI Assistant Chatbot
+### Requirement 8: Context-Aware AI Assistant Chatbot
 
-**User Story:** As a student, I want to ask questions about course content, so that I can get instant clarification on topics.
+**User Story:** As a student, I want to ask questions about course content with intelligent context awareness, so that I get personalized responses based on my learning level and focus area.
 
 #### Acceptance Criteria
 
-1. WHEN a question is asked THEN the system SHALL retrieve relevant content from the knowledge base
-2. WHEN generating a response THEN the system SHALL use retrieved content as context for Gemini API
-3. WHEN answering THEN the system SHALL cite sources with page numbers and sections
-4. WHEN content is not found THEN the system SHALL inform the user and suggest related topics
-5. WHEN conversation continues THEN the system SHALL maintain context from previous messages
+1. WHEN a question is asked THEN the system SHALL use contextual search to retrieve relevant content based on user context
+2. WHEN generating responses THEN the system SHALL adapt language and complexity to user level (beginner/intermediate/advanced)
+3. WHEN user specifies focus area THEN the system SHALL prioritize content types (safety → safety content, tools → tools content)
+4. WHEN in module context THEN the system SHALL prioritize content from current module while including related content
+5. WHEN answering THEN the system SHALL provide specialized response types (safety warnings, tool information, definitions, procedures)
+6. WHEN citing sources THEN the system SHALL include module, section, content type, and priority information
 
 ### Requirement 9: Content Filtering and Quality Control
 
@@ -149,17 +151,54 @@ This document outlines the requirements for implementing a Retrieval-Augmented G
 4. WHEN usage is high THEN the system SHALL queue requests and process them gradually
 5. WHEN processing completes THEN the system SHALL report total API calls and estimated costs
 
-### Requirement 12: Module and Topic Mapping
+### Requirement 13: Content Classification and Priority System
 
-**User Story:** As a developer, I want content mapped to specific modules and topics, so that search results are contextually relevant.
+**User Story:** As a system, I want content automatically classified by type and priority, so that search and quiz generation can provide contextually appropriate results.
 
 #### Acceptance Criteria
 
-1. WHEN processing PDFs THEN the system SHALL automatically detect module boundaries
-2. WHEN extracting content THEN the system SHALL map chunks to predefined module names
-3. WHEN storing chunks THEN the system SHALL tag them with module IDs and topic keywords
-4. WHEN searching by module THEN the system SHALL filter results to that module's content
-5. WHEN modules are ambiguous THEN the system SHALL use fuzzy matching to assign content
+1. WHEN processing content THEN the system SHALL classify chunks into types: theory, safety, practical, tools, definition
+2. WHEN assigning priority THEN the system SHALL score content from 1-10 based on importance and educational value
+3. WHEN storing chunks THEN the system SHALL include content_type and priority fields in database
+4. WHEN searching THEN the system SHALL support filtering by content type and minimum priority
+5. WHEN ranking results THEN the system SHALL prioritize higher priority content in search results
+
+### Requirement 14: Contextual Search and Retrieval
+
+**User Story:** As a developer, I want intelligent search that adapts to user context, so that results are relevant to the user's current learning situation.
+
+#### Acceptance Criteria
+
+1. WHEN searching THEN the system SHALL support context parameters (user level, focus area, current module, trade type)
+2. WHEN user level is beginner THEN the system SHALL prioritize high-priority, foundational content
+3. WHEN focus area is specified THEN the system SHALL filter content types accordingly (safety → safety content)
+4. WHEN in module context THEN the system SHALL boost relevance of module-specific content
+5. WHEN trade type is specified THEN the system SHALL filter results to TT (Trade Theory) or TP (Trade Practical)
+
+### Requirement 15: Advanced Quiz Content Selection
+
+**User Story:** As a quiz system, I want intelligent content selection for balanced question generation, so that quizzes comprehensively test different learning aspects.
+
+#### Acceptance Criteria
+
+1. WHEN selecting quiz content THEN the system SHALL get mixed content with balanced distribution by type
+2. WHEN generating safety questions THEN the system SHALL prioritize content with priority >= 8
+3. WHEN generating theory questions THEN the system SHALL select definition and concept content
+4. WHEN generating practical questions THEN the system SHALL select procedure and application content
+5. WHEN generating tool questions THEN the system SHALL select equipment and instrument content
+6. WHEN content is insufficient THEN the system SHALL provide distribution statistics and adjust accordingly
+
+### Requirement 16: Related Content Discovery
+
+**User Story:** As a student, I want to discover related content based on keywords and topics, so that I can explore connected concepts.
+
+#### Acceptance Criteria
+
+1. WHEN searching for related content THEN the system SHALL use keyword matching and topic analysis
+2. WHEN finding related content THEN the system SHALL exclude specified content types if requested
+3. WHEN ranking related content THEN the system SHALL prioritize by relevance and word count
+4. WHEN displaying results THEN the system SHALL include topic keywords and content classification
+5. WHEN no related content found THEN the system SHALL suggest alternative search terms
 
 ---
 

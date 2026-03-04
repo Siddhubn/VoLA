@@ -1,60 +1,80 @@
-import { Pool } from 'pg'
+#!/usr/bin/env tsx
+/**
+ * Create chat_history table
+ */
+
+import { config } from 'dotenv';
+import path from 'path';
+import { Pool } from 'pg';
+
+config({ path: path.join(process.cwd(), '.env.local') });
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL || 'postgresql://postgres:admin@localhost:5433/vola_db',
-  password: 'admin',
-})
+  connectionString: process.env.DATABASE_URL,
+  ssl: process.env.DATABASE_URL?.includes('localhost') ? false : {
+    rejectUnauthorized: false
+  }
+});
 
-async function createChatHistoryTable() {
+async function query(text: string, params?: any[]) {
+  const client = await pool.connect();
   try {
-    console.log('🔧 Creating chat_history table...')
-
-    await pool.query(`
-      CREATE TABLE IF NOT EXISTS chat_history (
-        id SERIAL PRIMARY KEY,
-        user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-        session_id VARCHAR(255) NOT NULL,
-        role VARCHAR(20) NOT NULL CHECK (role IN ('user', 'assistant')),
-        content TEXT NOT NULL,
-        sources JSONB,
-        course VARCHAR(50),
-        module VARCHAR(255),
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-      )
-    `)
-
-    // Create indexes
-    await pool.query(`
-      CREATE INDEX IF NOT EXISTS idx_chat_user_session 
-      ON chat_history(user_id, session_id)
-    `)
-
-    await pool.query(`
-      CREATE INDEX IF NOT EXISTS idx_chat_created 
-      ON chat_history(created_at DESC)
-    `)
-
-    console.log('✅ chat_history table created successfully')
-
-    // Check if table exists and show structure
-    const result = await pool.query(`
-      SELECT column_name, data_type, is_nullable
-      FROM information_schema.columns
-      WHERE table_name = 'chat_history'
-      ORDER BY ordinal_position
-    `)
-
-    console.log('\n📋 Table structure:')
-    result.rows.forEach(row => {
-      console.log(`  - ${row.column_name}: ${row.data_type} ${row.is_nullable === 'NO' ? '(required)' : '(optional)'}`)
-    })
-
-  } catch (error) {
-    console.error('❌ Error creating chat_history table:', error)
-    throw error
+    return await client.query(text, params);
   } finally {
-    await pool.end()
+    client.release();
   }
 }
 
-createChatHistoryTable()
+async function main() {
+  console.log('🚀 Creating chat_history table\n');
+  console.log('═'.repeat(60));
+  
+  try {
+    // Create chat_history table
+    await query(`
+      CREATE TABLE IF NOT EXISTS chat_history (
+        id SERIAL PRIMARY KEY,
+        user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+        trade VARCHAR(50) NOT NULL DEFAULT 'electrician',
+        session_id UUID NOT NULL,
+        message_type VARCHAR(20) NOT NULL CHECK (message_type IN ('user', 'assistant')),
+        message TEXT NOT NULL,
+        sources JSONB DEFAULT '[]'::jsonb,
+        created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+    console.log('✅ Created chat_history table');
+    
+    // Create indexes
+    await query('CREATE INDEX IF NOT EXISTS idx_chat_history_user_id ON chat_history(user_id)');
+    await query('CREATE INDEX IF NOT EXISTS idx_chat_history_trade ON chat_history(trade)');
+    await query('CREATE INDEX IF NOT EXISTS idx_chat_history_session_id ON chat_history(session_id)');
+    await query('CREATE INDEX IF NOT EXISTS idx_chat_history_created_at ON chat_history(created_at DESC)');
+    await query('CREATE INDEX IF NOT EXISTS idx_chat_history_user_trade ON chat_history(user_id, trade)');
+    console.log('✅ Created indexes');
+    
+    // Verify table
+    const result = await query(`
+      SELECT column_name, data_type
+      FROM information_schema.columns
+      WHERE table_name = 'chat_history'
+      ORDER BY ordinal_position
+    `);
+    
+    console.log(`\n✅ Table verified with ${result.rows.length} columns:`);
+    result.rows.forEach(row => {
+      console.log(`   - ${row.column_name}: ${row.data_type}`);
+    });
+    
+    console.log('\n' + '═'.repeat(60));
+    console.log('\n✅ Chat history table created successfully!');
+    
+  } catch (error: any) {
+    console.error('\n❌ Error:', error.message);
+    process.exit(1);
+  } finally {
+    await pool.end();
+  }
+}
+
+main();

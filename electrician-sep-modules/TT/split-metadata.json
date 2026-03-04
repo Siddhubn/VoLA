@@ -1,0 +1,166 @@
+{
+  "originalPdf": "Electrician - 1st year - TT (NSQF 2022).pdf",
+  "totalPages": 308,
+  "totalModules": 12,
+  "tradeType": "TT",
+  "modules": [
+    {
+      "moduleNumber": 1,
+      "moduleName": "Safety practice and hand tools",
+      "startPage": 17,
+      "endPage": 44,
+      "pageCount": 28
+    },
+    {
+      "moduleNumber": 2,
+      "moduleName": "Wires, Joints - Soldering - U.G. Cables",
+      "startPage": 45,
+      "endPage": 69,
+      "pageCount": 25
+    },
+    {
+      "moduleNumber": 3,
+      "moduleName": "Basic Electrical Practice",
+      "startPage": 70,
+      "endPage": 88,
+      "pageCount": 19
+    },
+    {
+      "moduleNumber": 4,
+      "moduleName": "Magnetism and Capacitors",
+      "startPage": 89,
+      "endPage": 100,
+      "pageCount": 12
+    },
+    {
+      "moduleNumber": 5,
+      "moduleName": "AC Circuits",
+      "startPage": 101,
+      "endPage": 135,
+      "pageCount": 35
+    },
+    {
+      "moduleNumber": 6,
+      "moduleName": "Cells and Batteries",
+      "startPage": 136,
+      "endPage": 147,
+      "pageCount": 12
+    },
+    {
+      "moduleNumber": 7,
+      "moduleName": "Basic wiring practice",
+      "startPage": 148,
+      "endPage": 183,
+      "pageCount": 36
+    },
+    {
+      "moduleNumber": 8,
+      "moduleName": "Wiring Installation and Earthing",
+      "startPage": 184,
+      "endPage": 203,
+      "pageCount": 20
+    },
+    {
+      "moduleNumber": 9,
+      "moduleName": "Illumination",
+      "startPage": 204,
+      "endPage": 220,
+      "pageCount": 17
+    },
+    {
+      "moduleNumber": 10,
+      "moduleName": "Measuring Instruments",
+      "startPage": 221,
+      "endPage": 256,
+      "pageCount": 36
+    },
+    {
+      "moduleNumber": 11,
+      "moduleName": "Domestic appliances",
+      "startPage": 257,
+      "endPage": 275,
+      "pageCount": 19
+    },
+    {
+      "moduleNumber": 12,
+      "moduleName": "Transformers",
+      "startPage": 276,
+      "endPage": 308,
+      "pageCount": 33
+    }
+  ],
+  "modulePdfs": [
+    {
+      "moduleNumber": 1,
+      "moduleName": "Safety practice and hand tools",
+      "pdfPath": "module-1-safety-practice-and-hand-tools.pdf",
+      "pageCount": 28
+    },
+    {
+      "moduleNumber": 2,
+      "moduleName": "Wires, Joints - Soldering - U.G. Cables",
+      "pdfPath": "module-2-wires-joints---soldering---ug-cables.pdf",
+      "pageCount": 25
+    },
+    {
+      "moduleNumber": 3,
+      "moduleName": "Basic Electrical Practice",
+      "pdfPath": "module-3-basic-electrical-practice.pdf",
+      "pageCount": 19
+    },
+    {
+      "moduleNumber": 4,
+      "moduleName": "Magnetism and Capacitors",
+      "pdfPath": "module-4-magnetism-and-capacitors.pdf",
+      "pageCount": 12
+    },
+    {
+      "moduleNumber": 5,
+      "moduleName": "AC Circuits",
+      "pdfPath": "module-5-ac-circuits.pdf",
+      "pageCount": 35
+    },
+    {
+      "moduleNumber": 6,
+      "moduleName": "Cells and Batteries",
+      "pdfPath": "module-6-cells-and-batteries.pdf",
+      "pageCount": 12
+    },
+    {
+      "moduleNumber": 7,
+      "moduleName": "Basic wiring practice",
+      "pdfPath": "module-7-basic-wiring-practice.pdf",
+      "pageCount": 36
+    },
+    {
+      "moduleNumber": 8,
+      "moduleName": "Wiring Installation and Earthing",
+      "pdfPath": "module-8-wiring-installation-and-earthing.pdf",
+      "pageCount": 20
+    },
+    {
+      "moduleNumber": 9,
+      "moduleName": "Illumination",
+      "pdfPath": "module-9-illumination.pdf",
+      "pageCount": 17
+    },
+    {
+      "moduleNumber": 10,
+      "moduleName": "Measuring Instruments",
+      "pdfPath": "module-10-measuring-instruments.pdf",
+      "pageCount": 36
+    },
+    {
+      "moduleNumber": 11,
+      "moduleName": "Domestic appliances",
+      "pdfPath": "module-11-domestic-appliances.pdf",
+      "pageCount": 19
+    },
+    {
+      "moduleNumber": 12,
+      "moduleName": "Transformers",
+      "pdfPath": "module-12-transformers.pdf",
+      "pageCount": 33
+    }
+  ]
+}

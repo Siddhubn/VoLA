@@ -72,32 +72,43 @@ This document outlines the technical design for a Retrieval-Augmented Generation
 
 ### Database Schema
 
-#### 1. `knowledge_chunks` Table
-Stores processed content chunks with embeddings.
+#### 1. `knowledge_chunks` Table (Enhanced)
+Stores processed content chunks with embeddings and classification.
 
 ```sql
 CREATE TABLE knowledge_chunks (
   id SERIAL PRIMARY KEY,
-  course VARCHAR(50) NOT NULL,           -- 'fitter' or 'electrician'
-  pdf_source VARCHAR(255) NOT NULL,      -- Source PDF filename
-  module VARCHAR(100),                    -- Module/chapter name
-  section VARCHAR(255),                   -- Section/topic name
-  page_number INTEGER,                    -- Page number in PDF
-  chunk_index INTEGER NOT NULL,           -- Sequential chunk number
-  content TEXT NOT NULL,                  -- Original text content
-  content_preview TEXT,                   -- First 200 chars for display
-  embedding vector(768),                  -- Gemini embedding (768 dimensions)
-  token_count INTEGER,                    -- Number of tokens in chunk
-  metadata JSONB,                         -- Additional metadata
+  trade VARCHAR(50) NOT NULL,               -- 'electrician' (expanded from course)
+  trade_type VARCHAR(10) NOT NULL,          -- 'TT' (Trade Theory) or 'TP' (Trade Practical)
+  pdf_source VARCHAR(255) NOT NULL,         -- Source PDF filename
+  module_id VARCHAR(100),                   -- Module identifier (e.g., 'module-1')
+  module_name VARCHAR(255),                 -- Module display name
+  module_number INTEGER,                    -- Module sequence number
+  section_title VARCHAR(255),               -- Section/topic name
+  page_number INTEGER,                      -- Page number in PDF
+  chunk_index INTEGER NOT NULL,             -- Sequential chunk number within document
+  content TEXT NOT NULL,                    -- Original text content
+  content_preview TEXT,                     -- First 200 chars for display
+  content_type VARCHAR(50) NOT NULL,        -- 'theory', 'safety', 'practical', 'tools', 'definition'
+  priority INTEGER DEFAULT 5,               -- Content priority (1-10, higher = more important)
+  topic_keywords TEXT[],                    -- Extracted topic keywords
+  word_count INTEGER,                       -- Number of words in chunk
+  embedding vector(384),                    -- Embedding vector (384 dimensions)
+  similarity_threshold FLOAT DEFAULT 0.7,   -- Minimum similarity for relevance
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Indexes for performance
-CREATE INDEX idx_chunks_course ON knowledge_chunks(course);
-CREATE INDEX idx_chunks_module ON knowledge_chunks(module);
-CREATE INDEX idx_chunks_course_module ON knowledge_chunks(course, module);
+-- Enhanced indexes for performance
+CREATE INDEX idx_chunks_trade ON knowledge_chunks(trade);
+CREATE INDEX idx_chunks_trade_type ON knowledge_chunks(trade_type);
+CREATE INDEX idx_chunks_module ON knowledge_chunks(module_id);
+CREATE INDEX idx_chunks_content_type ON knowledge_chunks(content_type);
+CREATE INDEX idx_chunks_priority ON knowledge_chunks(priority);
+CREATE INDEX idx_chunks_trade_module ON knowledge_chunks(trade, module_id);
+CREATE INDEX idx_chunks_type_priority ON knowledge_chunks(content_type, priority);
 CREATE INDEX idx_chunks_embedding ON knowledge_chunks USING ivfflat (embedding vector_cosine_ops);
+CREATE INDEX idx_chunks_keywords ON knowledge_chunks USING gin(topic_keywords);
 ```
 
 #### 2. `pdf_documents` Table
@@ -239,56 +250,162 @@ class VectorSearchService {
 }
 ```
 
-### 4. RAG Context Builder
+### 5. RAG Helper Service
 
-**Location:** `lib/rag/context-builder.ts`
+**Location:** `lib/rag-helper.ts`
 
 ```typescript
-interface RAGContext {
-  query: string;
-  retrievedChunks: SearchResult[];
-  systemPrompt: string;
-  contextWindow: string;
+interface RAGChunk {
+  content: string;
+  module_name: string;
+  module_number: number;
+  content_type: string;
+  section_title: string | null;
+  priority: number;
+  distance: number;
+  trade_type: string;
+  topic_keywords: string[];
 }
 
-class ContextBuilder {
-  async buildQuizContext(module: string, course: string): Promise<RAGContext>;
-  async buildChatContext(question: string, course: string, history?: ChatMessage[]): Promise<RAGContext>;
-  async buildSyllabusContext(module: string, course: string): Promise<RAGContext>;
+interface SearchOptions {
+  trade?: string;
+  tradeType?: 'TT' | 'TP';
+  moduleId?: string;
+  contentType?: string;
+  limit?: number;
+  maxDistance?: number;
+  minPriority?: number;
+}
+
+class RAGHelper {
+  async searchKnowledgeBase(embedding: number[], options: SearchOptions): Promise<RAGChunk[]>;
+  async getModuleContent(moduleId: string, tradeType: 'TT' | 'TP'): Promise<RAGChunk[]>;
+  async getSafetyContent(tradeType?: 'TT' | 'TP'): Promise<RAGChunk[]>;
+  async contextualSearch(query: string, embedding: number[], context: UserContext): Promise<RAGChunk[]>;
+  async getRelatedContent(keywords: string[], options: RelatedOptions): Promise<RAGChunk[]>;
+  async generateEmbedding(text: string): Promise<number[]>;
+}
+```
+
+### 6. Quiz Helper Service
+
+**Location:** `lib/quiz-helper.ts`
+
+```typescript
+interface QuizContent {
+  content: string;
+  module_name: string;
+  module_number: number;
+  section_title: string | null;
+  content_type: string;
+  priority: number;
+  topic_keywords: string[];
+  trade_type: string;
+}
+
+interface QuizQuestion {
+  id: string;
+  question: string;
+  options: string[];
+  correctAnswer: number;
+  explanation: string;
+  difficulty: 'easy' | 'medium' | 'hard';
+  module: string;
+  contentType: string;
+  section?: string;
+}
+
+class QuizHelper {
+  async getQuizContent(moduleId: string, tradeType: 'TT' | 'TP', count: number): Promise<QuizContent[]>;
+  async getMixedQuizContent(moduleId: string, tradeType: 'TT' | 'TP', total: number): Promise<{content: QuizContent[], distribution: Record<string, number>}>;
+  async getSafetyQuestions(tradeType: 'TT' | 'TP', count: number): Promise<QuizContent[]>;
+  async getToolsQuestions(moduleId: string, tradeType: 'TT' | 'TP', count: number): Promise<QuizContent[]>;
+  async generateQuestionsFromContent(content: QuizContent[]): Promise<QuizQuestion[]>;
+  calculateQuizDifficulty(content: QuizContent[]): 'easy' | 'medium' | 'hard';
+  estimateQuizTime(questionCount: number, difficulty: string): number;
 }
 ```
 
 ## API Endpoints
 
-### 1. RAG-Enhanced Quiz Generation
+### 1. Enhanced Quiz Generation with Content Classification
 
-**Endpoint:** `POST /api/quiz/generate-rag`
+**Endpoint:** `POST /api/quiz/generate`
 
 ```typescript
 // Request
 {
-  course: 'fitter' | 'electrician',
-  module: string,
-  numQuestions: number,
-  difficulty: 'easy' | 'medium' | 'hard'
+  moduleId: string,
+  tradeType: 'TT' | 'TP',
+  questionCount?: number,        // Default: 10
+  difficulty?: string,           // Auto-calculated if not provided
+  focusArea?: string            // Optional focus area
 }
 
 // Response
 {
   success: boolean,
-  questions: QuizQuestion[],
-  sources: {
-    chunkIds: number[],
-    pageReferences: string[]
+  quiz: {
+    id: string,
+    moduleId: string,
+    moduleName: string,
+    tradeType: 'TT' | 'TP',
+    difficulty: 'easy' | 'medium' | 'hard',
+    questionCount: number,
+    questions: QuizQuestion[],
+    timeLimit: number,           // Estimated time in seconds
+    metadata: QuizMetadata,
+    createdAt: string
+  }
+}
+
+interface QuizMetadata {
+  moduleId: string;
+  tradeType: 'TT' | 'TP';
+  totalQuestions: number;
+  contentTypes: Record<string, number>;  // Distribution by type
+  difficulty: 'easy' | 'medium' | 'hard';
+  estimatedTime: number;
+}
+```
+
+### 2. Context-Aware Chat API
+
+**Endpoint:** `POST /api/chat`
+
+```typescript
+// Request
+{
+  message: string,
+  context?: {
+    currentModule?: string,
+    tradeType?: 'TT' | 'TP',
+    userLevel?: 'beginner' | 'intermediate' | 'advanced',
+    focusArea?: 'theory' | 'practical' | 'safety' | 'tools'
   },
+  history?: ChatMessage[]
+}
+
+// Response
+{
+  response: string,
+  sources: {
+    module: string,
+    moduleNumber: number,
+    type: string,
+    section: string,
+    priority: number,
+    tradeType: string
+  }[],
   metadata: {
-    retrievedChunks: number,
-    avgSimilarity: number
+    chunksUsed: number,
+    context: any,
+    responseTime: number
   }
 }
 ```
 
-### 2. Semantic Search
+### 3. Enhanced Semantic Search
 
 **Endpoint:** `POST /api/rag/search`
 
@@ -296,16 +413,24 @@ class ContextBuilder {
 // Request
 {
   query: string,
-  course?: string,
-  module?: string,
-  topK?: number
+  trade?: string,              // Default: 'electrician'
+  tradeType?: 'TT' | 'TP',
+  moduleId?: string,
+  contentType?: string,
+  limit?: number,              // Default: 5
+  maxDistance?: number,        // Default: 0.5
+  minPriority?: number         // Default: 1
 }
 
 // Response
 {
   success: boolean,
-  results: SearchResult[],
-  totalFound: number
+  results: RAGChunk[],
+  totalFound: number,
+  metadata: {
+    searchTime: number,
+    avgSimilarity: number
+  }
 }
 ```
 

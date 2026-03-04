@@ -132,30 +132,83 @@ The correctAnswer should be the index (0-3) of the correct option in the options
 }
 
 /**
+ * RAG Context for quiz generation
+ */
+export interface RAGContext {
+  retrievedChunks: Array<{
+    content: string;
+    module: string;
+    section?: string;
+    type: string;
+    priority: number;
+    similarity: number;
+  }>;
+  chunkCount: number;
+  avgSimilarity: number;
+}
+
+/**
+ * Quiz generation options
+ */
+export interface QuizOptions {
+  numQuestions?: number;
+  focusArea?: string;
+  tradeType?: 'TT' | 'TP';
+  moduleId?: string;
+}
+
+/**
  * Generate quiz with RAG context from knowledge base
  * Validates: Requirements 6.1, 6.2, 6.3, 6.4, 6.5
  */
-export async function generateQuizWithRAG(params: RAGQuizGenerationParams): Promise<RAGQuizResult> {
-  const { course, module, numQuestions = 5, difficulty = 'medium', context } = params
+export async function generateQuizWithRAG(
+  ragContext: RAGContext,
+  difficulty: string = 'medium',
+  options: QuizOptions = {}
+): Promise<{
+  questions: QuizQuestion[];
+  sources: string[];
+  usedFallback: boolean;
+}> {
+  const { numQuestions = 5, focusArea, tradeType = 'TT', moduleId } = options
   
   // Check if we have sufficient content
-  const hasContent = context.chunkCount > 0 && context.relevantContent.length > 100
+  const hasContent = ragContext.chunkCount > 0 && ragContext.retrievedChunks.length > 0
   const usedFallback = !hasContent
+
+  // Build context text from chunks
+  const contextText = ragContext.retrievedChunks
+    .map(chunk => {
+      const moduleInfo = `[Module: ${chunk.module}]`;
+      const typeInfo = `[Type: ${chunk.type}]`;
+      const sectionInfo = chunk.section ? `[Section: ${chunk.section}]` : '';
+      return `${moduleInfo} ${typeInfo} ${sectionInfo}\n${chunk.content}`;
+    })
+    .join('\n\n---\n\n');
+
+  // Extract sources
+  const sources = ragContext.retrievedChunks.map(chunk => 
+    `${chunk.module}${chunk.section ? ` - ${chunk.section}` : ''}`
+  );
 
   let prompt: string
 
   if (hasContent) {
-    // Use RAG context for quiz generation
-    prompt = `You are an expert ITI (Industrial Training Institute) instructor creating a quiz for ${course} students.
+    const tradeTypeText = tradeType === 'TP' ? 'Trade Practical' : 'Trade Theory';
+    const focusAreaText = focusArea ? ` with focus on ${focusArea}` : '';
+    const moduleText = moduleId ? ` from ${moduleId}` : '';
 
-Topic: ${module}
+    // Use RAG context for quiz generation
+    prompt = `You are an expert ITI (Industrial Training Institute) instructor creating a quiz for electrician students.
+
+Trade Type: ${tradeTypeText}${moduleText}
 Difficulty: ${difficulty}
-Number of Questions: ${numQuestions}
+Number of Questions: ${numQuestions}${focusAreaText}
 
 IMPORTANT: Base your questions ONLY on the following course content retrieved from official ITI materials:
 
 --- COURSE CONTENT ---
-${context.relevantContent}
+${contextText}
 --- END COURSE CONTENT ---
 
 Generate ${numQuestions} multiple-choice questions that:
@@ -165,7 +218,14 @@ Generate ${numQuestions} multiple-choice questions that:
 4. Have 4 options (A, B, C, D)
 5. Have exactly ONE correct answer
 6. Include a brief explanation referencing the content
-7. Include a source reference (section/page) where applicable
+7. Focus on ${tradeTypeText} content${focusAreaText}
+
+Question Distribution Guidelines:
+- If focus area is "safety": Prioritize safety procedures, hazards, and PPE
+- If focus area is "theory": Focus on concepts, principles, and calculations
+- If focus area is "practical": Emphasize procedures, applications, and troubleshooting
+- If focus area is "tools": Focus on tool usage, selection, and maintenance
+- If no focus area: Create balanced mix of theory, safety, and practical questions
 
 Return ONLY a valid JSON array with this exact structure (no markdown, no code blocks):
 [
@@ -173,35 +233,35 @@ Return ONLY a valid JSON array with this exact structure (no markdown, no code b
     "question": "Question text here?",
     "options": ["Option A", "Option B", "Option C", "Option D"],
     "correctAnswer": 0,
-    "explanation": "Brief explanation of why this is correct",
-    "sourceReference": "Section name or Page X"
+    "explanation": "Brief explanation of why this is correct and why other options are wrong"
   }
 ]
+
+Important:
+- Return only valid JSON, no additional text
+- Ensure questions are challenging but fair
+- Make distractors plausible but clearly incorrect
+- Include units in calculations where appropriate
+- Reference specific safety standards when relevant
 
 The correctAnswer should be the index (0-3) of the correct option in the options array.`
   } else {
     // Fallback to general knowledge
-    console.warn(`⚠️ Insufficient content for ${course}/${module}. Using fallback to general knowledge.`)
-    
-    const moduleKey = module.toLowerCase().replace(/\s+/g, '-')
-    const courseContexts = MODULE_CONTEXTS[course] as Record<string, string>
-    const fallbackContext = courseContexts?.[moduleKey] || module
+    console.warn(`⚠️ Insufficient content. Using fallback to general knowledge.`)
 
-    prompt = `You are an expert ITI (Industrial Training Institute) instructor creating a quiz for ${course} students.
+    prompt = `You are an expert ITI (Industrial Training Institute) instructor creating a quiz for electrician students.
 
-⚠️ WARNING: Limited course content available. Generate questions based on general ITI knowledge.
+⚠️ WARNING: Limited course content available. Generate questions based on general ITI electrical knowledge.
 
-Topic: ${module}
-Context: ${fallbackContext}
 Difficulty: ${difficulty}
 Number of Questions: ${numQuestions}
 
-Generate ${numQuestions} multiple-choice questions that test practical knowledge and understanding. Each question should:
+Generate ${numQuestions} multiple-choice questions that test practical electrical knowledge and understanding. Each question should:
 1. Be clear and unambiguous
 2. Have 4 options (A, B, C, D)
 3. Have exactly ONE correct answer
 4. Include a brief explanation of the correct answer
-5. Be relevant to real-world ITI training and industry practices
+5. Be relevant to real-world ITI electrical training and industry practices
 
 Return ONLY a valid JSON array with this exact structure (no markdown, no code blocks):
 [
@@ -250,7 +310,7 @@ The correctAnswer should be the index (0-3) of the correct option in the options
     
     return {
       questions,
-      sources: context.sources,
+      sources,
       usedFallback
     }
   } catch (error) {
@@ -275,5 +335,47 @@ Provide a hint that guides them toward the correct answer:`
   } catch (error) {
     console.error('Error generating hint:', error)
     return 'Try reviewing the fundamental concepts related to this topic.'
+  }
+}
+
+/**
+ * Generate chat response using Gemini with conversation history
+ */
+export async function generateChatResponse(
+  userMessage: string,
+  conversationHistory: Array<{ role: string; parts: Array<{ text: string }> }>,
+  systemPrompt: string
+): Promise<string> {
+  try {
+    console.log('🤖 Calling Gemini API...');
+    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-exp' })
+    
+    // Start chat with history
+    const chat = model.startChat({
+      history: conversationHistory,
+      generationConfig: {
+        maxOutputTokens: 1000,
+        temperature: 0.7,
+      },
+    })
+
+    // Send message with system prompt prepended
+    const fullMessage = `${systemPrompt}\n\nUser Question: ${userMessage}`
+    
+    console.log('📤 Sending message to Gemini...');
+    const result = await chat.sendMessage(fullMessage)
+    const response = await result.response
+    
+    console.log('✅ Received response from Gemini');
+    return response.text().trim()
+  } catch (error: any) {
+    console.error('❌ Error generating chat response:', error);
+    
+    // Provide a helpful fallback response
+    if (error.message?.includes('API key')) {
+      throw new Error('Gemini API key is not configured. Please check your environment variables.');
+    }
+    
+    throw new Error(`Failed to generate response: ${error.message || 'Unknown error'}`);
   }
 }

@@ -426,6 +426,197 @@ This implementation plan breaks down the RAG Knowledge Base system into discrete
   - Ensure all tests pass, ask the user if questions arise
   - _Requirements: Success Criteria_
 
+- [x] 23. Implement RAG Helper Service
+
+
+
+  - Create comprehensive RAG helper with searchKnowledgeBase function
+  - Implement contextual search with user level and focus area adaptation
+  - Add getModuleContent and getSafetyContent functions
+  - Implement getRelatedContent for keyword-based discovery
+  - Add generateEmbedding function with simple hash-based approach
+  - _Requirements: 14.1, 14.2, 14.3, 14.4, 14.5, 16.1, 16.2_
+
+- [x] 23.1 Write property test for contextual search adaptation
+
+
+
+
+
+
+
+  - **Property 6: Context Adaptation**
+  - **Validates: Requirements 14.2, 14.3**
+
+
+
+- [x] 23.2 Write unit tests for RAG helper functions
+
+
+
+
+
+  - Test search filtering and ranking
+  - Test context-aware result adaptation
+  - Test related content discovery
+  - _Requirements: 14.1, 16.1_
+
+- [x] 24. Implement Quiz Helper Service
+
+
+
+
+
+
+  - Create QuizHelper class with content selection by type
+  - Implement getMixedQuizContent with balanced distribution (40% theory, 30% safety, 20% practical, 10% tools)
+
+
+  - Add generateQuestionsFromContent with multiple question types
+  - Implement calculateQuizDifficulty based on content priority
+  - Add estimateQuizTime function
+  - _Requirements: 15.1, 15.2, 15.3, 15.4, 15.5, 6.5, 6.6_
+
+- [x] 24.1 Write property test for content distribution
+
+
+
+
+
+
+
+  - **Property 7: Quiz Content Balance**
+  - **Validates: Requirements 15.1, 6.2**
+
+- [x] 24.2 Write unit tests for quiz helper functions
+
+
+
+
+
+  - Test content selection by type
+  - Test question generation from content
+  - Test difficulty calculation
+  - Test time estimation
+  - _Requirements: 15.2, 15.3, 6.5_
+
+- [x] 25. Update Chatbot API with Context Awareness
+
+
+
+
+
+  - Enhance existing chat API to use contextualSearch
+  - Add support for user context (level, focus area, current module)
+  - Implement specialized response types (safety, tools, definitions, procedures)
+  - Add enhanced source attribution with content type and priority
+  - Improve response generation based on content classification
+  - _Requirements: 8.1, 8.2, 8.3, 8.4, 8.5, 8.6_
+
+- [-] 25.1 Write integration tests for context-aware chat
+
+
+
+
+  - Test user level adaptation
+  - Test focus area specialization
+  - Test module context awareness
+  - Test specialized response types
+  - _Requirements: 8.2, 8.3, 8.5_
+
+
+
+- [x] 26. Update Quiz Generation API with Content Classification
+
+
+  - Enhance existing quiz generation to use getMixedQuizContent
+  - Add support for tradeType parameter (TT/TP)
+  - Implement automatic difficulty calculation
+  - Add realistic time estimation
+  - Include enhanced metadata with content distribution
+  - _Requirements: 6.1, 6.2, 6.5, 6.6, 15.1, 15.6_
+
+- [x] 26.1 Write integration tests for enhanced quiz generation
+
+
+  - Test balanced content distribution
+  - Test difficulty calculation
+  - Test time estimation accuracy
+  - Test metadata inclusion
+
+
+  - _Requirements: 6.2, 6.5, 15.1_
+
+- [x] 27. Implement Content Classification System
+
+
+
+  - Add content type classification during PDF processing
+  - Implement priority scoring algorithm (1-10 scale)
+  - Update database schema to include content_type and priority fields
+  - Add topic keyword extraction
+  - Create classification validation tools
+  - _Requirements: 13.1, 13.2, 13.3, 13.4, 13.5_
+
+- [x] 27.1 Write unit tests for content classification
+
+
+
+  - Test content type detection
+  - Test priority scoring
+
+
+  - Test keyword extraction
+  - _Requirements: 13.1, 13.2_
+
+- [x] 28. Add Advanced Search Filtering
+
+
+
+
+  - Enhance vector search with content type filtering
+  - Add priority-based ranking
+  - Implement trade type filtering (TT/TP)
+  - Add minimum priority thresholds
+  - Create search result optimization
+  - _Requirements: 13.4, 13.5, 14.5_
+
+- [x] 28.1 Write property test for search filtering
+
+
+
+  - **Property 8: Search Filter Consistency**
+  - **Validates: Requirements 13.4, 14.5**
+
+- [x] 29. Checkpoint - Ensure enhanced features work
+
+
+
+
+
+  - Test RAG helper functions with real data
+  - Test quiz helper with content classification
+  - Test enhanced chatbot with context awareness
+  - Test enhanced quiz generation with balanced content
+  - Verify all new property tests pass
+  - Ask the user if questions arise
+
+- [x] 30. Performance optimization for enhanced features
+
+
+  - Optimize contextual search queries
+  - Add caching for content classification results
+  - Optimize quiz content selection queries
+  - Profile and optimize new helper functions
+  - _Requirements: Performance requirements_
+
+- [-] 30.1 Write performance tests for enhanced features
+
+  - Test contextual search performance
+  - Test quiz content selection speed
+  - Test content classification performance
+  - _Requirements: Performance requirements_
+
 ---
 
 ## Notes
@@ -435,9 +626,10 @@ This implementation plan breaks down the RAG Knowledge Base system into discrete
 - Property-based tests are explicitly marked with property numbers from the design document
 - Integration points are tested at each major milestone
 - The implementation follows a bottom-up approach: infrastructure → services → APIs → UI
+- Enhanced tasks (23-30) build on existing foundation to add content classification, contextual search, and intelligent quiz generation
 
 ---
 
-**Document Version:** 1.0  
-**Last Updated:** February 25, 2026  
-**Status:** Ready for Review
+**Document Version:** 2.0  
+**Last Updated:** March 3, 2026  
+**Status:** Enhanced with Content Classification and Context-Aware Features
