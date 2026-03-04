@@ -142,7 +142,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<ChatRespo
     console.log('🔍 Building RAG context...')
     const contextBuilder = new ContextBuilder()
     
-    let chatContext
+    let chatContext: Awaited<ReturnType<typeof contextBuilder.buildChatContext>>
     try {
       chatContext = await Promise.race([
         contextBuilder.buildChatContext(body.message, {
@@ -156,7 +156,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<ChatRespo
         new Promise((_, reject) => 
           setTimeout(() => reject(new Error('RAG context building timeout')), 15000)
         )
-      ])
+      ]) as Awaited<ReturnType<typeof contextBuilder.buildChatContext>>
       console.log(`✅ RAG context built: ${chatContext.chunkCount} chunks found`)
       
       // If no chunks found, try again with even lower threshold
