@@ -1,14 +1,19 @@
 import { query } from '../postgresql'
 import { LocalEmbeddingService } from './local-embedding-service'
 import { ChunkCache } from './cache-service'
+import { performanceOptimizer } from './performance-optimizer'
+
+// Use Local Embedding Service (runs offline, no API calls needed)
+// Gemini API key is reserved for text generation only
+type EmbeddingService = LocalEmbeddingService
 
 export interface SearchQuery {
   query: string
   course?: 'fitter' | 'electrician'
   module?: string
   tradeType?: 'trade_theory' | 'trade_practical'
-  topK?: number
-  minSimilarity?: number
+  topK?: number              // Number of results (default: 5)
+  minSimilarity?: number     // Minimum similarity score (default: 0.7)
 }
 
 export interface SearchResult {
@@ -31,13 +36,14 @@ export interface VectorSearchConfig {
   defaultMinSimilarity?: number
   embeddingService?: LocalEmbeddingService
   chunkCache?: ChunkCache
-  enableQueryCache?: boolean
+  enableQueryCache?: boolean  // Enable query result caching
 }
 
 export class VectorSearchService {
   private embeddingService: LocalEmbeddingService
   private config: Required<VectorSearchConfig>
   private chunkCache: ChunkCache
+  private enableQueryCache: boolean
 
   constructor(config?: VectorSearchConfig) {
     this.config = {
@@ -50,15 +56,21 @@ export class VectorSearchService {
     
     this.embeddingService = this.config.embeddingService
     this.chunkCache = this.config.chunkCache
+    this.enableQueryCache = this.config.enableQueryCache
   }
 
+  /**
+   * Perform semantic search on the knowledge base
+   */
   async search(searchQuery: SearchQuery): Promise<SearchResult[]> {
     if (!searchQuery.query || searchQuery.query.trim().length === 0) {
       throw new Error('Search query cannot be empty')
     }
 
+    // Generate embedding for the query
     const queryEmbedding = await this.embeddingService.embedQuery(searchQuery.query)
 
+    // Search using the embedding
     return this.searchByEmbedding(queryEmbedding, {
       course: searchQuery.course,
       module: searchQuery.module,
@@ -68,6 +80,9 @@ export class VectorSearchService {
     })
   }
 
+  /**
+   * Search by pre-computed embedding vector
+   */
   async searchByEmbedding(
     embedding: number[],
     filters: {
@@ -95,21 +110,18 @@ export class VectorSearchService {
       throw new Error('pgvector extension is not enabled. Please install and enable pgvector.')
     }
 
-    // Build the SQL query with filters - using correct column names
+    // Build the SQL query with filters
     let sql = `
       SELECT 
         id as chunk_id,
-        trade as course,
-        source_file as pdf_source,
-        module_id as module,
-        module_name,
-        module_number,
-        section_title as section,
-        page_start as page_number,
+        course,
+        pdf_source,
+        module,
+        section,
+        page_number,
         content,
-        content_type,
+        metadata,
         trade_type,
-        topic_keywords,
         1 - (embedding <=> $1::vector) as similarity
       FROM knowledge_chunks
       WHERE embedding IS NOT NULL
@@ -118,21 +130,21 @@ export class VectorSearchService {
     const params: any[] = [`[${embedding.join(',')}]`]
     let paramIndex = 2
 
-    // Add course filter (using trade column)
+    // Add course filter
     if (filters.course) {
-      sql += ` AND trade = $${paramIndex}`
+      sql += ` AND course = $${paramIndex}`
       params.push(filters.course)
       paramIndex++
     }
 
-    // Add module filter (using module_id column) - make it optional
+    // Add module filter
     if (filters.module) {
-      sql += ` AND module_id = $${paramIndex}`
+      sql += ` AND module = $${paramIndex}`
       params.push(filters.module)
       paramIndex++
     }
 
-    // Add trade_type filter - make it optional
+    // Add trade_type filter
     if (filters.tradeType) {
       sql += ` AND trade_type = $${paramIndex}`
       params.push(filters.tradeType)
@@ -148,12 +160,8 @@ export class VectorSearchService {
     sql += ` ORDER BY embedding <=> $1::vector LIMIT $${paramIndex}`
     params.push(topK)
 
-    console.log(`🔍 Vector search: course=${filters.course}, module=${filters.module}, tradeType=${filters.tradeType}, topK=${topK}, minSim=${minSimilarity}`)
-
     try {
       const result = await query(sql, params)
-      
-      console.log(`📊 Vector search found ${result.rows.length} results`)
 
       // Transform results to SearchResult format
       const searchResults = result.rows.map((row: any) => {
@@ -169,12 +177,7 @@ export class VectorSearchService {
             pdfSource: row.pdf_source,
             tradeType: row.trade_type
           },
-          metadata: { 
-            moduleName: row.module_name,
-            moduleNumber: row.module_number,
-            contentType: row.content_type,
-            topicKeywords: row.topic_keywords
-          }
+          metadata: row.metadata
         }
         
         // Cache the chunk
@@ -190,6 +193,9 @@ export class VectorSearchService {
     }
   }
 
+  /**
+   * Search within a specific course
+   */
   async searchByCourse(
     searchQuery: string,
     course: 'fitter' | 'electrician',
@@ -206,6 +212,9 @@ export class VectorSearchService {
     })
   }
 
+  /**
+   * Search within a specific module
+   */
   async searchByModule(
     searchQuery: string,
     course: 'fitter' | 'electrician',
@@ -224,6 +233,63 @@ export class VectorSearchService {
     })
   }
 
+  /**
+   * Get similar chunks to a given chunk
+   */
+  async findSimilarChunks(
+    chunkId: number,
+    options?: {
+      course?: 'fitter' | 'electrician'
+      module?: string
+      topK?: number
+      minSimilarity?: number
+    }
+  ): Promise<SearchResult[]> {
+    // Get the chunk's embedding
+    const chunkResult = await query(
+      'SELECT embedding FROM knowledge_chunks WHERE id = $1',
+      [chunkId]
+    )
+
+    if (chunkResult.rows.length === 0) {
+      throw new Error(`Chunk with id ${chunkId} not found`)
+    }
+
+    const embedding = chunkResult.rows[0].embedding
+
+    if (!embedding) {
+      throw new Error(`Chunk ${chunkId} does not have an embedding`)
+    }
+
+    // Parse the embedding if it's a string
+    let embeddingArray: number[]
+    if (typeof embedding === 'string') {
+      // Remove brackets and parse
+      embeddingArray = embedding
+        .replace(/^\[|\]$/g, '')
+        .split(',')
+        .map(v => parseFloat(v))
+    } else if (Array.isArray(embedding)) {
+      embeddingArray = embedding
+    } else {
+      throw new Error('Invalid embedding format')
+    }
+
+    // Search using the embedding, excluding the original chunk
+    const results = await this.searchByEmbedding(embeddingArray, {
+      course: options?.course,
+      module: options?.module,
+      topK: (options?.topK || this.config.defaultTopK) + 1, // Get one extra to exclude original
+      minSimilarity: options?.minSimilarity
+    })
+
+    // Filter out the original chunk
+    return results.filter(result => result.chunkId !== chunkId).slice(0, options?.topK || this.config.defaultTopK)
+  }
+
+  /**
+   * Get configuration
+   */
   getConfig(): Required<VectorSearchConfig> {
     return {
       defaultTopK: this.config.defaultTopK,
@@ -234,13 +300,20 @@ export class VectorSearchService {
     }
   }
 
+  /**
+   * Get cache statistics
+   */
   getCacheStats() {
     return this.chunkCache.getStats()
   }
 
+  /**
+   * Clear chunk cache
+   */
   clearCache(): void {
     this.chunkCache.clear()
   }
 }
 
+// Export a default instance for convenience
 export const vectorSearchService = new VectorSearchService()

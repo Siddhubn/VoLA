@@ -78,15 +78,14 @@ export default function ChatbotPage() {
   }
 
   function handleNewChat() {
+    // Clear current session
     setCurrentSessionId(null)
-    // Force reload of chatbot component
-    window.location.reload()
+    // Reload sessions list
+    loadSessions()
   }
 
   function handleSessionSelect(sessionId: string) {
     setCurrentSessionId(sessionId)
-    // Reload page with session
-    window.location.href = `/chatbot?session=${sessionId}`
   }
 
   async function handleDeleteSession(sessionId: string, e: React.MouseEvent) {
@@ -264,6 +263,7 @@ export default function ChatbotPage() {
             {/* Chatbot - Fills remaining space */}
             <div className="flex-1 min-h-0">
               <AIChatbot 
+                key={currentSessionId || 'new-chat'} // Force re-render when session changes
                 course={course}
                 userId={user.id}
                 sessionId={currentSessionId}

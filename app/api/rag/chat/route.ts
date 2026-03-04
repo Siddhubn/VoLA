@@ -50,10 +50,14 @@ interface ChatResponse {
  * Validates: Requirements 8.1, 8.2, 8.3, 8.4, 8.5
  */
 export async function POST(request: NextRequest): Promise<NextResponse<ChatResponse>> {
+  console.log('📨 RAG Chat API called')
+  
   try {
     // Check authentication
+    console.log('🔐 Checking authentication...')
     const token = request.cookies.get('auth-token')?.value
     if (!token) {
+      console.log('❌ No auth token found')
       return NextResponse.json(
         { success: false, error: 'Not authenticated' },
         { status: 401 }
@@ -62,17 +66,26 @@ export async function POST(request: NextRequest): Promise<NextResponse<ChatRespo
 
     const decoded = verifyToken(token)
     if (!decoded) {
+      console.log('❌ Invalid token')
       return NextResponse.json(
         { success: false, error: 'Invalid token' },
         { status: 401 }
       )
     }
+    console.log('✅ Authentication successful')
 
     // Get user ID from token
     const userId = decoded.userId
 
     // Parse request body
+    console.log('📝 Parsing request body...')
     const body: ChatRequest = await request.json()
+    console.log('📋 Request:', { 
+      message: body.message.substring(0, 50) + '...', 
+      course: body.course,
+      module: body.module,
+      tradeType: body.tradeType
+    })
 
     // Validate required fields
     if (!body.message || body.message.trim().length === 0) {
@@ -126,15 +139,52 @@ export async function POST(request: NextRequest): Promise<NextResponse<ChatRespo
     }
 
     // Build context using RAG
+    console.log('🔍 Building RAG context...')
     const contextBuilder = new ContextBuilder()
-    const chatContext = await contextBuilder.buildChatContext(body.message, {
-      course: body.course,
-      module: body.module,
-      tradeType: body.tradeType,
-      conversationHistory,
-      topK: 8, // Increased from 5 to get more context
-      minSimilarity: 0.5 // Lowered from 0.7 to be more inclusive
-    })
+    
+    let chatContext
+    try {
+      chatContext = await Promise.race([
+        contextBuilder.buildChatContext(body.message, {
+          course: body.course,
+          module: body.module,
+          tradeType: body.tradeType,
+          conversationHistory,
+          topK: 10, // Increased to get more results
+          minSimilarity: 0.3 // Lowered to be more inclusive (was 0.5)
+        }),
+        new Promise((_, reject) => 
+          setTimeout(() => reject(new Error('RAG context building timeout')), 15000)
+        )
+      ])
+      console.log(`✅ RAG context built: ${chatContext.chunkCount} chunks found`)
+      
+      // If no chunks found, try again with even lower threshold
+      if (chatContext.chunkCount === 0) {
+        console.log('⚠️ No chunks found, retrying with lower threshold...')
+        chatContext = await contextBuilder.buildChatContext(body.message, {
+          course: body.course,
+          module: body.module,
+          tradeType: body.tradeType,
+          conversationHistory,
+          topK: 10,
+          minSimilarity: 0.1 // Very low threshold for retry
+        })
+        console.log(`🔄 Retry result: ${chatContext.chunkCount} chunks found`)
+      }
+    } catch (ragError: any) {
+      console.error('❌ RAG context building failed:', ragError.message)
+      // Provide empty context if RAG fails
+      chatContext = {
+        course: body.course,
+        module: body.module,
+        query: body.message,
+        relevantContent: '',
+        conversationHistory,
+        sources: [],
+        chunkCount: 0
+      }
+    }
 
     // Check if relevant content was found
     const hasContent = chatContext.chunkCount > 0 && chatContext.relevantContent.length > 50
@@ -190,6 +240,7 @@ Be helpful, thorough, and educational. Students need to learn, even if the speci
     }
 
     // Generate response using Gemini
+    console.log('🤖 Generating Gemini response...')
     const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' })
     
     const prompt = `${systemPrompt}${conversationContext}
@@ -201,10 +252,19 @@ Your Response:`
     let responseText: string
     
     try {
-      const result = await model.generateContent(prompt)
+      const result = await Promise.race([
+        model.generateContent(prompt),
+        new Promise((_, reject) => 
+          setTimeout(() => reject(new Error('Gemini API timeout')), 25000)
+        )
+      ]) as any
+      
       const response = result.response
       responseText = response.text().trim()
+      console.log('✅ Gemini response generated')
     } catch (error: any) {
+      console.error('❌ Gemini API error:', error.message)
+      
       // Handle rate limit errors gracefully
       if (error.message?.includes('429') || error.message?.includes('quota')) {
         console.warn('⚠️ Gemini API rate limit reached')
@@ -217,6 +277,11 @@ However, I can still help! Based on your question about "${body.message}", here'
 ${hasContent ? `I found relevant information in the course materials:\n\n${chatContext.relevantContent.substring(0, 500)}...\n\nPlease try again in a few moments for a more detailed AI-generated response.` : 'Please try again in about 30 seconds, or contact your instructor for immediate assistance.'}
 
 Tip: You can also browse the course syllabus directly from the dashboard.`
+      } else if (error.message?.includes('timeout')) {
+        // Timeout error - provide content directly
+        responseText = hasContent 
+          ? `Based on the course materials, here's what I found:\n\n${chatContext.relevantContent.substring(0, 800)}\n\n(Note: AI response generation timed out, showing raw content)`
+          : `I'm sorry, but the AI response generation timed out. Please try asking your question again, or try rephrasing it more simply.`
       } else {
         throw error // Re-throw other errors
       }
@@ -243,31 +308,39 @@ Tip: You can also browse the course syllabus directly from the dashboard.`
     }
 
     // Store user message in database
-    await createChatMessage({
-      user_id: userIdInt,
-      course: body.course,
-      session_id: sessionId,
-      message_type: 'user',
-      message: body.message,
-      sources: []
-    })
+    console.log('💾 Storing messages in database...')
+    try {
+      await createChatMessage({
+        user_id: userIdInt,
+        course: body.course,
+        session_id: sessionId,
+        message_type: 'user',
+        message: body.message,
+        sources: []
+      })
 
-    // Store assistant response in database
-    await createChatMessage({
-      user_id: userIdInt,
-      course: body.course,
-      session_id: sessionId,
-      message_type: 'assistant',
-      message: responseText,
-      sources: chatContext.sources.map(s => ({
-        section: s.section,
-        pageNumber: s.pageNumber,
-        pdfSource: s.pdfSource,
-        similarity: s.similarity
-      }))
-    })
+      // Store assistant response in database
+      await createChatMessage({
+        user_id: userIdInt,
+        course: body.course,
+        session_id: sessionId,
+        message_type: 'assistant',
+        message: responseText,
+        sources: chatContext.sources.map(s => ({
+          section: s.section,
+          pageNumber: s.pageNumber,
+          pdfSource: s.pdfSource,
+          similarity: s.similarity
+        }))
+      })
+      console.log('✅ Messages stored successfully')
+    } catch (dbError: any) {
+      console.error('⚠️ Failed to store messages:', dbError.message)
+      // Continue anyway - don't fail the request
+    }
 
     // Return response
+    console.log('✅ Returning response to client')
     return NextResponse.json({
       success: true,
       response: responseText,
@@ -288,7 +361,7 @@ Tip: You can also browse the course syllabus directly from the dashboard.`
     })
 
   } catch (error) {
-    console.error('Chat API error:', error)
+    console.error('❌ Chat API error:', error)
     
     return NextResponse.json(
       {

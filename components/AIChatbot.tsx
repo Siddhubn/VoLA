@@ -113,8 +113,20 @@ export function AIChatbot({ course, userId, module, sessionId: initialSessionId,
 
   // Load chat history on mount and when course changes
   useEffect(() => {
-    loadChatHistory()
-  }, [userId, selectedCourse])
+    // Only load history if we have an initial session ID
+    // If initialSessionId is explicitly null, start fresh
+    if (initialSessionId !== undefined && initialSessionId !== null) {
+      loadSpecificSession(initialSessionId)
+    } else if (initialSessionId === undefined) {
+      // On first mount with no session specified, load most recent
+      loadChatHistory()
+    } else {
+      // initialSessionId is explicitly null - start fresh
+      setMessages([])
+      setSessionId(null)
+      setLoadingHistory(false)
+    }
+  }, [userId, selectedCourse, initialSessionId])
 
   async function loadChatHistory() {
     setLoadingHistory(true)
@@ -131,6 +143,24 @@ export function AIChatbot({ course, userId, module, sessionId: initialSessionId,
       }
     } catch (err) {
       console.error('Error loading chat history:', err)
+    } finally {
+      setLoadingHistory(false)
+    }
+  }
+
+  async function loadSpecificSession(sessionIdToLoad: string) {
+    setLoadingHistory(true)
+    try {
+      const response = await fetch(`/api/chat/history?sessionId=${sessionIdToLoad}`)
+      if (response.ok) {
+        const data = await response.json()
+        if (data.success && data.messages) {
+          setMessages(data.messages)
+          setSessionId(sessionIdToLoad)
+        }
+      }
+    } catch (err) {
+      console.error('Error loading session:', err)
     } finally {
       setLoadingHistory(false)
     }
@@ -156,7 +186,7 @@ export function AIChatbot({ course, userId, module, sessionId: initialSessionId,
     setLoading(true)
 
     try {
-      const response = await fetch('/api/chat', {
+      const response = await fetch('/api/rag/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -164,12 +194,9 @@ export function AIChatbot({ course, userId, module, sessionId: initialSessionId,
         body: JSON.stringify({
           message: userMessage,
           course: selectedCourse,
-          context: {
-            currentModule: module,
-            tradeType: 'TT', // Default to Trade Theory
-            userLevel: 'intermediate', // Default level
-            focusArea: undefined // Let the system determine
-          },
+          module: module,
+          tradeType: 'trade_theory', // Default to Trade Theory
+          sessionId: sessionId,
           history: messages.slice(-10) // Send last 10 messages for context
         })
       })
